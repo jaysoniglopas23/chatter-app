@@ -1,0 +1,310 @@
+import React, {Component} from 'react';
+import {
+  Text,
+  Dimensions,
+  View,
+  Image,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
+import {Avatar} from 'react-native-elements';
+import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {createAppContainer} from 'react-navigation';
+import Happy from '../homes/Happy';
+import Calls from '../homes/Calls';
+import Card from '../homes/Card';
+import Heart from '../homes/Heart';
+import Lock from '../homes/Lock';
+import News from '../homes/News';
+import Pacman from '../homes/Pacman';
+import Picture from '../homes/Picture';
+import Star from '../homes/Star';
+import {CardStyleInterpolators} from '@react-navigation/stack';
+
+const DeviceWidth = Dimensions.get('window').width;
+const Stack = createStackNavigator();
+
+class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+
+    this.goProfile = this.goProfile.bind(this);
+
+    this.goLogout = this.goLogout.bind(this);
+
+    this.goCard = this.goCard.bind(this);
+
+    this.goCall = this.goCall.bind(this);
+
+    this.goHeart = this.goHeart.bind(this);
+
+    this.goLock = this.goLock.bind(this);
+
+    this.goNews = this.goNews.bind(this);
+
+    this.goPacman = this.goPacman.bind(this);
+
+    this.goPicture = this.goPicture.bind(this);
+
+    this.goStart = this.goStar.bind(this);
+
+    this.goCoin = this.goCoin.bind(this);
+  }
+
+  goCoin() {
+    this.props.navigation.navigate('Coin');
+  }
+
+  goCard() {
+    this.props.navigation.navigate('Card');
+  }
+
+  goCall() {
+    this.props.navigation.navigate('Calls');
+  }
+
+  goHeart() {
+    this.props.navigation.navigate('Heart');
+  }
+
+  goLock() {
+    this.props.navigation.navigate('Lock');
+  }
+
+  goNews() {
+    this.props.navigation.navigate('News');
+  }
+
+  goPacman() {
+    this.props.navigation.navigate('Pacman');
+  }
+
+  goStar() {
+    this.props.navigation.navigate('Star');
+  }
+
+  goPicture() {
+    this.props.navigation.navigate('Picture');
+  }
+
+  goProfile() {
+    this.props.navigation.navigate('Happy');
+  }
+
+  goLogout() {
+    this.props.navigation.navigate('Login');
+  }
+
+  render() {
+    return (
+      <View style={{backgroundColor: '#fff', height: '100%'}}>
+        <View
+          style={{
+            flex: 0.6,
+            justifyContent: 'center',
+            flexDirection: 'row',
+            backgroundColor: 'trasparent',
+          }}>
+          <View>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                marginBottom: 1,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderRightWidth: 1,
+                borderBottomWidth: 1,
+              }}
+              onPress={() => this.goProfile()}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/Happy.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>プロフィール</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                marginBottom: 1,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderRightWidth: 1,
+                borderBottomWidth: 1,
+              }}
+              onPress={() => this.goHeart('Heart')}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/Heart.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>あなたのような</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderRightWidth: 1,
+                borderBottomWidth: 1,
+              }}
+              onPress={() => this.goPacman('Pacman')}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/icons8-pacman-50.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>さまざまな使用法</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{backgroundColor: '#fff', height: '100%'}}>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                marginBottom: 1,
+                marginLeft: 1,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderRightWidth: 1,
+                borderBottomWidth: 1,
+                borderLeftWidth: 1,
+              }}
+              onPress={() => this.goPicture()}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/Picture.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>写真登録</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                marginBottom: 1,
+                marginLeft: 1,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderRightWidth: 1,
+                borderBottomWidth: 1,
+                borderLeftWidth: 1,
+              }}
+              onPress={() => this.goStart('Star')}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/Stars.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>開始</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                marginLeft: 1,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderLeftWidth: 1,
+                borderBottomWidth: 1,
+                borderRightWidth: 1,
+              }}
+              onPress={() => this.goLogout()}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/Lock.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>ログアウト</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                marginBottom: 1,
+                marginLeft: 1,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderBottomWidth: 1,
+                borderLeftWidth: 1,
+              }}
+              onPress={() => this.goCard()}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/Card.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>個人証明書</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                marginBottom: 1,
+                marginLeft: 1,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderBottomWidth: 1,
+                borderLeftWidth: 1,
+              }}
+              onPress={() => this.goCall('Calls')}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/Calls.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>通話設定</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                width: DeviceWidth * 0.3,
+                height: DeviceWidth * 0.3,
+                marginBottom: 1,
+                marginLeft: 1,
+                backgroundColor: 'transparent',
+                borderColor: '#cdd5d5',
+                borderBottomWidth: 1,
+                borderLeftWidth: 1,
+              }}
+              onPress={() => this.goNews('News')}>
+              <Image
+                style={styles.iconRight}
+                source={require('../icon/News.png')}
+              />
+              <Text style={{alignSelf: 'center'}}>使用規則</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+export default Dashboard;
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    marginBottom: 10,
+    left: 20,
+  },
+  avatar: {
+    paddingTop: 10,
+    width: 130,
+    height: 130,
+    marginBottom: 50,
+  },
+  logo: {
+    width: 66,
+    height: 58,
+  },
+  iconRight: {
+    marginTop: 20,
+    width: 60,
+    height: 60,
+    marginBottom: 5,
+    marginLeft: 30,
+  },
+});
