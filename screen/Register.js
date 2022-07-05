@@ -1,4 +1,5 @@
-import React, {Component, useState} from 'react';
+import {MaskedViewComponent} from '@react-native-community/masked-view';
+import React, {Component, memo, useState} from 'react';
 import {
   Text,
   View,
@@ -7,19 +8,21 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ActivityIndicator,
 } from 'react-native';
+
 import {RadioButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Socket} from 'socket.io-client';
-
-// const [checked, setChecked] = React.useState('first');
+import moment from 'moment';
+import Storage from '../utils/storage';
 
 class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ui: [],
+      ui: [{One: 'invalid', two: 'Valid'}],
       refresh: 0,
 
       hasProfilePhoto: false,
@@ -40,7 +43,7 @@ class Register extends Component {
 
       passwordRequirementText: '',
 
-      fillinText: '',
+      fillinText: 'Please Fill in each item',
 
       taText: '',
 
@@ -50,20 +53,28 @@ class Register extends Component {
 
       passwordErrorOpacity: 0,
 
+      phone_numberOpacity: 0,
+
       confirmPassworderrorOpacity: 0,
 
+      datetime: moment(),
+
+      id: '',
       account_id: '',
       email: '',
       password: '',
       phone_number: '',
       confirm_password: '',
+      gender: '1',
 
       registerButton: '',
       title: '',
 
       fieldComplete: true,
 
-      registeringOpacity: 0,
+      registeringOpacity: 1,
+
+      checked: 'first',
 
       enableKAV: false,
     };
@@ -77,7 +88,7 @@ class Register extends Component {
 
     this.arrFields = [];
 
-    this.setChecked = this.setChecked.bind(this);
+    this.goBack = this.goBack.bind(this);
 
     this.goRegister = this.goRegister.bind(this);
   }
@@ -94,8 +105,8 @@ class Register extends Component {
     });
   }
 
-  setChecked() {
-    this.props.navigation.navigate('Login');
+  goBack() {
+    this.props.navigationRef.current?.navigate('Login');
   }
 
   checkEmail(email) {
@@ -107,10 +118,9 @@ class Register extends Component {
       },
       () => {
         if (email == '') {
-          self.valid2 = false;
+          self.valid1 = false;
 
           self.setState({
-            emailError: self.state.ui[20].ui,
             emailErrorOpacity: 1,
           });
         } else {
@@ -118,28 +128,28 @@ class Register extends Component {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
           if (!re.test(String(email).toLowerCase())) {
-            self.valid2 = false;
+            self.valid1 = false;
 
             self.setState({
               emailErrorOpacity: 1,
-              emailError: self.state.ui[20],
+              emailError: 'valid',
             });
           } else {
-            global.ws.on('emit-check-email', function (ret) {
-              global.ws.off('emit-check-email');
+            global.socket.on('emit-check-email', function (ret) {
+              global.socket.off('emit-check-email');
 
-              if (parseInt(ret.exists) == 1) {
-                self.valid2 = false;
+              if (parseInt(ret) == 1) {
+                self.valid1 = false;
 
                 self.setState({
-                  emailError: self.state.ui[20].ui,
+                  emailError: 'invalid',
                   emailErrorOpacity: 1,
                 });
               } else {
-                self.valid2 = true;
+                self.valid1 = true;
 
                 self.setState({
-                  emailError: self.state.ui[20].ui,
+                  emailError: 'Valid',
                   emailErrorOpacity: 0,
                 });
               }
@@ -154,6 +164,37 @@ class Register extends Component {
         }
 
         self.showRegisterButton();
+      },
+    );
+  }
+
+  phoneNumber(phone_number) {
+    let self = this;
+
+    this.setState(
+      {
+        phone_number: phone_number,
+      },
+      () => {
+        var re = /^[0-9\b]+$/;
+
+        if (!re.test(self.state.phone_number)) {
+          this.valid2 = false;
+
+          self.setState({
+            phone_numberOpacity: 1,
+          });
+        } else {
+          this.valid2 = true;
+
+          self.setState({
+            phone_numberOpacity: 0,
+          });
+        }
+
+        self.showRegisterButton();
+
+        let params = {phone_number: this.state.phone_number};
       },
     );
   }
@@ -183,6 +224,8 @@ class Register extends Component {
         }
 
         self.showRegisterButton();
+        let params = {password: this.state.password};
+        // console.log(params);
       },
     );
   }
@@ -228,35 +271,72 @@ class Register extends Component {
       {
         registeringOpacity: 1,
       },
-
       () => {
-        global.ws.on('on-register', function (ret) {
-          global.ws.off('on-register');
-          if (parseInt(ret.status) == 0) {
+        global.socket.on('emit-register', function (ret) {
+          global.socket.off('emit-register');
+          console.log(ret);
+          if (parseInt(ret) == 0) {
             self.setState({
               fieldComplete: false,
               registeringOpacity: 0,
-              accountIdErrorOpacity: 1,
+              emailErrorOpacity: 1,
             });
-          } else if (parseInt(ret.status) == 1) self.props.navigationRef.current?.navigate('Tab');
+          } else if (parseInt(ret)) {
+            if (self.state.hasProfilePhoto) {
+              const data = new FormData();
+
+              data.append('account_id', ret.account_id);
+              
+
+              let i = {
+                uri: self.state.profilePhoto,
+                type: 'multipart/form-data',
+                name: `image.jpg`,
+              };
+
+              data.append('post', i);
+
+              axios
+                .request({
+                  method: 'post',
+                  url: 'https://goodlookin.live:8002/upload_profile_photo',
+                  data: data,
+                  onUploadProgress: p => {
+                    console.log(p);
+                    //this.setState({
+                    //fileprogress: p.loaded / p.total
+                    //})
+                  },
+                })
+                .then(data => {
+                  self.props.navigationRef.current?.navigate('Tabs');
+                });
+            } else {
+              global.account_id = ret.account_id;
+              global.gender = '';
+              global.nickname = ret.nickname;
+              global.points = 0;
+
+              self.props.navigationRef.current?.navigate('Tabs');
+            }
+          }
         });
 
         let params = {
-          // accountid: this.state.accountId,
+          account_id: this.state.account_id,
           email: this.state.email,
           password: this.state.password,
           phone_number: this.state.phone_number,
           confirm_password: this.state.confirm_password,
-          gender: '',
+          gender: '1',
+          datetime: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
         };
+
         console.log(params);
-        global.ws.emit('emit-register', params);
+
+        global.socket.emit('on-register', params);
       },
     );
-  }
-
-  componentDidMount() {
-    this.getUI();
   }
 
   renderCell(field) {
@@ -265,13 +345,17 @@ class Register extends Component {
     return <RegisterField field={field} self={self} />;
   }
 
+  setChecked() {
+    let self = this;
+  }
+
   // this.props.navigation.navigate('Tab');
 
   render() {
     return (
       <View style={{backgroundColor: '#fff', height: '100%'}}>
         <TouchableOpacity
-          onPress={() => this.setChecked()}
+          onPress={() => this.goBack()}
           style={{
             backgroundColor: 'tranparent',
             marginHorizontal: 170,
@@ -302,7 +386,7 @@ class Register extends Component {
               borderEndWidth: 310,
               borderRadius: 10,
             }}
-            // value={this.state.email}
+            value={this.state.email}
             onChangeText={value => this.checkEmail(value)}
           />
           <Text
@@ -341,9 +425,17 @@ class Register extends Component {
             borderRadius: 5,
             paddingVertical: 2,
           }}>
-          <RadioButton value="first" />
+          <RadioButton
+            value="first"
+            status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
+            onPress={() => this.setChecked('first')}
+          />
           <Text>MALE</Text>
-          <RadioButton value="second" />
+          <RadioButton
+            value="second"
+            status={this.state.checked === 'second' ? 'checked' : 'unchecked'}
+            onPress={() => this.setChecked('second')}
+          />
           <Text>FEMALE</Text>
           <Text style={{bottom: 28, right: 255, backgroundColor: '#fff'}}>
             性別
@@ -363,16 +455,14 @@ class Register extends Component {
           }}>
           <TextInput
             onFocus={() => this.onDisableKAVFocus()}
+            keyboardType="numeric"
             style={{
               paddingHorizontal: 10,
-
               borderEndWidth: 310,
               borderRadius: 10,
             }}
-            onChangeText={phone_number =>
-              this.setState({phone_number: phone_number})
-            }
             value={this.state.phone_number}
+            onChangeText={value => this.phoneNumber(value)}
           />
         </View>
         <Text
@@ -405,8 +495,8 @@ class Register extends Component {
               borderEndWidth: 310,
               borderRadius: 10,
             }}
+            value={this.state.password}
             onChangeText={value => this.checkPassword(value)}
-            // value={this.state.password}
           />
 
           <Text
@@ -448,12 +538,11 @@ class Register extends Component {
             secureTextEntry
             style={{
               paddingHorizontal: 10,
-
               borderEndWidth: 310,
               borderRadius: 10,
             }}
             onChangeText={value => this.confirmPassword(value)}
-            // value={this.state.confirm_password}
+            value={this.state.confirm_password}
           />
           <Text
             style={{
@@ -480,25 +569,50 @@ class Register extends Component {
           パスワードを認証する
         </Text>
 
-        <TouchableOpacity
-          onPress={() => this.goRegister()}
-          style={{
-            marginHorizontal: 150,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 30,
-            backgroundColor: '#cdd5d5',
-            paddingVertical: 10,
-            borderRadius: 0,
-          }}>
+        <ActivityIndicator
+          style={{opacity: this.state.registeringOpacity}}
+          size="small"
+          color="#69747f"
+        />
+
+        {this.state.fieldComplete ? (
+          <TouchableOpacity
+            onPress={() => this.goRegister()}
+            style={{
+              marginHorizontal: 150,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: 30,
+              backgroundColor: '#cdd5d5',
+              paddingVertical: 10,
+              borderRadius: 0,
+            }}>
+            <Text
+              style={{
+                color: '#5b5c5a',
+                fontFamily: 'SemiBold',
+              }}>
+              登録
+            </Text>
+          </TouchableOpacity>
+        ) : (
           <Text
             style={{
-              color: '#5b5c5a',
-              fontFamily: 'SemiBold',
+              width: '100%',
+              height: 30,
+              marginTop: 25,
+              marginBottom: 15,
+              lineHeight: 15,
+              color: global.textColor,
+              fontSize: 13,
+              color: global.textColor,
+              fontWeight: 'bold',
+              textAlign: 'center',
+              opacity: this.state.fillinOpacity,
             }}>
-            登録
+            {this.state.fillinText}
           </Text>
-        </TouchableOpacity>
+        )}
       </View>
     );
   }

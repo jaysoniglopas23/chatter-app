@@ -22,9 +22,12 @@ import Pacman from '../homes/Pacman';
 import Picture from '../homes/Picture';
 import Star from '../homes/Star';
 import {CardStyleInterpolators} from '@react-navigation/stack';
+import Login from './Login';
+import DisplayAnImage from './Home';
 
 const DeviceWidth = Dimensions.get('window').width;
 const Stack = createStackNavigator();
+const navigationRef = React.createRef();
 
 class Dashboard extends Component {
   constructor(props) {
@@ -55,48 +58,52 @@ class Dashboard extends Component {
     this.goCoin = this.goCoin.bind(this);
   }
 
+  goSettings() {
+    this.props.navigationRef.current?.navigate('Settings');
+  }
+
   goCoin() {
-    this.props.navigation.navigate('Coin');
+    this.props.navigationRef.current?.navigate('Coin');
   }
 
   goCard() {
-    this.props.navigation.navigate('Card');
+    this.props.navigationRef.current?.navigate('Card');
   }
 
   goCall() {
-    this.props.navigation.navigate('Calls');
+    this.props.navigationRef.current?.navigate('Calls');
   }
 
   goHeart() {
-    this.props.navigation.navigate('Heart');
+    this.props.navigationRef.current?.navigate('Heart');
   }
 
   goLock() {
-    this.props.navigation.navigate('Lock');
+    this.props.navigationRef.current?.navigate('Lock');
   }
 
   goNews() {
-    this.props.navigation.navigate('News');
+    this.props.navigationRef.current?.navigate('News');
   }
 
   goPacman() {
-    this.props.navigation.navigate('Pacman');
+    this.props.navigationRef.current?.navigate('Pacman');
   }
 
   goStar() {
-    this.props.navigation.navigate('Star');
+    this.props.navigationRef.current?.navigate('Star');
   }
 
   goPicture() {
-    this.props.navigation.navigate('Picture');
+    this.props.navigationRef.current?.navigate('Picture');
   }
 
   goProfile() {
-    this.props.navigation.navigate('Happy');
+    this.props.navigationRef.current?.navigate('Happy');
   }
 
   goLogout() {
-    this.props.navigation.navigate('Login');
+    this.props.navigationRef.current?.navigate('Login');
   }
 
   render() {

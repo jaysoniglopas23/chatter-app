@@ -1,4 +1,3 @@
-import {width} from 'cli';
 import React, {Component} from 'react';
 import {
   TextInput,
@@ -10,52 +9,183 @@ import {
   Button,
   TouchableOpacity,
   FlatList,
-  Picker,
-  UserImg,
+  ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Dropdown} from 'react-native-material-dropdown';
+import _ from 'lodash';
+import {ListItem, Avatar} from 'react-native-elements';
+import {getUsers, contains} from '../styles/index';
+import UserPost from '../styles/UserPost';
 
-const dataList = [
-  {key: '1'},
-  {key: '2'},
-  {key: '3'},
-  {key: '4'},
-  {key: '5'},
-  {key: '6'},
-  {key: '7'},
-  {key: '8'},
-  {key: '8'},
-];
 const numColumns = 3;
 const DeviceWidth = Dimensions.get('window').width;
 
+const URL_TEMP = 'http://18.181.88.243:8081/Temp';
+
 export default class Search extends Component {
-  formatData = (dataList, numColumns) => {
-    const totalRows = Math.floor(dataList.length / numColumns);
-    let totalLastRows = dataList.length - totalRows * numColumns;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+
+      data: [],
+
+      fullData: [],
+
+      error: null,
+
+      name: '',
+
+      userid: '',
+
+      start: '0',
+
+      users: '',
+
+      path: '',
+
+      image: '',
+    };
+
+    this.goCall = this.goCall.bind(this);
+  }
+
+  goCall(id) {
+    this.props.navigation.navigate('User');
+
+    let self = this;
+
+    this.setState(
+      {},
+
+      () => {
+        global.socket.on('emit-users-for-search', function (ret) {
+          global.socket.off('emit-users-for-search');
+          // JSON.stringify(ret);
+          // console.log(ret);
+
+          self.setState({
+            callRefreshed: true,
+            refresh: 1,
+
+            name: ret.name,
+            image: ret.image,
+            path: ret.path,
+            users: ret.users,
+            id: ret.id,
+          });
+
+          // console.log(id);
+        });
+        let params = {};
+
+        params['start'] = 0;
+        params['size'] = 15;
+        params['filter_type'] = '0';
+        params['order'] = '0';
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+        params['id'] = id;
+
+        global.user_id = id;
+
+        global.socket.emit('on-users-for-search', params);
+        console.log(params);
+      },
+    );
+  }
+
+  componentDidMount() {
+    this.makeRemoteRequest();
+
+    let self = this;
+
+    this.setState(
+      {
+        saving: true,
+      },
+
+      () => {
+        global.socket.on('emit-users-for-search', function (ret) {
+          global.socket.off('emit-users-for-search');
+          // JSON.stringify(ret);
+          // console.log(ret.users);
+
+          self.setState({
+            name: ret.name,
+            image: ret.image,
+            path: ret.path,
+            users: ret.users,
+          });
+
+          // console.log(ret.name);
+        });
+        let params = {};
+
+        params['start'] = this.state.start;
+        params['size'] = '1000';
+        params['filter_type'] = '0';
+        params['order'] = '0';
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+
+        global.socket.emit('on-users-for-search', params);
+        // console.log(params);
+      },
+    );
+    // this.props.navigationRef.current?.navigate('Dashboard');
+  }
+
+  makeRemoteRequest = _.debounce(() => {
+    this.setState({loading: true});
+
+    getUsers(20, this.state.query)
+      .then(data => {
+        this.setState({
+          loading: false,
+          data: [],
+          fullData: [],
+        });
+      })
+      .catch(error => {
+        this.setState({error, loading: false});
+      });
+  }, 250);
+
+  handleSearch = text => {
+    const formattedQuery = text.toLowerCase();
+    const users = _.filter(this.state.users, users => {
+      return contains(users, formattedQuery);
+    });
+    this.setState({users, query: text}, () => this.makeRemoteRequest());
+  };
+
+  formatData = (users, numColumns) => {
+    const totalRows = Math.floor(users.length / numColumns);
+    let totalLastRows = ret.length - totalRows * numColumns;
 
     while (totalRows !== 0 && totalLastRows !== numColumns) {
-      dataList.push({key: 'blank', empty: true});
+      users.push({key: 'blank', empty: true});
       totalLastRows++;
     }
 
-    return dataList;
+    return users;
   };
 
   _renderItem = ({item, index}) => {
-    let {itemStyle, itemInvisible, textStyle} = styles;
+    let {itemStyle, itemInvisible, textStyle, numColumns} = styles;
 
     if (item.empty) {
       return <View style={(itemStyle, itemInvisible)}></View>;
     }
 
     return (
-      <TouchableOpacity style={itemStyle}>
-        <Text style={textStyle}>Name</Text>
+      <TouchableOpacity style={itemStyle} onPress={() => this.goCall(item.id)}>
+        <Text style={textStyle}>{item.name}</Text>
         <Image
           style={styles.iconRight}
-          source={require('../images/daniel-j-schwarz-REjuIrs2YaM-unsplash.jpg')}
+          source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
         />
       </TouchableOpacity>
     );
@@ -64,66 +194,31 @@ export default class Search extends Component {
   render() {
     return (
       <View style={{backgroundColor: '#fff', height: '100%'}}>
-        <View style={styles.container}>
-          <View
-            style={{
-              flex: 1,
-              top: 15,
-              right: 20,
-              marginHorizontal: 100,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginHorizontal: 20,
-                borderWidth: 1,
-                marginTop: 0,
-                paddingHorizontal: 10,
-                height: 40,
-                width: 250,
-                bottom: 5,
-                right: 7,
-                borderColor: '#cdd5d5',
-              }}>
-              <TextInput
-                style={{
-                  paddingHorizontal: 1,
-                }}
-              />
-            </View>
-            <TouchableOpacity onPress={() => console.log('werk!')}>
-              <Image
-                style={{height: 20, width: 20, right: 360, top: 3}}
-                source={require('../icon/icons8-bulleted-list-50.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.log('werk!')}>
-              <Image
-                style={{height: 20, width: 20, right: 340, top: 3}}
-                source={require('../icon/icons8-squared-menu-50.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.log('werk!')}>
-              <Image
-                style={{height: 23, width: 23, right: 43, top: 3}}
-                source={require('../icon/icons8-scroll-down-50.png')}
-              />
-            </TouchableOpacity>
-          </View>
+        <View
+          style={{
+            borderWidth: 1,
+            borderRadius: 5,
+            width: 270,
+            height: 41,
+            top: 12,
+            left: 70,
+            borderColor: '#cdd5d5',
+          }}>
+          <TextInput
+            style={{backgroundColor: '#fff', fontSize: 10}}
+            onChangeText={this.handleSearch}
+            value={this.state.query}
+          />
         </View>
-
-        <View style={{top: 10}}>
+        <View style={{top: 40}}>
           <FlatList
-            data={this.formatData(dataList, numColumns)}
+            data={this.state.users}
             renderItem={this._renderItem}
             keyExtractor={(item, index) => index.toString()}
             numColumns={numColumns}
           />
         </View>
-        <View style={{flexDirection: 'row'}}>
+        {/* <View style={{flexDirection: 'row', top: 50}}>
           <Text style={{alignSelf: 'center', left: 190}}>1/2</Text>
 
           <View style={{left: 308, marginTop: 10, width: 70}}>
@@ -156,7 +251,7 @@ export default class Search extends Component {
               />
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </View>
     );
   }
@@ -168,13 +263,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 10,
     paddingTop: 0,
-
-    // marginHorizontal: 100,
   },
   avatar: {
     paddingTop: 10,
-    width: 110,
-    height: 110,
+    width: 130,
+    height: 130,
     marginBottom: 50,
     marginLeft: 20,
   },
@@ -201,11 +294,12 @@ const styles = StyleSheet.create({
     margin: 0,
     borderWidth: 1,
     paddingBottom: 10,
-    paddingHorizontal: 120,
+    paddingHorizontal: 10,
     left: 22,
+    borderColor: '#cdd5d5',
   },
   itemStyle: {
-    backgroundColor: '#add8e6',
+    backgroundColor: 'grey',
     alignItems: 'center',
     justifyContent: 'center',
     height: 150,
@@ -224,5 +318,25 @@ const styles = StyleSheet.create({
     bottom: 5,
     backgroundColor: 'white',
     padding: 1,
+    fontSize: 10,
   },
 });
+
+/* <TouchableOpacity onPress={() => console.log('werk!')}>
+<Image
+  style={{height: 20, width: 20, right: 360, top: 3}}
+  source={require('../icon/icons8-bulleted-list-50.png')}
+/>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => console.log('werk!')}>
+<Image
+  style={{height: 20, width: 20, right: 340, top: 3}}
+  source={require('../icon/icons8-squared-menu-50.png')}
+/>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => console.log('werk!')}>
+<Image
+  style={{height: 23, width: 23, right: 43, top: 3}}
+  source={require('../icon/icons8-scroll-down-50.png')}
+/>
+</TouchableOpacity> */

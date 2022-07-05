@@ -20,7 +20,7 @@ import {
   TextSection,
 } from '../styles/MessageStyles';
 import Tabs from '../navigation/tabs';
-import Chat from '../screen/Chat';
+import Chat from './Chat';
 import {Message} from 'react-native-gifted-chat';
 
 const Messages = [

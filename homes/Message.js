@@ -20,7 +20,7 @@ import {
   TextSection,
 } from '../styles/MessageStyles';
 import Tabs from '../navigation/tabs';
-import Chat from '../screen/Chat';
+import Chat from './Chat';
 import {Message} from 'react-native-gifted-chat';
 
 const Messages = [
@@ -104,11 +104,3 @@ class MessagesScrean extends Component {
 }
 
 export default MessagesScrean;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

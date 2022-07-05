@@ -8,27 +8,16 @@ import {createAppContainer} from 'react-navigation';
 import Call from './../screen/Call';
 import Post from './../screen/Post';
 import Search from './../screen/Search';
-import Chat from './../screen/Chat';
+import Chat from '../homes/Chat';
 import Home from '../screen/Home';
 import Messages from '../screen/Messages';
+import PhotoLibrary from '../screen/Photolibrary';
+import User from '../homes/User';
+import Settings from '../homes/Settings';
+import Posttoboard from '../screen/Posttoboard';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-// const CoinStack = ({navigation}) => (
-//   <Stack.Navigator>
-//     <Stack.Screen
-//       name="Coin"
-//       component={CoinStatus}
-//       options={{headerShown: false}}
-//     />
-//     <Stack.Screen
-//       name="CoinScreen"
-//       component={CoinScreen}
-//       options={{headerShown: false}}
-//     />
-//   </Stack.Navigator>
-// );
 
 const MessageStack = ({navigation}) => (
   <Stack.Navigator>
@@ -50,21 +39,99 @@ const MessageStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
-// const Pages = ({navigation}) => (
-//   <Stack.Navigator>
-//     {/* <Stack.Screen
-//         name="Search"
-//         component={App}
-//         options={{headerShown: false}}
-//       /> */}
-//     <Stack.Screen name="Rock" component={Rock} options={{headerShown: false}} />
-//     <Stack.Screen
-//       name="Paper"
-//       component={Paper}
-//       options={{headerShown: false}}
-//     />
-//   </Stack.Navigator>
-// );
+const PostStack = ({navigation}) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Post"
+      component={Post}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="User"
+      component={User}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+      })}
+    />
+    <Stack.Screen
+      name="Posttoboard"
+      component={Posttoboard}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+      })}
+    />
+  </Stack.Navigator>
+);
+
+const CallStack = ({navigation}) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Call"
+      component={Call}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="User"
+      component={User}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+      })}
+    />
+  </Stack.Navigator>
+);
+
+const SeachStack = ({navigation}) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Search"
+      component={Search}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="User"
+      component={User}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+      })}
+    />
+  </Stack.Navigator>
+);
+
+const Homestack = ({navigation}) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="home"
+      component={Home}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="photoLibrary"
+      component={PhotoLibrary}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="Settings"
+      component={Settings}
+      options={{
+        headerShown: false,
+      }}
+    />
+  </Stack.Navigator>
+);
 
 const Tabs = () => {
   const getTabBarVisibility = route => {
@@ -82,7 +149,7 @@ const Tabs = () => {
     <Tab.Navigator tabBarOptions={{showLabel: false}}>
       <Tab.Screen
         name="home"
-        component={Home}
+        component={Homestack}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -103,7 +170,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="Call"
-        component={Call}
+        component={CallStack}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -146,7 +213,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="Search"
-        component={Search}
+        component={SeachStack}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -167,7 +234,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="Post"
-        component={Post}
+        component={PostStack}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (

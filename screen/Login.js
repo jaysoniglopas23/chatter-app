@@ -11,8 +11,17 @@ import {
   TouchableOpacity,
   StyleSheet,
   AsyncStorage,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  createStackNavigator,
+  TransitionSpecs,
+  HeaderStyleInterpolators,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
+
+import {NavigationContainer} from '@react-navigation/native';
 
 // import {BlurView, VibrancyView} from '@react-native-community/blur';
 import {BlurView, VibrancyView} from 'react-native-blur';
@@ -22,6 +31,10 @@ import {react} from '@babel/types';
 import {ThemeConsumer} from 'styled-components';
 import io from 'socket.io-client';
 import Socket from '../utils/socket';
+import Storage from '../utils/storage';
+import {StackActions} from '@react-navigation/native';
+
+const navigationRef = React.createRef();
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -41,12 +54,15 @@ class Login extends Component {
       registerButton: '',
       forgotPasswordButton: '',
       messageTwo: '',
-      email: '',
-      password: '',
+      email: 'oneone@gmail.com',
+      password: 'asasin123',
       loginginOpacity: 0,
       id: '',
+      age: '',
       phone_number: '',
       new_password: '',
+      nickname: '',
+      points: '',
     };
 
     this.goLogin = this.goLogin.bind(this);
@@ -54,15 +70,51 @@ class Login extends Component {
     this.goRegister = this.goRegister.bind(this);
   }
   componentDidMount() {
-    Socket.connect(
-      function () {
-        console.log('Connected');
-      },
-      function () {},
-    );
+    let self = this;
+
+    if (global.locale == 'en') {
+      this.setState(
+        {
+          invalidCredentials: 'Email / Password is invalid',
+          loginButton: 'Login',
+          registerButton: 'Sign Up',
+          forgotPasswordButton: 'Forgot Password',
+
+          emailPlaceHolder: 'Please enter email address.',
+          passwordPlaceHolder: 'Please enter password.',
+          messageOne:
+            'If you have already registered, please enter your email address and password to log in.',
+          messageTwo: 'New to Goodlookin, Sign up here',
+        },
+        () => {
+          self.getUI();
+        },
+      );
+    }
   }
 
-  goLogin() {
+  getUI() {
+    let self = this;
+
+    global.socket.on('ui', function (ret) {
+      ``;
+      global.socket.off('ui');
+
+      self.setState({
+        ui: ret,
+        invalidCredentials: ret[3].ui,
+        loginButton: ret[0].ui,
+        registerButton: ret[2].ui,
+        forgotPasswordButton: ret[1].ui,
+      });
+    });
+
+    let params = {locale: global.locale, type: '30'};
+
+    global.socket.emit('ui', params);
+  }
+
+  goLogin(id) {
     let self = this;
 
     this.setState(
@@ -71,15 +123,33 @@ class Login extends Component {
         loginginOpacity: 1,
       },
       () => {
-        global.ws.on('on-login', function (ret) {
-          global.ws.off('on-login');
-
+        global.socket.on('emit-login', function (ret) {
+          global.socket.off('emit-login');
           console.log(ret);
 
-          if (ret.user_id == '') {
+          if (ret.id == 0) {
             self.setState({
               invalidCredentialsOpacity: 1,
-              loginginOpacity: 0,
+              loginginOpacity: 1,
+              id: ret.id,
+            });
+          } else {
+            Storage.retrieveData().then(data => {
+              console.log('Login Success');
+              data.email = self.state.email;
+              data.password = self.state.password;
+              console.log(self.state.email + ' ' + self.state.password);
+              Storage.storeData(data).then(() => {
+                global.email = ret.email;
+                global.password = ret.password;
+                global.ret = ret.id;
+                global.nickname = ret.nickname;
+                global.age = ret.age;
+                global.points = ret.points;
+                global.profile_image = ret.profile_image;
+
+                self.props.navigationRef.current?.navigate('Tabs');
+              });
             });
           }
         });
@@ -87,21 +157,16 @@ class Login extends Component {
     );
 
     let params = {
-      id: this.state.ui,
-      phone_number: this.state.phone_number,
       email: this.state.email,
       password: this.state.password,
-      new_password: this.state.new_password,
     };
     console.log(params);
 
-    global.ws.emit('emit-login', params);
-
-    this.props.navigation.navigate('Tab');
+    global.socket.emit('on-login', params);
   }
 
   goRegister() {
-    this.props.navigation.navigate('Register');
+    this.props.navigationRef.current?.navigate('Register');
   }
 
   render() {
@@ -245,15 +310,44 @@ class Login extends Component {
             paddingVertical: 0,
           }}>
           <TextInput
-            secureTextEntry
+            secureTextEntry={true}
             placeholderTextColor="#000000"
             style={{paddingHorizontal: 10}}
             onChangeText={password => this.setState({password: password})}
             value={this.state.password}
           />
         </View>
+
+        <ActivityIndicator
+          style={{
+            marginLeft: windowWidth / 2 - 15,
+            width: 30,
+            height: 30,
+            marginTop: 15,
+            fontSize: 13,
+            opacity: this.state.loginginOpacity,
+          }}
+          size="small"
+          color="#69747f"
+        />
+        <Text
+          style={{
+            alignItems: 'flex-start',
+            marginLeft: windowWidth / 2 - (windowWidth - 100) / 2,
+            width: windowWidth - 100,
+            height: 30,
+            lineHeight: 18,
+            textAlign: 'center',
+            marginTop: -25,
+            fontSize: 13,
+            color: 'red',
+            opacity: this.state.invalidCredentialsOpacity,
+          }}>
+          {this.state.invalidCredentials}
+        </Text>
+
         <TouchableOpacity
-          onPress={() => this.goLogin()}
+          onPress={() => this.goLogin(id)}
           style={{
             marginHorizontal: 60,
             alignItems: 'center',
@@ -270,7 +364,7 @@ class Login extends Component {
               fontSize: 20,
               fontFamily: 'SemiBold',
             }}>
-            Login
+            {this.state.loginButton}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -308,8 +402,8 @@ class Login extends Component {
             opacity: 0.9,
             borderRadius: 0,
             paddingVertical: 0,
-            right: 110,
-            bottom: 334,
+            right: 113,
+            bottom: 382,
           }}>
           <Text
             style={{
@@ -325,7 +419,7 @@ class Login extends Component {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            marginHorizontal: 170,
+            marginHorizontal: 173,
             borderWidth: 0,
             marginTop: 65,
             paddingHorizontal: 10,
@@ -333,17 +427,17 @@ class Login extends Component {
             opacity: 0.9,
             borderRadius: 0,
             paddingVertical: 3,
-            right: 101,
-            bottom: 338,
+            right: 105,
+            bottom: 386,
           }}>
           <Text
             style={{
               color: 'black',
               opacity: 0.9,
-              fontSize: 9,
+              fontSize: 10,
               fontFamily: 'SemiBold',
             }}>
-            パスワード
+            Password
           </Text>
         </View>
         <View

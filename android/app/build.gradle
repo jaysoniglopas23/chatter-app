@@ -131,11 +131,12 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.chatter1"
+        applicationId "jp.obs.chatter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 108
+        versionName "108.0"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -192,6 +193,11 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+
+    def billing_version = "4.0.0"
+
+
+    implementation "com.android.billingclient:billing:$billing_version"
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
