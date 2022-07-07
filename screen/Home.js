@@ -225,7 +225,6 @@ class DisplayAnImage extends Component {
       <View style={{backgroundColor: '#fff', height: '180%'}}>
         <View style={styles.container}>
           <TouchableOpacity onPress={() => this.goPhoto()} style={{left: 2}}>
-            {/* {this.state.hasProfilePhoto ? ( */}
             <Image
               source={{
                 uri:
