@@ -34,6 +34,7 @@ import Storage from '../utils/storage';
 import PhotoLibrary from './Photolibrary';
 
 const DeviceWidth = Dimensions.get('window').width;
+
 const Stack = createStackNavigator();
 const navigationRef = React.createRef();
 
@@ -235,23 +236,19 @@ class DisplayAnImage extends Component {
                   this.state.profile_image,
               }}
               style={{
+                position: 'absolute',
                 alignSelf: 'center',
                 top: 10,
                 width: 100,
                 height: 150,
                 borderRadius: 1,
-                left: 15,
+                right: 110,
               }}
             />
           </TouchableOpacity>
-          <View style={{flexDirection: 'row', marginLeft: 20, left: 40}}>
+          <View style={styles.txtview}>
             <Text
-              style={{
-                alignSelf: 'center',
-                right: 2,
-                bottom: 30,
-                fontWeight: 'bold',
-              }}
+              style={styles.nickname}
               value={ret}
               onChangeText={value => this.componentDidMount(value)}>
               {this.state.nickname}
@@ -259,27 +256,30 @@ class DisplayAnImage extends Component {
             <Text
               style={{
                 alignSelf: 'center',
-                bottom: 10,
-                right: 43,
+                top: 15,
+                right: 175,
                 fontWeight: 'bold',
+                position: 'absolute',
               }}>
               Age : {this.state.age}
             </Text>
             <Text
               style={{
                 alignSelf: 'center',
-                top: 9,
-                right: 95,
+                top: 32,
+                right: 135,
                 fontWeight: 'bold',
+                position: 'absolute',
               }}>
               Message : {this.state.mail_count}
             </Text>
             <Text
               style={{
                 alignSelf: 'center',
-                top: 30,
-                right: 188,
+                top: 48,
+                right: 166,
                 fontWeight: 'bold',
+                position: 'absolute',
               }}>
               Call : {this.state.call_minutes}
             </Text>
@@ -291,10 +291,17 @@ class DisplayAnImage extends Component {
               flexDirection: 'row',
               justifyContent: 'flex-end',
               marginTop: 35,
-              marginLeft: 160,
+              marginLeft: 250,
+              position: 'absolute',
             }}>
             <Image
-              style={{width: 40, height: 40, marginRight: 1, right: 130}}
+              style={{
+                width: 40,
+                height: 40,
+                marginRight: 1,
+                right: 130,
+                position: 'absolute',
+              }}
               source={require('../icon/settings.png')}
             />
           </TouchableOpacity>
@@ -306,7 +313,8 @@ class DisplayAnImage extends Component {
               flexDirection: 'row',
               justifyContent: 'flex-end',
               marginTop: 35,
-              marginRight: 30,
+              marginLeft: 200,
+              position: 'absolute',
             }}>
             <Image
               style={{
@@ -314,6 +322,7 @@ class DisplayAnImage extends Component {
                 height: 40,
                 marginRight: 1,
                 right: 30,
+                position: 'absolute',
               }}
               source={require('../icon/Buy.png')}
             />
@@ -405,5 +414,21 @@ const styles = StyleSheet.create({
     height: 60,
     marginBottom: 5,
     marginLeft: 30,
+  },
+  txtview: {
+    flexDirection: 'row',
+    marginLeft: 20,
+    left: 300,
+    top: 10,
+    position: 'absolute',
+  },
+  nickname: {
+    flex: 1,
+    alignSelf: 'center',
+    right: 148,
+    top: 0,
+    fontWeight: 'bold',
+    // borderWidth: 1,
+    position: 'absolute',
   },
 });
