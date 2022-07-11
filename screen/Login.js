@@ -390,11 +390,12 @@ class Login extends Component {
             New User
           </Text>
         </TouchableOpacity>
+        <View style={{flex:1 }}>
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            marginHorizontal: 180,
+            marginHorizontal: 173,
             borderWidth: 0,
             marginTop: 1,
             paddingHorizontal: 10,
@@ -402,14 +403,15 @@ class Login extends Component {
             opacity: 0.9,
             borderRadius: 0,
             paddingVertical: 0,
-            right: 113,
-            bottom: 382,
+            right: 105,
+            bottom:  382,
+            height:18,
           }}>
           <Text
             style={{
               color: 'black',
               opacity: 0.8,
-              fontSize: 11,
+              fontSize: 10,
               fontFamily: 'SemiBold',
             }}>
             Email
@@ -419,7 +421,7 @@ class Login extends Component {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            marginHorizontal: 173,
+            marginHorizontal: 164,
             borderWidth: 0,
             marginTop: 65,
             paddingHorizontal: 10,
@@ -427,8 +429,9 @@ class Login extends Component {
             opacity: 0.9,
             borderRadius: 0,
             paddingVertical: 3,
-            right: 105,
+            right: 98 ,
             bottom: 386,
+            height:20,
           }}>
           <Text
             style={{
@@ -440,6 +443,7 @@ class Login extends Component {
             Password
           </Text>
         </View>
+      </View>
         <View
           style={{
             marginHorizontal: 60,
@@ -449,7 +453,7 @@ class Login extends Component {
             paddingVertical: 3,
             borderRadius: 0,
             opacity: 0.9,
-            bottom: 350,
+            bottom: 260,
           }}>
           <Icon.Button
             backgroundColor="#3b5998"

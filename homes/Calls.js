@@ -83,11 +83,11 @@ class Calls extends Component {
           intDropCalls: ret.drop_calls,
         });
 
-        // if ((toggled = false)) {
-        //   intDropCalls = 0;
-        // } else {
-        //   intDropCalls = 1;
-        // }
+        if ((toggled = false)) {
+          intDropCalls = 0;
+        } else {
+          intDropCalls = 1;
+        }
       });
 
       let params = {};

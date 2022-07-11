@@ -134,8 +134,8 @@ android {
         applicationId "jp.obs.chatter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 108
-        versionName "108.0"
+        versionCode 111
+        versionName "111.0"
         multiDexEnabled true
     }
     splits {

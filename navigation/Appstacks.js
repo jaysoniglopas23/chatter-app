@@ -18,7 +18,7 @@ import {renderNode} from 'react-native-elements/dist/helpers';
 import io from 'socket.io-client';
 import {configureFonts} from 'react-native-paper';
 import CoinScreen from '../homes/CoinScreen';
-import Settings from '../homes/Picture';
+import Settings from '../homes/Settings';
 import Call from '../screen/Call';
 import User from '../homes/User';
 import Launcher from '../screen/launcher';
@@ -85,6 +85,10 @@ class Appstacks extends Component {
 
           <Stack.Screen name="home">
             {props => <DisplayAnImage navigationRef={navigationRef} />}
+          </Stack.Screen>
+
+          <Stack.Screen name="Settings">
+            {props => <Settings navigationRef={navigationRef} />}
           </Stack.Screen>
 
           {/* 

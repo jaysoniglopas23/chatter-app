@@ -58,13 +58,13 @@ class Messages extends Component {
         <View style={{height: '180%', width: '100%'}}>
           <View style={{flexDirection: 'row', left: 103}}>
             <TouchableOpacity onPress={() => this.goMessageA()}>
-              <Text style={{paddingTop: 10, right: 55}}>保存する</Text>
+              <Text style={{paddingTop: 10, right: 55}}>全て</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.goMessageB()}>
-              <Text style={{paddingTop: 10}}>メッセージ</Text>
+              <Text style={{paddingTop: 10}}>既読</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.goMessageC()}>
-              <Text style={{paddingTop: 10, left: 55}}>下書き</Text>
+              <Text style={{paddingTop: 10, left: 55}}>未読</Text>
             </TouchableOpacity>
           </View>
           <View
