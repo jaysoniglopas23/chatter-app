@@ -21,7 +21,7 @@ import {
 } from '../styles/MessageStyles';
 import {CardStyleInterpolators} from '@react-navigation/stack';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
-import MessagesScrean from '../homes/Message';
+import MessagesScrean from '../homes/MessageAll';
 import Savemessages from '../homes/Savemessages';
 import Addmessages from '../homes/Addmessages';
 
@@ -56,15 +56,15 @@ class Messages extends Component {
     return (
       <Container>
         <View style={{height: '180%', width: '100%'}}>
-          <View style={{flexDirection: 'row', left: 103}}>
+          <View style={{flexDirection: 'row', left: 139}}>
             <TouchableOpacity onPress={() => this.goMessageA()}>
-              <Text style={{paddingTop: 10, right: 55}}>全て</Text>
+              <Text style={{paddingTop: 10, right: 95}}>全て</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.goMessageB()}>
               <Text style={{paddingTop: 10}}>既読</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.goMessageC()}>
-              <Text style={{paddingTop: 10, left: 55}}>未読</Text>
+              <Text style={{paddingTop: 10, left: 95}}>未読</Text>
             </TouchableOpacity>
           </View>
           <View

@@ -34,6 +34,7 @@ const MessageStack = ({navigation}) => (
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
+        headerShown: false,
       })}
     />
   </Stack.Navigator>

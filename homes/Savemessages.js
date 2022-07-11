@@ -23,43 +23,7 @@ import Tabs from '../navigation/tabs';
 import Chat from './Chat';
 import {Message} from 'react-native-gifted-chat';
 
-const Messages = [
-  {
-    id: '1',
-    userName: 'Dominador Dela cruz',
-    userImg: require('../images/alex-vinogradov-BO7kc38mkGU-unsplash.jpg'),
-    messageTime: '4 mins ago',
-    messageText: 'Helu gudmorneng!!!',
-  },
-  {
-    id: '2',
-    userName: 'Bj Cablao',
-    userImg: require('../images/alp-duran-pVHRC3e9_XM-unsplash.jpg'),
-    messageTime: '2 hours ago',
-    messageText: 'Gart Gart Gart',
-  },
-  {
-    id: '3',
-    userName: 'Toper Fantastic',
-    userImg: require('../images/dave-hoefler-gqLJxCHQs5w-unsplash.jpg'),
-    messageTime: '1 hours ago',
-    messageText: 'More More More',
-  },
-  {
-    id: '4',
-    userName: 'Mimi yuuh',
-    userImg: require('../images/daniel-j-schwarz-REjuIrs2YaM-unsplash.jpg'),
-    messageTime: '1 day ago',
-    messageText: 'owwwsshhhii!!!.',
-  },
-  {
-    id: '5',
-    userName: 'Fly hight Butter fly',
-    userImg: require('../images/nicola-pavan-Q4VZGRZiPfk-unsplash.jpg'),
-    messageTime: '2 days ago',
-    messageText: 'On The way',
-  },
-];
+const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
 class Savemessages extends Component {
   constructor(props) {
@@ -71,32 +35,137 @@ class Savemessages extends Component {
   }
 
   goChat() {
+    let item = this;
+
     this.props.navigation.navigate('Chat');
   }
+
+  componentDidMount() {
+    // this.makeRemoteRequest();
+
+    let self = this;
+
+    let params = {};
+
+    this.setState(
+      {
+        params: params,
+        refresh: 1,
+      },
+
+      () => {
+        global.socket.on('emit-matched', function (ret) {
+          global.socket.off('emit-matthed');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            date_time: ret[0].date_time,
+            lastmessage: ret[0].lastmessage,
+            message_count: ret[0].message_count,
+            name: ret[0].name,
+            online: ret[0].online,
+            profile_image: ret[0].profile_image,
+            profile_image_dir: ret[0].profile_image_dir,
+            save: ret[0].save,
+            timezone: ret[0].timezone,
+            unread_count: ret[0].unread_count,
+            ret: ret,
+          });
+        });
+        let params = {};
+
+        params['date_time'] = this.state.date_time;
+        params['lastmessage'] = this.state.lastmessage;
+        params['message_count'] = this.state.message_count;
+        params['name'] = this.state.name;
+        params['online'] = this.state.online;
+        params['profile_image'] = this.state.profile_image;
+        params['profile_image_dir'] = this.state.profile_image_dir;
+        params['save'] = this.state.save;
+        params['timezone'] = this.state.timezone;
+        params['unread_count'] = this.state.unread_count;
+
+        global.socket.emit('on-matched', params);
+        // console.log(params);
+      },
+    );
+  }
+
+  // makeRemoteRequest = _.debounce(() => {
+  //   this.setState({loading: true});
+
+  //   getUsers(20, this.state.query)
+  //     .then(ret => {
+  //       this.setState({
+  //         loading: false,
+  //         data: ret,
+  //         fullData: ret,
+  //       });
+  //     })
+  //     .catch(error => {
+  //       this.setState({error, loading: false});
+  //     });
+  // }, 250);
+
+  handleSearch = text => {
+    const formattedQuery = text.toLowerCase();
+    const data = _.filter(this.state.fullData, ret => {
+      return contains(user, formattedQuery);
+    });
+    this.setState({data, query: text}, () => this.makeRemoteRequest());
+  };
+
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: '86%',
+          backgroundColor: '#CED0CE',
+          marginLeft: '14%',
+        }}
+      />
+    );
+  };
+
+  renderFooter = () => {
+    if (!this.state.loading) return null;
+
+    return (
+      <View style={{}}>
+        <ActivityIndicator animating size="large" />
+      </View>
+    );
+  };
+
   render() {
     return (
       <Container>
         <FlatList
-          data={Messages}
+          data={this.state.ret}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <Card
-              style={{paddingTop: 10}}
-              onPress={() =>
-                this.goChat({
-                  userName: item.userName,
-                })
-              }>
+            <Card style={{paddingTop: 0}} onPress={() => this.goChat()}>
               <UserInfo>
                 <UserImgWrapper>
-                  <UserImg source={item.userImg} />
+                  <UserImg
+                    source={{
+                      uri:
+                        URL_TEMP +
+                        '/' +
+                        item.profile_image_dir +
+                        '/' +
+                        item.profile_image,
+                    }}
+                  />
                 </UserImgWrapper>
                 <TextSection>
                   <UserInfoText>
-                    <UserName>{item.userName}</UserName>
-                    <PostTime>{item.messageTime}</PostTime>
+                    <UserName>{item.name}</UserName>
+                    <PostTime>{item.date_time}</PostTime>
                   </UserInfoText>
-                  <MessageText>{item.messageText}</MessageText>
+                  <MessageText>{item.lastmessage}</MessageText>
                 </TextSection>
               </UserInfo>
             </Card>

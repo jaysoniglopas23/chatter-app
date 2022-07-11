@@ -53,8 +53,9 @@ export const UserName = styled.Text`
 `;
 
 export const PostTime = styled.Text`
-  font-size: 12px;
+  font-size: 11px;
   color: #666;
+  height: 20px;
   font-family: 'Lato-Regular';
 `;
 
