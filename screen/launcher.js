@@ -25,6 +25,8 @@ import Storage from '../utils/storage';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+const version = getVersion();
+
 class Launcher extends Component {
   constructor(props) {
     super(props);
@@ -366,23 +368,9 @@ class Launcher extends Component {
         ) : (
           <View style={{marginTop: windowHeight / 2 - 75, height: 150}}>
             <Image
-              source={require('../icon/Happy.png')}
+              source={require('../icon/logo.png')}
               style={{marginLeft: windowWidth / 2 - 25, width: 50, height: 50}}
             />
-
-            <Text
-              style={{
-                width: '100%',
-                height: 30,
-                lineHeight: 30,
-                textAlign: 'center',
-                marginTop: 20,
-                fontSize: 18,
-                fontWeight: 'bold',
-              }}>
-              CHATTER
-            </Text>
-
             <Animated.View
               style={[{opacity: this.state.fadeIn}, styles.animatedView]}>
               <ActivityIndicator
@@ -394,8 +382,8 @@ class Launcher extends Component {
           </View>
         )}
 
-        <Text style={styles.ltd}>Chatter....</Text>
-        <Text style={styles.locale}>Ver.107</Text>
+        {/* <Text style={styles.ltd}>Chatter....</Text> */}
+        <Text style={styles.locale}>Version {version}</Text>
       </View>
     );
   }
