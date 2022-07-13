@@ -15,6 +15,7 @@ import PhotoLibrary from '../screen/Photolibrary';
 import User from '../homes/User';
 import Settings from '../homes/Settings';
 import Posttoboard from '../screen/Posttoboard';
+import CoinScreen from '../homes/CoinScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -140,6 +141,13 @@ const Homestack = ({navigation}) => (
         headerShown: false,
       }}
     />
+    <Stack.Screen
+      name="Coin"
+      component={CoinScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
   </Stack.Navigator>
 );
 
@@ -156,7 +164,9 @@ const Tabs = () => {
   };
 
   return (
-    <Tab.Navigator tabBarOptions={{showLabel: false}}>
+    <Tab.Navigator
+      tabBarOptions={{showLabel: false}}
+      screenOptions={{tabBarStyle: {borderWidth: 10, borderColor: '#FAEA48'}}}>
       <Tab.Screen
         name="home"
         component={Homestack}
@@ -166,7 +176,7 @@ const Tabs = () => {
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
               <Image
-                source={require('../icon/Dashboard.png')}
+                source={require('../icon/Asset3.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -187,7 +197,7 @@ const Tabs = () => {
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
               <Image
-                source={require('../icon/Calls.png')}
+                source={require('../icon/Asset4.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -209,7 +219,7 @@ const Tabs = () => {
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
               <Image
-                source={require('../icon/icons8-sms-50.png')}
+                source={require('../icon/Asset5.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -230,7 +240,7 @@ const Tabs = () => {
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
               <Image
-                source={require('../icon/Search.png')}
+                source={require('../icon/Asset6.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -251,7 +261,7 @@ const Tabs = () => {
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
               <Image
-                source={require('../icon/Post.png')}
+                source={require('../icon/Asset7.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,

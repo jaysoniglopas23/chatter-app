@@ -55,16 +55,27 @@ class Messages extends Component {
   render() {
     return (
       <Container>
-        <View style={{height: '180%', width: '100%'}}>
+        <View
+          style={{
+            height: '180%',
+            width: '105%',
+            borderWidth: 10,
+            borderColor: '#FAEA48',
+            borderBottomWidth: 0,
+          }}>
           <View style={{flexDirection: 'row', left: 139}}>
             <TouchableOpacity onPress={() => this.goMessageA()}>
-              <Text style={{paddingTop: 10, right: 95,color:'black'}}>全て</Text>
+              <Text style={{paddingTop: 10, right: 95, color: 'black'}}>
+                全て
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.goMessageB()}>
-              <Text style={{paddingTop: 10,color:'black',}}>既読</Text>
+              <Text style={{paddingTop: 10, color: 'black'}}>既読</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.goMessageC()}>
-              <Text style={{paddingTop: 10, left: 95,color:'black',}}>未読</Text>
+              <Text style={{paddingTop: 10, left: 95, color: 'black'}}>
+                未読
+              </Text>
             </TouchableOpacity>
           </View>
           <View

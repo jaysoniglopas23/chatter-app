@@ -55,16 +55,16 @@ class Dashboard extends Component {
 
     this.goStart = this.goStar.bind(this);
 
-    this.goCoin = this.goCoin.bind(this);
+    // this.goCoin = this.goCoin.bind(this);
   }
 
-  goSettings() {
-    this.props.navigationRef.current?.navigate('Settings');
-  }
+  // goSettings() {
+  //   this.props.navigationRef.current?.navigate('Settings');
+  // }
 
-  goCoin() {
-    this.props.navigationRef.current?.navigate('Coin');
-  }
+  // goCoin() {
+  //   this.props.navigationRef.current?.navigate('Coin');
+  // }
 
   goCard() {
     this.props.navigationRef.current?.navigate('Card');
@@ -130,9 +130,11 @@ class Dashboard extends Component {
               onPress={() => this.goProfile()}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/Happy.png')}
+                source={require('../icon/Asset11.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>プロフィール</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>
+                プロフィール
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -144,12 +146,12 @@ class Dashboard extends Component {
                 borderRightWidth: 1,
                 borderBottomWidth: 1,
               }}
-              onPress={() => this.goHeart('Heart')}>
+              onPress={() => this.goStart('Star')}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/Heart.png')}
+                source={require('../icon/Asset55.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>あなたのような</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>足あと</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -160,12 +162,12 @@ class Dashboard extends Component {
                 borderRightWidth: 1,
                 borderBottomWidth: 1,
               }}
-              onPress={() => this.goPacman('Pacman')}>
+              onPress={() => this.goHeart('Heart')}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/icons8-pacman-50.png')}
+                source={require('../icon/Asset88.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>さまざまな使用法</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>いいね</Text>
             </TouchableOpacity>
           </View>
           <View style={{backgroundColor: '#fff', height: '100%'}}>
@@ -184,9 +186,11 @@ class Dashboard extends Component {
               onPress={() => this.goPicture()}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/Picture.png')}
+                source={require('../icon/Asset33.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>写真登録</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>
+                写真登録
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -200,12 +204,14 @@ class Dashboard extends Component {
                 borderBottomWidth: 1,
                 borderLeftWidth: 1,
               }}
-              onPress={() => this.goStart('Star')}>
+              onPress={() => this.goPacman('Pacman')}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/Stars.png')}
+                source={require('../icon/Asset66.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>開始</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>
+                各種使い方
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -218,12 +224,14 @@ class Dashboard extends Component {
                 borderBottomWidth: 1,
                 borderRightWidth: 1,
               }}
-              onPress={() => this.goLogout()}>
+              onPress={() => this.goNews('News')}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/Lock.png')}
+                source={require('../icon/Asset99.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>ログアウト</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>
+                利用規約等
+              </Text>
             </TouchableOpacity>
           </View>
           <View>
@@ -241,9 +249,11 @@ class Dashboard extends Component {
               onPress={() => this.goCard()}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/Card.png')}
+                source={require('../icon/Asset44.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>個人証明書</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>
+                個人証明書
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -259,9 +269,11 @@ class Dashboard extends Component {
               onPress={() => this.goCall('Calls')}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/Calls.png')}
+                source={require('../icon/Asset5.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>通話設定</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>
+                通話設定
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -274,12 +286,14 @@ class Dashboard extends Component {
                 borderBottomWidth: 1,
                 borderLeftWidth: 1,
               }}
-              onPress={() => this.goNews('News')}>
+              onPress={() => this.goLogout()}>
               <Image
                 style={styles.iconRight}
-                source={require('../icon/News.png')}
+                source={require('../icon/Asset10.png')}
               />
-              <Text style={{alignSelf: 'center', color:'black'}}>使用規則</Text>
+              <Text style={{alignSelf: 'center', color: 'black'}}>
+                ログアウト
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -309,6 +323,7 @@ const styles = StyleSheet.create({
   },
   iconRight: {
     marginTop: 20,
+    resizeMode: 'contain',
     width: 60,
     height: 60,
     marginBottom: 5,

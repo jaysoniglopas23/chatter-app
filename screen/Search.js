@@ -16,6 +16,7 @@ import _ from 'lodash';
 import {ListItem, Avatar} from 'react-native-elements';
 import {getUsers, contains} from '../styles/index';
 import UserPost from '../styles/UserPost';
+import {width} from 'cli';
 
 const numColumns = 3;
 const DeviceWidth = Dimensions.get('window').width;
@@ -193,24 +194,93 @@ export default class Search extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '100%'}}>
-        <View
-          style={{
-            borderWidth: 1,
-            borderRadius: 5,
-            width: 270,
-            height: 41,
-            top: 12,
-            left: 70,
-            borderColor: '#cdd5d5',
-          }}>
+      <View
+        style={{
+          backgroundColor: '#fff',
+          height: '100%',
+          flex: 1,
+          borderWidth: 10,
+          borderColor: '#FAEA48',
+          borderBottomWidth: 0,
+        }}>
+        <View style={{flexDirection: 'column', bottom: 70}}>
+          <Image
+            style={{
+              resizeMode: 'contain',
+              width: 25,
+              height: 22,
+              left: 10,
+              top: 89,
+              left: 345,
+              color: 'black',
+            }}
+            source={require('../icon/filter.png')}
+          />
+          <Image
+            style={{
+              resizeMode: 'contain',
+              width: 25,
+              height: 20,
+              left: 10,
+              top: 67,
+              left: 315,
+              color: 'black',
+            }}
+            source={require('../icon/bars.png')}
+          />
+          <Image
+            style={{
+              resizeMode: 'contain',
+              width: 25,
+              height: 25,
+              left: 10,
+              top: 45,
+              left: 280,
+              color: 'black',
+            }}
+            source={require('../icon/Asset45.png')}
+          />
           <TextInput
-            style={{backgroundColor: '#fff', fontSize: 10}}
+            style={{
+              backgroundColor: '#fff',
+              fontSize: 10,
+              height: 36,
+              top: 15,
+              borderWidth: 1,
+              borderColor: 'black',
+              width: 120,
+              left: 160,
+            }}
             onChangeText={this.handleSearch}
             value={this.state.query}
           />
+          <Image
+            style={{
+              resizeMode: 'contain',
+              width: 25,
+              height: 25,
+              left: 10,
+              bottom: 17,
+              color: 'black',
+            }}
+            source={require('../icon/Asset6.png')}
+          />
+          <Text
+            style={{fontWeight: 'bold', color: 'black', bottom: 40, left: 40}}>
+            プロフィール検索
+          </Text>
+          <Text
+            style={{
+              fontSize: 9,
+              marginHorizontal: 157,
+              bottom: 70,
+              left: 7,
+              backgroundColor: '#fff',
+            }}>
+            プロフィール検索
+          </Text>
         </View>
-        <View style={{top: 40}}>
+        <View style={{bottom: 80}}>
           <FlatList
             data={this.state.users}
             renderItem={this._renderItem}
@@ -299,7 +369,7 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
   },
   itemStyle: {
-    backgroundColor: 'grey',
+    backgroundColor: '#F7F7F7',
     alignItems: 'center',
     justifyContent: 'center',
     height: 150,
@@ -313,7 +383,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   textStyle: {
-    color:'black',
+    color: 'black',
     position: 'absolute',
     right: 5,
     bottom: 5,

@@ -147,7 +147,7 @@ export default class Call extends Component {
         let params = {};
 
         params['start'] = 0;
-        params['size'] = 15;
+        params['size'] = '1000';
         params['filter_type'] = '0';
         params['order'] = '0';
         params['name'] = this.state.name;
@@ -523,22 +523,40 @@ export default class Call extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '100%'}}>
+      <View
+        style={{
+          backgroundColor: '#fff',
+          height: '100%',
+          flex: 1,
+          borderWidth: 10,
+          borderColor: '#FAEA48',
+          borderBottomWidth: 0,
+        }}>
         <View
           style={{
             borderWidth: 1,
-            borderRadius: 5,
-            width: 270,
+            width: 320,
             height: 41,
-            top: 12,
-            left: 70,
-            borderColor: '#cdd5d5',
+            top: 10,
+            // left: 70,
+            borderColor: 'black',
+            alignSelf: 'center',
           }}>
           <TextInput
             style={{backgroundColor: '#fff', fontSize: 10}}
             onChangeText={this.handleSearch}
             value={this.state.query}
           />
+          <Text
+            style={{
+              fontSize: 9,
+              marginHorizontal: 125,
+              bottom: 45,
+              right: 120,
+              backgroundColor: '#fff',
+            }}>
+            名前を検索する
+          </Text>
         </View>
         <View style={{top: 40}}>
           <FlatList
@@ -600,7 +618,7 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
   },
   itemStyle: {
-    backgroundColor: 'grey',
+    backgroundColor: '#F7F7F7',
     alignItems: 'center',
     justifyContent: 'center',
     height: 150,
@@ -614,7 +632,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   textStyle: {
-    color:'black',
+    color: 'black',
     position: 'absolute',
     right: 5,
     bottom: 5,

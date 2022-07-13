@@ -40,6 +40,7 @@ import moment from 'moment';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
+import Svg, {G, Path} from 'react-native-svg';
 
 const Stack = createStackNavigator();
 
@@ -309,7 +310,7 @@ class Post extends Component {
         let params = {};
 
         params['start'] = 0;
-        params['size'] = 5;
+        params['size'] = '1000';
         params['boardid'] = 1;
         params['posts_description'] = this.state.posts_description;
         params['nickname'] = this.state.nickname;
@@ -417,19 +418,25 @@ class Post extends Component {
 
   render() {
     return (
-      <View>
+      <View
+        style={{
+          backgroundColor: '#fff',
+          height: '100%',
+          flex: 1,
+          borderWidth: 10,
+          borderColor: '#FAEA48',
+          borderBottomWidth: 0,
+        }}>
         <View
           style={{
             borderWidth: 1,
-            borderRadius: 5,
             width: 280,
             height: 41,
             top: 12,
             left: 17,
-            borderColor: '#cdd5d5',
+            borderColor: 'black',
           }}>
           <TextInput
-            placeholder="Type Here..."
             style={{backgroundColor: '#fff'}}
             onChangeText={this.handleSearch}
             value={this.state.query}
@@ -447,11 +454,21 @@ class Post extends Component {
             }}>
             <Text
               onPress={() => this.goPost()}
-              style={{textAlign: 'center', top: 5}}>
-              Post
+              style={{textAlign: 'center', top: 7, fontSize: 11}}>
+              新しく投稿
             </Text>
           </TouchableOpacity>
         </View>
+        <Text
+          style={{
+            fontSize: 9,
+            marginHorizontal: 162,
+            bottom: 70,
+            right: 140,
+            backgroundColor: '#fff',
+          }}>
+          投稿を検索する
+        </Text>
         <StatusBar style="light-content" />
         <FlatList
           data={this.state.posts}
@@ -492,10 +509,24 @@ class Post extends Component {
                 </MessageText1>
               </UserInfo1>
               <UserInfo2 onPress={() => this.continueDeleteConfirm(item.id)}>
-                <MessageText2>Delete</MessageText2>
+                <MessageText2>削除</MessageText2>
               </UserInfo2>
               <UserInfo3 onPress={() => this.goEdit()}>
-                <MessageText3>Edit</MessageText3>
+                <MessageText3>編集</MessageText3>
+                {/* <Svg
+                  style={{width: 20, height: 30}}
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fal"
+                  data-icon="angle-left"
+                  class="svg-inline--fa fa-angle-left fa-w-6"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 192 512">
+                  <Path
+                    fill="black"
+                    d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+                </Svg> */}
               </UserInfo3>
             </Card>
           )}

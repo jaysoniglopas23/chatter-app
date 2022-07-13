@@ -32,6 +32,7 @@ import Login from './Login';
 import moment from 'moment';
 import Storage from '../utils/storage';
 import PhotoLibrary from './Photolibrary';
+import CoinScreen from '../homes/CoinScreen';
 
 const DeviceWidth = Dimensions.get('window').width;
 
@@ -104,7 +105,7 @@ class DisplayAnImage extends Component {
   }
 
   goCoin() {
-    this.props.navigationRef.current?.navigate('Coin');
+    this.props.navigation.navigate('Coin');
   }
 
   goCard() {
@@ -222,7 +223,15 @@ class DisplayAnImage extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '180%',flex:1}}>
+      <View
+        style={{
+          backgroundColor: '#fff',
+          height: '180%',
+          // flex: 1,
+          borderWidth: 10,
+          borderColor: '#FAEA48',
+          borderBottomWidth: 0,
+        }}>
         <View style={styles.container}>
           <TouchableOpacity onPress={() => this.goPhoto()} style={{left: 2}}>
             <Image
@@ -252,38 +261,38 @@ class DisplayAnImage extends Component {
               onChangeText={value => this.componentDidMount(value)}>
               {this.state.nickname}
             </Text>
-            <Text
+            {/* <Text
               style={{
                 alignSelf: 'center',
                 top: 15,
                 right: 175,
-                color:'black',
+                color: 'black',
                 fontWeight: 'bold',
                 position: 'absolute',
               }}>
               Age : {this.state.age}
+            </Text> */}
+            <Text
+              style={{
+                alignSelf: 'center',
+                top: 22,
+                right: 149,
+                fontWeight: 'bold',
+                color: 'black',
+                position: 'absolute',
+              }}>
+              通話 : {this.state.mail_count}分
             </Text>
             <Text
               style={{
                 alignSelf: 'center',
-                top: 32,
-                right: 135,
+                top: 42,
+                right: 137,
                 fontWeight: 'bold',
-                color:'black',
+                color: 'black',
                 position: 'absolute',
               }}>
-              Message : {this.state.mail_count}
-            </Text>
-            <Text
-              style={{
-                alignSelf: 'center',
-                top: 48,
-                right: 166,
-                fontWeight: 'bold',
-                color:'black',
-                position: 'absolute',
-              }}>
-              Call : {this.state.call_minutes}
+              メール : {this.state.call_minutes}通
             </Text>
           </View>
           <TouchableOpacity
@@ -302,9 +311,10 @@ class DisplayAnImage extends Component {
                 height: 40,
                 marginRight: 1,
                 right: 130,
+                resizeMode: 'contain',
                 position: 'absolute',
               }}
-              source={require('../icon/settings.png')}
+              source={require('../icon/Asset12.png')}
             />
           </TouchableOpacity>
 
@@ -324,9 +334,10 @@ class DisplayAnImage extends Component {
                 height: 40,
                 marginRight: 1,
                 right: 30,
+                resizeMode: 'contain',
                 position: 'absolute',
               }}
-              source={require('../icon/Buy.png')}
+              source={require('../icon/Asset14.png')}
             />
           </TouchableOpacity>
         </View>
@@ -382,6 +393,9 @@ class DisplayAnImage extends Component {
               <Stack.Screen name="Settings">
                 {props => <Settings navigationRef={navigationRef} />}
               </Stack.Screen>
+              <Stack.Screen name="Coin">
+                {props => <CoinScreen navigationRef={navigationRef} />}
+              </Stack.Screen>
             </Stack.Navigator>
           </NavigationContainer>
         </View>
@@ -393,7 +407,7 @@ class DisplayAnImage extends Component {
 export default DisplayAnImage;
 const styles = StyleSheet.create({
   container: {
-    // flex:1,
+    // flex: 1,
     justifyContent: 'space-evenly',
     flexDirection: 'row',
     marginHorizontal: 10,
@@ -420,6 +434,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   txtview: {
+    flex: 1,
     flexDirection: 'row',
     marginLeft: 20,
     left: 300,
@@ -433,7 +448,7 @@ const styles = StyleSheet.create({
     top: 0,
     fontWeight: 'bold',
     // borderWidth: 1,
-    color:'black',
+    color: 'black',
     position: 'absolute',
   },
 });

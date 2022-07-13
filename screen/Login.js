@@ -23,8 +23,8 @@ import {
 
 import {NavigationContainer} from '@react-navigation/native';
 
-// import {BlurView, VibrancyView} from '@react-native-community/blur';
-import {BlurView, VibrancyView} from 'react-native-blur';
+import {BlurView, VibrancyView} from '@react-native-community/blur';
+// import {BlurView, VibrancyView} from 'react-native-blur';
 import Svg from 'react-native-svg';
 import {ColorSpace, Transition, Transitioning} from 'react-native-reanimated';
 import {react} from '@babel/types';
@@ -263,21 +263,22 @@ class Login extends Component {
             />
           </View>
         </View>
-        {/* <BlurView
-          blurType="light"
-          blurAmount={25}
-          overlayColor={'rgba(150, 150, 150, .7)'}></BlurView> */}
-        {/* <BlurView
+        <BlurView
           style={styles.absolute2}
-            // viewRef={this.state.viewRef}
+          // viewRef={this.state.viewRef}
           blurType="light"
-          blurAmount={32}
-          overlayColor={'rgba(150, 150, 150, .7)'}
-        /> */}
-        <View style={{bottom:700}}>
+          blurAmount={3}
+          blurRadius={5}
+        />
+        <View style={{bottom: 700}}>
           <Image
             source={require('../icon/logo.png')}
-            style={{marginLeft: windowWidth / 2 -   50, width: 100, height: 100, resizeMode:'contain'}}
+            style={{
+              marginLeft: windowWidth / 2 - 50,
+              width: 100,
+              height: 100,
+              resizeMode: 'contain',
+            }}
           />
         </View>
         <View
@@ -289,7 +290,7 @@ class Login extends Component {
             marginTop: -580,
             paddingHorizontal: 10,
             backgroundColor: '#fff',
-            opacity: 0.9,
+            // opacity: 0.9,
             borderRadius: 5,
             paddingVertical: 0,
           }}>
@@ -311,7 +312,7 @@ class Login extends Component {
             marginTop: 30,
             paddingHorizontal: 10,
             backgroundColor: '#fff',
-            opacity: 0.9,
+            // opacity: 0.9,
             borderRadius: 5,
             paddingVertical: 0,
           }}>
@@ -406,7 +407,7 @@ class Login extends Component {
               marginTop: 1,
               paddingHorizontal: 10,
               backgroundColor: '#fff',
-              opacity: 0.9,
+              // opacity: 0.9,
               borderRadius: 0,
               paddingVertical: 0,
               right: 105,
@@ -420,7 +421,7 @@ class Login extends Component {
                 fontSize: 10,
                 fontFamily: 'SemiBold',
               }}>
-              Email
+              メールアドレス
             </Text>
           </View>
           <View
@@ -431,8 +432,8 @@ class Login extends Component {
               borderWidth: 0,
               marginTop: 65,
               paddingHorizontal: 10,
-              backgroundColor: '#fff',
-              opacity: 0.9,
+              backgroundColor: '#FFF',
+              // opacity: 0.9,
               borderRadius: 0,
               paddingVertical: 3,
               right: 98,
@@ -443,10 +444,10 @@ class Login extends Component {
               style={{
                 color: 'black',
                 opacity: 0.9,
-                fontSize: 10,
+                fontSize: 9,
                 fontFamily: 'SemiBold',
               }}>
-              Password
+              パスワード
             </Text>
           </View>
         </View>
@@ -492,6 +493,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   absolute2: {
+    backgroundColor: 'grey',
+    opacity: 0.8,
     position: 'absolute',
     top: 0,
     left: 0,
