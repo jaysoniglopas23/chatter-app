@@ -1,178 +1,4 @@
-// import React, {useState, useEffect, useCallback} from 'react';
-// import {View, ScrollView, Text, Button, StyleSheet, Image} from 'react-native';
-// import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-// const Chat = () => {
-//   const [messages, setMessages] = useState([]);
-
-//   useEffect(() => {
-//     setMessages([
-//       {
-//         _id: 1,
-//         text: 'Hello developer',
-//         createdAt: new Date(),
-//         user: {
-//           _id: 2,
-//           name: 'React Native',
-//           avatar: 'https://placeimg.com/140/140/any',
-//         },
-//       },
-//       {
-//         _id: 2,
-//         text: 'Hello world',
-//         createdAt: new Date(),
-//         user: {
-//           _id: 1,
-//           name: 'React Native',
-//           avatar: 'https://placeimg.com/140/140/any',
-//         },
-//       },
-//     ]);
-//   }, []);
-
-//   const onSend = useCallback((messages = []) => {
-//     setMessages(previousMessages =>
-//       GiftedChat.append(previousMessages, messages),
-//     );
-//   }, []);
-
-//   const renderSend = props => {
-//     return (
-//       <Send {...props}>
-//         <View>
-//           <Image
-//             source={require('../icon/icons8-email-send-30.png')}
-//             style={{marginBottom: 5, marginRight: 10}}
-//             size={32}
-//             color="#2e64e5"
-//           />
-//         </View>
-//       </Send>
-//     );
-//   };
-
-//   const renderBubble = props => {
-//     return (
-//       <Bubble
-//         {...props}
-//         wrapperStyle={{
-//           right: {
-//             backgroundColor: '#2e64e5',
-//           },
-//         }}
-//         textStyle={{
-//           right: {
-//             color: '#fff',
-//           },
-//         }}
-//       />
-//     );
-//   };
-
-//   const scrollToBottomComponent = () => {
-//     return <FontAwesome name="angle-double-down" size={22} color="#333" />;
-//   };
-
-//   return (
-//     <GiftedChat
-//       messages={messages}
-//       onSend={messages => onSend(messages)}
-//       user={{
-//         _id: 1,
-//       }}
-//       renderBubble={renderBubble}
-//       alwaysShowSend
-//       renderSend={renderSend}
-//       scrollToBottom
-//       scrollToBottomComponent={scrollToBottomComponent}
-//     />
-//   );
-// };
-
-// class Chat extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {};
-//   }
-
-//   componentDidMount() {
-//     let self = this;
-
-//     let params = {};
-
-//     this.setState(
-//       {
-//         params: params,
-//         refresh: 1,
-//       },
-
-//       () => {
-//         global.socket.on('', function (ret) {
-//           global.socket.off('');
-//           // alert(JSON.stringify(ret));
-//           console.log(ret);
-
-//           self.setState({});
-//           console.log(self.state.name);
-//         });
-//         let params = {};
-
-//         // params[''] = ;
-//         // params[''] = ;
-//         // params[''] = ;
-//         // params[''] = ;
-//         // params[''] = ;
-//         // params[''] = ;
-//         // params[''] = ;
-//         // params[''] = ;
-//         // params[''] = ;
-//         // params[''] = ;
-
-//         global.socket.emit('', params);
-//         // console.log(params);
-//       },
-//     );
-//   }
-
-//   render() {
-//     return (
-//       <Container>
-//         <FlatList
-//           data={this.state.ret}
-//           keyExtractor={item => item.id}
-//           renderItem={({item}) => (
-//             <Card style={{paddingTop: 0}} onPress={() => this.goChat()}>
-//               <UserInfo>
-//                 <UserImgWrapper>
-//                   <UserImg
-//                     source={{
-//                       uri:
-//                         URL_TEMP +
-//                         '/' +
-//                         item.profile_image_dir +
-//                         '/' +
-//                         item.profile_image,
-//                     }}
-//                   />
-//                 </UserImgWrapper>
-//                 <TextSection>
-//                   <UserInfoText>
-//                     <UserName>{item.name}</UserName>
-//                     <PostTime>{item.date_time}</PostTime>
-//                   </UserInfoText>
-//                   <MessageText>{item.lastmessage}</MessageText>
-//                 </TextSection>
-//               </UserInfo>
-//             </Card>
-//           )}
-//         />
-//       </Container>
-//     );
-//   }
-// }
 
 import React, {Component} from 'react';
 
@@ -230,9 +56,11 @@ class Chat extends Component {
 
     this.onEndReached = this.onEndReached.bind(this);
 
+    this.handleScrollView = this.handleScrollView.bind(this);
+
     this.renderCell = this.renderCell.bind(this);
 
-    // this.sendMesage = this.sendMesage.bind(this);
+    this.sendMesage = this.sendMesage.bind(this);
 
     // this.pressURL = this.pressURL.bind(this);
 
@@ -241,7 +69,11 @@ class Chat extends Component {
     this.bellSound = null;
   }
 
-  componentDidMount() {
+  componentDidMount(){
+    this.getChat();
+  }
+
+  getChat() {
     let self = this;
 
     let params = {};
@@ -259,6 +91,8 @@ class Chat extends Component {
           console.log(ret);
 
           self.setState({
+            showLoading: false,
+            loadingChats: false,
             id: ret[0].otherid,
             ret: ret,
             data: ret[0].data,
@@ -267,10 +101,16 @@ class Chat extends Component {
             datetime: ret[0].datetime,
             msg_to: ret[0].msg_to,
             msg_from: ret[0].msg_from,
+            timezone:ret[0].timezone,
+          });
+
+          self.flatListRef.scrollToOffset({
+            animated: true,
+            offset: self.state.data.length,
           });
         });
         let params = {};
-
+        params['name'] = global.name;
         params['otherid'] = global.otherid;
         params['data'] = this.state.data;
         params['profile_image'] = this.state.profile_image;
@@ -278,6 +118,7 @@ class Chat extends Component {
         params[' datetime'] = this.state.datetime;
         params['msg_to'] = this.state.msg_to;
         params['msg_from'] = this.state.msg_from;
+        params['lastmessage'] = global.lastmessage;
         // params[''] = ;
 
         global.socket.emit('on-messages', params);
@@ -306,19 +147,194 @@ class Chat extends Component {
     // }
   }
 
-  renderCell(msg) {
-    if (item.msg_from == 'left') {
-      return <Left msg={data} self={this} />;
-    } else {
-      return <Right msg={data} self={this} />;
+  handleScrollView() {
+    if (this.state.chatsRefreshed) {
+      let self = this;
+
+      this.setState(
+        {
+          chatsRefreshed: false,
+        },
+        () => {
+          global.socket.on('emit-messages', function (ret) {
+            global.socket.off('emit-messages');
+
+            for (var i = ret.length - 1; i >= 0; i--) {
+              self.setState(prevState => ({
+                data: [...prevState.data, ret[i]],
+              }));
+            }
+
+            self.setState(
+              {
+                animated: true,
+                chatsRefreshed: true,
+              },
+              () => {},
+            );
+          });
+
+          let offset = this.state.offset + 10;
+
+          this.setState(
+            {
+              offset: offset,
+            },
+            () => {
+              let params = {};
+             
+                params['name'] = global.name;
+                params['otherid'] = global.otherid;
+                params['data'] = this.state.data;
+                params['profile_image'] = this.state.profile_image;
+                params['profile_image_dir'] = this.state.profile_image_dir;
+                params[' datetime'] = this.state.datetime;
+                params['msg_to'] = this.state.msg_to;
+                params['msg_from'] = this.state.msg_from;
+
+                
+              
+
+              global.socket.emit('emit-messages', params);
+            },
+          );
+        },
+      );
     }
   }
 
-  gotoUserProfile() {
-    global.previousPage = 'Chats';
-    global.currentPage = 'UserProfile';
+  sendMesage(id) {
+    let self = this;
 
-    this.props.navigationRef.current?.navigate('UserProfile');
+    global.socket.on('emit-send-message-from', function (ret) {
+      global.socket.off('emit-send-message-from');
+
+      // alert(ret);
+      self.setState({
+        photo:ret.file,
+        msgid:ret.msgid,
+        socketid:ret.socketid,
+        msg_from:ret.msg_from,
+        msg_to:ret.msg_to,
+      })
+
+    });
+
+    let params = {};
+
+    params['datetime'] = this.state.datetime;
+    params['to'] = global.otherid;
+    params['from'] = this.state.msg_to;
+    params['timezone']=this.state.timezone;
+    params['data'] = this.state.message;
+    params['points'] = this.state.points
+    params['type'] = 'string';
+
+console.log(params);
+
+    global.socket.emit('on-send-message',params);
+
+    let message = {
+      data: this.state.message,
+      id: this.state.msg_to,
+      // liked: '0',
+      nickname: global.name,
+      profile_image: global.profile_image,
+      msg_from:global.user_id,
+    };
+
+    self.setState(
+      prevState => ({
+        message: '',
+        data: [message, ...prevState.data],
+      }),
+      () => {
+        self.setState(
+          {
+            refresh: 1,
+          },
+          () => {
+            self.flatListRef.scrollToOffset({
+              animated: true,
+              offset: self.state.data.length,
+            });
+          },
+        );
+      },
+    );
+  }
+
+  renderCell(msg) {
+    if (msg.item.msg_from == global.otherid) {
+      // alert(2);
+      return <Left msg={msg} self={this} />;
+    } else {
+      // alert(1);
+      return <Right msg={msg} self={this} />;
+    }
+  }
+
+  gotoUserProfile(msg_from) {
+    // global.previousPage = 'Chats';
+    // global.currentPage = 'UserProfile';
+
+    this.props.navigation.navigate('User');
+
+    let self = this;
+
+    let params = {};
+
+    this.setState(
+      {
+        params: params,
+        refresh: 1,
+      },
+
+      () => {
+        global.socket.on('emit-messages', function (ret) {
+          global.socket.off('emit-messages');
+          // alert(JSON.stringify(ret));
+          console.log(ret);
+
+          self.setState({
+            showLoading: false,
+            loadingChats: false,
+            id: ret[0].otherid,
+            ret: ret,
+            data: ret[0].data,
+            profile_image: ret[0].profile_image,
+            profile_image_dir: ret[0].profile_image_dir,
+            datetime: ret[0].datetime,
+            msg_to: ret[0].msg_to,
+            msg_from: ret[0].msg_from,
+          });
+
+          self.flatListRef.scrollToOffset({
+            animated: true,
+            offset: self.state.data.length,
+          });
+        });
+        let params = {};
+        params['name'] = global.name;
+        params['otherid'] = global.otherid;
+        params['data'] = this.state.data;
+        params['profile_image'] = this.state.profile_image;
+        params['profile_image_dir'] = this.state.profile_image_dir;
+        params[' datetime'] = this.state.datetime;
+        params['msg_to'] = this.state.msg_to;
+        params['msg_from'] = this.state.msg_from;
+        params['lastmessage'] = global.lastmessage;
+        // params[''] = ;
+
+        global.user_id = self.state.msg_from;
+
+        alert(global.user_id);
+
+        global.socket.emit('on-messages', params);
+        // console.log(params);
+      },
+    );
+    
   }
 
   render() {
@@ -353,11 +369,11 @@ class Chat extends Component {
                 position: 'absolute',
                 width: '100%',
                 height: 30,
-                marginLeft: 30,
-                marginTop: windowHeight / 10 - 35,
+                marginLeft: 145,
+                marginTop: windowHeight / 10 - 65,
                 flexDirection: 'row',
               }}
-              onPress={() => this.gotoUserProfile()}>
+              onPress={() => this.gotoUserProfile(msg_from)}>
               <Image
                 style={{width: 30, height: 30, borderRadius: 30}}
                 source={{
@@ -380,9 +396,9 @@ class Chat extends Component {
                   textAlign: 'left',
                   fontSize: 13,
                   fontWeight: 'bold',
-                  color: '#FFF',
+                  color: 'black',
                 }}>
-                {StringUtils.convertUnicode(this.state.ret[0].nickname)}
+                {StringUtils.convertUnicode(global.name)}
               </Text>
             </TouchableOpacity>
           )}
@@ -429,6 +445,7 @@ class Chat extends Component {
                 size="small"
                 color="#69747f"
               />
+              {/* <Text></Text> */}
             </View>
           ) : (
             <View style={{width: '100%', height: tableHeight}}>
@@ -442,7 +459,7 @@ class Chat extends Component {
                 initialNumToRender={10}
                 removeClippedSubviews={true}
                 extraData={this.state.refresh}
-                style={{width: '100%', height: windowHeight - 200}}
+                style={{width: '100%', height: windowHeight - 500, top:100}}
                 data={this.state.ret}
                 renderItem={this.renderCell}
                 keyExtractor={item => item.id}
@@ -451,21 +468,24 @@ class Chat extends Component {
               <View
                 style={{
                   width: '100%',
-                  padding: 10,
+                  padding: 100,
+                  right:90,
+                  top: 23,
                   flexDirection: 'row',
                   alignItems: 'flex-end',
+                  // position: 'absolute',
                 }}>
                 <TextInput
                   autoCapitalize={false}
                   multiline={true}
                   autoFocus={true}
                   style={{
-                    backgroundColor: '#FFF',
+                    backgroundColor: '#E9EBEE',
                     width: windowWidth - 50,
                     lineHeight: 20,
                     borderRadius: 5,
                     padding: 5,
-                    textColor: global.textColor,
+                    color: 'black',
                     fontSize: 13,
                   }}
                   onChangeText={message => this.setState({message})}
@@ -473,7 +493,7 @@ class Chat extends Component {
 
                 <TouchableOpacity
                   style={{width: 35, height: 30, marginLeft: 0}}
-                  onPress={() => this.sendMesage()}>
+                  onPress={() => this.sendMesage(id)}>
                   <Svg
                     style={{
                       marginTop: 4,
@@ -490,7 +510,7 @@ class Chat extends Component {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512">
                     <Path
-                      fill={global.glTextColor}
+                      fill="black"
                       d="M464 4.3L16 262.7C-7 276-4.7 309.9 19.8 320L160 378v102c0 30.2 37.8 43.3 56.7 20.3l60.7-73.8 126.4 52.2c19.1 7.9 40.7-4.2 43.8-24.7l64-417.1C515.7 10.2 487-9 464 4.3zM192 480v-88.8l54.5 22.5L192 480zm224-30.9l-206.2-85.2 199.5-235.8c4.8-5.6-2.9-13.2-8.5-8.4L145.5 337.3 32 290.5 480 32l-64 417.1z"></Path>
                   </Svg>
                 </TouchableOpacity>
@@ -518,7 +538,11 @@ const Left = ({msg, self}) => (
         style={{width: 26, height: 26, borderRadius: 13}}
         source={{
           uri:
-            URL_TEMP + '/' + item.profile_image_dir + '/' + item.profile_image,
+            URL_TEMP +
+            '/' +
+            self.state.profile_image_dir +
+            '/' +
+            self.state.profile_image,
         }}
         defaultSource={require('.././icon/Picture.png')}
       />
@@ -533,8 +557,8 @@ const Left = ({msg, self}) => (
       }}>
       <Text
         selectable={true}
-        style={{fontSize: 12, textAlign: 'center', color: global.textColor}}>
-        {StringUtils.findURLs(StringUtils.convertUnicode(item.data), self)}
+        style={{fontSize: 13, textAlign: 'center', color: global.textColor}}>
+        {StringUtils.findURLs(StringUtils.convertUnicode(msg.item.data), self)}
       </Text>
     </View>
   </View>
@@ -545,8 +569,8 @@ const Right = ({msg, self}) => (
     <View style={{backgroundColor: '#FFF', padding: 10, borderRadius: 10}}>
       <Text
         selectable={true}
-        style={{fontSize: 12, textAlign: 'center', color: global.textColor}}>
-        {StringUtils.findURLs(StringUtils.convertUnicode(item.data), self)}
+        style={{fontSize: 12, textAlign: 'center', color: 'black'}}>
+        {StringUtils.findURLs(StringUtils.convertUnicode(msg.item.data), self)}
       </Text>
     </View>
   </View>

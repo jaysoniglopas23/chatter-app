@@ -222,7 +222,7 @@ class DisplayAnImage extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '180%'}}>
+      <View style={{backgroundColor: '#fff', height: '180%',flex:1}}>
         <View style={styles.container}>
           <TouchableOpacity onPress={() => this.goPhoto()} style={{left: 2}}>
             <Image
@@ -239,7 +239,7 @@ class DisplayAnImage extends Component {
                 alignSelf: 'center',
                 top: 10,
                 width: 100,
-                height: 150,
+                height: 100,
                 borderRadius: 1,
                 right: 110,
               }}
@@ -257,6 +257,7 @@ class DisplayAnImage extends Component {
                 alignSelf: 'center',
                 top: 15,
                 right: 175,
+                color:'black',
                 fontWeight: 'bold',
                 position: 'absolute',
               }}>
@@ -268,6 +269,7 @@ class DisplayAnImage extends Component {
                 top: 32,
                 right: 135,
                 fontWeight: 'bold',
+                color:'black',
                 position: 'absolute',
               }}>
               Message : {this.state.mail_count}
@@ -278,6 +280,7 @@ class DisplayAnImage extends Component {
                 top: 48,
                 right: 166,
                 fontWeight: 'bold',
+                color:'black',
                 position: 'absolute',
               }}>
               Call : {this.state.call_minutes}
@@ -390,11 +393,13 @@ class DisplayAnImage extends Component {
 export default DisplayAnImage;
 const styles = StyleSheet.create({
   container: {
+    // flex:1,
     justifyContent: 'space-evenly',
     flexDirection: 'row',
     marginHorizontal: 10,
     marginBottom: 10,
     left: 20,
+    // backgroundColor:'black',
     height: 100,
   },
   avatar: {
@@ -428,6 +433,7 @@ const styles = StyleSheet.create({
     top: 0,
     fontWeight: 'bold',
     // borderWidth: 1,
+    color:'black',
     position: 'absolute',
   },
 });

@@ -24,7 +24,7 @@ const Pacman = ({navigation}) => {
               source={require('../icon/SMS.png')}
             />
             <Text style={{fontWeight: 'bold', left: 45, bottom: 14}}>
-              MESSAGES1
+              MESSAGES
             </Text>
             <Text style={{left: 13}}>
               読者が気を散らされることは長い間確立された事実です

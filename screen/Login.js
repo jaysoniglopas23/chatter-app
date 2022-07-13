@@ -274,6 +274,12 @@ class Login extends Component {
           blurAmount={32}
           overlayColor={'rgba(150, 150, 150, .7)'}
         /> */}
+        <View style={{bottom:700}}>
+          <Image
+            source={require('../icon/logo.png')}
+            style={{marginLeft: windowWidth / 2 -   50, width: 100, height: 100, resizeMode:'contain'}}
+          />
+        </View>
         <View
           style={{
             flexDirection: 'row',
@@ -390,60 +396,60 @@ class Login extends Component {
             New User
           </Text>
         </TouchableOpacity>
-        <View style={{flex:1 }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginHorizontal: 173,
-            borderWidth: 0,
-            marginTop: 1,
-            paddingHorizontal: 10,
-            backgroundColor: '#fff',
-            opacity: 0.9,
-            borderRadius: 0,
-            paddingVertical: 0,
-            right: 105,
-            bottom:  382,
-            height:18,
-          }}>
-          <Text
+        <View style={{flex: 1}}>
+          <View
             style={{
-              color: 'black',
-              opacity: 0.8,
-              fontSize: 10,
-              fontFamily: 'SemiBold',
-            }}>
-            Email
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginHorizontal: 164,
-            borderWidth: 0,
-            marginTop: 65,
-            paddingHorizontal: 10,
-            backgroundColor: '#fff',
-            opacity: 0.9,
-            borderRadius: 0,
-            paddingVertical: 3,
-            right: 98 ,
-            bottom: 386,
-            height:20,
-          }}>
-          <Text
-            style={{
-              color: 'black',
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginHorizontal: 173,
+              borderWidth: 0,
+              marginTop: 1,
+              paddingHorizontal: 10,
+              backgroundColor: '#fff',
               opacity: 0.9,
-              fontSize: 10,
-              fontFamily: 'SemiBold',
+              borderRadius: 0,
+              paddingVertical: 0,
+              right: 105,
+              bottom: 382,
+              height: 18,
             }}>
-            Password
-          </Text>
+            <Text
+              style={{
+                color: 'black',
+                opacity: 0.8,
+                fontSize: 10,
+                fontFamily: 'SemiBold',
+              }}>
+              Email
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginHorizontal: 164,
+              borderWidth: 0,
+              marginTop: 65,
+              paddingHorizontal: 10,
+              backgroundColor: '#fff',
+              opacity: 0.9,
+              borderRadius: 0,
+              paddingVertical: 3,
+              right: 98,
+              bottom: 386,
+              height: 20,
+            }}>
+            <Text
+              style={{
+                color: 'black',
+                opacity: 0.9,
+                fontSize: 10,
+                fontFamily: 'SemiBold',
+              }}>
+              Password
+            </Text>
+          </View>
         </View>
-      </View>
         <View
           style={{
             marginHorizontal: 60,

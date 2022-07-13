@@ -17,6 +17,7 @@ import {createNavigationContainerRef} from '@react-navigation/native';
 import io from 'socket.io-client';
 import Socket from '../utils/socket';
 import Storage from '../utils/storage';
+import { getVersion } from 'react-native-device-info';
 // import {
 //   VoipPushNotification,
 //   RNVoipPushRemoteNotifications,
@@ -366,10 +367,10 @@ class Launcher extends Component {
             {this.state.maintenanceText}
           </Text>
         ) : (
-          <View style={{marginTop: windowHeight / 2 - 75, height: 150}}>
+          <View style={{marginTop: windowHeight / 2 - 195, height: 50}}>
             <Image
               source={require('../icon/logo.png')}
-              style={{marginLeft: windowWidth / 2 - 25, width: 50, height: 50}}
+              style={{marginLeft: windowWidth / 2 -   50, width: 100, height: 100, resizeMode:'contain'}}
             />
             <Animated.View
               style={[{opacity: this.state.fadeIn}, styles.animatedView]}>

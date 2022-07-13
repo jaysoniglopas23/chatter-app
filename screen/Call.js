@@ -104,7 +104,7 @@ export default class Call extends Component {
         let params = {};
 
         params['start'] = 0;
-        params['size'] = 15;
+        params['size'] = '1000';
         params['filter_type'] = '0';
         params['order'] = '0';
         params['name'] = this.state.name;
@@ -614,6 +614,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   textStyle: {
+    color:'black',
     position: 'absolute',
     right: 5,
     bottom: 5,

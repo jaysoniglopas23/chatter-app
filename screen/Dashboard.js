@@ -103,7 +103,7 @@ class Dashboard extends Component {
   }
 
   goLogout() {
-    this.props.navigationRef.current?.navigate('Login');
+    this.props.navigation.navigate('Login');
   }
 
   render() {
@@ -132,7 +132,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Happy.png')}
               />
-              <Text style={{alignSelf: 'center'}}>プロフィール</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>プロフィール</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -149,7 +149,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Heart.png')}
               />
-              <Text style={{alignSelf: 'center'}}>あなたのような</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>あなたのような</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -165,7 +165,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/icons8-pacman-50.png')}
               />
-              <Text style={{alignSelf: 'center'}}>さまざまな使用法</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>さまざまな使用法</Text>
             </TouchableOpacity>
           </View>
           <View style={{backgroundColor: '#fff', height: '100%'}}>
@@ -186,7 +186,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Picture.png')}
               />
-              <Text style={{alignSelf: 'center'}}>写真登録</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>写真登録</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -205,7 +205,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Stars.png')}
               />
-              <Text style={{alignSelf: 'center'}}>開始</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>開始</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -223,7 +223,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Lock.png')}
               />
-              <Text style={{alignSelf: 'center'}}>ログアウト</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>ログアウト</Text>
             </TouchableOpacity>
           </View>
           <View>
@@ -243,7 +243,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Card.png')}
               />
-              <Text style={{alignSelf: 'center'}}>個人証明書</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>個人証明書</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -261,7 +261,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Calls.png')}
               />
-              <Text style={{alignSelf: 'center'}}>通話設定</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>通話設定</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -279,7 +279,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/News.png')}
               />
-              <Text style={{alignSelf: 'center'}}>使用規則</Text>
+              <Text style={{alignSelf: 'center', color:'black'}}>使用規則</Text>
             </TouchableOpacity>
           </View>
         </View>

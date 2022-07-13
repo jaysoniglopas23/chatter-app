@@ -313,6 +313,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   textStyle: {
+    color:'black',
     position: 'absolute',
     right: 5,
     bottom: 5,

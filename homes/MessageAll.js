@@ -34,7 +34,7 @@ class MessagesScrean extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat(id) {
+  goChat(id,name,lastmessage) {
     this.props.navigation.navigate('Chat');
 
     let self = this;
@@ -73,7 +73,7 @@ class MessagesScrean extends Component {
         params['date_time'] = this.state.date_time;
         params['lastmessage'] = this.state.lastmessage;
         params['message_count'] = this.state.message_count;
-        params['name'] = this.state.name;
+        params['name'] = name;
         params['online'] = this.state.online;
         params['profile_image'] = this.state.profile_image;
         params['profile_image_dir'] = this.state.profile_image_dir;
@@ -82,6 +82,10 @@ class MessagesScrean extends Component {
         params['unread_count'] = this.state.unread_count;
 
         global.otherid = id;
+        global.name = name;
+        global.lastmessage = lastmessage;
+
+        // alert(self.state.name);
 
         global.socket.emit('on-matched', params);
         // console.log(params);
@@ -89,7 +93,7 @@ class MessagesScrean extends Component {
     );
   }
 
-  componentDidMount(id) {
+  componentDidMount(id,name) {
     // this.makeRemoteRequest();
 
     let self = this;
@@ -128,7 +132,7 @@ class MessagesScrean extends Component {
         params['date_time'] = this.state.date_time;
         params['lastmessage'] = this.state.lastmessage;
         params['message_count'] = this.state.message_count;
-        params['name'] = this.state.name;
+        params['name'] = name;
         params['online'] = this.state.online;
         params['profile_image'] = this.state.profile_image;
         params['profile_image_dir'] = this.state.profile_image_dir;
@@ -137,9 +141,13 @@ class MessagesScrean extends Component {
         params['unread_count'] = this.state.unread_count;
 
         global.otherid = id;
+        global.name = name;
+      
 
+        // alert(self.state.name);
+       
         global.socket.emit('on-matched', params);
-        // console.log(params);
+        
       },
     );
   }
@@ -198,7 +206,7 @@ class MessagesScrean extends Component {
           data={this.state.ret}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <Card style={{paddingTop: 10}} onPress={() => this.goChat(item.id)}>
+            <Card style={{paddingTop: 10}} onPress={() => this.goChat(item.id,item.name,item.lastmessage)}>
               <UserInfo>
                 <UserImgWrapper>
                   <UserImg
