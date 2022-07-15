@@ -33,6 +33,9 @@ import moment from 'moment';
 import Storage from '../utils/storage';
 import PhotoLibrary from './Photolibrary';
 import CoinScreen from '../homes/CoinScreen';
+import Policy from '../homes/Terms';
+import SpecialCC from '../homes/SpecialCC';
+import Privacy from '../homes/Privacy';
 
 const DeviceWidth = Dimensions.get('window').width;
 
@@ -395,6 +398,15 @@ class DisplayAnImage extends Component {
               </Stack.Screen>
               <Stack.Screen name="Coin">
                 {props => <CoinScreen navigationRef={navigationRef} />}
+              </Stack.Screen>
+              <Stack.Screen name="Policy">
+                {props => <Policy navigationRef={navigationRef} />}
+              </Stack.Screen>
+              <Stack.Screen name="Privacy">
+                {props => <Privacy navigationRef={navigationRef} />}
+              </Stack.Screen>
+              <Stack.Screen name="SpecialCC">
+                {props => <SpecialCC navigationRef={navigationRef} />}
               </Stack.Screen>
             </Stack.Navigator>
           </NavigationContainer>

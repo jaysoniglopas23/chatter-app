@@ -1,5 +1,17 @@
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity, Image} from 'react-native';
+import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
+import {CardStyleInterpolators} from '@react-navigation/stack';
+import Svg, {G, Path} from 'react-native-svg';
+import {
+  Collapse,
+  CollapseHeader,
+  CollapseBody,
+  AccordionList,
+} from 'accordion-collapse-react-native';
+import Policy from './Terms';
+
+const Stack = createStackNavigator();
 
 class News extends Component {
   constructor(props) {
@@ -8,21 +20,148 @@ class News extends Component {
     this.state = {};
 
     this.goBack = this.goBack.bind(this);
+
+    this.goPolicy = this.goPolicy.bind(this);
   }
 
   goBack() {
     this.props.navigationRef.current?.navigate('Dashboard');
   }
 
+  goPolicy() {
+    this.props.navigationRef.current?.navigate('Policy');
+  }
+
+  goPrivacy() {
+    this.props.navigationRef.current?.navigate('Privacy');
+  }
+
+  goSpecial() {
+    this.props.navigationRef.current?.navigate('SpecialCC');
+  }
+
   render() {
     return (
-      <View style={{backgroundColor: '#ffff', height: '100%'}}>
-        <View style={{alignSelf: 'center'}}>
-          <Text style={{top: 30, fontSize: 15, fontWeight: '900', right: 140}}>
-            利用規約
-          </Text>
+      <View style={{backgroundColor: '#ffff', height: '100%', flex: 1}}>
+        <View style={{flexDirection: 'column', left: 139, top: 30}}>
+          <TouchableOpacity
+            style={{
+              borderColor: 'black',
+              borderWidth: 1,
+              right: 135,
+              width: '98%',
+            }}
+            onPress={() => this.goPolicy()}>
+            <Text
+              style={{
+                paddingTop: 5,
+                paddingBottom: 5,
+                left: 10,
+                color: 'black',
+                top: 8,
+              }}>
+              利用規約
+            </Text>
+            <Svg
+              style={{
+                bottom: 15,
+                marginLeft: 330,
+                width: 20,
+                height: 20,
+              }}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="paper-plane"
+              class="svg-inline--fa fa-paper-plane fa-w-16"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512">
+              <Path
+                fill="black"
+                d="M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z"
+              />
+            </Svg>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderColor: 'black',
+              borderWidth: 1,
+              right: 135,
+              width: '98%',
+            }}
+            onPress={() => this.goSpecial()}>
+            <Text
+              style={{
+                paddingTop: 5,
+                paddingBottom: 5,
+                left: 10,
+                color: 'black',
+                top: 8,
+              }}>
+              特商法
+            </Text>
+            <Svg
+              style={{
+                bottom: 15,
+                marginLeft: 330,
+                width: 20,
+                height: 20,
+              }}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="paper-plane"
+              class="svg-inline--fa fa-paper-plane fa-w-16"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512">
+              <Path
+                fill="black"
+                d="M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z"
+              />
+            </Svg>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderColor: 'black',
+              borderWidth: 1,
+              right: 135,
+              width: '98%',
+            }}
+            onPress={() => this.goPrivacy()}>
+            <Text
+              style={{
+                paddingTop: 5,
+                paddingBottom: 5,
+                left: 10,
+                color: 'black',
+                top: 8,
+              }}>
+              プライバシーポリシー
+            </Text>
+            <Svg
+              style={{
+                bottom: 15,
+                marginLeft: 330,
+                width: 20,
+                height: 20,
+              }}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="paper-plane"
+              class="svg-inline--fa fa-paper-plane fa-w-16"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512">
+              <Path
+                fill="black"
+                d="M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z"
+              />
+            </Svg>
+          </TouchableOpacity>
         </View>
-
         <View style={{top: 490, backgroundColor: '#ffff', flex: 1}}>
           <TouchableOpacity
             onPress={() => this.goBack()}
@@ -35,32 +174,14 @@ class News extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              top: 63,
+              bottom: 83,
             }}>
             <Image
               source={require('../icon/arrow.png')}
               style={{height: 20, top: 5}}
             />
-            <Text style={{right: 15, top: 4}}>戻る</Text>
+            <Text style={{right: 15, top: 4,color:'black'}}>戻る</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            style={{
-              backgroundColor: '#ECECEC',
-              marginHorizontal: 170,
-              height: 31,
-              left: 150,
-              marginBottom: 30,
-              flexDirection: 'row',
-              width: 70,
-              borderRadius: 2,
-              top: 5,
-            }}>
-            <Image
-              source={require('../icon/icons8-save-50.png')}
-              style={{left: 9, top: 5, height: 20, width: 20}}
-            />
-            <Text style={{left: 15, top: 5}}>保存</Text>
-          </TouchableOpacity> */}
         </View>
       </View>
     );

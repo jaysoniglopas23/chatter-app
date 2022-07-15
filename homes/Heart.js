@@ -155,7 +155,7 @@ class Heart extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: 620}}>
+      <View style={{backgroundColor: '#fff', height: 620 }}>
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}

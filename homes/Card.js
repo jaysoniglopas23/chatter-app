@@ -172,7 +172,7 @@ class Card extends Component {
   render() {
     let {photo} = this.state;
     return (
-      <View style={{backgroundColor: '#fff', height: 700}}>
+      <View style={{backgroundColor: '#fff', height: 700,flex:1}}>
         {this.state.hasProfilePhoto ? (
           <Image
             source={{uri: this.state.profilePhoto}}
@@ -203,10 +203,11 @@ class Card extends Component {
             width: windowWidth,
             height: windowHeight,
             bottom: 300,
+            flex:1,
           }}>
           <View
             style={{
-              marginTop: windowHeight - 150,
+              marginTop: windowHeight - 190,
               height: 150,
               width: windowWidth,
               backgroundColor: '#FFF',
@@ -269,13 +270,13 @@ class Card extends Component {
             flexDirection: 'row',
             width: 70,
             borderRadius: 2,
-            bottom: 550,
+            bottom: 80,
           }}>
           <Image
             source={require('../icon/arrow.png')}
             style={{height: 20, top: 5}}
           />
-          <Text style={{right: 15, top: 4}}>戻る</Text>
+          <Text style={{right: 15, top: 4,color:'black'}}>戻る</Text>
         </TouchableOpacity>
       </View>
     );

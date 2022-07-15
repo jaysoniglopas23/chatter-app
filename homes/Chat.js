@@ -1,5 +1,3 @@
-
-
 import React, {Component} from 'react';
 
 import {
@@ -69,7 +67,7 @@ class Chat extends Component {
     this.bellSound = null;
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getChat();
   }
 
@@ -101,7 +99,7 @@ class Chat extends Component {
             datetime: ret[0].datetime,
             msg_to: ret[0].msg_to,
             msg_from: ret[0].msg_from,
-            timezone:ret[0].timezone,
+            timezone: ret[0].timezone,
           });
 
           self.flatListRef.scrollToOffset({
@@ -182,18 +180,15 @@ class Chat extends Component {
             },
             () => {
               let params = {};
-             
-                params['name'] = global.name;
-                params['otherid'] = global.otherid;
-                params['data'] = this.state.data;
-                params['profile_image'] = this.state.profile_image;
-                params['profile_image_dir'] = this.state.profile_image_dir;
-                params[' datetime'] = this.state.datetime;
-                params['msg_to'] = this.state.msg_to;
-                params['msg_from'] = this.state.msg_from;
 
-                
-              
+              params['name'] = global.name;
+              params['otherid'] = global.otherid;
+              params['data'] = this.state.data;
+              params['profile_image'] = this.state.profile_image;
+              params['profile_image_dir'] = this.state.profile_image_dir;
+              params[' datetime'] = this.state.datetime;
+              params['msg_to'] = this.state.msg_to;
+              params['msg_from'] = this.state.msg_from;
 
               global.socket.emit('emit-messages', params);
             },
@@ -204,6 +199,8 @@ class Chat extends Component {
   }
 
   sendMesage(id) {
+    this.getChat();
+    // this.handleScrollView();
     let self = this;
 
     global.socket.on('emit-send-message-from', function (ret) {
@@ -211,13 +208,12 @@ class Chat extends Component {
 
       // alert(ret);
       self.setState({
-        photo:ret.file,
-        msgid:ret.msgid,
-        socketid:ret.socketid,
-        msg_from:ret.msg_from,
-        msg_to:ret.msg_to,
-      })
-
+        photo: ret.file,
+        msgid: ret.msgid,
+        socketid: ret.socketid,
+        msg_from: ret.msg_from,
+        msg_to: ret.msg_to,
+      });
     });
 
     let params = {};
@@ -225,22 +221,21 @@ class Chat extends Component {
     params['datetime'] = this.state.datetime;
     params['to'] = global.otherid;
     params['from'] = this.state.msg_to;
-    params['timezone']=this.state.timezone;
-    params['data'] = this.state.message;
-    params['points'] = this.state.points
+    params['timezone'] = this.state.timezone;
+    params['data'] = this.state.data;
+    params['points'] = this.state.points;
     params['type'] = 'string';
 
-console.log(params);
+    console.log(params);
 
-    global.socket.emit('on-send-message',params);
+    global.socket.emit('on-send-message', params);
 
     let message = {
       data: this.state.message,
       id: this.state.msg_to,
-      // liked: '0',
       nickname: global.name,
       profile_image: global.profile_image,
-      msg_from:global.user_id,
+      msg_from: global.user_id,
     };
 
     self.setState(
@@ -334,11 +329,12 @@ console.log(params);
         // console.log(params);
       },
     );
-    
   }
 
   render() {
     let tableHeight = 0;
+
+    // const messages = ret.reverse();
 
     if (windowHeight >= 926) {
       tableHeight = windowHeight - 110;
@@ -450,7 +446,7 @@ console.log(params);
           ) : (
             <View style={{width: '100%', height: tableHeight}}>
               <FlatList
-                inverted
+
                 ref={ref => {
                   this.flatListRef = ref;
                 }}
@@ -459,17 +455,18 @@ console.log(params);
                 initialNumToRender={10}
                 removeClippedSubviews={true}
                 extraData={this.state.refresh}
-                style={{width: '100%', height: windowHeight - 500, top:100}}
+                style={{width: '100%', height: windowHeight - 500, top: 100}}
                 data={this.state.ret}
                 renderItem={this.renderCell}
                 keyExtractor={item => item.id}
+              // scrollEnabled = {false}
               />
 
               <View
                 style={{
                   width: '100%',
                   padding: 100,
-                  right:90,
+                  right: 90,
                   top: 23,
                   flexDirection: 'row',
                   alignItems: 'flex-end',

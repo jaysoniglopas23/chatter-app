@@ -78,7 +78,7 @@ export const UserName = styled.Text`
   font-weight: bold;
   font-family: 'Lato-Regular';
   color: #100c08;
-  left: 20px;
+  left: 60px;
 `;
 
 export const PostTime = styled.Text`

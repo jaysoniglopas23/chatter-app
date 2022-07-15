@@ -23,8 +23,8 @@ import {
 
 import {NavigationContainer} from '@react-navigation/native';
 
-import {BlurView, VibrancyView} from '@react-native-community/blur';
-// import {BlurView, VibrancyView} from 'react-native-blur';
+// import {BlurView} from '@react-native-community/blur';
+import {BlurView, VibrancyView} from 'react-native-blur';
 import Svg from 'react-native-svg';
 import {ColorSpace, Transition, Transitioning} from 'react-native-reanimated';
 import {react} from '@babel/types';
@@ -76,7 +76,7 @@ class Login extends Component {
       this.setState(
         {
           invalidCredentials: 'Email / Password is invalid',
-          loginButton: 'Login',
+          loginButton: 'ログイン',
           registerButton: 'Sign Up',
           forgotPasswordButton: 'Forgot Password',
 
@@ -394,7 +394,7 @@ class Login extends Component {
               fontFamily: 'SemiBold',
               paddingVertical: 10,
             }}>
-            New User
+            新しいユーザー
           </Text>
         </TouchableOpacity>
         <View style={{flex: 1}}>
@@ -402,22 +402,19 @@ class Login extends Component {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              marginHorizontal: 173,
               borderWidth: 0,
               marginTop: 1,
-              paddingHorizontal: 10,
-              backgroundColor: '#fff',
               // opacity: 0.9,
               borderRadius: 0,
               paddingVertical: 0,
-              right: 105,
+              left: 65,
               bottom: 382,
               height: 18,
             }}>
             <Text
               style={{
                 color: 'black',
-                opacity: 0.8,
+                backgroundColor: '#fff',
                 fontSize: 10,
                 fontFamily: 'SemiBold',
               }}>
@@ -428,22 +425,19 @@ class Login extends Component {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              marginHorizontal: 164,
               borderWidth: 0,
               marginTop: 65,
-              paddingHorizontal: 10,
-              backgroundColor: '#FFF',
               // opacity: 0.9,
               borderRadius: 0,
               paddingVertical: 3,
-              right: 98,
-              bottom: 386,
+              left: 65,
+              bottom: 388,
               height: 20,
             }}>
             <Text
               style={{
                 color: 'black',
-                opacity: 0.9,
+                backgroundColor: 'white',
                 fontSize: 9,
                 fontFamily: 'SemiBold',
               }}>

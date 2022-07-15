@@ -86,6 +86,7 @@ class Star extends Component {
             nickname: ret.nickname,
             id: ret.id,
             users: ret.users,
+            path:ret.path
           });
         });
         let params = {};
@@ -157,7 +158,7 @@ class Star extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: 620}}>
+      <View style={{backgroundColor: '#fff', height: 620,}}>
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
@@ -170,9 +171,9 @@ class Star extends Component {
                       uri:
                         URL_TEMP +
                         '/' +
-                        this.state.path +
+                        item.path +
                         '/' +
-                        this.state.image,
+                        item.image,
                     }}
                   />
                 </UserImgWrapper>

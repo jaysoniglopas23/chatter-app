@@ -14,28 +14,56 @@ export const InteractionWrapper1 = styled.View`
   left: 20px;
 `;
 export const Divider = styled.View`
-  border-bottom-color: #cdd5d5;
-  border-bottom-width: 1px;
+  border-bottom-color: black;
+  border-bottom-width: 0px;
   width: 98%;
   align-self: center;
-  margin-top: 8px;
+  bottom:67px;
+  height:100px;
 `;
 export const Divider1 = styled.View`
-  border-bottom-color: #cdd5d5;
+  border-bottom-color: black;
   border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-top-color: black;
   width: 98%;
   align-self: center;
-  margin-bottom: 0px;
   padding-bottom: 1px;
+  bottom:4px;
+  height:60px;
+
 `;
 export const Divider2 = styled.View`
-  border-bottom-color: #cdd5d5;
-  border-bottom-width: 1px;
+  // border-bottom-color: #cdd5d5;
+  // border-bottom-width: 1px;
   width: 98%;
   align-self: center;
   margin-bottom: 0px;
   padding-bottom: 1px;
-  margin-top: 10px;
+  margin-top: 0px;
+  height:60px;
+`;
+export const Divider3 = styled.View`
+  border-bottom-color: black;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-top-color: black;
+  width: 98%;
+  align-self: center;
+  padding-bottom: 1px;
+  bottom:4px;
+
+`;
+export const Divider4 = styled.View`
+  border-bottom-color: black;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-top-color: black;
+  width: 98%;
+  align-self: center;
+  padding-bottom: 1px;
+  bottom:4px;
+
 `;
 export const Interaction = styled.TouchableOpacity`
   flex-direction: row;
@@ -48,15 +76,19 @@ export const Interaction = styled.TouchableOpacity`
 export const Interaction1 = styled.TouchableOpacity`
   flex-direction: row;
   left: 100px;
-  padding-top: 1px;
+  padding-top: 0px;
   justify-content: center;
   margin-bottom: 0px;
-  border-radius: 5px;
+  border-radius: 0px;
+  border-width: 1px;
   padding: 5px 10px;
-  background-color: ${props => (props.active ? '#2e64e515' : 'transparent ')};
+  height:30px;
+  width:90px;
+  bottom:5;
+  background-color: ${props => (props.active ? '#fff' : 'transparent ')};
 `;
 
-export const InteractionText = styled.Text`
+export const InteractionText = styled.Image`
   font-size: 18px;
   font-family: 'Lato-Regular';
   font-weight: bold;

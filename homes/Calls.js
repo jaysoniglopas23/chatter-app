@@ -101,16 +101,16 @@ class Calls extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#ffff', height: '100%'}}>
+      <View style={{backgroundColor: '#ffff', height: '100%',flex:1}}>
         <View style={styles.view}>
           <Switch
-            style={{left: 150, top: 24}}
+            style={{left: 170, top: 24}}
             onValueChange={this.toggleSwitch}
             value={this.state.toggled}
           />
-          <Text style={{left: 400}}>現在の通話設定 :</Text>
+          <Text style={{left: 400 ,fontWeight:'bold',color:'black'}}>現在の通話設定 :</Text>
         </View>
-        <View style={{top: 395}}>
+        <View style={{top: 455}}>
           <TouchableOpacity
             onPress={() => this.goBack()}
             style={{
@@ -128,7 +128,7 @@ class Calls extends Component {
               source={require('../icon/arrow.png')}
               style={{height: 20, top: 5}}
             />
-            <Text style={{right: 15, top: 4}}>戻る</Text>
+            <Text style={{right: 15, top: 4,color:'black'}}>戻る</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.Save()}
@@ -136,18 +136,18 @@ class Calls extends Component {
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
               height: 31,
-              left: 150,
+              left: 130,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              top: 5,
+              top: 0,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}
               style={{left: 9, top: 5, height: 20, width: 20}}
             />
-            <Text style={{left: 15, top: 5}}>保存</Text>
+            <Text style={{left: 15, top: 5,color:'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
       </View>
