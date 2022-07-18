@@ -71,6 +71,46 @@ class Chat extends Component {
     this.getChat();
   }
 
+  // getPoints(){
+
+  //   let self = this;
+
+  //   let params = {};
+
+  //   this.setState(
+  //     {
+  //       params: params,
+  //       refresh: 1,
+  //     },
+
+  //     () => {
+  //       global.socket.on("", function (ret) {
+  //         global.socket.off('');
+  //         // alert(JSON.stringify(ret));
+  //         // console.log(ret);
+
+  //         self.setState({
+
+  //         });
+
+  //         self.flatListRef.scrollToOffset({
+  //           animated: true,
+  //           offset: self.state.data.length,
+  //         });
+  //       });
+
+  //       params[''] = ;
+
+  //       global.otherid = self.state.msg_from;
+
+  //       // alert(global.otherid);
+
+  //       global.socket.emit('', params);
+  //       // console.log(params);
+  //     },
+  //   );
+  // }
+
   getChat() {
     let self = this;
 
@@ -86,7 +126,7 @@ class Chat extends Component {
         global.socket.on('emit-messages', function (ret) {
           global.socket.off('emit-messages');
           // alert(JSON.stringify(ret));
-          console.log(ret);
+          // console.log(ret);
 
           self.setState({
             showLoading: false,
@@ -123,26 +163,12 @@ class Chat extends Component {
         // console.log(params);
       },
     );
-
-    // this.bellSound = new Sound(require('../sound/bell.m4a'), error => {
-    //   if (error) {
-    //     console.log('failed to load the sound', error);
-    //     return;
-    //   }
-
-    //   self.getProfile();
-    // });
   }
 
   onEndReached() {}
 
   back() {
     this.props.navigation.navigate('Messages');
-    // if (global.previousPage == 'UserProfile') {
-    //   this.props.navigationRef.current?.navigate('UserProfile');
-    // } else {
-    //   this.props.navigationRef.current?.navigate('Messages');
-    // }
   }
 
   handleScrollView() {
@@ -198,7 +224,7 @@ class Chat extends Component {
     }
   }
 
-  sendMesage(id) {
+  sendMesage() {
     this.getChat();
     // this.handleScrollView();
     let self = this;
@@ -220,9 +246,9 @@ class Chat extends Component {
 
     params['datetime'] = this.state.datetime;
     params['to'] = global.otherid;
-    params['from'] = this.state.msg_to;
+    params['from'] = this.state.msg_from;
     params['timezone'] = this.state.timezone;
-    params['data'] = this.state.data;
+    params['data'] = this.state.message;
     params['points'] = this.state.points;
     params['type'] = 'string';
 
@@ -269,10 +295,7 @@ class Chat extends Component {
     }
   }
 
-  gotoUserProfile(msg_from) {
-    // global.previousPage = 'Chats';
-    // global.currentPage = 'UserProfile';
-
+  gotoUserProfile(id) {
     this.props.navigation.navigate('User');
 
     let self = this;
@@ -294,7 +317,7 @@ class Chat extends Component {
           self.setState({
             showLoading: false,
             loadingChats: false,
-            id: ret[0].otherid,
+            // id: ret[0].otherid,
             ret: ret,
             data: ret[0].data,
             profile_image: ret[0].profile_image,
@@ -319,11 +342,11 @@ class Chat extends Component {
         params['msg_to'] = this.state.msg_to;
         params['msg_from'] = this.state.msg_from;
         params['lastmessage'] = global.lastmessage;
+
         // params[''] = ;
+        id = global.otherid;
 
-        global.user_id = self.state.msg_from;
-
-        alert(global.user_id);
+        alert(id);
 
         global.socket.emit('on-messages', params);
         // console.log(params);
@@ -369,7 +392,7 @@ class Chat extends Component {
                 marginTop: windowHeight / 10 - 65,
                 flexDirection: 'row',
               }}
-              onPress={() => this.gotoUserProfile(msg_from)}>
+              onPress={() => this.gotoUserProfile(id)}>
               <Image
                 style={{width: 30, height: 30, borderRadius: 30}}
                 source={{
@@ -446,7 +469,7 @@ class Chat extends Component {
           ) : (
             <View style={{width: '100%', height: tableHeight}}>
               <FlatList
-
+                inverted
                 ref={ref => {
                   this.flatListRef = ref;
                 }}
@@ -459,7 +482,7 @@ class Chat extends Component {
                 data={this.state.ret}
                 renderItem={this.renderCell}
                 keyExtractor={item => item.id}
-              // scrollEnabled = {false}
+                // scrollEnabled = {false}
               />
 
               <View
@@ -467,7 +490,7 @@ class Chat extends Component {
                   width: '100%',
                   padding: 100,
                   right: 90,
-                  top: 23,
+                  marginTop: windowHeight / 10 - 65,
                   flexDirection: 'row',
                   alignItems: 'flex-end',
                   // position: 'absolute',
@@ -530,7 +553,7 @@ const Left = ({msg, self}) => (
     }}>
     <TouchableOpacity
       style={{width: 26, height: 26}}
-      onPress={() => self.gotoUserProfile()}>
+      onPress={() => self.gotoUserProfile(id)}>
       <Image
         style={{width: 26, height: 26, borderRadius: 13}}
         source={{
@@ -554,8 +577,16 @@ const Left = ({msg, self}) => (
       }}>
       <Text
         selectable={true}
-        style={{fontSize: 13, textAlign: 'center', color: global.textColor}}>
+        style={{
+          fontSize: 13,
+          textAlign: 'center',
+          color: global.textColor,
+          color: 'black ',
+        }}>
         {StringUtils.findURLs(StringUtils.convertUnicode(msg.item.data), self)}
+      </Text>
+      <Text style={{fontSize: 5, textAlign: 'center', color: global.textColor}}>
+        {msg.item.datetime}
       </Text>
     </View>
   </View>
@@ -568,6 +599,9 @@ const Right = ({msg, self}) => (
         selectable={true}
         style={{fontSize: 12, textAlign: 'center', color: 'black'}}>
         {StringUtils.findURLs(StringUtils.convertUnicode(msg.item.data), self)}
+      </Text>
+      <Text style={{fontSize: 5, textAlign: 'center', color: global.textColor}}>
+        {msg.item.datetime}
       </Text>
     </View>
   </View>

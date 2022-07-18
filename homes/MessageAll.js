@@ -34,7 +34,7 @@ class MessagesScrean extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat(id,name,lastmessage) {
+  goChat(id, name, lastmessage) {
     this.props.navigation.navigate('Chat');
 
     let self = this;
@@ -93,7 +93,7 @@ class MessagesScrean extends Component {
     );
   }
 
-  componentDidMount(id,name) {
+  componentDidMount(id, name) {
     // this.makeRemoteRequest();
 
     let self = this;
@@ -142,12 +142,10 @@ class MessagesScrean extends Component {
 
         global.otherid = id;
         global.name = name;
-      
 
         // alert(self.state.name);
-       
+
         global.socket.emit('on-matched', params);
-        
       },
     );
   }
@@ -206,7 +204,9 @@ class MessagesScrean extends Component {
           data={this.state.ret}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <Card style={{paddingTop: 10}} onPress={() => this.goChat(item.id,item.name,item.lastmessage)}>
+            <Card
+              style={{paddingTop: 10}}
+              onPress={() => this.goChat(item.id, item.name, item.lastmessage)}>
               <UserInfo>
                 <UserImgWrapper>
                   <UserImg

@@ -25,9 +25,18 @@ class User extends Component {
       id: '',
       details: '',
     };
+
+    this.getUser = this.getUser.bind(this);
+
+    // this.goChat = this.goChat.bind();
   }
 
   componentDidMount() {
+    this.getUser();
+  }
+
+  getUser() {
+    this.props.navigation.navigate('Chat');
     let self = this;
 
     self.setState({}, () => {
@@ -90,7 +99,7 @@ class User extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '100%'}}>
+      <View style={{backgroundColor: '#fff', height: '100%', flex: 1}}>
         <Image
           source={{
             uri:
@@ -147,7 +156,7 @@ class User extends Component {
           </ScrollView>
         </View>
         <View style={styles.Mview}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.goChat()} style={styles.button}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
               xmlns="http://www.w3.org/2000/svg"
