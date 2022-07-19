@@ -34,13 +34,66 @@ class Savemessages extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat() {
-    let item = this;
-
+  goChat(id, name, lastmessage) {
     this.props.navigation.navigate('Chat');
+
+    let self = this;
+
+    let params = {};
+
+    this.setState(
+      {
+        params: params,
+        refresh: 1,
+      },
+
+      () => {
+        global.socket.on('emit-matched', function (ret) {
+          global.socket.off('emit-matthed');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            id: ret[0].id,
+            date_time: ret[0].date_time,
+            lastmessage: ret[0].lastmessage,
+            message_count: ret[0].message_count,
+            name: ret[0].name,
+            online: ret[0].online,
+            profile_image: ret[0].profile_image,
+            profile_image_dir: ret[0].profile_image_dir,
+            save: ret[0].save,
+            timezone: ret[0].timezone,
+            unread_count: ret[0].unread_count,
+            ret: ret,
+          });
+        });
+        let params = {};
+        params['id'] = id;
+        params['date_time'] = this.state.date_time;
+        params['lastmessage'] = this.state.lastmessage;
+        params['message_count'] = this.state.message_count;
+        params['name'] = name;
+        params['online'] = this.state.online;
+        params['profile_image'] = this.state.profile_image;
+        params['profile_image_dir'] = this.state.profile_image_dir;
+        params['save'] = this.state.save;
+        params['timezone'] = this.state.timezone;
+        params['unread_count'] = this.state.unread_count;
+
+        global.otherid = id;
+        global.name = name;
+        global.lastmessage = lastmessage;
+
+        // alert(self.state.name);
+
+        global.socket.emit('on-matched', params);
+        // console.log(params);
+      },
+    );
   }
 
-  componentDidMount() {
+  componentDidMount(id, name) {
     // this.makeRemoteRequest();
 
     let self = this;
@@ -60,6 +113,7 @@ class Savemessages extends Component {
           // console.log(ret);
 
           self.setState({
+            id: ret[0].id,
             date_time: ret[0].date_time,
             lastmessage: ret[0].lastmessage,
             message_count: ret[0].message_count,
@@ -74,11 +128,11 @@ class Savemessages extends Component {
           });
         });
         let params = {};
-
+        params['id'] = id;
         params['date_time'] = this.state.date_time;
         params['lastmessage'] = this.state.lastmessage;
         params['message_count'] = this.state.message_count;
-        params['name'] = this.state.name;
+        params['name'] = name;
         params['online'] = this.state.online;
         params['profile_image'] = this.state.profile_image;
         params['profile_image_dir'] = this.state.profile_image_dir;
@@ -86,8 +140,12 @@ class Savemessages extends Component {
         params['timezone'] = this.state.timezone;
         params['unread_count'] = this.state.unread_count;
 
+        global.otherid = id;
+        global.name = name;
+
+        // alert(self.state.name);
+
         global.socket.emit('on-matched', params);
-        // console.log(params);
       },
     );
   }
@@ -146,7 +204,9 @@ class Savemessages extends Component {
           data={this.state.ret}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <Card style={{paddingTop: 0}} onPress={() => this.goChat()}>
+            <Card
+              style={{paddingTop: 10}}
+              onPress={() => this.goChat(item.id, item.name, item.lastmessage)}>
               <UserInfo>
                 <UserImgWrapper>
                   <UserImg
@@ -177,11 +237,3 @@ class Savemessages extends Component {
 }
 
 export default Savemessages;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

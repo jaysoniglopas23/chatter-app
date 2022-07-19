@@ -137,6 +137,7 @@ android {
         versionCode 113
         versionName "113.0"
         multiDexEnabled true
+        missingDimensionStrategy 'store', 'play'
     }
     splits {
         abi {

@@ -17,7 +17,7 @@ class Calls extends Component {
     this.state = {
       sliderValue: '0',
       drop_calls: '',
-    };
+    }; 
 
     this.goBack = this.goBack.bind(this);
   }

@@ -145,7 +145,7 @@ export default class Call extends Component {
           // console.log(id);
         });
         let params = {};
-
+ 
         params['start'] = 0;
         params['size'] = '1000';
         params['filter_type'] = '0';
@@ -162,144 +162,7 @@ export default class Call extends Component {
     );
   }
 
-  // getTimeline() {
-  //   let self = this;
 
-  //   let params = {};
-
-  //   for (var i = 0; i < global.searchFields.length; i++) {
-  //     if (global.searchFields[i].value == '0-0') {
-  //       params[global.searchFields[i].db_name] = '0';
-  //     } else {
-  //       params[global.searchFields[i].db_name] = global.searchFields[i].value;
-  //     }
-
-  //     if (params[global.searchFields[i].db_name] != 0) {
-  //       this.setState({
-  //         isSearch: true,
-  //       });
-  //     }
-  //   }
-
-  //   params['start'] = this.state.start;
-  //   params['size'] = 15;
-  //   params['filter_type'] = '1';
-  //   params['order'] = '0';
-  //   params['name'] = this.state.name;
-  //   params['userid'] = this.state.userid;
-  //   params['offset'] = '0';
-
-  //   global.socket.on('emit-users-for-search', function (ret) {
-  //     global.socket.off('emit-users-for-search');
-
-  //     self.setState(
-  //       {
-  //         timelineRefreshed: false,
-  //         loadingOpacity: 0,
-  //         tableOpacity: 1,
-  //       },
-  //       () => {
-  //         if (ret.length == 0 && !self.state.topReached) {
-  //           self.setState({
-  //             noDataFoundWindowOpacity: 1,
-  //           });
-  //         } else {
-  //           self.setState(
-  //             {
-  //               noDataFoundWindowOpacity: 0,
-  //             },
-  //             () => {
-  //               self.setState(
-  //                 {
-  //                   timelineData: ret,
-  //                   timelineRefreshed: true,
-  //                   topReached: false,
-  //                 },
-  //                 () => {
-  //                   /*if(global.user_id != ''){
-
-  //               self.getCoin();
-
-  //             }*/
-
-  //                   Animated.timing(self.state.loadingTop, {
-  //                     toValue: -500,
-  //                     duration: 100,
-  //                     useNativeDriver: true,
-  //                   }).start();
-
-  //                   /*setTimeout(function(){
-  //               self.refreshTimeline();
-  //             }, 2000);*/
-  //                 },
-  //               );
-  //             },
-  //           );
-  //         }
-  //       },
-  //     );
-  //   });
-
-  //   this.setState(
-  //     {
-  //       params: params,
-  //     },
-  //     () => {
-  //       global.socket.emit('on-users-for-search', params);
-  //     },
-  //   );
-  // }
-
-  // gotoTop() {
-  //   let self = this;
-
-  //   this.goingToTop = true;
-
-  //   this.flatListRef.scrollToOffset({animated: true, offset: 0});
-
-  //   Animated.timing(this.state.loadingBottom, {
-  //     toValue: windowHeight,
-  //     duration: 1,
-  //     useNativeDriver: true,
-  //   }).start(function () {
-  //     Animated.timing(self.state.loadingTop, {
-  //       toValue: 110,
-  //       duration: 100,
-  //       useNativeDriver: true,
-  //     }).start();
-
-  //     //global.socket.off('timelineposts');
-
-  //     /*self.setState({
-  //       timelineData : [],
-  //       noDataFoundWindowOpacity : 0
-  //     }, () => {
-
-  //       self.getTimeline();
-
-  //     });*/
-
-  //     let y = setInterval(function () {
-  //       if (self.state.timelineRefreshed) {
-  //         self.goingToTop = false;
-
-  //         console.log('timelinerefresh loop');
-
-  //         clearInterval(y);
-
-  //         self.setState(
-  //           {
-  //             users: [],
-  //             noDataFoundWindowOpacity: 0,
-  //           },
-  //           () => {
-  //             self.getTimeline();
-  //           },
-  //         );
-  //       }
-  //     }, 500);
-  //   });
-  // }
 
   refreshTimeline() {
     let self = this;
@@ -312,7 +175,7 @@ export default class Call extends Component {
             useNativeDriver: true
          }
       ).start();*/
-
+ 
     let params = self.state.params;
 
     params['start'] = params['start'] + 9;

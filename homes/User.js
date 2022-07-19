@@ -31,12 +31,69 @@ class User extends Component {
     // this.goChat = this.goChat.bind();
   }
 
+  goChat(id, name,lastmessage) {
+    this.props.navigation.navigate('Chat');
+    let self = this;
+
+    let params = {};
+
+    this.setState(
+      {
+        params: params,
+        refresh: 1,
+      },
+
+      () => {
+        global.socket.on('emit-matched', function (ret) {
+          global.socket.off('emit-matthed');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            id: ret[0].id,
+            date_time: ret[0].date_time,
+            lastmessage: ret[0].lastmessage,
+            message_count: ret[0].message_count,
+            name: ret[0].name,
+            online: ret[0].online,
+            profile_image: ret[0].profile_image,
+            profile_image_dir: ret[0].profile_image_dir,
+            save: ret[0].save,
+            timezone: ret[0].timezone,
+            unread_count: ret[0].unread_count,
+            ret: ret,
+          });
+        });
+        let params = {};
+        params['id'] = id;
+        params['date_time'] = this.state.date_time;
+        params['lastmessage'] =lastmessage;
+        params['message_count'] = this.state.message_count;
+        params['name'] = name;
+        params['online'] = this.state.online;
+        params['profile_image'] = this.state.profile_image;
+        params['profile_image_dir'] = this.state.profile_image_dir;
+        params['save'] = this.state.save;
+        params['timezone'] = this.state.timezone;
+        params['unread_count'] = this.state.unread_count;
+
+        global.otherid = id;
+        global.name = name;
+        global.lastmessage = lastmessage;
+
+        // alert(self.state.name);
+
+        global.socket.emit('on-matched', params);
+        // console.log(params);
+      },
+    );
+  }
+
   componentDidMount() {
     this.getUser();
   }
 
   getUser() {
-    this.props.navigation.navigate('Chat');
     let self = this;
 
     self.setState({}, () => {
@@ -156,7 +213,9 @@ class User extends Component {
           </ScrollView>
         </View>
         <View style={styles.Mview}>
-          <TouchableOpacity onPress={() => this.goChat()} style={styles.button}>
+          <TouchableOpacity
+            onPress={() => this.goChat(id,name,lastmessage)}
+            style={styles.button}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
               xmlns="http://www.w3.org/2000/svg"
