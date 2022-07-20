@@ -11,13 +11,16 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNavigationContainerRef} from '@react-navigation/native';
+import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
+import {CardStyleInterpolators} from '@react-navigation/stack';
 // import Peer from 'react-native-peerjs';
 import io from 'socket.io-client';
 import Socket from '../utils/socket';
 import Storage from '../utils/storage';
 import { getVersion } from 'react-native-device-info';
+import Dashboard from './Dashboard';
 // import {
 //   VoipPushNotification,
 //   RNVoipPushRemoteNotifications,
@@ -25,6 +28,8 @@ import { getVersion } from 'react-native-device-info';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const Stack = createStackNavigator();
+const navigationRef = React.createRef();
 
 const version = getVersion();
 

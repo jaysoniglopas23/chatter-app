@@ -408,7 +408,8 @@ class Login extends Component {
               borderRadius: 0,
               paddingVertical: 0,
               left: 65,
-              bottom: 382,
+              // bottom: 382,
+              top: windowWidth / 2 - 580,
               height: 18,
             }}>
             <Text
@@ -431,7 +432,7 @@ class Login extends Component {
               borderRadius: 0,
               paddingVertical: 3,
               left: 65,
-              bottom: 388,
+              top: windowWidth / 2 - 585,
               height: 20,
             }}>
             <Text

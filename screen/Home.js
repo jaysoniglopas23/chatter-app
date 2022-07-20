@@ -36,6 +36,7 @@ import CoinScreen from '../homes/CoinScreen';
 import Policy from '../homes/Terms';
 import SpecialCC from '../homes/SpecialCC';
 import Privacy from '../homes/Privacy';
+import Launcher from './launcher';
 
 const DeviceWidth = Dimensions.get('window').width;
 
@@ -309,6 +310,7 @@ class DisplayAnImage extends Component {
               position: 'absolute',
             }}>
             <Image
+              onPress={() => this.goSettings()}
               style={{
                 width: 40,
                 height: 40,
@@ -332,6 +334,7 @@ class DisplayAnImage extends Component {
               position: 'absolute',
             }}>
             <Image
+              onPress={() => this.goCoin()}
               style={{
                 width: 40,
                 height: 40,
@@ -344,6 +347,7 @@ class DisplayAnImage extends Component {
             />
           </TouchableOpacity>
         </View>
+        
 
         <View
           style={{
@@ -377,9 +381,6 @@ class DisplayAnImage extends Component {
               </Stack.Screen>
               <Stack.Screen name="Heart">
                 {props => <Heart navigationRef={navigationRef} />}
-              </Stack.Screen>
-              <Stack.Screen name="Lock">
-                {props => <Lock navigationRef={navigationRef} />}
               </Stack.Screen>
               <Stack.Screen name="News">
                 {props => <News navigationRef={navigationRef} />}
