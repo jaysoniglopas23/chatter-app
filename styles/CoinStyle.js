@@ -112,3 +112,9 @@ export const Card = styled.View`
   margin-top: 30px;
   margin-bottom: 5px;
 `;
+
+
+
+
+
+

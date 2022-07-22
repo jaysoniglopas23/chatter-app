@@ -450,22 +450,23 @@ class Post extends Component {
               height: 33,
               left: 310,
               bottom: 26,
-              backgroundColor: '#cdd5d5',
+              backgroundColor: '#ECECEC',
             }}>
             <Text
               onPress={() => this.goPost()}
-              style={{textAlign: 'center', top: 7, fontSize: 11}}>
+              style={{textAlign: 'center', top: 7, fontSize: 11,color:'black'}}>
               新しく投稿
             </Text>
           </TouchableOpacity>
         </View>
         <Text
           style={{
-            fontSize: 9,
-            marginHorizontal: 162,
-            bottom: 70,
-            right: 140,
+            fontSize: 10,
+            marginHorizontal: 169,
+            bottom: 68,
+            right: 147,
             backgroundColor: '#fff',
+            color:'black',
           }}>
           投稿を検索する
         </Text>

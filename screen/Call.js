@@ -412,11 +412,12 @@ export default class Call extends Component {
           />
           <Text
             style={{
-              fontSize: 9,
-              marginHorizontal: 125,
+              fontSize: 10,
+              marginHorizontal: 133,
               bottom: 45,
-              right: 120,
+              right: 130,
               backgroundColor: '#fff',
+              color:'black',
             }}>
             名前を検索する
           </Text>

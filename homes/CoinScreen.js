@@ -336,9 +336,9 @@ class CoinScreen extends Component {
 
     RNIap.initConnection().then(() => {
       RNIap.getProducts(self.state.items).then(res => {
-       self.setState({
-        res:res
-      })
+        self.setState({
+          res: res,
+        });
         this.getCoins();
       });
     });
@@ -422,7 +422,6 @@ class CoinScreen extends Component {
   buy(productId, title, price) {
     let self = this;
     console.log(productId);
- 
 
     try {
       RNIap.getProducts(this.state.items)
@@ -434,8 +433,7 @@ class CoinScreen extends Component {
               buying: true,
             });
           });
-          alert(self.state.buying)
-          .catch(error => {
+          alert(self.state.buying).catch(error => {
             alert(error);
           });
         })
@@ -539,39 +537,19 @@ class CoinScreen extends Component {
           />
         </View>
 
-        <View style={{width: windowWidth, height: tableHeight}}>
-          {/* <View style={{width: windowWidth, height: 50, flexDirection: 'row'}}> */}
-          {/* <Image
-                source={require('../img/coin.png')}
-                style={{width: 30, height: 30, marginLeft: 10, marginTop: 10}}
-              /> */}
-
-          {/* <Text
+        <View style={{width: windowWidth, height: tableHeight , backgroundColor:'#fff'}}>
+          <View style={{width: windowWidth, height: 100 ,alignSelf:'center'}}>
+            <Image
+              source={require('../icon/coin1.png')}
               style={{
-                width: 90,
-                height: 50,
-                lineHeight: 50,
-                marginLeft: 10,
-                fontSize: 12,
-                color: global.textColor,
-              }}>
-              Current Amount
-            </Text>
-
-            <Text
-              style={{
-                width: windowWidth - 150,
-                height: 50,
-                lineHeight: 50,
-                fontSize: 15,
-                color: global.textColor,
-                fontWeight: 'bold',
-                textAlign: 'right',
-              }}>
-              {this.state.currentCoin}
-              {'Coin'}
-            </Text>
-          </View> */}
+                alignSelf:'center',
+                top: windowWidth / 2 - 270,
+                width: 250,
+                height: 250,
+                resizeMode: 'contain',
+              }}
+            />
+          </View>
 
           <FlatList
             onEndReachedThreshold={0.3}
@@ -581,7 +559,7 @@ class CoinScreen extends Component {
             style={{
               width: windowWidth - 31,
               marginLeft: 5,
-              paddingTop: 10,
+              paddingTop: windowHeight - 900,
               backgroundColor: '#fff',
               borderRadius: 3,
             }}
@@ -601,14 +579,15 @@ class CoinScreen extends Component {
 const CoinCell = ({item, self}) => (
   <TouchableOpacity
     style={{
-      width: windowWidth - 10,
-      marginTop: 5,
-      marginBottom: 5,
+      width: windowWidth - 33,
+      marginTop: 10,
+      marginBottom: 10,
       padding: 5,
       marginLeft: 0,
       borderRadius: 3,
-      backgroundColor: 'grey',
+      backgroundColor: '#fff',
       flexDirection: 'row',
+      borderWidth: 1,
     }}
     onPress={() =>
       self.buy(item.item.productId, item.item.description, item.item.price)
@@ -629,9 +608,10 @@ const CoinCell = ({item, self}) => (
       style={{
         height: 40,
         lineHeight: item.index == 7 ? 20 : 40,
-        fontSize: 11,
+        fontSize: 20,
         paddingLeft: 10,
-        color: '#fff',
+        color: 'black',
+        fontFamily: 'LondrinaShadow-Regular',
       }}>
       {item.item.description}
     </Text>
@@ -647,9 +627,9 @@ const CoinCell = ({item, self}) => (
         fontSize: 12,
         paddingLeft: 10,
         fontWeight: 'bold',
-        color: '#fff',
+        color: 'black',
       }}>
-      {Math.round(item.item.price ) }
+      {Math.round(item.item.price)}
       {self.state.currencyText}
     </Text>
   </TouchableOpacity>

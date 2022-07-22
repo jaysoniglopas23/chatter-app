@@ -19,6 +19,7 @@ import {Dropdown} from 'react-native-material-dropdown-v2';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 import Storage from '../utils/storage';
+import Svg, {G, Path} from 'react-native-svg';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import RadioForm, {
@@ -164,7 +165,7 @@ class Happy extends Component {
             nickname: global.nickname,
             email: global.email,
           });
-          alert(email);
+      
         });
 
         let params = {};
@@ -205,12 +206,60 @@ class Happy extends Component {
       },
     );
   }
+  componentDidMount() {
+    let self = this;
+
+    this.setState({}, () => {
+      global.socket.on('emit-details', function (ret) {
+        global.socket.off('on-details');
+    
+        self.setState({
+          nickname: ret.nickname,
+          email: ret.email,
+        });
+      });
+
+      let params = {};
+
+      params['firstname'] = '';
+      params['lastname'] = '';
+      params['dob'] = moment(new Date()).format('YYYY-MM-DD  HH:mm:ss ');
+      params['about'] = '';
+      params['job'] = '';
+      params['company'] = '';
+      params['school'] = '';
+      params['gender'] = 1;
+      params['gender_pref'] = 1;
+      params['distance_threshold'] = 0;
+      params['nickname'] = this.state.nickname;
+      params['smoking'] = 0;
+      params['drinking'] = 0;
+      params['marrried'] = 0;
+      params['presence_of_children'] = 0;
+      params['like_children_or_not'] = 0;
+      params['marriage_desire'] = 0;
+      params['presence_of_pet'] = 0;
+      params['holiday'] = 0;
+      params['hobbie'] = '';
+      params['bloodtype'] = '';
+      params['email'] = this.state.email;
+      params['name'] = '';
+      params['introduction'] = '';
+      params['character'] = '';
+      params['location'] = '';
+
+      // if (gender_rb == '0') {
+      // }
+
+      global.socket.emit('on-details', params);
+    });
+  }
 
   render() {
     let gender = [
-      {label: 'Male', value: 0},
+      {label: '男性', value: 0},
 
-      {label: 'Female', value: 1},
+      {label: '女性', value: 1},
     ];
 
     let Bloodtype = [{value: 'A'}, {value: 'B'}, {value: 'O'}, {value: 'AB'}];
@@ -239,6 +288,7 @@ class Happy extends Component {
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
+                      color: 'black',
                     }}
                     placeholder={this.state.nickname}
                     value={this.state.nickname}
@@ -247,12 +297,14 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 44,
-                      right: 140,
-                      fontSize: 10,
+                      right: 137,
+                      fontSize: 12,
                       backgroundColor: '#fff',
-                      marginHorizontal: 150,
+                      marginHorizontal: 145,
+                      color: 'black',
+                      // this is nickname*********************
                     }}>
-                    nickname
+                    ニックネーム
                   </Text>
                 </View>
               </View>
@@ -280,6 +332,7 @@ class Happy extends Component {
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
                       height: 80,
+                      color: 'black',
                     }}
                     placeholder={this.state.email}
                     value={this.state.email}
@@ -289,12 +342,14 @@ class Happy extends Component {
                     style={{
                       bottom: 88,
                       right: 132,
-                      fontSize: 10,
+                      fontSize: 12,
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       width: 65,
+                      color: 'black',
+                      // this is email*********************
                     }}>
-                    email address
+                    メールアドレス
                   </Text>
                 </View>
               </View>
@@ -322,17 +377,20 @@ class Happy extends Component {
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
+                      color: 'black',
                     }}
                   />
                   <Text
                     style={{
                       bottom: 103,
                       right: 130,
-                      fontSize: 10,
+                      fontSize: 12,
                       backgroundColor: '#fff',
                       marginHorizontal: 140,
+                      color: 'black',
+                      // this is self introduction********************* 
                     }}>
-                    self introduction
+                    自己紹介
                   </Text>
                 </View>
               </View>
@@ -359,18 +417,21 @@ class Happy extends Component {
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
+                      color: 'black',
                     }}
                   />
                   <Text
                     style={{
                       bottom: 44,
                       right: 130,
-                      fontSize: 10,
+                      fontSize: 12,
                       backgroundColor: '#fff',
                       marginHorizontal: 139,
-                      width: 51,
+                      width: 64,
+                      color: 'black',
+                      // this is  area live in********************* 
                     }}>
-                    area live in
+                    住んでいる地域
                   </Text>
                 </View>
               </View>
@@ -397,17 +458,20 @@ class Happy extends Component {
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
+                      color: 'black',
                     }}
                   />
                   <Text
                     style={{
                       bottom: 103,
                       right: 141,
-                      fontSize: 10,
+                      fontSize: 12,
                       backgroundColor: '#fff',
                       marginHorizontal: 150,
+                      color: 'black',
+                      // this is character*********
                     }}>
-                    character
+                    性格
                   </Text>
                 </View>
               </View>
@@ -434,17 +498,20 @@ class Happy extends Component {
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
+                      color: 'black',
                     }}
                   />
                   <Text
                     style={{
                       bottom: 42,
-                      right: 159,
-                      fontSize: 10,
+                      right: 150,
+                      fontSize: 12,
                       backgroundColor: '#fff',
-                      marginHorizontal: 168,
+                      marginHorizontal: 160,
+                      color: 'black',
+                       // this is society*********
                     }}>
-                    society
+                    趣味
                   </Text>
                 </View>
               </View>
@@ -472,17 +539,102 @@ class Happy extends Component {
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
                       width: 361,
+                      color: 'black',
                     }}
                   />
                   <Text
                     style={{
                       bottom: 44,
                       right: 133,
-                      fontSize: 10,
+                      fontSize: 12,
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
+                      color: 'black',
+                       // this is graduate school*********
                     }}>
-                    graduate school
+                    仕事
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.container}>
+              <View
+                style={{
+                  flex: 1,
+                  top: 15,
+                  right: 20,
+                  marginHorizontal: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <View>
+                  <TextInput
+                    style={{
+                      // alignSelf: 'center',
+                      height: 35,
+                      margin: 0,
+                      borderWidth: 1,
+                      paddingBottom: 10,
+                      paddingHorizontal: 10,
+                      left: 5,
+                      borderColor: '#cdd5d5',
+                      borderRadius: 4,
+                      width: 361,
+                      color: 'black',
+                    }}
+                  />
+                  <Text
+                    style={{
+                      bottom: 44,
+                      right: 133,
+                      fontSize: 12,
+                      backgroundColor: '#fff',
+                      marginHorizontal: 143,
+                      color: 'black',
+                     
+                    }}>
+                    会社
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.container}>
+              <View
+                style={{
+                  flex: 1,
+                  top: 15,
+                  right: 20,
+                  marginHorizontal: 20,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <View>
+                  <TextInput
+                    style={{
+                      // alignSelf: 'center',
+                      height: 35,
+                      margin: 0,
+                      borderWidth: 1,
+                      paddingBottom: 10,
+                      paddingHorizontal: 10,
+                      left: 5,
+                      borderColor: '#cdd5d5',
+                      borderRadius: 4,
+                      width: 361,
+                      color: 'black',
+                    }}
+                  />
+                  <Text
+                    style={{
+                      bottom: 44,
+                      right: 133,
+                      fontSize: 12,
+                      backgroundColor: '#fff',
+                      marginHorizontal: 143,
+                      color: 'black',
+                      
+                    }}>
+                    出身大学
                   </Text>
                 </View>
               </View>
@@ -498,6 +650,7 @@ class Happy extends Component {
                 borderRadius: 1,
                 borderColor: '#cdd5d5',
                 borderRadius: 4,
+                color: 'black',
               }}
               label=""
               Blood={Bloodtype}
@@ -505,14 +658,17 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 40,
-                right: 152,
-                fontSize: 10,
+                right: 148,
+                fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 183,
+                marginHorizontal: 177,
+                color: 'black',
+                // this is graduate bloodtype*********
               }}>
-              bloodtype
+             血液型
             </Text>
             <View>
+          
               <TouchableOpacity
                 style={{
                   borderWidth: 1,
@@ -547,6 +703,18 @@ class Happy extends Component {
                   onChange={this.handleDate}
                 />
               </Modal>
+              <Text
+              style={{
+                bottom:78,
+                right: 148,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 177,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+             生年月日
+            </Text>
             </View>
             <View
               style={{
@@ -569,7 +737,7 @@ class Happy extends Component {
                 buttonOuterSize={20}
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
-                selectedLabelColor={'grey'}
+                selectedLabelColor={'black'}
                 labelStyle={{fontSize: 15, paddingHorizontal: 30}}
                 disabled={false}
                 formHorizontal={true}
@@ -577,6 +745,18 @@ class Happy extends Component {
                 style={{top: 30}}
               />
             </View>
+            <Text
+              style={{
+                bottom:78,
+                right: 148,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 177,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+             恋愛対象
+            </Text>
           </View>
         </ScrollView>
         {/* Back Button */}
@@ -590,34 +770,44 @@ class Happy extends Component {
               right: 150,
               marginBottom: 30,
               flexDirection: 'row',
-              width: 70,
+              width: 50,
               borderRadius: 2,
-              top: 5,
+              bottom: windowHeight / 2 - 435,
             }}>
-            <Image
-              source={require('../icon/arrow.png')}
-              style={{height: 20, top: 5}}
-            />
-            <Text style={{right: 15, top: 4}}>戻る</Text>
+            <Svg
+              style={{width: 20, height: 30}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512">
+              <Path
+                fill="black"
+                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+            </Svg>
+            <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
               height: 31,
-              left: 150,
+              left: 140,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: 56,
+              bottom: windowHeight / 2 - 370,
             }}
             onPress={() => this.save()}>
             <Image
               source={require('../icon/icons8-save-50.png')}
               style={{left: 9, top: 5, height: 20, width: 20}}
             />
-            <Text style={{left: 15, top: 5}}>Save</Text>
+            <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
       </View>

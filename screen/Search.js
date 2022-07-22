@@ -271,11 +271,12 @@ export default class Search extends Component {
           </Text>
           <Text
             style={{
-              fontSize: 9,
-              marginHorizontal: 157,
-              bottom: 70,
-              left: 7,
+              fontSize: 10,
+              marginHorizontal: 165,
+              bottom: 68,
+              left: 1,
               backgroundColor: '#fff',
+              color:'black',
             }}>
             プロフィール検索
           </Text>
