@@ -9,13 +9,19 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+  ToastAndroid,
 } from 'react-native';
 
-import {RadioButton} from 'react-native-paper';
+// import {RadioButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Socket} from 'socket.io-client';
 import moment from 'moment';
 import Storage from '../utils/storage';
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel,
+} from 'react-native-simple-radio-button';
 
 class Register extends Component {
   constructor(props) {
@@ -43,7 +49,7 @@ class Register extends Component {
 
       passwordRequirementText: '',
 
-      fillinText: 'Please Fill in each item',
+      fillinText: '各項目にご記入ください',
 
       taText: '',
 
@@ -72,7 +78,7 @@ class Register extends Component {
 
       fieldComplete: true,
 
-      registeringOpacity: 1,
+      registeringOpacity: 0,
 
       checked: 'first',
 
@@ -278,7 +284,7 @@ class Register extends Component {
           if (parseInt(ret) == 0) {
             self.setState({
               fieldComplete: false,
-              registeringOpacity: 0,
+              registeringOpacity: 1,
               emailErrorOpacity: 1,
             });
           } else if (parseInt(ret)) {
@@ -286,7 +292,6 @@ class Register extends Component {
               const data = new FormData();
 
               data.append('account_id', ret.account_id);
-              
 
               let i = {
                 uri: self.state.profilePhoto,
@@ -328,7 +333,7 @@ class Register extends Component {
           password: this.state.password,
           phone_number: this.state.phone_number,
           confirm_password: this.state.confirm_password,
-          gender: '1',
+          gender: value,
           datetime: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
         };
 
@@ -352,6 +357,11 @@ class Register extends Component {
   // this.props.navigation.navigate('Tab');
 
   render() {
+    let gender = [
+      {label: '男', value: 0},
+
+      {label: '>女性', value: 1},
+    ];
     return (
       <View style={{backgroundColor: '#fff', height: '100%'}}>
         <TouchableOpacity
@@ -385,6 +395,7 @@ class Register extends Component {
               paddingHorizontal: 10,
               borderEndWidth: 310,
               borderRadius: 10,
+              color: 'black',
             }}
             value={this.state.email}
             onChangeText={value => this.checkEmail(value)}
@@ -408,7 +419,8 @@ class Register extends Component {
             bottom: 65,
             left: 29,
             backgroundColor: '#fff',
-            marginRight: 360,
+            marginRight: 370,
+            color: 'black',
           }}>
           Eメール
         </Text>
@@ -425,19 +437,42 @@ class Register extends Component {
             borderRadius: 5,
             paddingVertical: 2,
           }}>
-          <RadioButton
+          <RadioForm
+            radio_props={gender}
+            initial={0}
+            onPress={value => {
+              ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+            }}
+            buttonSize={10}
+            buttonOuterSize={20}
+            buttonColor={'grey'}
+            selectedButtonColor={'grey'}
+            selectedLabelColor={'grey'}
+            labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+            disabled={false}
+            formHorizontal={true}
+            labelHorizontal={true}
+            style={{top: 0}}
+          />
+          {/* <RadioButton
             value="first"
             status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
             onPress={() => this.setChecked('first')}
           />
-          <Text>MALE</Text>
+          <Text style={{color: 'black'}}>男</Text>
           <RadioButton
             value="second"
             status={this.state.checked === 'second' ? 'checked' : 'unchecked'}
             onPress={() => this.setChecked('second')}
           />
-          <Text>FEMALE</Text>
-          <Text style={{bottom: 28, right: 255, backgroundColor: '#fff'}}>
+          <Text style={{color: 'black'}}>女性</Text> */}
+          <Text
+            style={{
+              bottom: 28,
+              right: 257,
+              backgroundColor: '#fff',
+              color: 'black',
+            }}>
             性別
           </Text>
         </View>
@@ -460,6 +495,7 @@ class Register extends Component {
               paddingHorizontal: 10,
               borderEndWidth: 310,
               borderRadius: 10,
+              color: 'black',
             }}
             value={this.state.phone_number}
             onChangeText={value => this.phoneNumber(value)}
@@ -468,9 +504,10 @@ class Register extends Component {
         <Text
           style={{
             bottom: 64,
-            right: 323,
-            marginLeft: 353,
+            right: 339,
+            marginLeft: 363,
             backgroundColor: '#fff',
+            color: 'black',
           }}>
           電話番号
         </Text>
@@ -491,7 +528,7 @@ class Register extends Component {
             secureTextEntry
             style={{
               paddingHorizontal: 10,
-
+              color: 'black',
               borderEndWidth: 310,
               borderRadius: 10,
             }}
@@ -516,9 +553,10 @@ class Register extends Component {
         <Text
           style={{
             bottom: 64,
-            right: 310,
-            marginLeft: 340,
+            right: 328,
+            marginLeft: 355,
             backgroundColor: '#fff',
+            color: 'black',
           }}>
           パスワード
         </Text>
@@ -540,6 +578,7 @@ class Register extends Component {
               paddingHorizontal: 10,
               borderEndWidth: 310,
               borderRadius: 10,
+              color: 'black',
             }}
             onChangeText={value => this.confirmPassword(value)}
             value={this.state.confirm_password}
@@ -562,9 +601,10 @@ class Register extends Component {
         <Text
           style={{
             bottom: 68,
-            right: 240,
-            marginLeft: 270,
+            right: 270,
+            marginLeft: 300,
             backgroundColor: '#fff',
+            color: 'black',
           }}>
           パスワードを認証する
         </Text>
@@ -654,6 +694,7 @@ const RegisterField = ({field, self}) => (
         borderRadius: 3,
         borderColor: global.inputBorderColor,
         color: global.glTextColor,
+        color: 'black',
       }}
     />
 
