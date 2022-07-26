@@ -9,11 +9,8 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
-<<<<<<< HEAD
   ToastAndroid,
-=======
-  Dimensions,
->>>>>>> f043494391c8adb40b66b7f4d6fd0b445f783295
+  Dimensions
 } from 'react-native';
 
 // import {RadioButton} from 'react-native-paper';
@@ -21,18 +18,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Socket} from 'socket.io-client';
 import moment from 'moment';
 import Storage from '../utils/storage';
-<<<<<<< HEAD
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
   RadioButtonLabel,
 } from 'react-native-simple-radio-button';
-=======
+
 import Svg, {G, Path} from 'react-native-svg';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
->>>>>>> f043494391c8adb40b66b7f4d6fd0b445f783295
+
 
 class Register extends Component {
   constructor(props) {
