@@ -6,9 +6,14 @@ import {
   Image,
   Switch,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 import ToggleSwitch from 'toggle-switch-react-native';
 import Slider from '@react-native-community/slider';
+import Svg, {G, Path} from 'react-native-svg';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 class Calls extends Component {
   constructor(props) {
@@ -108,28 +113,38 @@ class Calls extends Component {
             onValueChange={this.toggleSwitch}
             value={this.state.toggled}
           />
-          <Text style={{left: 400 ,fontWeight:'bold',color:'black'}}>現在の通話設定 :</Text>
+          <Text style={{left: 400 ,fontWeight:'bold',color:'black',fontSize:20,}}>現在の通話設定 :</Text>
         </View>
         <View style={{top: 455}}>
-          <TouchableOpacity
-            onPress={() => this.goBack()}
-            style={{
-              backgroundColor: '#ECECEC',
-              marginHorizontal: 170,
-              height: 31,
-              right: 150,
-              marginBottom: 30,
-              flexDirection: 'row',
-              width: 70,
-              borderRadius: 2,
-              top: 63,
-            }}>
-            <Image
-              source={require('../icon/arrow.png')}
-              style={{height: 20, top: 5}}
-            />
-            <Text style={{right: 15, top: 4,color:'black'}}>戻る</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.goBack()}
+          style={{
+            backgroundColor: '#ECECEC',
+            marginHorizontal: 170,
+            height: 31,
+            right: 150,
+            marginBottom: 30,
+            flexDirection: 'row',
+            width: 50,
+            borderRadius: 2,
+            bottom: windowHeight / 2 - 540,
+          }}>
+          <Svg
+            style={{width: 20, height: 30}}
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fal"
+            data-icon="angle-left"
+            class="svg-inline--fa fa-angle-left fa-w-6"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 192 512">
+            <Path
+              fill="black"
+              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+          </Svg>
+          <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
+        </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.Save()}
             style={{
@@ -141,7 +156,7 @@ class Calls extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              top: 0,
+              bottom: windowHeight / 2 - 480,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}

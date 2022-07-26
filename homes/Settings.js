@@ -6,10 +6,15 @@ import {
   Image,
   Switch,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 import ToggleSwitch from 'toggle-switch-react-native';
 import Slider from '@react-native-community/slider';
 import { getVersion } from 'react-native-device-info';
+import Svg, {G, Path} from 'react-native-svg';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 const version = getVersion();
@@ -255,7 +260,7 @@ componentDidMount(){
             width: 350,
             borderRadius: 4,
           }}>
-          <Text style={{left: 85, top: 13}}>最新情報を通知</Text>
+          <Text style={{left: 85, top: 13,color: 'black'}}>最新情報を通知</Text>
           <Switch
             style={{left: 100}}
             onValueChange={this.toggleSwitch}
@@ -271,7 +276,7 @@ componentDidMount(){
             width: 350,
             borderRadius: 4,
           }}>
-          <Text style={{left: 85, top: 13}}>いいねの通知</Text>
+          <Text style={{left: 85, top: 13,color: 'black'}}>いいねの通知</Text>
           <Switch
             style={{left: 100}}
             onValueChange={this.toggleSwitch2}
@@ -279,25 +284,35 @@ componentDidMount(){
         </View>
 
         <View style={{top: 520}}>
-          <TouchableOpacity
-            onPress={() => this.goHome()}
-            style={{
-              backgroundColor: '#ECECEC',
-              marginHorizontal: 170,
-              height: 31,
-              right: 150,
-              marginBottom: 30,
-              flexDirection: 'row',
-              width: 70,
-              borderRadius: 2,
-              top: 63,
-            }}>
-            <Image
-              source={require('../icon/arrow.png')}
-              style={{height: 20, top: 5}}
-            />
-            <Text style={{right: 15, top: 4}}>戻る</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.goHome()}
+          style={{
+            backgroundColor: '#ECECEC',
+            marginHorizontal: 170,
+            height: 31,
+            right: 150,
+            marginBottom: 30,
+            flexDirection: 'row',
+            width: 50,
+            borderRadius: 2,
+            bottom: windowHeight / 2 - 550,
+          }}>
+          <Svg
+            style={{width: 20, height: 30}}
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fal"
+            data-icon="angle-left"
+            class="svg-inline--fa fa-angle-left fa-w-6"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 192 512">
+            <Path
+              fill="black"
+              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+          </Svg>
+          <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
+        </TouchableOpacity>
           <View  style={{
             
             alignItems:'center',
@@ -312,7 +327,7 @@ componentDidMount(){
               borderRadius: 2,
               bottom: 400 ,
             }}>
-          <Text style={{left: 85,position:'absolute'}}>Version {version}</Text>
+          <Text style={{left: 85,position:'absolute',color:'black'}}>Version {version}</Text>
           </View>
           <TouchableOpacity
           onPress={() => this.Save()}
@@ -325,13 +340,13 @@ componentDidMount(){
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom:58,
+              bottom: windowHeight / 2 - 425,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}
               style={{left: 9, top: 5, height: 20, width: 20}}
             />
-            <Text style={{left: 15, top: 5}}>保存</Text>
+            <Text style={{left: 15, top: 5,color:'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -16,6 +16,8 @@ import User from '../homes/User';
 import Settings from '../homes/Settings';
 import Posttoboard from '../screen/Posttoboard';
 import CoinScreen from '../homes/CoinScreen';
+import Launcher from '../screen/launcher';
+import Dashboard from '../screen/Dashboard';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -34,7 +36,6 @@ const MessageStack = ({navigation}) => (
       component={Chat}
       options={({route}) => ({
         // title: route.params.userName,
-        headerBackTitleVisible: false,
         headerShown: false,
       })}
     />
@@ -93,6 +94,7 @@ const CallStack = ({navigation}) => (
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
+        headerShown: false,
       })}
     />
   </Stack.Navigator>
@@ -113,6 +115,7 @@ const SeachStack = ({navigation}) => (
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
+        // headerShown: false,
       })}
     />
   </Stack.Navigator>
@@ -148,6 +151,21 @@ const Homestack = ({navigation}) => (
         headerShown: false,
       }}
     />
+        {/* <Stack.Screen
+      name="Launcher"
+      component={Launcher}
+      options={{
+        headerShown: false,
+      }}
+    />
+        <Stack.Screen
+      name="Dashboard"
+      component={Dashboard}
+      options={{
+        headerShown: false,
+      }}
+    /> */}
+    
   </Stack.Navigator>
 );
 

@@ -86,7 +86,7 @@ class Chat extends Component {
         global.socket.on('emit-messages', function (ret) {
           global.socket.off('emit-messages');
           // alert(JSON.stringify(ret));
-          console.log(ret);
+          // console.log(ret);
 
           self.setState({
             showLoading: false,
@@ -220,9 +220,9 @@ class Chat extends Component {
 
     params['datetime'] = this.state.datetime;
     params['to'] = global.otherid;
-    params['from'] = this.state.msg_to;
+    params['from'] = this.state.msg_from;
     params['timezone'] = this.state.timezone;
-    params['data'] = this.state.data;
+    params['data'] = this.state.message;
     params['points'] = this.state.points;
     params['type'] = 'string';
 
@@ -446,7 +446,7 @@ class Chat extends Component {
           ) : (
             <View style={{width: '100%', height: tableHeight}}>
               <FlatList
-
+                inverted
                 ref={ref => {
                   this.flatListRef = ref;
                 }}
@@ -459,7 +459,7 @@ class Chat extends Component {
                 data={this.state.ret}
                 renderItem={this.renderCell}
                 keyExtractor={item => item.id}
-              // scrollEnabled = {false}
+                // scrollEnabled = {false}
               />
 
               <View

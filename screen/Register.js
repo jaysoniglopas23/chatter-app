@@ -9,7 +9,11 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+<<<<<<< HEAD
   ToastAndroid,
+=======
+  Dimensions,
+>>>>>>> f043494391c8adb40b66b7f4d6fd0b445f783295
 } from 'react-native';
 
 // import {RadioButton} from 'react-native-paper';
@@ -17,11 +21,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Socket} from 'socket.io-client';
 import moment from 'moment';
 import Storage from '../utils/storage';
+<<<<<<< HEAD
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
   RadioButtonLabel,
 } from 'react-native-simple-radio-button';
+=======
+import Svg, {G, Path} from 'react-native-svg';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+>>>>>>> f043494391c8adb40b66b7f4d6fd0b445f783295
 
 class Register extends Component {
   constructor(props) {
@@ -365,17 +376,28 @@ class Register extends Component {
     return (
       <View style={{backgroundColor: '#fff', height: '100%'}}>
         <TouchableOpacity
-          onPress={() => this.goBack()}
-          style={{
-            backgroundColor: 'tranparent',
-            marginHorizontal: 170,
-            height: 50,
-            right: 167,
-            top: 10,
-          }}>
-          <Image source={require('../icon/arrow.png')} style={{height: 30}} />
-        </TouchableOpacity>
-
+            style={{
+              marginLeft: 5,
+              marginTop: windowHeight / 10 - 65,
+              width: 40,
+              height: 40,
+            }}
+            onPress={() => this.back()}>
+            <Svg
+              style={{width: 20, height: 30}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512">
+              <Path
+                fill="black"
+                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+            </Svg>
+          </TouchableOpacity>
         <View
           style={{
             flexDirection: 'row',

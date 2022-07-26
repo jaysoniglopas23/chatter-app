@@ -72,7 +72,11 @@ export default class Call extends Component {
     this.goingToTop = false;
   }
 
-  componentDidMount() {
+  componentDidMount(){
+    this.getUsers();  
+  }
+
+  getUsers() {
     this.makeRemoteRequest();
 
     this.refreshTimeline();
@@ -103,8 +107,8 @@ export default class Call extends Component {
         });
         let params = {};
 
-        params['start'] = 0;
-        params['size'] = '1000';
+        params['start'] = 20;
+        params['size'] = 20;
         params['filter_type'] = '0';
         params['order'] = '0';
         params['name'] = this.state.name;
@@ -118,7 +122,7 @@ export default class Call extends Component {
   }
 
   goCall(id) {
-    this.props.navigation.navigate('User');
+    this.props.navigation.push('User');
 
     let self = this;
 
@@ -146,8 +150,8 @@ export default class Call extends Component {
         });
         let params = {};
  
-        params['start'] = 0;
-        params['size'] = '1000';
+        params['start'] = 20;
+        params['size'] = 20;
         params['filter_type'] = '0';
         params['order'] = '0';
         params['name'] = this.state.name;
@@ -178,7 +182,7 @@ export default class Call extends Component {
  
     let params = self.state.params;
 
-    params['start'] = params['start'] + 9;
+    params['size'] = params['size'] + 9;
 
     // console.log(params);
 
@@ -219,12 +223,12 @@ export default class Call extends Component {
           );
         });
 
-        params['size'] = 15;
+        params['size'] = 1000;
         params['filter_type'] = '0';
         params['order'] = '0';
         params['name'] = this.state.name;
         params['userid'] = this.state.userid;
-        params['start'] = 0;
+        params['start'] = 20;
 
         global.socket.emit('on-users-for-search', self.state.params);
       },
@@ -412,11 +416,12 @@ export default class Call extends Component {
           />
           <Text
             style={{
-              fontSize: 9,
-              marginHorizontal: 125,
+              fontSize: 10,
+              marginHorizontal: 133,
               bottom: 45,
-              right: 120,
+              right: 130,
               backgroundColor: '#fff',
+              color:'black',
             }}>
             名前を検索する
           </Text>

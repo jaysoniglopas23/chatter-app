@@ -265,7 +265,8 @@ class CoinScreen extends Component {
       coins: [],
       currentCoin: 0,
       buying: false,
-      currencyText: global.locale == 'en' ? ' Yen' : '円',
+      // currencyText: global.locale == 'en' ? ' Yen' : '円',
+      currencyText:'円',
       items: Platform.select({
         android: [
           'trialpack',
@@ -289,7 +290,7 @@ class CoinScreen extends Component {
 
     this.buy = this.buy.bind(this);
 
-    this.getUI = this.getUI.bind(this);
+    // this.getUI = this.getUI.bind(this);
 
     this.back = this.back.bind(this);
 
@@ -297,12 +298,13 @@ class CoinScreen extends Component {
 
     this.purchaseUpdateSubscription = purchaseUpdatedListener(
       async (purchase: InAppPurchase | SubscriptionPurchase) => {
-        global.socket.on('emit-save-bundle', function (ret) {
+        global.socket.on('emit-buy-points-bundle', function (ret) {
           let self = this;
 
-          global.socket.off('emit-save-bundle');
+          global.socket.off('emit-buy-points-bundle');
+          alert(ret);
 
-          global.coin = ret;
+          global.bundle = ret;
         });
         let params = {
           uuid: global.deviceid,
@@ -310,7 +312,7 @@ class CoinScreen extends Component {
           receipt: purchase.transactionReceipt,
         };
 
-        global.socket.emit('emit-save-bundle', params);
+        global.socket.emit('on-buy-points-bundle', params);
 
         console.info('purchase', purchase);
         const receipt = purchase.transactionReceipt
@@ -330,104 +332,113 @@ class CoinScreen extends Component {
   }
 
   componentDidMount() {
+    // this.getCoins();
     let self = this;
 
     RNIap.initConnection().then(() => {
-      RNIap.getProducts(self.state.items).then((res) => {
-        console.log(res);
-        this.getUI();
+      RNIap.getProducts(self.state.items).then(res => {
+        self.setState({
+          res: res,
+        });
+        this.getCoins();
       });
     });
 
-    self.getUserCoin();
+    // self.getUserCoin();
   }
 
   componentWillUnmount() {}
 
-  getUI() {
-    let self = this;
+  // getUI() {
+  //   let self = this;
 
-    global.socket.on('ui', function (ret) {
-      global.socket.off('ui');
+  //   global.socket.on('ui', function (ret) {
+  //     global.socket.off('ui');
 
-      self.setState(
-        {
-          ui: ret,
-          title: ret[0].ui,
-          showLoading: false,
-        },
-        () => {
-          self.getCoins();
-        },
-      );
-    });
+  //     self.setState(
+  //       {
+  //         ui: ret,
+  //         title: ret[0].ui,
+  //         showLoading: false,
+  //       },
+  //       () => {
+  //         self.getCoins();
+  //       },
+  //     );
+  //   });
 
-    let params = {locale: global.locale, type: '13'};
+  //   let params = {locale: global.locale, type: '13'};
 
-    global.socket.emit('ui', params);
-  }
+  //   global.socket.emit('ui', params);
+  // }
 
   back() {
-    this.props.navigationRef.current?.navigate('GL');
+    this.props.navigation.navigate('home');
   }
 
-  getUserCoin() {
-    let self = this;
+  // getUserCoin() {
+  //   let self = this;
 
-    global.socket.on('usercoin', function (ret) {
-      global.socket.off('usercoin');
+  //   global.socket.on('emit-points-bundle-detail', function (ret) {
+  //     global.socket.off('emit-points-bundle-detail');
+  //     alert(ret);
 
-      self.setState({
-        currentCoin: ret[0].coin,
-        refreshing: false
-      });
+  //     self.setState({
+  //       // currentCoin: ret[0].coin,
+  //       refreshing: false,
+  //     });
 
-      global.coin = ret[0].coin;
-    });
+  //     // global.coin = ret[0].coin;
+  //   });
 
-    console.log('went into usercoin');
+  //   console.log('went into usercoin');
 
-    console.log(this.state);
+  //   console.log(this.state);
 
-    let params = {uuid: global.deviceid, userid: global.user_id};
+  //   let params = {uuid: global.deviceid, userid: global.user_id};
 
-    global.socket.emit('usercoin', params);
-  }
+  //   global.socket.emit('emit-points-bundle-detail', params);
+  // }
 
   getCoins() {
     let self = this;
 
-    global.socket.on('getcoins', function (ret) {
-      global.socket.off('getcoins');
+    global.socket.on('emit-points-bundle', function (ret) {
+      global.socket.off('emit-points-bundle');
+      // alert(JSON.stringify(ret));
+      // console.log('here');
 
       self.setState({
-        coins: ret,
+        bundle: ret,
+        // showLoading: false,
+        bundleid: ret.bundleid,
       });
     });
 
-    let params = {uuid: global.deviceid, user_id: global.user_id};
+    let params = {bundleid: global.bundleid};
 
-    global.socket.emit('getcoins', params);
+    global.socket.emit('on-points-bundle', params);
   }
 
   buy(productId, title, price) {
     let self = this;
+    console.log(productId);
 
     try {
       RNIap.getProducts(this.state.items)
         .then(success => {
           let product = success[0];
 
-          RNIap.requestPurchase(productId)
-            .then(ok => {
-              self.setState({
-                buying: true,
-              });
-            })
-            .catch(error => {
-              alert(error);
+          RNIap.requestPurchase(productId).then(ok => {
+            self.setState({
+              buying: true,
             });
+          });
+          alert(self.state.buying).catch(error => {
+            alert(error);
+          });
         })
+
         .catch(error => {
           alert(error);
         });
@@ -442,13 +453,16 @@ class CoinScreen extends Component {
   }
 
   handleRefresh = () => {
-    this.setState({
-      refreshing:true,
-      currentCoin: global.coin
-    }, () => {
-      this.getUserCoin();
-    });
-  }
+    this.setState(
+      {
+        refreshing: true,
+        currentCoin: global.coin,
+      },
+      () => {
+        this.getUserCoin();
+      },
+    );
+  };
 
   render() {
     let tableHeight = 0;
@@ -460,12 +474,19 @@ class CoinScreen extends Component {
     }
 
     return (
-      <View style={{flex: 1, flexDirection: 'column', height: windowHeight}}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          height: windowHeight,
+          borderWidth: 10,
+          borderColor: '#FAEA48',
+        }}>
         <View
           style={{
             width: '100%',
-            backgroundColor: global.barColor,
-            height: windowHeight / 10,
+            backgroundColor: '#FAEA48',
+            height: windowHeight / 13,
             flexDirection: 'row',
           }}>
           <Text
@@ -486,7 +507,7 @@ class CoinScreen extends Component {
           <TouchableOpacity
             style={{
               marginLeft: 10,
-              marginTop: windowHeight / 10 - 35,
+              marginTop: windowHeight / 10 - 65,
               width: 50,
               height: 30,
             }}
@@ -502,85 +523,55 @@ class CoinScreen extends Component {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 192 512">
               <Path
-                fill="#FFF"
+                fill="black"
                 d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
             </Svg>
           </TouchableOpacity>
+          <Image
+            source={require('../icon/coin13.png')}
+            style={{
+              marginLeft: windowWidth / 2 - 100,
+              width: 70,
+              height: 70,
+              resizeMode: 'contain',
+            }}
+          />
         </View>
 
-        {this.state.showLoading ? (
-          <View
-            style={{
-              position: 'absolute',
-              width: windowWidth,
-              height: windowHeight,
-              top: 100,
-              left: 0,
-              opacity: this.state.loadingOpacity,
-            }}>
-            <ActivityIndicator
-              style={{marginTop: 100}}
-              size="small"
-              color="#69747f"
-            />
-          </View>
-        ) : (
-          <View style={{width: windowWidth, height: tableHeight}}>
-            <View
-              style={{width: windowWidth, height: 50, flexDirection: 'row'}}>
-              {/* <Image
-                source={require('../img/coin.png')}
-                style={{width: 30, height: 30, marginLeft: 10, marginTop: 10}}
-              /> */}
-
-              <Text
-                style={{
-                  width: 90,
-                  height: 50,
-                  lineHeight: 50,
-                  marginLeft: 10,
-                  fontSize: 12,
-                  color: global.textColor,
-                }}>
-                Current Amount
-              </Text>
-
-              <Text
-                style={{
-                  width: windowWidth - 150,
-                  height: 50,
-                  lineHeight: 50,
-                  fontSize: 15,
-                  color: global.textColor,
-                  fontWeight: 'bold',
-                  textAlign: 'right',
-                }}>
-                {this.state.currentCoin}
-                {' Coin'}
-              </Text>
-            </View>
-
-            <FlatList
-              onEndReachedThreshold={0.3}
-              initialNumToRender={10}
-              removeClippedSubviews={true}
-              extraData={this.state.refresh}
+        <View style={{width: windowWidth, height: tableHeight , backgroundColor:'#fff'}}>
+          <View style={{width: windowWidth, height: 100 ,alignSelf:'center'}}>
+            <Image
+              source={require('../icon/coin1.png')}
               style={{
-                width: windowWidth - 10,
-                marginLeft: 5,
-                paddingTop: 10,
-                backgroundColor: '#FFF',
-                borderRadius: 3,
+                alignSelf:'center',
+                top: windowWidth / 2 - 270,
+                width: 250,
+                height: 250,
+                resizeMode: 'contain',
               }}
-              viewabilityConfig={this.viewabilityConfig}
-              data={this.state.coins}
-              renderItem={this.renderCell}
-              keyExtractor={item => item.user_id}
-              refreshing={this.state.refreshing}
-              onRefresh={this.handleRefresh}
             />
           </View>
-        )}
+
+          <FlatList
+            onEndReachedThreshold={0.3}
+            initialNumToRender={10}
+            removeClippedSubviews={true}
+            extraData={this.state.refresh}
+            style={{
+              width: windowWidth - 31,
+              marginLeft: 5,
+              paddingTop: windowHeight - 900,
+              backgroundColor: '#fff',
+              borderRadius: 3,
+            }}
+            viewabilityConfig={this.viewabilityConfig}
+            data={this.state.res}
+            renderItem={this.renderCell}
+            keyExtractor={item => item.name}
+            refreshing={this.state.refreshing}
+            // onRefresh={this.handleRefresh}
+          />
+        </View>
       </View>
     );
   }
@@ -589,17 +580,18 @@ class CoinScreen extends Component {
 const CoinCell = ({item, self}) => (
   <TouchableOpacity
     style={{
-      width: windowWidth - 20,
-      marginTop: 5,
-      marginBottom: 5,
+      width: windowWidth - 33,
+      marginTop: 10,
+      marginBottom: 10,
       padding: 5,
-      marginLeft: 5,
+      marginLeft: 0,
       borderRadius: 3,
-      backgroundColor: global.buttonColor,
+      backgroundColor: '#fff',
       flexDirection: 'row',
+      // borderWidth: 1,
     }}
     onPress={() =>
-      self.buy(item.item.productid, item.item.description, item.item.price)
+      self.buy(item.item.productId, item.item.description, item.item.price)
     }>
     {/* <Image
       resizeMode="cover"
@@ -617,9 +609,11 @@ const CoinCell = ({item, self}) => (
       style={{
         height: 40,
         lineHeight: item.index == 7 ? 20 : 40,
-        fontSize: 11,
+        fontSize: 17,
         paddingLeft: 10,
-        color: global.glTextColor,
+        color: 'black',
+        fontStyle:'italic',
+        
       }}>
       {item.item.description}
     </Text>
@@ -627,17 +621,19 @@ const CoinCell = ({item, self}) => (
     <Text
       style={{
         position: 'absolute',
-        width: 100,
-        left: windowWidth - 110,
-        height: 50,
-        lineHeight: 50,
+        width: 60,
+        left: windowWidth - 100,
+        // height: 50,
+        // lineHeight: 50,
         textAlign: 'center',
-        fontSize: 12,
-        paddingLeft: 10,
+        fontSize: 16,
+        // paddingLeft: 10,
         fontWeight: 'bold',
-        color: global.glTextColor,
+        color: 'black',
+        borderWidth:1,
+
       }}>
-      {item.item.price}
+      {Math.round(item.item.price)}
       {self.state.currencyText}
     </Text>
   </TouchableOpacity>

@@ -67,7 +67,6 @@ class Appstacks extends Component {
               />
             )}
           </Stack.Screen>
-
           <Stack.Screen name="Login">
             {props => <Login navigationRef={navigationRef} />}
           </Stack.Screen>
@@ -78,17 +77,16 @@ class Appstacks extends Component {
           <Stack.Screen name="Register">
             {props => <Register navigationRef={navigationRef} />}
           </Stack.Screen>
-
-          <Stack.Screen name="Dashboard">
-            {props => <Dashboard navigationRef={navigationRef} />}
-          </Stack.Screen>
-
           <Stack.Screen name="home">
             {props => <DisplayAnImage navigationRef={navigationRef} />}
           </Stack.Screen>
 
           <Stack.Screen name="Settings">
             {props => <Settings navigationRef={navigationRef} />}
+          </Stack.Screen>
+
+          <Stack.Screen name="Dashboard">
+            {props => <Dashboard navigationRef={navigationRef} />}
           </Stack.Screen>
 
           {/* 
