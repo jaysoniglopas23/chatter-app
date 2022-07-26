@@ -265,7 +265,8 @@ class CoinScreen extends Component {
       coins: [],
       currentCoin: 0,
       buying: false,
-      currencyText: global.locale == 'en' ? ' Yen' : '円',
+      // currencyText: global.locale == 'en' ? ' Yen' : '円',
+      currencyText:'円',
       items: Platform.select({
         android: [
           'trialpack',
@@ -587,7 +588,7 @@ const CoinCell = ({item, self}) => (
       borderRadius: 3,
       backgroundColor: '#fff',
       flexDirection: 'row',
-      borderWidth: 1,
+      // borderWidth: 1,
     }}
     onPress={() =>
       self.buy(item.item.productId, item.item.description, item.item.price)
@@ -608,10 +609,11 @@ const CoinCell = ({item, self}) => (
       style={{
         height: 40,
         lineHeight: item.index == 7 ? 20 : 40,
-        fontSize: 20,
+        fontSize: 17,
         paddingLeft: 10,
         color: 'black',
-        fontFamily: 'LondrinaShadow-Regular',
+        fontStyle:'italic',
+        
       }}>
       {item.item.description}
     </Text>
@@ -619,15 +621,17 @@ const CoinCell = ({item, self}) => (
     <Text
       style={{
         position: 'absolute',
-        width: 100,
-        left: windowWidth - 110,
-        height: 50,
-        lineHeight: 50,
+        width: 60,
+        left: windowWidth - 100,
+        // height: 50,
+        // lineHeight: 50,
         textAlign: 'center',
-        fontSize: 12,
-        paddingLeft: 10,
+        fontSize: 16,
+        // paddingLeft: 10,
         fontWeight: 'bold',
         color: 'black',
+        borderWidth:1,
+
       }}>
       {Math.round(item.item.price)}
       {self.state.currencyText}

@@ -50,6 +50,11 @@ export default class Search extends Component {
     };
 
     this.goCall = this.goCall.bind(this);
+    this.getUsers = this.getUsers.bind(this);
+  }
+
+  componentDidMount(){
+    this.getUsers();
   }
 
   goCall(id) {
@@ -97,7 +102,7 @@ export default class Search extends Component {
     );
   }
 
-  componentDidMount() {
+  getUsers() {
     this.makeRemoteRequest();
 
     let self = this;

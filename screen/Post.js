@@ -105,9 +105,17 @@ class Post extends Component {
       loadingDeleteConfrimReport: false,
 
       legacyImplementation: false,
+
+      hasUploadPhoto: false,
     };
 
     this.goChat = this.goChat.bind(this);
+    this.getPost = this.getPost.bind(this);
+  }
+
+  componentDidMount() {
+    this.getPost();
+    this.getMe();
   }
 
   goPost() {
@@ -273,7 +281,7 @@ class Post extends Component {
     );
   }
 
-  componentDidMount() {
+  getPost() {
     this.makeRemoteRequest();
 
     let self = this;
@@ -306,6 +314,20 @@ class Post extends Component {
             profilephotopath: ret[0].profilephotopath,
             profilephotofile: ret[0].profilephotofile,
           });
+          // alert(global.socketid);
+          // if (self.state.hasUploadPhoto != "") {
+          //   self.state.path
+          //   self.state.file
+          // };
+          if (self.state.path) {
+            self.setState({
+              hasUploadPhoto: true,
+            });
+          } else {
+            self.setState({
+              hasUploadPhoto: false,
+            });
+          }
         });
         let params = {};
 
@@ -322,52 +344,64 @@ class Post extends Component {
         params['post_likes_count'] = this.state.post_likes_count;
 
         global.socket.emit('on-posts', params);
-        // console.log(params);
+        console.log(params);
       },
     );
   }
 
-  // yourPosts() {
-  //   let self = this;
+  getMe() {
+    let self = this;
 
-  //   let params = {};
+    this.setState({}, () => {
+      global.socket.on('emit-details', function (ret) {
+        global.socket.off('on-details');
+        //  alert(JSON.stringify(ret))
 
-  //   this.setState(
-  //     {
-  //       params: params,
-  //     },
+        self.setState({
+          nickname: ret.nickname,
+          email: ret.email,
+          myid: ret.id,
+        });
 
-  //     () => {
-  //       global.socket.on('emit-your-posts', function (ret) {
-  //         global.socket.off('emit-your-posts');
-  //         // alert(JSON.stringify(ret));
-  //         console.log(ret);
+        global.myid = self.state.myid;
+      });
 
-  //         self.setState({
-  //
-  //           post: ret,
-  //           nickname: ret[0].nickname,
-  //           datetime: ret[0].datatime,
-  //           path: ret[0].path,
-  //           file: ret[0].file,
-  //
-  //         });
-  //       });
-  //       let params = {};
+      let params = {};
 
-  //
-  // params['boardid'] = 1;
-  // params['description'] = 'description';
-  // params['datetime'] = moment(new Date()).format(
-  //   'YYYY-MM-DD  HH:mm:ss ',
-  // );
-  // params['userid'] = 'userid';
+      params['firstname'] = '';
+      params['lastname'] = '';
+      params['dob'] = moment(new Date()).format('YYYY-MM-DD  HH:mm:ss ');
+      params['about'] = '';
+      params['job'] = '';
+      params['company'] = '';
+      params['school'] = '';
+      params['gender'] = 1;
+      params['gender_pref'] = 1;
+      params['distance_threshold'] = 0;
+      params['nickname'] = this.state.nickname;
+      params['smoking'] = 0;
+      params['drinking'] = 0;
+      params['marrried'] = 0;
+      params['presence_of_children'] = 0;
+      params['like_children_or_not'] = 0;
+      params['marriage_desire'] = 0;
+      params['presence_of_pet'] = 0;
+      params['holiday'] = 0;
+      params['hobbie'] = '';
+      params['bloodtype'] = '';
+      params['email'] = this.state.email;
+      params['name'] = '';
+      params['introduction'] = '';
+      params['character'] = '';
+      params['location'] = '';
 
-  //       global.socket.emit('on-your-posts', params);
-  //       console.log(params);
-  //     },
-  //   );
-  // }
+      // global.myid = self.state.email;
+
+      // alert(global.myid);
+
+      global.socket.emit('on-details', params);
+    });
+  }
 
   makeRemoteRequest = _.debounce(() => {
     this.setState({loading: true});
@@ -454,7 +488,12 @@ class Post extends Component {
             }}>
             <Text
               onPress={() => this.goPost()}
-              style={{textAlign: 'center', top: 7, fontSize: 11,color:'black'}}>
+              style={{
+                textAlign: 'center',
+                top: 7,
+                fontSize: 11,
+                color: 'black',
+              }}>
               新しく投稿
             </Text>
           </TouchableOpacity>
@@ -466,7 +505,7 @@ class Post extends Component {
             bottom: 68,
             right: 147,
             backgroundColor: '#fff',
-            color:'black',
+            color: 'black',
           }}>
           投稿を検索する
         </Text>
@@ -490,45 +529,52 @@ class Post extends Component {
                     }}
                   />
                 </UserImgWrapper>
+
                 <TextSection>
                   <UserInfoText>
                     <UserName>{item.name}</UserName>
                     <PostTime>{item.datetime}</PostTime>
                   </UserInfoText>
                   <MessageText>{item.description}</MessageText>
-                  <UserImg1
-                    source={{
-                      uri: URL_TEMP + '/' + item.path + '/' + item.file,
-                    }}
-                  />
+                  {item.path ? (
+                    <UserImg1
+                      source={{
+                        uri: URL_TEMP + '/' + item.path + '/' + item.file,
+                      }}
+                    />
+                  ) : (
+                    <View style={{paddingBottom: 10}}></View>
+                  )}
                 </TextSection>
               </UserInfo>
-
-              <UserInfo1 onPress={() => this.likeCount(item.id)}>
+              {item.userid == global.myid ? (
+                <UserInfo1>
+                  <MessageText1>
+                    {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                  </MessageText1>
+                </UserInfo1>
+              ) : (
+                <UserInfo1 onPress={() => this.likeCount(item.id)}>
                 <MessageText1>
                   {'  お気に入り' + '(' + item.post_likes_count + ')'}
                 </MessageText1>
               </UserInfo1>
-              <UserInfo2 onPress={() => this.continueDeleteConfirm(item.id)}>
-                <MessageText2>削除</MessageText2>
-              </UserInfo2>
-              <UserInfo3 onPress={() => this.goEdit()}>
-                <MessageText3>編集</MessageText3>
-                {/* <Svg
-                  style={{width: 20, height: 30}}
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fal"
-                  data-icon="angle-left"
-                  class="svg-inline--fa fa-angle-left fa-w-6"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 192 512">
-                  <Path
-                    fill="black"
-                    d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
-                </Svg> */}
-              </UserInfo3>
+              )}
+              {item.userid == global.myid ? (
+                <UserInfo2 onPress={() => this.continueDeleteConfirm(item.id)}>
+                  <MessageText2>削除</MessageText2>
+                </UserInfo2>
+              ) : (
+                <></>
+              )}
+
+              {item.userid == global.myid ? (
+                <UserInfo3 onPress={() => this.goEdit()}>
+                  <MessageText3>編集</MessageText3>
+                </UserInfo3>
+              ) : (
+                <></>
+              )}
             </Card>
           )}
           // keyExtractor={item => item.messageText}

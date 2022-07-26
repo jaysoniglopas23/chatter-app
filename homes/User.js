@@ -8,12 +8,16 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Avatar} from 'react-native-elements';
 import Svg, {G, Path} from 'react-native-svg';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
@@ -29,9 +33,22 @@ class User extends Component {
     this.getUser = this.getUser.bind(this);
 
     // this.goChat = this.goChat.bind();
+    this.goBack = this.goBack.bind(this);
   }
 
-  goChat(id, name,lastmessage) {
+  goBack() {
+    // this.props.Call.init();
+    this.props.navigation.push('Call');
+
+    // let self = this;
+
+    // this.setState({}, () => {
+    //   self.props.Call.init();
+    //   self.props.navigation.navigate('Call');
+    // });
+  }
+
+  goChat(id, name, lastmessage) {
     this.props.navigation.navigate('Chat');
     let self = this;
 
@@ -67,7 +84,7 @@ class User extends Component {
         let params = {};
         params['id'] = id;
         params['date_time'] = this.state.date_time;
-        params['lastmessage'] =lastmessage;
+        params['lastmessage'] = lastmessage;
         params['message_count'] = this.state.message_count;
         params['name'] = name;
         params['online'] = this.state.online;
@@ -157,6 +174,35 @@ class User extends Component {
   render() {
     return (
       <View style={{backgroundColor: '#fff', height: '100%', flex: 1}}>
+        <TouchableOpacity
+          onPress={() => this.goBack()}
+          style={{
+            // backgroundColor: '#ECECEC',
+            marginHorizontal: 170,
+            height: 31,
+            right: 150,
+            marginBottom: 30,
+            flexDirection: 'row',
+            width: 50,
+            borderRadius: 2,
+            top: windowHeight / 2 - 400,
+          }}>
+          <Svg
+            style={{width: 20, height: 30}}
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fal"
+            data-icon="angle-left"
+            class="svg-inline--fa fa-angle-left fa-w-6"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 192 512">
+            <Path
+              fill="black"
+              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+          </Svg>
+          {/* <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text> */}
+        </TouchableOpacity>
         <Image
           source={{
             uri:
@@ -171,50 +217,50 @@ class User extends Component {
         <View>
           <ScrollView style={styles.scrollview}>
             <View style={styles.view}>
-              <Text style={styles.label}>Nickname</Text>
+              <Text style={styles.label}> ニックネーム</Text>
               <Text style={styles.text}>{this.state.nickname}</Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.email}>Email</Text>
+              <Text style={styles.email}> メールアドレス</Text>
               <Text style={styles.text}>{this.state.email}</Text>
             </View>
             <View style={styles.view1}>
-              <Text style={styles.introduction}>Introduction</Text>
+              <Text style={styles.introduction}>自己紹介</Text>
               <Text style={styles.text}>{this.state.introduction}</Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}>Area live</Text>
+              <Text style={styles.label}>住んでいる地域</Text>
               <Text style={styles.text}>{this.state.nickname}</Text>
             </View>
             <View style={styles.view1}>
-              <Text style={styles.label}>Character</Text>
+              <Text style={styles.label}>性格</Text>
               <Text style={styles.text}>{this.state.character}</Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}>Hobbie</Text>
+              <Text style={styles.label}> 趣味</Text>
               <Text style={styles.text}>{this.state.hobbie}</Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.introduction}>Appointment</Text>
+              <Text style={styles.introduction}> 仕事</Text>
               <Text style={styles.text}></Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}>Society</Text>
+              <Text style={styles.label}>会社</Text>
               <Text style={styles.text}></Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}>School</Text>
+              <Text style={styles.label}> 出身大学</Text>
               <Text style={styles.text}>{this.state.school}</Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}>Bloodtype</Text>
+              <Text style={styles.label}> 血液型</Text>
               <Text style={styles.text}>{this.state.bloodtype}</Text>
             </View>
           </ScrollView>
         </View>
         <View style={styles.Mview}>
           <TouchableOpacity
-            onPress={() => this.goChat(id,name,lastmessage)}
+            onPress={() => this.goChat(id, name, lastmessage)}
             style={styles.button}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
@@ -225,7 +271,7 @@ class User extends Component {
                 d="M492.6 226.6L44.6 34.59C40.54 32.85 36.26 31.1 32.02 31.1c-8.623 0-17.1 3.499-23.3 10.05C-.4983 51.81-2.623 66.3 3.377 78.31L96 256l-92.62 177.7c-6 12.02-3.875 26.5 5.344 36.27c6.188 6.547 14.66 10.05 23.28 10.05c4.25 0 8.531-.8438 12.59-2.594L492.6 285.4c11.78-5.031 19.41-16.61 19.41-29.41C511.1 243.2 504.4 231.6 492.6 226.6zM31.98 64.03C31.99 64.01 31.96 64.04 31.98 64.03L442.7 240H123.7L31.98 64.03zM31.75 448.5L123.7 272h318.1L31.75 448.5z"
               />
             </Svg>
-            <Text style={styles.Mtxt}>Message</Text>
+            <Text style={styles.Mtxt}>メッセージ</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -252,6 +298,7 @@ const styles = StyleSheet.create({
   Mtxt: {
     bottom: 1,
     left: 20,
+    color: 'black',
   },
 
   button: {
@@ -295,16 +342,18 @@ const styles = StyleSheet.create({
 
   label: {
     bottom: 11,
-    right: 142,
+    left: 5,
     backgroundColor: '#fff',
-    marginHorizontal: 147,
+    color: 'black',
+    width:windowHeight / 2 - 340,
   },
 
   email: {
     bottom: 11,
-    right: 155,
+    left: 3,
     backgroundColor: '#fff',
-    marginHorizontal: 162,
+   width:windowHeight / 2 - 340,
+    color: 'black',
   },
 
   introduction: {
@@ -312,11 +361,13 @@ const styles = StyleSheet.create({
     right: 135,
     backgroundColor: '#fff',
     marginHorizontal: 142,
+    color: 'black',
   },
 
   text: {
     bottom: 5,
     left: 11,
+    color: 'black',
   },
 
   Image: {

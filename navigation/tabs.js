@@ -36,7 +36,6 @@ const MessageStack = ({navigation}) => (
       component={Chat}
       options={({route}) => ({
         // title: route.params.userName,
-        headerBackTitleVisible: false,
         headerShown: false,
       })}
     />
@@ -95,6 +94,7 @@ const CallStack = ({navigation}) => (
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
+        headerShown: false,
       })}
     />
   </Stack.Navigator>
@@ -115,6 +115,7 @@ const SeachStack = ({navigation}) => (
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
+        // headerShown: false,
       })}
     />
   </Stack.Navigator>
