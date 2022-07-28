@@ -49,7 +49,7 @@ class Appstacks extends Component {
         independent={true}
         ref={navigationRef}
         onReady={() => {
-          this.launcher.componentDidMount();
+          this.launcher.init();
         }}>
         <Stack.Navigator
           screenOptions={{

@@ -19,7 +19,7 @@ import {CardStyleInterpolators} from '@react-navigation/stack';
 import io from 'socket.io-client';
 import Socket from '../utils/socket';
 import Storage from '../utils/storage';
-import { getVersion } from 'react-native-device-info';
+import {getVersion} from 'react-native-device-info';
 import Dashboard from './Dashboard';
 // import {
 //   VoipPushNotification,
@@ -52,6 +52,8 @@ class Launcher extends Component {
     };
 
     // this.addGlobalListeners = this.addGlobalListeners.bind(this);
+
+
 
     global.passcodeCorrect = true;
   }
@@ -117,7 +119,11 @@ class Launcher extends Component {
   //   });
   // }
 
-  componentDidMount() {
+  componentDidMount(){
+    
+  }
+
+  init() {
     let self = this;
 
     this.setState({
@@ -164,7 +170,7 @@ class Launcher extends Component {
           if (data == null) {
             self.processSearchFields(function () {
               let jsonData = {
-                username: '',
+                email: '',
                 password: '',
                 id: '',
                 socketid: '',
@@ -188,6 +194,7 @@ class Launcher extends Component {
                       };
 
                       global.socket.emit('user-connected', params);
+                      alert(jsonData);
 
                       self.props.navigationRef.current?.navigate('Login');
                     },
@@ -212,7 +219,7 @@ class Launcher extends Component {
                 console.log('Connected. With Data');
 
                 let params = {
-                  id: id,
+                  id:id,
                   deviceWidth: windowWidth,
                   deviceHeight: windowHeight,
                 };
@@ -242,6 +249,7 @@ class Launcher extends Component {
 
     global.socket.on('emit-login', function (ret) {
       global.socket.off('emit-login');
+      // alert(JSON.stringify(ret));
 
       self.setState({
         email: ret.email,
@@ -252,9 +260,9 @@ class Launcher extends Component {
       });
       // alert(JSON.stringify(ret.id));
 
-      if (ret.id == '') {
+      if (self.state.id == '') {
         global.searchFields = data.searchSettings;
-        self.props.navigationRef.current?.navigate('Tabs');
+        self.props.navigationRef.current?.navigate('Login');
       } else {
         Storage.retrieveData().then(d => {
           if (parseInt(d.password) == 1 && !global.passwordCorrect) {
@@ -290,8 +298,8 @@ class Launcher extends Component {
       id: this.state.id,
       socketid: this.state.socketid,
       phone_number: this.state.phone_number,
-      email: this.state.email,
-      password: this.state.password,
+      email: global.email,
+      password: global.password,
       new_password: this.state.new_password,
     };
 
@@ -375,7 +383,12 @@ class Launcher extends Component {
           <View style={{marginTop: windowHeight / 2 - 195, height: 50}}>
             <Image
               source={require('../icon/logo.png')}
-              style={{marginLeft: windowWidth / 2 -   50, width: 100, height: 100, resizeMode:'contain'}}
+              style={{
+                marginLeft: windowWidth / 2 - 50,
+                width: 100,
+                height: 100,
+                resizeMode: 'contain',
+              }}
             />
             <Animated.View
               style={[{opacity: this.state.fadeIn}, styles.animatedView]}>
@@ -414,23 +427,23 @@ const searchFields = [
     name: 'age',
     type: 0,
     title: 'プロフィール',
-    title_en: 'Introduce',
+    title_en: 'age',
     db_name: 'age',
   },
   {
-    name: 'points',
+    name: 'mail_count',
     type: 0,
     title: 'ハッシュタグ検索',
-    title_en: 'Tag',
+    title_en: 'mail_count',
     for_search: 1,
     db_name: 'points',
   },
   {
-    name: 'comment',
+    name: 'call_minutes',
     type: 0,
     for_search: 1,
     title: '投稿コメント検索',
-    title_en: 'Comment',
+    title_en: 'call_minutes',
     db_name: 'comment',
   },
   {

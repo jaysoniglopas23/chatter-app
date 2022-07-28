@@ -45,21 +45,28 @@ class PhotoLibrary extends Component {
     this.goBack = this.goBack.bind(this);
 
     this.goSave = this.goSave.bind(this);
+
+    this.getImage = this.getImage.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount(){
+    this.getImage();
+  }
+
+  getImage() {
     let self = this;
 
     this.setState(
       {
         modalVisible: false,
+        
       },
       () => {
         launchImageLibrary(options, function (assets) {
           // alert(JSON.stringify(assets));
           self.setState({
             // filename: assets.assets[0].fileName,
-            UploadPhoto: assets.assets[0].uri,
+            UploadPhoto:assets.assets[0].uri,
             hasUploadPhoto: true,
           });
         });
@@ -155,17 +162,22 @@ class PhotoLibrary extends Component {
             }}
           />
         ) : (
-          <Image
-            source={require('../images/image.jpg')}
-            style={{
-              left: 15,
-              top: 100,
-              width: 300,
-              height: 400,
-              borderRadius: 1,
-              alignSelf: 'center',
-            }}
-          />
+          <View>
+            <Image
+              source={require('../icon/userprofile.png')}
+              style={{
+                left: 15,
+                top: 100,
+                width: 300,
+                height: 400,
+                borderRadius: 1,
+                alignSelf: 'center',
+              }}
+            />
+            <Text style={{alignSelf: 'center', color: 'gray',top:100}}>
+              プロフィール画像はこちら
+            </Text>
+          </View>
         )}
 
         <ActivityIndicator
@@ -199,7 +211,7 @@ class PhotoLibrary extends Component {
               source={require('../icon/icons8-save-50.png')}
               style={{left: 9, top: 5, height: 20, width: 20}}
             />
-            <Text style={{left: 15, top: 5}}>Save</Text>
+            <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -191,7 +191,7 @@ class Posttoboard extends Component {
         <TouchableOpacity
           onPress={() => this.goSave()}
           style={{alignSelf: 'center', borderWidth: 1, height: 30, width: 40}}>
-          <Text style={{textAlign: 'center', top: 4}}>Post</Text>
+          <Text style={{textAlign: 'center', top: 4,color:'black'}}>Post</Text>
         </TouchableOpacity>
         {this.state.hasUploadPhoto ? (
           <Image
@@ -222,7 +222,7 @@ class Posttoboard extends Component {
 
         <View style={{alignSelf: 'center', top: 80, borderWidth: 1, width: 85}}>
           <TouchableOpacity onPress={() => this.postPhoto()}>
-            <Text>Uploadphoto</Text>
+            <Text style={{color:'black'}}>Uploadphoto</Text>
           </TouchableOpacity>
         </View>
         <View
@@ -241,6 +241,7 @@ class Posttoboard extends Component {
               paddingHorizontal: 10,
               borderEndWidth: 310,
               borderRadius: 10,
+              color:'black',
             }}
           />
         </View>

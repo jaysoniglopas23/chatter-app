@@ -10,7 +10,7 @@ import {
   Image,
   ActivityIndicator,
   ToastAndroid,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 
 // import {RadioButton} from 'react-native-paper';
@@ -23,12 +23,10 @@ import RadioForm, {
   RadioButtonInput,
   RadioButtonLabel,
 } from 'react-native-simple-radio-button';
-
 import Svg, {G, Path} from 'react-native-svg';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
 
 class Register extends Component {
   constructor(props) {
@@ -59,6 +57,10 @@ class Register extends Component {
       fillinText: '各項目にご記入ください',
 
       taText: '',
+
+      nickname: 'ニックネームを変更する',
+
+      intGender: 0,
 
       accountIdErrorOpacity: 0,
 
@@ -169,6 +171,7 @@ class Register extends Component {
 
               self.showRegisterButton();
             });
+            global.email = this.state.email;
 
             let params = {email: this.state.email};
             console.log(params);
@@ -236,6 +239,8 @@ class Register extends Component {
           });
         }
 
+        global.password = this.state.password;
+
         self.showRegisterButton();
         let params = {password: this.state.password};
         // console.log(params);
@@ -243,10 +248,10 @@ class Register extends Component {
     );
   }
 
-  confirmPassword(password) {
+  confirmPassword(confirm_password) {
     let self = this;
 
-    this.setState({confirm_password: password}, () => {
+    this.setState({confirm_password: confirm_password}, () => {
       if (this.state.password == this.state.confirm_password) {
         this.valid4 = true;
 
@@ -277,6 +282,8 @@ class Register extends Component {
     }
   }
 
+  getGender(gender) {}
+
   goRegister() {
     let self = this;
 
@@ -287,63 +294,69 @@ class Register extends Component {
       () => {
         global.socket.on('emit-register', function (ret) {
           global.socket.off('emit-register');
-          console.log(ret);
-          if (parseInt(ret) == 0) {
+          alert(JSON.stringify(ret));
+
+          if (ret == 0) {
             self.setState({
               fieldComplete: false,
               registeringOpacity: 1,
               emailErrorOpacity: 1,
+              id: ret.id,
             });
-          } else if (parseInt(ret)) {
-            if (self.state.hasProfilePhoto) {
-              const data = new FormData();
+          }
 
-              data.append('account_id', ret.account_id);
+          global.socket.on('emit-login', function (ret1) {
+            global.socket.off('emit-login');
+            alert(ret1);
 
-              let i = {
-                uri: self.state.profilePhoto,
-                type: 'multipart/form-data',
-                name: `image.jpg`,
-              };
+            if (ret.id == 0) {
+              self.setState({
+                invalidCredentialsOpacity: 1,
+                loginginOpacity: 1,
+                id: ret1.id,
+              });
+            } else {
+              Storage.retrieveData().then(data => {
+                console.log('Login Success');
+                data.email = self.state.email;
+                data.password = self.state.password;
+                console.log(self.state.email + ' ' + self.state.password);
+                Storage.storeData(data).then(() => {
+                  global.email = ret.email;
+                  global.password = ret.password;
+                  global.ret = ret.id;
+                  global.nickname = ret.nickname;
+                  global.age = ret.age;
+                  global.points = ret.points;
+                  global.profile_image = ret.profile_image;
 
-              data.append('post', i);
-
-              axios
-                .request({
-                  method: 'post',
-                  url: 'https://goodlookin.live:8002/upload_profile_photo',
-                  data: data,
-                  onUploadProgress: p => {
-                    console.log(p);
-                    //this.setState({
-                    //fileprogress: p.loaded / p.total
-                    //})
-                  },
-                })
-                .then(data => {
                   self.props.navigationRef.current?.navigate('Tabs');
                 });
-            } else {
-              global.account_id = ret.account_id;
-              global.gender = '';
-              global.nickname = ret.nickname;
-              global.points = 0;
-
-              self.props.navigationRef.current?.navigate('Tabs');
+              });
             }
-          }
+          });
+
+          let params = {
+            nickname:'ニックネームを変更する',
+            email:global.email,
+            password: global.password,
+          };
+
+          global.socket.emit('on-login', params);
         });
 
         let params = {
-          account_id: this.state.account_id,
-          email: this.state.email,
-          password: this.state.password,
+          account_id: global.account_id,
+          email: global.email,
+          nickname: this.state.nickname,
+          password: global.password,
           phone_number: this.state.phone_number,
           confirm_password: this.state.confirm_password,
-          gender: value,
+          gender: this.state.gender,
           datetime: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
         };
 
+        // alert(global.account_id);
         console.log(params);
 
         global.socket.emit('on-register', params);
@@ -365,35 +378,35 @@ class Register extends Component {
 
   render() {
     let gender = [
-      {label: '男', value: 0},
+      {label: '男性', value: 0},
 
       {label: '>女性', value: 1},
     ];
     return (
       <View style={{backgroundColor: '#fff', height: '100%'}}>
         <TouchableOpacity
-            style={{
-              marginLeft: 5,
-              marginTop: windowHeight / 10 - 65,
-              width: 40,
-              height: 40,
-            }}
-            onPress={() => this.back()}>
-            <Svg
-              style={{width: 20, height: 30}}
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fal"
-              data-icon="angle-left"
-              class="svg-inline--fa fa-angle-left fa-w-6"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 192 512">
-              <Path
-                fill="black"
-                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
-            </Svg>
-          </TouchableOpacity>
+          style={{
+            marginLeft: 5,
+            marginTop: windowHeight / 10 - 65,
+            width: 40,
+            height: 40,
+          }}
+          onPress={() => this.goBack()}>
+          <Svg
+            style={{width: 20, height: 30}}
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fal"
+            data-icon="angle-left"
+            class="svg-inline--fa fa-angle-left fa-w-6"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 192 512">
+            <Path
+              fill="black"
+              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+          </Svg>
+        </TouchableOpacity>
         <View
           style={{
             flexDirection: 'row',
@@ -458,9 +471,8 @@ class Register extends Component {
           <RadioForm
             radio_props={gender}
             initial={0}
-            onPress={value => {
-              ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-            }}
+            value={this.state.gender}
+            onPress={value => this.getGender(value)}
             buttonSize={10}
             buttonOuterSize={20}
             buttonColor={'grey'}
@@ -487,7 +499,7 @@ class Register extends Component {
           <Text
             style={{
               bottom: 28,
-              right: 257,
+              right: 268,
               backgroundColor: '#fff',
               color: 'black',
             }}>

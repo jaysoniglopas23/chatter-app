@@ -140,13 +140,13 @@ class Login extends Component {
               data.password = self.state.password;
               console.log(self.state.email + ' ' + self.state.password);
               Storage.storeData(data).then(() => {
-                global.email = ret.email;
-                global.password = ret.password;
-                global.ret = ret.id;
-                global.nickname = ret.nickname;
-                global.age = ret.age;
-                global.points = ret.points;
-                global.profile_image = ret.profile_image;
+                  global.email = ret.email;
+                  global.password = ret.password;
+                  global.ret = ret.id;
+                  global.nickname = ret.nickname;
+                  global.age = ret.age;
+                  global.points = ret.points;
+                  global.profile_image = ret.profile_image;
 
                 self.props.navigationRef.current?.navigate('Tabs');
               });
@@ -159,6 +159,7 @@ class Login extends Component {
     let params = {
       email: this.state.email,
       password: this.state.password,
+    
     };
     console.log(params);
 

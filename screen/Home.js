@@ -39,6 +39,8 @@ import Privacy from '../homes/Privacy';
 import Launcher from './launcher';
 
 const DeviceWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const Stack = createStackNavigator();
 const navigationRef = React.createRef();
@@ -160,34 +162,44 @@ class DisplayAnImage extends Component {
   };
 
   componentDidMount() {
+    this.getProfile();
+  }
+
+  getProfile() {
     let self = this;
 
     this.setState({}, () => {
       global.socket.on('emit-details', function (ret) {
         global.socket.off('emit-details');
+        // alert(JSON.stringify(ret));
+
 
         self.setState({
           nickname: ret.nickname,
           mail_count: ret.mail_count,
-          call_minutes: ret.call_minutes,
+          call_minutes: ret.call_minutes, 
           age: ret.age,
+          id:ret.id,
+          profile_image: ret.profile_image,
+          profile_image_dir: ret.profile_image_dir,
         });
 
-        global.socket.on('emit-profile-photo', function (ret1) {
-          global.socket.off('emit-profile-photo');
+        // global.socket.on('emit-profile-photo', function (ret1) {
+        //   global.socket.off('emit-profile-photo');
 
-          self.setState({
-            profile_image: ret1.profile_image,
-            profile_image_dir: ret1.profile_image_dir,
-            // hasProfilePhoto: true,
-          });
-        });
+        //   self.setState({
+        //     profile_image: ret1.profile_image,
+        //     profile_image_dir: ret1.profile_image_dir,
+        //     // hasProfilePhoto: true,
+        //   });
+        // });
 
-        global.socket.emit('on-profile-photo', params);
+        // global.socket.emit('on-profile-photo', params);
       });
 
       let params = {};
-
+      params['account_id'] = global.account_id;
+      params['id'] = global.account_id;
       params['firstname'] = '';
       params['lastname'] = '';
       params['age'] = this.state.age;
@@ -221,7 +233,7 @@ class DisplayAnImage extends Component {
       // params['profile_image'] = this.state.profile_image;
 
       // console.log(params);
-      global.socket.emit('on-details', params);
+      global.socket.emit('on-details',params);
     });
   }
 
@@ -261,8 +273,8 @@ class DisplayAnImage extends Component {
           <View style={styles.txtview}>
             <Text
               style={styles.nickname}
-              value={ret}
-              onChangeText={value => this.componentDidMount(value)}>
+              value={this.state.nickname}
+              onChangeText={value => this.getProfile(value)}>
               {this.state.nickname}
             </Text>
             {/* <Text
@@ -283,7 +295,10 @@ class DisplayAnImage extends Component {
                 right: 149,
                 fontWeight: 'bold',
                 color: 'black',
+                fontSize:17,
                 position: 'absolute',
+                width: windowWidth / 5,
+               
               }}>
               通話 : {this.state.mail_count}分
             </Text>
@@ -295,6 +310,8 @@ class DisplayAnImage extends Component {
                 fontWeight: 'bold',
                 color: 'black',
                 position: 'absolute',
+                fontSize:17,
+                width: windowWidth / 4.3,
               }}>
               メール : {this.state.call_minutes}通
             </Text>
@@ -369,9 +386,9 @@ class DisplayAnImage extends Component {
               <Stack.Screen name="Happy">
                 {props => <Happy navigationRef={navigationRef} />}
               </Stack.Screen>
-              <Stack.Screen name="home">
+              {/* <Stack.Screen name="home">
                 {props => <DisplayAnImage navigationRef={navigationRef} />}
-              </Stack.Screen>
+              </Stack.Screen> */}
 
               <Stack.Screen name="Calls">
                 {props => <Calls navigationRef={navigationRef} />}
@@ -459,9 +476,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     right: 148,
     top: 0,
+    fontSize:20,
     fontWeight: 'bold',
     // borderWidth: 1,
     color: 'black',
     position: 'absolute',
+    width: windowWidth / 5,
   },
 });

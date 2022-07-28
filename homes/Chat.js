@@ -165,7 +165,7 @@ class Chat extends Component {
 
             self.setState(
               {
-                animated: true,
+                animated: true,   
                 chatsRefreshed: true,
               },
               () => {},
