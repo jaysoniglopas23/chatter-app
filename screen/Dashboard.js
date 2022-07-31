@@ -8,8 +8,8 @@ import {
   Button,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Modal,
-  ActivityIndicator
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
@@ -29,13 +29,13 @@ import Login from './Login';
 import DisplayAnImage from './Home';
 import Storage from '../utils/storage';
 import Launcher from './launcher';
+import Modal from 'react-native-modal';
 
 const DeviceWidth = Dimensions.get('window').width;
 const Stack = createStackNavigator();
 const navigationRef = React.createRef();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
 
 class Dashboard extends Component {
   constructor(props) {
@@ -116,14 +116,12 @@ class Dashboard extends Component {
     this.props.navigationRef.current?.navigate('Happy');
   }
 
-
   goLogout() {
     let self = this;
 
     this.setState({
-      modalConfirmLogout:true
+      modalConfirmLogout: true,
     });
-
   }
 
   closeLogutConfirm() {
@@ -363,14 +361,11 @@ class Dashboard extends Component {
           animationType="slide"
           transparent={true}
           visible={this.state.modalConfirmLogout}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!this.state.modalConfirmLogout);
-          }}>
+          style={{bottom: 400, alignSelf: 'center'}}>
           <View
             style={{
               width: windowWidth,
-              backgroundColorL:'black',
+              backgroundColorL: 'black',
               height: windowHeight - 100,
               borderRadius: 30,
               flexDirection: 'column',
@@ -441,9 +436,9 @@ class Dashboard extends Component {
                           textAlign: 'center',
                           lineHeight: 30,
                           fontSize: 12,
-                          color: global.glTextColor,
+                          color: 'black',
                         }}>
-                        Cancel
+                        キャンセル
                       </Text>
                     </TouchableOpacity>
 
@@ -464,9 +459,9 @@ class Dashboard extends Component {
                           textAlign: 'center',
                           lineHeight: 30,
                           fontSize: 12,
-                          color: global.glTextColor,
+                          color: 'black',
                         }}>
-                        Ok
+                        はい
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -482,10 +477,7 @@ class Dashboard extends Component {
             justifyContent: 'center',
             flexDirection: 'row',
             backgroundColor: 'white',
-          }}>
-         
-          
-        </View>
+          }}></View>
       </View>
     );
   }

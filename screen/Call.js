@@ -18,7 +18,7 @@ import {ListItem, Avatar} from 'react-native-elements';
 import {getUsers, contains} from '../styles/index';
 import UserPost from '../styles/UserPost';
 
-const numColumns = 3;
+const numColumns = 5;
 const DeviceWidth = Dimensions.get('window').width;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -72,8 +72,8 @@ export default class Call extends Component {
     this.goingToTop = false;
   }
 
-  componentDidMount(){
-    this.getUsers();  
+  componentDidMount() {
+    this.getUsers();
   }
 
   getUsers() {
@@ -89,7 +89,7 @@ export default class Call extends Component {
       () => {
         global.socket.on('emit-users-for-search', function (ret) {
           global.socket.off('emit-users-for-search');
-          // JSON.stringify(ret);
+          // alert(JSON.stringify(ret));
           // console.log(ret);
 
           self.setState({
@@ -101,6 +101,7 @@ export default class Call extends Component {
             path: ret.path,
             users: ret.users,
             id: ret.id,
+            drop_calls: ret.drop_calls,
           });
 
           // console.log(id);
@@ -108,7 +109,7 @@ export default class Call extends Component {
         let params = {};
 
         params['start'] = 20;
-        params['size'] = 20;
+        params['size'] = 100;
         params['filter_type'] = '0';
         params['order'] = '0';
         params['name'] = this.state.name;
@@ -149,9 +150,9 @@ export default class Call extends Component {
           // console.log(id);
         });
         let params = {};
- 
+
         params['start'] = 20;
-        params['size'] = 20;
+        params['size'] = 1000;
         params['filter_type'] = '0';
         params['order'] = '0';
         params['name'] = this.state.name;
@@ -166,8 +167,6 @@ export default class Call extends Component {
     );
   }
 
-
-
   refreshTimeline() {
     let self = this;
 
@@ -179,7 +178,7 @@ export default class Call extends Component {
             useNativeDriver: true
          }
       ).start();*/
- 
+
     let params = self.state.params;
 
     params['size'] = params['size'] + 9;
@@ -358,9 +357,9 @@ export default class Call extends Component {
     this.setState({users, query: text}, () => this.makeRemoteRequest());
   };
 
-  formatData = (data, numColumns) => {
-    const totalRows = Math.floor(data.length / numColumns);
-    let totalLastRows = data.length - totalRows * numColumns;
+  formatData = (users, numColumns) => {
+    const totalRows = Math.floor(users.length / numColumns);
+    let totalLastRows = users.length - totalRows * numColumns;
 
     while (totalRows !== 0 && totalLastRows !== numColumns) {
       users.push({key: 'blank', empty: true});
@@ -377,15 +376,32 @@ export default class Call extends Component {
       return <View style={(itemStyle, itemInvisible)}></View>;
     }
 
-    return (
-      <TouchableOpacity style={itemStyle} onPress={() => this.goCall(item.id)}>
-        <Text style={textStyle}>{item.name}</Text>
-        <Image
-          style={styles.iconRight}
-          source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
-        />
-      </TouchableOpacity>
-    );
+    if (item.drop_calls == 1) {
+      return (
+        <TouchableOpacity
+          style={itemStyle}
+          onPress={() => this.goCall(item.id)}>
+          {item.drop_calls == 1 ? (
+            <Image
+              style={styles.iconCanCall}
+              source={require('../icon/Asset5.png')}
+            />
+          ) : (
+            <Image
+              style={styles.iconCantCall}
+              source={require('../icon/Asset5.png')}
+            />
+          )}
+          <Text style={textStyle}>{item.name}</Text>
+          <Image
+            style={styles.iconRight}
+            source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
+          />
+        </TouchableOpacity>
+      );
+    } else {
+      return <TouchableOpacity></TouchableOpacity>;
+    }
   };
 
   render() {
@@ -421,7 +437,7 @@ export default class Call extends Component {
               bottom: 45,
               right: 130,
               backgroundColor: '#fff',
-              color:'black',
+              color: 'black',
             }}>
             名前を検索する
           </Text>
@@ -461,6 +477,24 @@ const styles = StyleSheet.create({
   logo: {
     width: 66,
     height: 58,
+  },
+  iconCanCall: {
+    marginTop: 20,
+    resizeMode: 'contain',
+    width: 15,
+    height: 15,
+    marginBottom: 10,
+    marginLeft: 65,
+    tintColor: '#3EEE91',
+  },
+  iconCantCall: {
+    marginTop: 20,
+    resizeMode: 'contain',
+    width: 15,
+    height: 15,
+    marginBottom: 10,
+    marginLeft: 65,
+    tintColor: 'red',
   },
   iconRight: {
     paddingTop: 10,

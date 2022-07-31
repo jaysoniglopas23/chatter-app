@@ -69,6 +69,41 @@ class Chat extends Component {
 
   componentDidMount() {
     this.getChat();
+    this.getChatPoint();
+  }
+  getChatPoint() {
+    let self = this;
+
+    let params = {};
+
+    this.setState(
+      {
+        params: params,
+        refresh: 1,
+      },
+
+      () => {
+        global.socket.on('emit-details', function (ret) {
+          global.socket.off('emit-details');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            mail_count: ret.mail_count,
+          });
+
+          global.mail_count = self.state.mail_count;
+        });
+        let params = {};
+        params['mail_count'] = global.mail_count;
+        // params[''] = ;
+
+        // alert(global.mail_count);
+
+        global.socket.emit('on-details', params);
+        // console.log(params);
+      },
+    );
   }
 
   getChat() {
@@ -165,7 +200,7 @@ class Chat extends Component {
 
             self.setState(
               {
-                animated: true,   
+                animated: true,
                 chatsRefreshed: true,
               },
               () => {},
@@ -202,6 +237,10 @@ class Chat extends Component {
     this.getChat();
     // this.handleScrollView();
     let self = this;
+
+    global.mail_count = global.mail_count - 1;
+
+    alert(global.mail_count);
 
     global.socket.on('emit-send-message-from', function (ret) {
       global.socket.off('emit-send-message-from');

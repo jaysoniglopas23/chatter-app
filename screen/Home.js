@@ -173,13 +173,12 @@ class DisplayAnImage extends Component {
         global.socket.off('emit-details');
         // alert(JSON.stringify(ret));
 
-
         self.setState({
           nickname: ret.nickname,
           mail_count: ret.mail_count,
-          call_minutes: ret.call_minutes, 
+          call_minutes: ret.call_minutes,
           age: ret.age,
-          id:ret.id,
+          id: ret.id,
           profile_image: ret.profile_image,
           profile_image_dir: ret.profile_image_dir,
         });
@@ -233,7 +232,7 @@ class DisplayAnImage extends Component {
       // params['profile_image'] = this.state.profile_image;
 
       // console.log(params);
-      global.socket.emit('on-details',params);
+      global.socket.emit('on-details', params);
     });
   }
 
@@ -295,10 +294,9 @@ class DisplayAnImage extends Component {
                 right: 149,
                 fontWeight: 'bold',
                 color: 'black',
-                fontSize:17,
+                fontSize: 17,
                 position: 'absolute',
                 width: windowWidth / 5,
-               
               }}>
               通話 : {this.state.mail_count}分
             </Text>
@@ -310,7 +308,7 @@ class DisplayAnImage extends Component {
                 fontWeight: 'bold',
                 color: 'black',
                 position: 'absolute',
-                fontSize:17,
+                fontSize: 17,
                 width: windowWidth / 4.3,
               }}>
               メール : {this.state.call_minutes}通
@@ -364,7 +362,6 @@ class DisplayAnImage extends Component {
             />
           </TouchableOpacity>
         </View>
-        
 
         <View
           style={{
@@ -476,7 +473,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     right: 148,
     top: 0,
-    fontSize:20,
+    fontSize: 20,
     fontWeight: 'bold',
     // borderWidth: 1,
     color: 'black',

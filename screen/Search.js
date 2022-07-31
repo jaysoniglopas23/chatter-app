@@ -53,7 +53,7 @@ export default class Search extends Component {
     this.getUsers = this.getUsers.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getUsers();
   }
 
@@ -145,7 +145,6 @@ export default class Search extends Component {
 
   makeRemoteRequest = _.debounce(() => {
     this.setState({loading: true});
-
     getUsers(20, this.state.query)
       .then(data => {
         this.setState({
@@ -281,7 +280,7 @@ export default class Search extends Component {
               bottom: 68,
               left: 1,
               backgroundColor: '#fff',
-              color:'black',
+              color: 'black',
             }}>
             プロフィール検索
           </Text>
