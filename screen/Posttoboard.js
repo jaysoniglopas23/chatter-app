@@ -38,6 +38,9 @@ import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 import {launchImageLibrary} from 'react-native-image-picker';
+import Svg, {G, Path} from 'react-native-svg';
+
+const windowHeight = Dimensions.get('window').height;
 
 const Stack = createStackNavigator();
 const windowWidth = Dimensions.get('window').width;
@@ -66,6 +69,10 @@ class Posttoboard extends Component {
 
   goChat() {
     this.props.navigation.navigate('User');
+  }
+
+  back() {
+    this.props.navigation.navigate('Post');
   }
 
   getDescription(description) {
@@ -187,19 +194,56 @@ class Posttoboard extends Component {
 
   render() {
     return (
-      <View>
+      <View
+        style={{
+          backgroundColor: '#FFF',
+          flex: 1,
+          borderWidth: 10,
+          borderColor: '#FAEA48',
+          borderBottomWidth: 0,
+          borderTopWidth: 10,
+        }}>
         <TouchableOpacity
-          onPress={() => this.goSave()}
-          style={{alignSelf: 'center', borderWidth: 1, height: 30, width: 40}}>
-          <Text style={{textAlign: 'center', top: 4,color:'black'}}>Post</Text>
+          style={{
+            marginLeft: 10,
+            marginTop: windowHeight / 12 - 69,
+            width: 50,
+            height: 30,
+          }}
+          onPress={() => this.back()}>
+          <Svg
+            style={{width: 20, height: 30}}
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fal"
+            data-icon="angle-left"
+            class="svg-inline--fa fa-angle-left fa-w-6"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 192 512">
+            <Path
+              fill="black"
+              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+          </Svg>
         </TouchableOpacity>
+
+        <Text
+          style={{
+            color: 'gray',
+            fontSize: 25,
+            left: 120,
+            marginTop: windowHeight / 12 - 99,
+          }}>
+          新しい投稿を作成
+        </Text>
+
         {this.state.hasUploadPhoto ? (
           <Image
             source={{uri: this.state.UploadPhoto}}
             // defaultSource={require('../images/image.jpg')}
             style={{
-              alignSelf: 'center',
-              top: 40,
+              marginLeft: 20,
+              top: 20,
               width: 70,
               height: 70,
               borderRadius: 1,
@@ -211,27 +255,22 @@ class Posttoboard extends Component {
             source={require('../images/image.jpg')}
             style={{
               left: 0,
-              top: 40,
+              top: 20,
               width: 70,
               height: 70,
               borderRadius: 1,
-              alignSelf: 'center',
+              marginLeft: 20,
             }}
           />
         )}
-
-        <View style={{alignSelf: 'center', top: 80, borderWidth: 1, width: 85}}>
-          <TouchableOpacity onPress={() => this.postPhoto()}>
-            <Text style={{color:'black'}}>Uploadphoto</Text>
-          </TouchableOpacity>
-        </View>
         <View
           style={{
             alignSelf: 'center',
-            top: 100,
+            top: 60,
             borderWidth: 1,
             width: 355,
             height: 70,
+            borderColor: '#cdd5d5',
           }}>
           <TextInput
             value={this.state.description}
@@ -241,9 +280,72 @@ class Posttoboard extends Component {
               paddingHorizontal: 10,
               borderEndWidth: 310,
               borderRadius: 10,
-              color:'black',
             }}
           />
+          <Text
+            style={{
+              fontSize: 14,
+              marginHorizontal: 154,
+              marginTop: windowHeight / 12 - 127,
+              right: 150,
+              backgroundColor: '#fff',
+              color: 'black',
+            }}>
+            コメント
+          </Text>
+        </View>
+        <View
+          style={{
+            left: 290,
+            top: 90,
+            backgroundColor: '#f8f8f9',
+            width: 85,
+            height: 20,
+          }}>
+          <TouchableOpacity onPress={() => this.postPhoto()}>
+            <Text style={{color: 'black', alignSelf: 'center', top: 1}}>
+              アルバム選択
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{top: 120, left: 20, flexDirection: 'column'}}>
+          <Text style={{color: 'black', fontSize: 16}}>※掲示板注意事項</Text>
+          <Text style={{color: 'black', fontSize: 16, top: 15}}>
+            掲示板は不特定多数の方が見れる場所になります。
+          </Text>
+          <Text style={{color: 'black', fontSize: 16, top: 30}}>
+            電話番号、ラインID、メールアドレス、
+          </Text>
+          <Text style={{color: 'black', fontSize: 16, top: 45}}>
+            SNSアカウント等の古竿はお控えください。
+          </Text>
+          <Text style={{color: 'black', fontSize: 16, top: 60, width: 350}}>
+            事件、トラブルの元になりますので、見つけ次第削除させていただきます。
+          </Text>
+          <Text style={{color: 'black', fontSize: 16, top: 75, width: 350}}>
+            また記載されていても無闇に電話をしたりしないようお気をつけください。
+          </Text>
+        </View>
+
+        <View
+          style={{
+            alignSelf: 'center',
+            top: 210,
+            backgroundColor: '#f8f8f9',
+            width: 182,
+            height: 25,
+          }}>
+          <TouchableOpacity onPress={() => this.goSave()}>
+            <Text
+              style={{
+                color: 'black',
+                alignSelf: 'center',
+                top: 1,
+                fontSize: 16,
+              }}>
+              注意事項をご理解の上、投稿する
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

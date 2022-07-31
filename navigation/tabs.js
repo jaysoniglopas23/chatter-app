@@ -65,6 +65,7 @@ const PostStack = ({navigation}) => (
       component={User}
       options={({route}) => ({
         // title: route.params.userName,
+        // headerShown: false,
         headerBackTitleVisible: false,
       })}
     />
@@ -73,6 +74,7 @@ const PostStack = ({navigation}) => (
       component={Posttoboard}
       options={({route}) => ({
         // title: route.params.userName,
+        headerShown: false,
         headerBackTitleVisible: false,
       })}
     />
@@ -117,6 +119,13 @@ const SeachStack = ({navigation}) => (
         headerBackTitleVisible: false,
         // headerShown: false,
       })}
+    />
+     <Stack.Screen
+      name="Call"
+      component={Call}
+      options={{
+        headerShown: false,
+      }}
     />
   </Stack.Navigator>
 );
