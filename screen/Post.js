@@ -28,12 +28,16 @@ import {
   ActivityIndicator,
   SafeAreaView,
   StatusBar,
+  Dimensions,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  TextInput,
 } from 'react-native';
 import _ from 'lodash';
 import {ListItem, SearchBar, Avatar} from 'react-native-elements';
 // import {getUsers, contains} from './api/index';
 import {getUsers, contains} from '../styles/index';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+// import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import User from '../homes/User';
 import Tabs from '../navigation/tabs';
 import moment from 'moment';
@@ -41,8 +45,11 @@ import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 import Svg, {G, Path} from 'react-native-svg';
+import Modal from 'react-native-modal';
 
 const Stack = createStackNavigator();
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
@@ -107,6 +114,8 @@ class Post extends Component {
       legacyImplementation: false,
 
       hasUploadPhoto: false,
+
+      modalConfirmLogout: false,
     };
 
     this.goChat = this.goChat.bind(this);
@@ -440,6 +449,47 @@ class Post extends Component {
     );
   };
 
+  closeLogutConfirm() {
+    this.setState({
+      modalConfirmLogout: false,
+    });
+  }
+
+  continueLogoutConfirm() {
+    let self = this;
+
+    this.setState(
+      {
+        loadingLogoutConfrimReport: true,
+      },
+      () => {
+        let jsonData = {
+          user_id: '',
+          profile_image: '',
+          nickname: '',
+          coin: '',
+          username: '',
+          password: '',
+          searchSettings: global.searchFields,
+          shared: 0,
+        };
+
+        Storage.storeData(jsonData).then(() => {
+          self.setState(
+            {
+              modalConfirmLogout: false,
+            },
+            () => {
+              // self.props.Launcher.init();r
+
+              self.props.navigationRef.current.navigate('Launcher');
+            },
+          );
+        });
+      },
+    );
+  }
+
   renderFooter = () => {
     if (!this.state.loading) return null;
 
@@ -449,6 +499,14 @@ class Post extends Component {
       </View>
     );
   };
+
+  Option() {
+    let self = this;
+
+    this.setState({
+      modalConfirmLogout: true,
+    });
+  }
 
   render() {
     return (
@@ -534,6 +592,154 @@ class Post extends Component {
                   <UserInfoText>
                     <UserName>{item.name}</UserName>
                     <PostTime>{item.datetime}</PostTime>
+                    <TouchableOpacity
+                      style={{
+                        left: 40,
+                        marginTop: windowHeight / 10 - 93,
+                        width: 50,
+                        height: 30,
+                      }}
+                      onPress={() => this.Option()}>
+                      <Svg
+                        style={{width: 20, height: 30}}
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fal"
+                        data-icon="angle-left"
+                        class="svg-inline--fa fa-angle-left fa-w-6"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512">
+                        <Path
+                          fill="gray"
+                          d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+                        />
+                      </Svg>
+                    </TouchableOpacity>
+
+                    <Modal
+                      animationType="slide"
+                      // transparent={true}
+                      isVisible={this.state.modalConfirmLogout}
+                      style={{bottom: 400, alignSelf: 'center'}}>
+                      <View
+                        style={{
+                          width: windowWidth,
+                          backgroundColorL: 'black',
+                          height: windowHeight - 100,
+                          borderRadius: 30,
+                          flexDirection: 'column',
+                        }}>
+                        <TouchableWithoutFeedback
+                          style={{
+                            width: windowWidth,
+                            height: windowHeight - 290,
+                          }}
+                          onPress={() => this.closeLogutConfirm()}>
+                          <View
+                            style={{
+                              width: '100%',
+                              height: windowHeight - 180,
+                            }}></View>
+                        </TouchableWithoutFeedback>
+
+                        <View
+                          style={{
+                            width: windowWidth,
+                            height: windowHeight,
+                          }}>
+                          <View
+                            style={{
+                              height: 180,
+                              width: windowWidth,
+                              backgroundColor: '#f2f2f2',
+                              borderRadius: 15,
+                            }}>
+                            <Text
+                              style={{
+                                width: '100%',
+                                height: 30,
+                                lineHeight: 30,
+                                marginTop: 30,
+                                textAlign: 'center',
+                                fontSize: 13,
+                                color: global.textColor,
+                              }}>
+                              {this.state.logoutText}
+                            </Text>
+
+                            {this.state.loadingLogoutConfrimReport ? (
+                              <View
+                                style={{
+                                  width: 20,
+                                  height: 50,
+                                  flexDirection: 'row',
+                                  marginLeft: windowWidth / 2 - 10,
+                                }}>
+                                <ActivityIndicator
+                                  size="small"
+                                  color="#69747f"
+                                />
+                              </View>
+                            ) : (
+                              <View
+                                style={{
+                                  width: 210,
+                                  height: 50,
+                                  flexDirection: 'row',
+                                  marginLeft: windowWidth / 2 - 105,
+                                }}>
+                                <TouchableOpacity
+                                  style={{
+                                    width: 100,
+                                    height: 30,
+                                    backgroundColor: '#fff',
+                                    marginTop: 10,
+                                    marginRight: 5,
+                                    borderRadius: 3,
+                                  }}
+                                  onPress={() => this.closeLogutConfirm()}>
+                                  <Text
+                                    style={{
+                                      width: '100%',
+                                      height: 30,
+                                      textAlign: 'center',
+                                      lineHeight: 30,
+                                      fontSize: 12,
+                                      color: 'black',
+                                    }}>
+                                    キャンセル
+                                  </Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                  style={{
+                                    width: 100,
+                                    height: 30,
+                                    backgroundColor: '#fff',
+                                    marginTop: 10,
+                                    marginLeft: 5,
+                                    borderRadius: 3,
+                                  }}
+                                  onPress={() => this.continueLogoutConfirm()}>
+                                  <Text
+                                    style={{
+                                      width: '100%',
+                                      height: 30,
+                                      textAlign: 'center',
+                                      lineHeight: 30,
+                                      fontSize: 12,
+                                      color: 'black',
+                                    }}>
+                                    はい
+                                  </Text>
+                                </TouchableOpacity>
+                              </View>
+                            )}
+                          </View>
+                        </View>
+                      </View>
+                    </Modal>
                   </UserInfoText>
                   <MessageText>{item.description}</MessageText>
                   {item.path ? (
@@ -555,10 +761,10 @@ class Post extends Component {
                 </UserInfo1>
               ) : (
                 <UserInfo1 onPress={() => this.likeCount(item.id)}>
-                <MessageText1>
-                  {'  お気に入り' + '(' + item.post_likes_count + ')'}
-                </MessageText1>
-              </UserInfo1>
+                  <MessageText1>
+                    {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                  </MessageText1>
+                </UserInfo1>
               )}
               {item.userid == global.myid ? (
                 <UserInfo2 onPress={() => this.continueDeleteConfirm(item.id)}>

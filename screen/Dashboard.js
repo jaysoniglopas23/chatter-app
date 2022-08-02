@@ -359,8 +359,8 @@ class Dashboard extends Component {
 
         <Modal
           animationType="slide"
-          transparent={true}
-          visible={this.state.modalConfirmLogout}
+          // transparent={true}
+          isVisible={this.state.modalConfirmLogout}
           style={{bottom: 400, alignSelf: 'center'}}>
           <View
             style={{
