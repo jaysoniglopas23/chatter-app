@@ -142,7 +142,7 @@ class Posttoboard extends Component {
             postid: ret.postid,
           });
 
-          if (self.state.hasUploadPhoto != '' && self.state.description != '') {
+          if (self.state.hasUploadPhoto) {
             const data = new FormData();
 
             data.append('socketid', socketid);
@@ -169,11 +169,16 @@ class Posttoboard extends Component {
               body: data,
             })
               .then(body => {
-                self.props.navigation.navigate('Post');
+                self.props.navigation.push('Post');
               })
               .catch(err => {
                 console.log(err);
               });
+          } else {
+            let params = {};
+            params['description'] = self.state.description;
+
+            self.props.navigation.push('Post');
           }
         });
         let params = {};
@@ -280,6 +285,7 @@ class Posttoboard extends Component {
               paddingHorizontal: 10,
               borderEndWidth: 310,
               borderRadius: 10,
+              color: 'black',
             }}
           />
           <Text

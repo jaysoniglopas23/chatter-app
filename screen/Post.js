@@ -115,7 +115,11 @@ class Post extends Component {
 
       hasUploadPhoto: false,
 
-      modalConfirmLogout: false,
+      modalReportVisible: false,
+
+      modalDeleteConfirmVisible: false,
+
+      modalDeleteEditVisible: false,
     };
 
     this.goChat = this.goChat.bind(this);
@@ -128,18 +132,11 @@ class Post extends Component {
   }
 
   goPost() {
-    this.props.navigation.navigate('Posttoboard');
+    this.props.navigation.push('Posttoboard');
   }
 
   goEdit() {
     this.props.navigation.navigate('Posttoboard');
-  }
-
-  deletePost() {
-    this.setState({
-      modalDeleteConfirmVisible: true,
-      modalDeleteEditVisible: false,
-    });
   }
 
   goChat(userid) {
@@ -243,52 +240,6 @@ class Post extends Component {
       },
     );
   }
-  continueDeleteConfirm(id) {
-    // console.log(id);
-    let self = this;
-
-    let postid = self.state.postid;
-
-    this.setState(
-      {
-        loadingDeleteConfrimReport: true,
-      },
-      () => {
-        global.socket.on('emit-post-delete', function (ret) {
-          global.socket.off('emit-post-delete');
-
-          self.setState({
-            postid: ret.postid,
-            refresh: 1,
-          });
-
-          // self.setState(
-          //   {
-          //     timelineData: self.state.timelineData.filter(
-          //       item => item.post_id !== self.state.postActionPostId,
-          //     ),
-          //     refresh: 1,
-          //   },
-          //   () => {
-          //     self.setState({
-          //       modalDeleteConfirmVisible: false,
-          //       loadingDeleteConfrimReport: false,
-          //       postActionPostId: '',
-          //     });
-          //   },
-          // );
-        });
-
-        let params = {};
-
-        params['status'] = 1;
-        params['postid'] = id;
-
-        console.log(params);
-        global.socket.emit('on-post-delete', params);
-      },
-    );
-  }
 
   getPost() {
     this.makeRemoteRequest();
@@ -351,6 +302,8 @@ class Post extends Component {
         params['file'] = this.state.file;
         params['datetime'] = this.state.datetime;
         params['post_likes_count'] = this.state.post_likes_count;
+
+        global.posts = self.state.posts;
 
         global.socket.emit('on-posts', params);
         console.log(params);
@@ -449,47 +402,6 @@ class Post extends Component {
     );
   };
 
-  closeLogutConfirm() {
-    this.setState({
-      modalConfirmLogout: false,
-    });
-  }
-
-  continueLogoutConfirm() {
-    let self = this;
-
-    this.setState(
-      {
-        loadingLogoutConfrimReport: true,
-      },
-      () => {
-        let jsonData = {
-          user_id: '',
-          profile_image: '',
-          nickname: '',
-          coin: '',
-          username: '',
-          password: '',
-          searchSettings: global.searchFields,
-          shared: 0,
-        };
-
-        Storage.storeData(jsonData).then(() => {
-          self.setState(
-            {
-              modalConfirmLogout: false,
-            },
-            () => {
-              // self.props.Launcher.init();r
-
-              self.props.navigationRef.current.navigate('Launcher');
-            },
-          );
-        });
-      },
-    );
-  }
-
   renderFooter = () => {
     if (!this.state.loading) return null;
 
@@ -500,12 +412,136 @@ class Post extends Component {
     );
   };
 
-  Option() {
+  closeReportModal() {
+    this.setState({
+      modalReportVisible: false,
+    });
+  }
+
+  inap() {
     let self = this;
 
+    this.setState(
+      {
+        modalReportVisible: false,
+      },
+      () => {
+        let confrimMessage = '';
+
+        if (global.locale == 'en') {
+          confrimMessage = 'Report this user';
+        } else {
+          confrimMessage = 'このユーザーを報告';
+        }
+
+        self.setState({
+          modalConfirmVisible: true,
+          confirmMessage: confrimMessage,
+          reportType: 2,
+        });
+      },
+    );
+  }
+
+  spam() {
+    let self = this;
+
+    this.setState(
+      {
+        modalReportVisible: false,
+      },
+      () => {
+        let confrimMessage = '';
+
+        if (global.locale == 'en') {
+          confrimMessage = 'Report this user';
+        } else {
+          confrimMessage = 'このユーザーを報告';
+        }
+
+        self.setState({
+          modalConfirmVisible: true,
+          confirmMessage: confrimMessage,
+          reportType: 1,
+        });
+      },
+    );
+  }
+
+  report(id) {
+    let self = this;
+
+    this.setState(
+      {
+        modalVisible: false,
+      },
+      () => {
+        self.setState({
+          modalReportVisible: true,
+        });
+      },
+    );
+  }
+
+  closeDeleteConfirm() {
     this.setState({
-      modalConfirmLogout: true,
+      modalDeleteConfirmVisible: false,
     });
+  }
+
+  deletePost(id) {
+    console.log(id);
+    this.setState({
+      modalDeleteConfirmVisible: true,
+      modalDeleteEditVisible: false,
+    });
+    global.mypostid = id;
+  }
+
+  continueDeleteConfirm(id) {
+    // console.log(id);
+    let self = this;
+
+    let postid = self.state.postid;
+
+    this.setState(
+      {
+        loadingDeleteConfrimReport: true,
+      },
+      () => {
+        global.socket.on('emit-post-delete', function (ret) {
+          global.socket.off('emit-post-delete');
+
+          self.setState({
+            postid: ret.postid,
+            status: ret.status,
+          });
+
+          self.setState(
+            {
+              refresh: 1,
+            },
+            () => {
+              self.setState({
+                modalDeleteConfirmVisible: false,
+                loadingDeleteConfrimReport: false,
+                postid: '',
+                refresh: 1,
+              });
+            },
+          );
+          self.props.navigation.push('Post');
+        });
+
+        let params = {};
+
+        params['status'] = 1;
+        params['postid'] = global.mypostid;
+
+        console.log(params);
+        global.socket.emit('on-post-delete', params);
+      },
+    );
   }
 
   render() {
@@ -567,6 +603,7 @@ class Post extends Component {
           }}>
           投稿を検索する
         </Text>
+
         <StatusBar style="light-content" />
         <FlatList
           data={this.state.posts}
@@ -592,154 +629,34 @@ class Post extends Component {
                   <UserInfoText>
                     <UserName>{item.name}</UserName>
                     <PostTime>{item.datetime}</PostTime>
-                    <TouchableOpacity
-                      style={{
-                        left: 40,
-                        marginTop: windowHeight / 10 - 93,
-                        width: 50,
-                        height: 30,
-                      }}
-                      onPress={() => this.Option()}>
-                      <Svg
-                        style={{width: 20, height: 30}}
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fal"
-                        data-icon="angle-left"
-                        class="svg-inline--fa fa-angle-left fa-w-6"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512">
-                        <Path
-                          fill="gray"
-                          d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
-                        />
-                      </Svg>
-                    </TouchableOpacity>
-
-                    <Modal
-                      animationType="slide"
-                      // transparent={true}
-                      isVisible={this.state.modalConfirmLogout}
-                      style={{bottom: 400, alignSelf: 'center'}}>
-                      <View
+                    {item.userid != global.myid ? (
+                      <TouchableOpacity
                         style={{
-                          width: windowWidth,
-                          backgroundColorL: 'black',
-                          height: windowHeight - 100,
-                          borderRadius: 30,
-                          flexDirection: 'column',
-                        }}>
-                        <TouchableWithoutFeedback
-                          style={{
-                            width: windowWidth,
-                            height: windowHeight - 290,
-                          }}
-                          onPress={() => this.closeLogutConfirm()}>
-                          <View
-                            style={{
-                              width: '100%',
-                              height: windowHeight - 180,
-                            }}></View>
-                        </TouchableWithoutFeedback>
-
-                        <View
-                          style={{
-                            width: windowWidth,
-                            height: windowHeight,
-                          }}>
-                          <View
-                            style={{
-                              height: 180,
-                              width: windowWidth,
-                              backgroundColor: '#f2f2f2',
-                              borderRadius: 15,
-                            }}>
-                            <Text
-                              style={{
-                                width: '100%',
-                                height: 30,
-                                lineHeight: 30,
-                                marginTop: 30,
-                                textAlign: 'center',
-                                fontSize: 13,
-                                color: global.textColor,
-                              }}>
-                              {this.state.logoutText}
-                            </Text>
-
-                            {this.state.loadingLogoutConfrimReport ? (
-                              <View
-                                style={{
-                                  width: 20,
-                                  height: 50,
-                                  flexDirection: 'row',
-                                  marginLeft: windowWidth / 2 - 10,
-                                }}>
-                                <ActivityIndicator
-                                  size="small"
-                                  color="#69747f"
-                                />
-                              </View>
-                            ) : (
-                              <View
-                                style={{
-                                  width: 210,
-                                  height: 50,
-                                  flexDirection: 'row',
-                                  marginLeft: windowWidth / 2 - 105,
-                                }}>
-                                <TouchableOpacity
-                                  style={{
-                                    width: 100,
-                                    height: 30,
-                                    backgroundColor: '#fff',
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    borderRadius: 3,
-                                  }}
-                                  onPress={() => this.closeLogutConfirm()}>
-                                  <Text
-                                    style={{
-                                      width: '100%',
-                                      height: 30,
-                                      textAlign: 'center',
-                                      lineHeight: 30,
-                                      fontSize: 12,
-                                      color: 'black',
-                                    }}>
-                                    キャンセル
-                                  </Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
-                                  style={{
-                                    width: 100,
-                                    height: 30,
-                                    backgroundColor: '#fff',
-                                    marginTop: 10,
-                                    marginLeft: 5,
-                                    borderRadius: 3,
-                                  }}
-                                  onPress={() => this.continueLogoutConfirm()}>
-                                  <Text
-                                    style={{
-                                      width: '100%',
-                                      height: 30,
-                                      textAlign: 'center',
-                                      lineHeight: 30,
-                                      fontSize: 12,
-                                      color: 'black',
-                                    }}>
-                                    はい
-                                  </Text>
-                                </TouchableOpacity>
-                              </View>
-                            )}
-                          </View>
-                        </View>
-                      </View>
-                    </Modal>
+                          left: 40,
+                          marginTop: windowHeight / 10 - 93,
+                          width: 50,
+                          height: 30,
+                        }}
+                        onPress={() => this.report(item.id)}>
+                        <Svg
+                          style={{width: 20, height: 30}}
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fal"
+                          data-icon="angle-left"
+                          class="svg-inline--fa fa-angle-left fa-w-6"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512">
+                          <Path
+                            fill="gray"
+                            d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+                          />
+                        </Svg>
+                      </TouchableOpacity>
+                    ) : (
+                      <></>
+                    )}
                   </UserInfoText>
                   <MessageText>{item.description}</MessageText>
                   {item.path ? (
@@ -767,7 +684,7 @@ class Post extends Component {
                 </UserInfo1>
               )}
               {item.userid == global.myid ? (
-                <UserInfo2 onPress={() => this.continueDeleteConfirm(item.id)}>
+                <UserInfo2 onPress={() => this.deletePost(item.id)}>
                   <MessageText2>削除</MessageText2>
                 </UserInfo2>
               ) : (
@@ -788,6 +705,204 @@ class Post extends Component {
 
           ListFooterComponent={this.renderFooter}
         />
+        <Modal
+          animationType="slide"
+          // transparent={true}
+          isVisible={this.state.modalReportVisible}
+          style={{bottom: 400, alignSelf: 'center'}}>
+          <View
+            style={{
+              width: windowWidth,
+              height: windowHeight - 180,
+              borderRadius: 30,
+              flexDirection: 'column',
+            }}>
+            <TouchableWithoutFeedback
+              style={{
+                width: windowWidth,
+                height: windowHeight - 290,
+              }}
+              onPress={() => this.closeReportModal()}>
+              <View
+                style={{
+                  width: '100%',
+                  height: windowHeight - 180,
+                }}></View>
+            </TouchableWithoutFeedback>
+
+            <View
+              style={{
+                width: windowWidth,
+                height: windowHeight,
+              }}>
+              <View
+                style={{
+                  height: 180,
+                  width: windowWidth,
+                  backgroundColor: '#f2f2f2',
+                  borderRadius: 15,
+                }}>
+                <TouchableOpacity
+                  style={{
+                    width: windowWidth - 20,
+                    height: 30,
+                    backgroundColor: '#fff',
+                    marginTop: 10,
+                    marginLeft: 10,
+                    borderRadius: 3,
+                  }}
+                  onPress={() => this.spam()}>
+                  <Text
+                    style={{
+                      width: '100%',
+                      height: 30,
+                      textAlign: 'center',
+                      lineHeight: 30,
+                      fontSize: 12,
+                      color: global.glTextColor,
+                    }}>
+                    {this.state.spamText}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={{
+                    width: windowWidth - 20,
+                    height: 30,
+                    backgroundColor: '#fff',
+                    marginTop: 10,
+                    marginLeft: 10,
+                    borderRadius: 3,
+                  }}
+                  onPress={() => this.inap()}>
+                  <Text
+                    style={{
+                      width: '100%',
+                      height: 30,
+                      textAlign: 'center',
+                      lineHeight: 30,
+                      fontSize: 12,
+                      color: global.glTextColor,
+                    }}>
+                    {this.state.inapText}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="slide"
+          // transparent={true}
+          isVisible={this.state.modalDeleteConfirmVisible}
+          style={{bottom: 400, alignSelf: 'center'}}>
+          <View
+            style={{
+              width: windowWidth,
+              height: windowHeight - 180,
+              borderRadius: 30,
+              flexDirection: 'column',
+            }}>
+            <TouchableWithoutFeedback
+              style={{width: windowWidth, height: windowHeight - 290}}
+              onPress={() => this.closeEditDeleteConfirmModal()}>
+              <View style={{width: '100%', height: windowHeight - 180}}></View>
+            </TouchableWithoutFeedback>
+
+            <View
+              style={{
+                width: windowWidth,
+                height: windowHeight,
+              }}>
+              <View
+                style={{
+                  height: 180,
+                  width: windowWidth,
+                  backgroundColor: '#f2f2f2',
+                  borderRadius: 15,
+                }}>
+                <Text
+                  style={{
+                    width: '100%',
+                    height: 30,
+                    lineHeight: 30,
+                    marginTop: 30,
+                    textAlign: 'center',
+                    fontSize: 13,
+                    color: global.textColor,
+                  }}>
+                  {this.state.deleteText}
+                </Text>
+
+                {this.state.loadingDeleteConfrimReport ? (
+                  <View
+                    style={{
+                      width: 20,
+                      height: 50,
+                      flexDirection: 'row',
+                      marginLeft: windowWidth / 2 - 10,
+                    }}>
+                    <ActivityIndicator size="small" color="#69747f" />
+                  </View>
+                ) : (
+                  <View
+                    style={{
+                      width: 210,
+                      height: 50,
+                      flexDirection: 'row',
+                      marginLeft: windowWidth / 2 - 105,
+                    }}>
+                    <TouchableOpacity
+                      style={{
+                        width: 100,
+                        height: 30,
+                        backgroundColor: '#fff',
+                        marginTop: 10,
+                        marginRight: 5,
+                        borderRadius: 3,
+                      }}
+                      onPress={() => this.closeDeleteConfirm()}>
+                      <Text
+                        style={{
+                          width: '100%',
+                          height: 30,
+                          textAlign: 'center',
+                          lineHeight: 30,
+                          fontSize: 12,
+                          color: 'black',
+                        }}>
+                        キャンセル
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={{
+                        width: 100,
+                        height: 30,
+                        backgroundColor: '#fff',
+                        marginTop: 10,
+                        marginLeft: 5,
+                        borderRadius: 3,
+                      }}
+                      onPress={() => this.continueDeleteConfirm()}>
+                      <Text
+                        style={{
+                          width: '100%',
+                          height: 30,
+                          textAlign: 'center',
+                          lineHeight: 30,
+                          fontSize: 12,
+                          color: 'black',
+                        }}>
+                        はい
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }

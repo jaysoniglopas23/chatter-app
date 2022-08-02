@@ -26,6 +26,11 @@ export const UserImgWrapper = styled.TouchableOpacity`
   padding-bottom: 15px;
 `;
 
+export const ReportWrapper = styled.TouchableOpacity`
+  padding-top: 15px;
+  padding-bottom: 15px;
+`;
+
 export const UserImg = styled.Image`
   width: 50px;
   height: 50px;
