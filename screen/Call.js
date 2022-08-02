@@ -18,7 +18,7 @@ import {ListItem, Avatar} from 'react-native-elements';
 import {getUsers, contains} from '../styles/index';
 import UserPost from '../styles/UserPost';
 
-const numColumns = 5;
+const numColumns = 1;
 const DeviceWidth = Dimensions.get('window').width;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -400,7 +400,7 @@ export default class Call extends Component {
         </TouchableOpacity>
       );
     } else {
-      return <TouchableOpacity></TouchableOpacity>;
+      return <View></View>;
     }
   };
 
@@ -452,7 +452,7 @@ export default class Call extends Component {
             onScroll={event => this.handleScrollView(event)}
             scrollEnabled={this.state.scrollEnabled}
             extraData={this.state.refresh}
-            initialNumToRender={15}
+            initialNumToRender={100}
           />
         </View>
       </View>
@@ -479,12 +479,12 @@ const styles = StyleSheet.create({
     height: 58,
   },
   iconCanCall: {
-    marginTop: 20,
+    marginTop: 40,
     resizeMode: 'contain',
     width: 15,
     height: 15,
-    marginBottom: 10,
-    marginLeft: 65,
+    marginBottom: 0,
+    marginRight: 300,
     tintColor: '#3EEE91',
   },
   iconCantCall: {
@@ -497,11 +497,11 @@ const styles = StyleSheet.create({
     tintColor: 'red',
   },
   iconRight: {
-    paddingTop: 10,
-    width: 65,
-    height: 66,
-    marginBottom: 30,
-    marginLeft: 0,
+    paddingTop: 0,
+    width: 100,
+    height: 100,
+    marginBottom: 50,
+    marginRight: 180,
   },
   button: {
     backgroundColor: 'blue',
@@ -523,7 +523,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F7F7',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 150,
+    height: 160,
     flex: 1,
     marginHorizontal: 2,
     marginVertical: 2,
@@ -534,12 +534,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   textStyle: {
-    color: 'black',
+    color: 'gray',
     position: 'absolute',
-    right: 5,
-    bottom: 5,
-    backgroundColor: 'white',
+    right:105,
+    bottom: 50,
+    // backgroundColor: 'white',
     padding: 1,
-    fontSize: 10,
+    fontSize: 30,
   },
 });

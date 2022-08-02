@@ -216,8 +216,8 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Call"
-        component={CallStack}
+        name="Chat" 
+        component={MessageStack}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -237,8 +237,8 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Chat"
-        component={MessageStack}
+        name="Call"
+        component={CallStack}
         options={({route}) => ({
           tabBarVisible: getTabBarVisibility(route),
           headerShown: false,

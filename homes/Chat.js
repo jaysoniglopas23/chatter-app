@@ -90,15 +90,22 @@ class Chat extends Component {
 
           self.setState({
             mail_count: ret.mail_count,
+            call_minutes: ret.call_minutes,
+            myid: ret.id,
           });
-
+          global.myid = self.state.myid;
+          global.call_minutes = self.state.call_minutes;
           global.mail_count = self.state.mail_count;
         });
         let params = {};
         params['mail_count'] = global.mail_count;
+        params['call_minutes'] = global.call_minutes;
+        params['name'] = global.name;
+        params['id'] = global.myid;
         // params[''] = ;
 
-        // alert(global.mail_count);
+        // alert(global.call_minutes);
+        // alert(global.myid)
 
         global.socket.emit('on-details', params);
         // console.log(params);
@@ -461,6 +468,24 @@ class Chat extends Component {
                 d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
             </Svg>
           </TouchableOpacity>
+          {global.call_minutes != 0 ? (
+            <TouchableOpacity>
+              <Image
+                style={{
+                  resizeMode: 'contain',
+                  height: 35,
+                  width: 35,
+                  left: 320,
+                  top: 10,
+                }}
+                source={require('../icon/Asset5.png')}
+              />
+            </TouchableOpacity>
+          ) : (
+            <Text style={{color: 'red', left: 265, top: 15}}>
+              通話ポイントなし
+            </Text>
+          )}
         </View>
 
         <KeyboardAvoidingView
@@ -500,57 +525,81 @@ class Chat extends Component {
                 keyExtractor={item => item.id}
                 // scrollEnabled = {false}
               />
+              {global.mail_count != 0 ? (
+                <View
+                  style={{
+                    width: '100%',
+                    padding: 100,
+                    right: 90,
+                    top: 23,
+                    flexDirection: 'row',
+                    alignItems: 'flex-end',
+                    // position: 'absolute',
+                  }}>
+                  <TextInput
+                    autoCapitalize={false}
+                    multiline={true}
+                    autoFocus={true}
+                    style={{
+                      backgroundColor: '#E9EBEE',
+                      width: windowWidth - 50,
+                      lineHeight: 20,
+                      borderRadius: 5,
+                      padding: 5,
+                      color: 'black',
+                      fontSize: 13,
+                    }}
+                    onChangeText={message => this.setState({message})}
+                    value={this.state.message}></TextInput>
 
-              <View
-                style={{
-                  width: '100%',
-                  padding: 100,
-                  right: 90,
-                  top: 23,
-                  flexDirection: 'row',
-                  alignItems: 'flex-end',
-                  // position: 'absolute',
-                }}>
-                <TextInput
-                  autoCapitalize={false}
-                  multiline={true}
-                  autoFocus={true}
+                  <TouchableOpacity
+                    style={{width: 35, height: 30, marginLeft: 0}}
+                    onPress={() => this.sendMesage(id)}>
+                    <Svg
+                      style={{
+                        marginTop: 4,
+                        marginLeft: 10,
+                        width: 22,
+                        height: 22,
+                      }}
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fal"
+                      data-icon="paper-plane"
+                      class="svg-inline--fa fa-paper-plane fa-w-16"
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512">
+                      <Path
+                        fill="black"
+                        d="M464 4.3L16 262.7C-7 276-4.7 309.9 19.8 320L160 378v102c0 30.2 37.8 43.3 56.7 20.3l60.7-73.8 126.4 52.2c19.1 7.9 40.7-4.2 43.8-24.7l64-417.1C515.7 10.2 487-9 464 4.3zM192 480v-88.8l54.5 22.5L192 480zm224-30.9l-206.2-85.2 199.5-235.8c4.8-5.6-2.9-13.2-8.5-8.4L145.5 337.3 32 290.5 480 32l-64 417.1z"></Path>
+                    </Svg>
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <View
                   style={{
                     backgroundColor: '#E9EBEE',
-                    width: windowWidth - 50,
-                    lineHeight: 20,
-                    borderRadius: 5,
-                    padding: 5,
-                    color: 'black',
-                    fontSize: 13,
-                  }}
-                  onChangeText={message => this.setState({message})}
-                  value={this.state.message}></TextInput>
-
-                <TouchableOpacity
-                  style={{width: 35, height: 30, marginLeft: 0}}
-                  onPress={() => this.sendMesage(id)}>
-                  <Svg
+                    bottom: 36,
+                    height: 60,
+                  }}>
+                  <Text
                     style={{
-                      marginTop: 4,
-                      marginLeft: 10,
-                      width: 22,
-                      height: 22,
-                    }}
-                    aria-hidden="true"
-                    focusable="false"
-                    data-prefix="fal"
-                    data-icon="paper-plane"
-                    class="svg-inline--fa fa-paper-plane fa-w-16"
-                    role="img"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512">
-                    <Path
-                      fill="black"
-                      d="M464 4.3L16 262.7C-7 276-4.7 309.9 19.8 320L160 378v102c0 30.2 37.8 43.3 56.7 20.3l60.7-73.8 126.4 52.2c19.1 7.9 40.7-4.2 43.8-24.7l64-417.1C515.7 10.2 487-9 464 4.3zM192 480v-88.8l54.5 22.5L192 480zm224-30.9l-206.2-85.2 199.5-235.8c4.8-5.6-2.9-13.2-8.5-8.4L145.5 337.3 32 290.5 480 32l-64 417.1z"></Path>
-                  </Svg>
-                </TouchableOpacity>
-              </View>
+                      // backgroundColor: '#E9EBEE',
+                      lineHeight: 40,
+                      borderRadius: 5,
+                      padding: 0,
+                      color: 'black',
+                      fontSize:20,
+                      fontWeight:'bold',
+                      left: 0,
+                      top:10,
+                      alignSelf: 'center',
+                    }}>
+                    メッセージへのポイントはありません
+                  </Text>
+                </View>
+              )}
             </View>
           )}
         </KeyboardAvoidingView>

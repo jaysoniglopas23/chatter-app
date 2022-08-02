@@ -155,7 +155,7 @@ class Dashboard extends Component {
               modalConfirmLogout: false,
             },
             () => {
-              // self.props.launcher.init();
+              // self.props.Launcher.init();r
 
               self.props.navigationRef.current.navigate('Launcher');
             },

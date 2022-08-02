@@ -165,7 +165,6 @@ class Happy extends Component {
             nickname: global.nickname,
             email: global.email,
           });
-      
         });
 
         let params = {};
@@ -212,7 +211,7 @@ class Happy extends Component {
     this.setState({}, () => {
       global.socket.on('emit-details', function (ret) {
         global.socket.off('on-details');
-    
+
         self.setState({
           nickname: ret.nickname,
           email: ret.email,
@@ -261,6 +260,57 @@ class Happy extends Component {
 
       {label: '女性', value: 1},
     ];
+    let second = [
+      {label: '未設定', value: 0},
+
+      {label: '吸う', value: 1},
+
+      {label: '時々吸う', value: 2},
+
+      {label: '吸わない', value: 3},
+    ];
+    let third = [
+      {label: '未設定', value: 0},
+
+      {label: '飲む', value: 1},
+
+      {label: '時々飲む', value: 2},
+
+      {label: '飲まない', value: 3},
+    ];
+    let fourth = [
+      {label: '未婚', value: 0},
+
+      {label: '既婚', value: 1},
+
+      {label: '離婚', value: 2},
+    ];
+    let fifth = [
+      {label: 'いない', value: 0},
+
+      {label: 'いる', value: 1},
+    ];
+    let sixth = [
+      {label: 'あり', value: 0},
+
+      {label: 'なし', value: 1},
+    ];
+    let seventh = [
+      {label: '好き', value: 0},
+
+      {label: '嫌い', value: 1},
+    ];
+    let Pets = [
+      {label: 'いる', value: 0},
+
+      {label: 'いない', value: 1},
+    ];
+    let holiday = [
+      {label: 'インドア', value: 0},
+
+      {label: 'アウトドア', value: 1},
+    ];
+
 
     let Bloodtype = [{value: 'A'}, {value: 'B'}, {value: 'O'}, {value: 'AB'}];
     return (
@@ -284,7 +334,9 @@ class Happy extends Component {
                       margin: 0,
                       borderWidth: 1,
                       paddingBottom: 10,
+                      width: windowWidth / 1.2,
                       paddingHorizontal: 10,
+
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
@@ -322,7 +374,7 @@ class Happy extends Component {
                 <View>
                   <TextInput
                     style={{
-                      // alignSelf: 'center',
+                      width: windowWidth / 1.2,
                       height: 35,
                       margin: 0,
                       borderWidth: 1,
@@ -368,6 +420,7 @@ class Happy extends Component {
                   <TextInput
                     style={{
                       // alignSelf: 'center',
+                      width: windowWidth / 1.2,
                       height: 95,
                       margin: 0,
                       borderWidth: 1,
@@ -388,7 +441,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 140,
                       color: 'black',
-                      // this is self introduction********************* 
+                      // this is self introduction*********************
                     }}>
                     自己紹介
                   </Text>
@@ -414,6 +467,7 @@ class Happy extends Component {
                       borderWidth: 1,
                       paddingBottom: 10,
                       paddingHorizontal: 10,
+                      width: windowWidth / 1.2,
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
@@ -429,7 +483,7 @@ class Happy extends Component {
                       marginHorizontal: 139,
                       width: 64,
                       color: 'black',
-                      // this is  area live in********************* 
+                      // this is  area live in*********************
                     }}>
                     住んでいる地域
                   </Text>
@@ -450,6 +504,7 @@ class Happy extends Component {
                   <TextInput
                     style={{
                       // alignSelf: 'center',
+                      width: windowWidth / 1.2,
                       height: 95,
                       margin: 0,
                       borderWidth: 1,
@@ -490,6 +545,7 @@ class Happy extends Component {
                   <TextInput
                     style={{
                       // alignSelf: 'center',
+                      width: windowWidth / 1.2,
                       height: 35,
                       margin: 0,
                       borderWidth: 1,
@@ -509,7 +565,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 160,
                       color: 'black',
-                       // this is society*********
+                      // this is society*********
                     }}>
                     趣味
                   </Text>
@@ -530,6 +586,7 @@ class Happy extends Component {
                   <TextInput
                     style={{
                       // alignSelf: 'center',
+                      width: windowWidth / 1.2,
                       height: 35,
                       margin: 0,
                       borderWidth: 1,
@@ -538,7 +595,6 @@ class Happy extends Component {
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      width: 361,
                       color: 'black',
                     }}
                   />
@@ -550,7 +606,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
-                       // this is graduate school*********
+                      // this is graduate school*********
                     }}>
                     仕事
                   </Text>
@@ -571,6 +627,7 @@ class Happy extends Component {
                   <TextInput
                     style={{
                       // alignSelf: 'center',
+                      width: windowWidth / 1.2,
                       height: 35,
                       margin: 0,
                       borderWidth: 1,
@@ -579,7 +636,6 @@ class Happy extends Component {
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      width: 361,
                       color: 'black',
                     }}
                   />
@@ -591,7 +647,6 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
-                     
                     }}>
                     会社
                   </Text>
@@ -612,6 +667,7 @@ class Happy extends Component {
                   <TextInput
                     style={{
                       // alignSelf: 'center',
+                      width: windowWidth / 1.2,
                       height: 35,
                       margin: 0,
                       borderWidth: 1,
@@ -620,7 +676,6 @@ class Happy extends Component {
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      width: 361,
                       color: 'black',
                     }}
                   />
@@ -632,7 +687,6 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
-                      
                     }}>
                     出身大学
                   </Text>
@@ -645,7 +699,7 @@ class Happy extends Component {
                 backgroundColor: 'white',
                 borderWidth: 1,
                 height: 40,
-                width: 360,
+                width: windowWidth / 1.2,
                 left: 25,
                 borderRadius: 1,
                 borderColor: '#cdd5d5',
@@ -665,17 +719,16 @@ class Happy extends Component {
                 color: 'black',
                 // this is graduate bloodtype*********
               }}>
-             血液型
+              血液型
             </Text>
             <View>
-          
               <TouchableOpacity
                 style={{
                   borderWidth: 1,
                   height: 50,
                   borderRadius: 4,
                   top: 20,
-                  width: 361,
+                  width: windowWidth / 1.2,
                   left: 25,
                   borderColor: '#cdd5d5',
                   alignItems: 'center',
@@ -704,25 +757,25 @@ class Happy extends Component {
                 />
               </Modal>
               <Text
-              style={{
-                bottom:78,
-                right: 148,
-                fontSize: 12,
-                backgroundColor: '#fff',
-                marginHorizontal: 177,
-                color: 'black',
-                // this is graduate bloodtype*********
-              }}>
-             生年月日
-            </Text>
+                style={{
+                  bottom: 78,
+                  right: 148,
+                  fontSize: 12,
+                  backgroundColor: '#fff',
+                  marginHorizontal: 177,
+                  color: 'black',
+                  // this is graduate bloodtype*********
+                }}>
+                生年月日
+              </Text>
             </View>
             <View
               style={{
                 borderWidth: 1,
                 height: 90,
                 borderRadius: 4,
-                top: 20,
-                width: 361,
+                top: 0,
+                width: windowWidth / 1.2,
                 left: 25,
                 borderColor: '#cdd5d5',
                 alignItems: 'center',
@@ -747,7 +800,7 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom:78,
+                bottom: 78,
                 right: 148,
                 fontSize: 12,
                 backgroundColor: '#fff',
@@ -755,7 +808,335 @@ class Happy extends Component {
                 color: 'black',
                 // this is graduate bloodtype*********
               }}>
-             恋愛対象
+              恋愛対象
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                height: 90,
+                borderRadius: 4,
+                top: 20,
+                width: windowWidth / 1.2,
+                left: 25,
+                borderColor: '#cdd5d5',
+                alignItems: 'center',
+              }}>
+              <RadioForm
+                radio_props={second}
+                initial={0}
+                onPress={value => {
+                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                }}
+                buttonSize={10}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 12, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30,left:13}}
+              />
+            </View>
+            <Text
+              style={{
+                bottom: 78,
+                right: 148,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 177,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+              タバコ
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                height: 90,
+                borderRadius: 4,
+                top: 20,
+                width: windowWidth / 1.2,
+                left: 25,
+                borderColor: '#cdd5d5',
+                alignItems: 'center',
+              }}>
+              <RadioForm
+                radio_props={third}
+                initial={0}
+                onPress={value => {
+                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                }}
+                buttonSize={10}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 12, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30,left:13}}
+              />
+            </View>
+            <Text
+              style={{
+                bottom: 78,
+                right: 148,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 177,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+             飲酒
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                height: 90,
+                borderRadius: 4,
+                top: 20,
+                width: windowWidth / 1.2,
+                left: 25,
+                borderColor: '#cdd5d5',
+                alignItems: 'center',
+              }}>
+              <RadioForm
+                radio_props={fourth}
+                initial={0}
+                onPress={value => {
+                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                }}
+                buttonSize={10}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30}}
+              />
+            </View>
+            <Text
+              style={{
+                bottom: 78,
+                right: 148,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 177,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+             結婚歴
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                height: 90,
+                borderRadius: 4,
+                top: 20,
+                width: windowWidth / 1.2,
+                left: 25,
+                borderColor: '#cdd5d5',
+                alignItems: 'center',
+              }}>
+              <RadioForm
+                radio_props={fifth}
+                initial={0}
+                onPress={value => {
+                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                }}
+                buttonSize={10}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30}}
+              />
+            </View>
+            <Text
+              style={{
+                bottom: 78,
+                right: 139,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 167,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+              子どもの有無
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                height: 90,
+                borderRadius: 4,
+                top: 20,
+                width: windowWidth / 1.2,
+                left: 25,
+                borderColor: '#cdd5d5',
+                alignItems: 'center',
+              }}>
+              <RadioForm
+                radio_props={sixth}
+                initial={0}
+                onPress={value => {
+                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                }}
+                buttonSize={10}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30}}
+              />
+            </View>
+            <Text
+              style={{
+                bottom: 78,
+                right: 148,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 177,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+              結婚願望
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                height: 90,
+                borderRadius: 4,
+                top: 20,
+                width: windowWidth / 1.2,
+                left: 25,
+                borderColor: '#cdd5d5',
+                alignItems: 'center',
+              }}>
+              <RadioForm
+                radio_props={seventh}
+                initial={0}
+                onPress={value => {
+                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                }}
+                buttonSize={10}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30}}
+              />
+            </View>
+            <Text
+              style={{
+                bottom: 78,
+                right: 142,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 170,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+             子ども好き
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                height: 90,
+                borderRadius: 4,
+                top: 20,
+                width: windowWidth / 1.2,
+                left: 25,
+                borderColor: '#cdd5d5',
+                alignItems: 'center',
+              }}>
+              <RadioForm
+                radio_props={Pets}
+                initial={0}
+                onPress={value => {
+                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                }}
+                buttonSize={10}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30}}
+              />
+            </View>
+            <Text
+              style={{
+                bottom: 78,
+                right: 138,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 168,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+             ペットの有無
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                height: 90,
+                borderRadius: 4,
+                top: 20,
+                width: windowWidth / 1.2,
+                left: 25,
+                borderColor: '#cdd5d5',
+                alignItems: 'center',
+              }}>
+              <RadioForm
+                radio_props={holiday}
+                initial={0}
+                onPress={value => {
+                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                }}
+                buttonSize={10}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30}}
+              />
+            </View>
+            <Text
+              style={{
+                bottom: 78,
+                right: 155,
+                fontSize: 12,
+                backgroundColor: '#fff',
+                marginHorizontal: 185,
+                color: 'black',
+                // this is graduate bloodtype*********
+              }}>
+              休日
             </Text>
           </View>
         </ScrollView>

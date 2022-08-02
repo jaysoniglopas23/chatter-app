@@ -340,6 +340,7 @@ class CoinScreen extends Component {
         self.setState({
           res: res,
         });
+        // alert(JSON.stringify(res));
         this.getCoins();
       });
     });
@@ -560,7 +561,7 @@ class CoinScreen extends Component {
             style={{
               width: windowWidth - 31,
               marginLeft: 5,
-              paddingTop: windowHeight - 900,
+              paddingTop: windowHeight - 800,
               backgroundColor: '#fff',
               borderRadius: 3,
             }}
