@@ -477,6 +477,6 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     color: 'black',
     position: 'absolute',
-    width: windowWidth / 5,
+    width: windowWidth / 2,
   },
 });

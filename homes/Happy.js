@@ -311,7 +311,6 @@ class Happy extends Component {
       {label: 'アウトドア', value: 1},
     ];
 
-
     let Bloodtype = [{value: 'A'}, {value: 'B'}, {value: 'O'}, {value: 'AB'}];
     return (
       <View style={{backgroundColor: '#fff', height: '85%'}}>
@@ -836,7 +835,7 @@ class Happy extends Component {
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
-                style={{top: 30,left:13}}
+                style={{top: 30, left: 13}}
               />
             </View>
             <Text
@@ -877,7 +876,7 @@ class Happy extends Component {
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
-                style={{top: 30,left:13}}
+                style={{top: 30, left: 13}}
               />
             </View>
             <Text
@@ -890,7 +889,7 @@ class Happy extends Component {
                 color: 'black',
                 // this is graduate bloodtype*********
               }}>
-             飲酒
+              飲酒
             </Text>
             <View
               style={{
@@ -931,7 +930,7 @@ class Happy extends Component {
                 color: 'black',
                 // this is graduate bloodtype*********
               }}>
-             結婚歴
+              結婚歴
             </Text>
             <View
               style={{
@@ -1054,7 +1053,7 @@ class Happy extends Component {
                 color: 'black',
                 // this is graduate bloodtype*********
               }}>
-             子ども好き
+              子ども好き
             </Text>
             <View
               style={{
@@ -1095,7 +1094,7 @@ class Happy extends Component {
                 color: 'black',
                 // this is graduate bloodtype*********
               }}>
-             ペットの有無
+              ペットの有無
             </Text>
             <View
               style={{
@@ -1141,7 +1140,13 @@ class Happy extends Component {
           </View>
         </ScrollView>
         {/* Back Button */}
-        <View style={{backgroundColor: 'white', height: 50}}>
+        <View
+          style={{
+            backgroundColor: 'white',
+            height: '10%',
+            width: '100%',
+            bottom: windowHeight / 9,
+          }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
             style={{
@@ -1176,12 +1181,12 @@ class Happy extends Component {
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
               height: 31,
-              left: 140,
+              left: windowWidth / 3.4,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 370,
+              bottom: windowHeight / 2 - 374,
             }}
             onPress={() => this.save()}>
             <Image
