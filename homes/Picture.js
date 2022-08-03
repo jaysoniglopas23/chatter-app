@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity, Image,Dimensions} from 'react-native';
+import {Text, View, TouchableOpacity, Image, Dimensions} from 'react-native';
 import Svg, {G, Path} from 'react-native-svg';
 
 const windowWidth = Dimensions.get('window').width;
@@ -38,7 +38,7 @@ class Picture extends Component {
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 428,
+              bottom: windowHeight / 2 - 458,
             }}>
             <Svg
               style={{width: 20, height: 30}}
