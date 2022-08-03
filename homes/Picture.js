@@ -27,7 +27,7 @@ class Picture extends Component {
           style={{
             height: windowHeight / 13,
             width: '100%',
-            top: windowHeight / 1 - 290,
+            top: windowHeight / 2 - 10,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
@@ -38,7 +38,7 @@ class Picture extends Component {
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 458,
+              bottom: windowHeight / 2 - 548,
             }}>
             <Svg
               style={{width: 20, height: 30}}
