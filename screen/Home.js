@@ -463,7 +463,6 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   txtview: {
-    flex: 1,
     flexDirection: 'row',
     marginLeft: 20,
     left: windowWidth / 2.5,
@@ -472,7 +471,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   nickname: {
-    flex: 1,
     alignSelf: 'center',
     right: 370,
     top: 0,
