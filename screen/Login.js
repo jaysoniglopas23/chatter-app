@@ -316,7 +316,7 @@ class Login extends Component {
               backgroundColor: '#fff',
               fontSize: 10,
               fontFamily: 'SemiBold',
-              right: 242,
+              right: windowWidth / 1.5,
               bottom: 25,
             }}>
             メールアドレス
