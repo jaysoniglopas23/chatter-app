@@ -214,7 +214,7 @@ class Card extends Component {
           style={{
             width: '100%',
             height: windowHeight / 13,
-            bottom: windowHeight / 2 - 665,
+            top: windowHeight / 2 - 178,
             // flex: 1,
             backgroundColor: 'black',
           }}>
