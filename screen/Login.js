@@ -308,7 +308,7 @@ class Login extends Component {
               backgroundColor: '#fff',
               fontSize: 10,
               fontFamily: 'SemiBold',
-              right: 195,
+              right: windowWidth / 1.8,
               bottom: 24,
             }}>
             メールアドレス
@@ -454,11 +454,13 @@ class Login extends Component {
             marginHorizontal: 60,
             alignItems: 'center',
             justifyContent: 'center',
-            marginTop: 250,
+            marginTop: 50,
             paddingVertical: 3,
             borderRadius: 0,
             opacity: 0.9,
             bottom: 260,
+            height: 1000,
+            width: 1000,
           }}>
           <Icon.Button
             backgroundColor="#3b5998"
