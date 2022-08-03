@@ -48,10 +48,9 @@ class Card extends Component {
     this.goSave = this.goSave.bind(this);
   }
 
-  goBack(){
+  goBack() {
     this.props.navigationRef.current?.navigate('Dashboard');
   }
-
 
   goSave() {
     let self = this;
@@ -207,7 +206,7 @@ class Card extends Component {
 
         <View
           style={{
-            width: windowWidth,
+            width: '100%',
             height: windowHeight,
             bottom: 300,
             flex: 1,
@@ -216,7 +215,7 @@ class Card extends Component {
             style={{
               marginTop: windowHeight - 190,
               height: 150,
-              width: windowWidth,
+              width: '100%',
               backgroundColor: '#FFF',
               borderRadius: 15,
             }}>
@@ -225,7 +224,7 @@ class Card extends Component {
                 width: 110,
                 height: 30,
                 backgroundColor: '#ececec',
-                marginTop: 25,
+                marginTop: 47,
                 marginLeft: windowWidth / 2 - 10,
                 borderRadius: 3,
                 bottom: windowHeight / 2 - 260,
