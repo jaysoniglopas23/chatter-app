@@ -292,12 +292,12 @@ class DisplayAnImage extends Component {
               style={{
                 alignSelf: 'center',
                 top: 22,
-                right: 149,
+                right: windowWidth,
                 fontWeight: 'bold',
                 color: 'black',
                 fontSize: 17,
                 position: 'absolute',
-                width: windowWidth / 5,
+                width: windowWidth / 4.5,
               }}>
               通話 : {this.state.mail_count}分
             </Text>
@@ -305,12 +305,12 @@ class DisplayAnImage extends Component {
               style={{
                 alignSelf: 'center',
                 top: 42,
-                right: 137,
+                right: 350,
                 fontWeight: 'bold',
                 color: 'black',
                 position: 'absolute',
                 fontSize: 17,
-                width: windowWidth / 4.3,
+                width: windowWidth / 3.9,
               }}>
               メール : {this.state.call_minutes}通
             </Text>
@@ -466,14 +466,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     marginLeft: 20,
-    left: 300,
+    left: windowWidth / 2.5,
     top: 10,
+    width: '100%',
     position: 'absolute',
   },
   nickname: {
     flex: 1,
     alignSelf: 'center',
-    right: 148,
+    right: 370,
     top: 0,
     fontSize: 20,
     fontWeight: 'bold',
