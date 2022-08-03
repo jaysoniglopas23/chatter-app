@@ -247,7 +247,7 @@ class Chat extends Component {
 
     global.mail_count = global.mail_count - 1;
 
-    alert(global.mail_count);
+    // alert(global.mail_count);
 
     global.socket.on('emit-send-message-from', function (ret) {
       global.socket.off('emit-send-message-from');
@@ -369,7 +369,7 @@ class Chat extends Component {
 
         global.user_id = self.state.msg_from;
 
-        alert(global.user_id);
+        // alert(global.user_id);
 
         global.socket.emit('on-messages', params);
         // console.log(params);

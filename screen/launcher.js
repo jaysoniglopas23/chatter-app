@@ -194,7 +194,7 @@ class Launcher extends Component {
                       };
 
                       global.socket.emit('user-connected', params);
-                      alert(jsonData);
+                      // alert(jsonData);
 
                       self.props.navigationRef.current?.navigate('Login');
                     },
