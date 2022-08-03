@@ -54,7 +54,7 @@ class Login extends Component {
       registerButton: '',
       forgotPasswordButton: '',
       messageTwo: '',
-      email: 'oneone@gmail.com',
+      email: '',
       password: 'asasin123',
       loginginOpacity: 0,
       id: '',
@@ -288,17 +288,25 @@ class Login extends Component {
             marginHorizontal: 60,
             borderWidth: 0,
             marginTop: -580,
+            width: '100%',
             paddingHorizontal: 10,
-            backgroundColor: '#fff',
+            // backgroundColor: '#fff',
             // opacity: 0.9,
-            borderRadius: 5,
+
             paddingVertical: 0,
           }}>
           <TextInput
             // placeholder="testing5@gmail.com"
             placeholderTextColor="#000000"
             placeholder={this.state.emailPlaceHolder}
-            style={{paddingHorizontal: 10}}
+            style={{
+              alignItems: 'center',
+              marginHorizontal: 0,
+              width: '70%',
+              backgroundColor: '#fff',
+              borderRadius: 5,
+              right: 10,
+            }}
             onChangeText={email => this.setState({email: email})}
             value={this.state.email}
           />
@@ -308,8 +316,8 @@ class Login extends Component {
               backgroundColor: '#fff',
               fontSize: 10,
               fontFamily: 'SemiBold',
-              right: windowWidth / 1.8,
-              bottom: 24,
+              right: 242,
+              bottom: 25,
             }}>
             メールアドレス
           </Text>
@@ -408,7 +416,7 @@ class Login extends Component {
             新しいユーザー
           </Text>
         </TouchableOpacity>
-        <View style={{height: '100%', width: '100%', bottom: 15}}>
+        <View style={{flex: 1}}>
           <View
             style={{
               flexDirection: 'row',
@@ -420,9 +428,8 @@ class Login extends Component {
               paddingVertical: 0,
               left: 65,
               // bottom: 382,
-              width: '100%',
-              top: windowWidth / 2 - 565,
-              height: 20,
+              top: windowWidth / 2 - 580,
+              height: '100%',
             }}></View>
           <View
             style={{
@@ -434,9 +441,8 @@ class Login extends Component {
               borderRadius: 0,
               paddingVertical: 3,
               left: 65,
-              top: windowWidth / 2 - 573,
+              top: windowWidth / 2 - 585,
               height: 20,
-              width: '100%',
             }}>
             <Text
               style={{
@@ -454,13 +460,11 @@ class Login extends Component {
             marginHorizontal: 60,
             alignItems: 'center',
             justifyContent: 'center',
-            marginTop: 50,
+            marginTop: 250,
             paddingVertical: 3,
             borderRadius: 0,
             opacity: 0.9,
             bottom: 260,
-            height: 1000,
-            width: 1000,
           }}>
           <Icon.Button
             backgroundColor="#3b5998"
