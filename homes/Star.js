@@ -160,7 +160,7 @@ class Star extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height:"90%"}}>
+      <View style={{backgroundColor: '#fff', height:"90%",width:'100%'}}>
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
@@ -193,14 +193,13 @@ class Star extends Component {
           onPress={() => this.goBack()}
           style={{
             backgroundColor: '#ECECEC',
-            marginHorizontal: 170,
             height: 31,
-            right: 150,
+            left: windowWidth/17,
             marginBottom: 30,
             flexDirection: 'row',
             width: 50,
             borderRadius: 2,
-            bottom: windowHeight / 2 - 400,
+            bottom: windowHeight / 2 - 378,
           }}>
           <Svg
             style={{width: 20, height: 30}}
