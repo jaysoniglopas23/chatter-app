@@ -1149,13 +1149,12 @@ class Happy extends Component {
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
-              marginHorizontal: 170,
-              height: windowHeight / 23,
-              right: 150,
+              height: windowHeight / 26,
+              left: windowWidth/16,
               flexDirection: 'row',
-              width: '16%',
+              width: windowWidth / 8,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 355,
+              bottom: windowHeight / 2 - 430,
             }}>
             <Svg
               style={{width: 20, height: 30}}
