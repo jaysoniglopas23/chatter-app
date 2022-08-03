@@ -321,7 +321,7 @@ class DisplayAnImage extends Component {
               flexDirection: 'row',
               justifyContent: 'flex-end',
               marginTop: 35,
-              marginLeft: 250,
+              marginLeft: windowWidth / 1.4,
               position: 'absolute',
             }}>
             <Image
@@ -345,7 +345,7 @@ class DisplayAnImage extends Component {
               flexDirection: 'row',
               justifyContent: 'flex-end',
               marginTop: 35,
-              marginLeft: windowWidth / 2.2,
+              marginLeft: windowWidth / 2.1,
               position: 'absolute',
             }}>
             <Image
