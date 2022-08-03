@@ -213,8 +213,8 @@ class Card extends Component {
         <View
           style={{
             width: '100%',
-            height: windowHeight / 27,
-            top: windowHeight / 2 - 175,
+            height: windowHeight / 13,
+            top: windowHeight / 2 - 228,
             // flex: 1,
             backgroundColor: 'black',
           }}>
