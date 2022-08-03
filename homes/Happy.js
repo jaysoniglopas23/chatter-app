@@ -1176,10 +1176,10 @@ class Happy extends Component {
           <TouchableOpacity
             style={{
               backgroundColor: '#ECECEC',
-              height: windowHeight / 2 -390,
+              height: windowHeight / 2 - 322,
               left: windowWidth / 1.3,
               flexDirection: 'row',
-              width: windowWidth / 5 - 20,
+              width: windowWidth / 5 - 5,
               borderRadius: 2,
               bottom: windowHeight / 2 - 397,
             }}
