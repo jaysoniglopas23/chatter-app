@@ -317,7 +317,7 @@ class Login extends Component {
               fontSize: 10,
               fontFamily: 'SemiBold',
               right: windowWidth / 1.5,
-              bottom: 25,
+              bottom: 22,
             }}>
             メールアドレス
           </Text>
@@ -329,8 +329,8 @@ class Login extends Component {
             marginHorizontal: 60,
             borderWidth: 0,
             marginTop: 30,
+            width: '100%',
             paddingHorizontal: 10,
-            backgroundColor: '#fff',
             // opacity: 0.9,
             borderRadius: 5,
             paddingVertical: 0,
@@ -338,10 +338,27 @@ class Login extends Component {
           <TextInput
             secureTextEntry={true}
             placeholderTextColor="#000000"
-            style={{paddingHorizontal: 10}}
+            style={{
+              paddingHorizontal: 10,
+              backgroundColor: '#fff',
+              width: '70%',
+              borderRadius: 5,
+              right: 10,
+            }}
             onChangeText={password => this.setState({password: password})}
             value={this.state.password}
           />
+          <Text
+            style={{
+              color: 'black',
+              backgroundColor: 'white',
+              fontSize: 9,
+              fontFamily: 'SemiBold',
+              right: windowWidth / 1.5,
+              bottom: 22,
+            }}>
+            パスワード
+          </Text>
         </View>
 
         <ActivityIndicator
@@ -416,45 +433,7 @@ class Login extends Component {
             新しいユーザー
           </Text>
         </TouchableOpacity>
-        <View style={{flex: 1}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              borderWidth: 0,
-              marginTop: 1,
-              // opacity: 0.9,
-              borderRadius: 0,
-              paddingVertical: 0,
-              left: 65,
-              // bottom: 382,
-              top: windowWidth / 2 - 580,
-              height: '100%',
-            }}></View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              borderWidth: 0,
-              marginTop: 65,
-              // opacity: 0.9,
-              borderRadius: 0,
-              paddingVertical: 3,
-              left: 65,
-              top: windowWidth / 2 - 585,
-              height: 20,
-            }}>
-            <Text
-              style={{
-                color: 'black',
-                backgroundColor: 'white',
-                fontSize: 9,
-                fontFamily: 'SemiBold',
-              }}>
-              パスワード
-            </Text>
-          </View>
-        </View>
+
         <View
           style={{
             marginHorizontal: 60,
