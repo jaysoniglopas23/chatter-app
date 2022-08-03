@@ -1150,12 +1150,12 @@ class Happy extends Component {
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
-              height: windowHeight / 26,
+              height: windowHeight / 24,
               left: windowWidth / 16,
               flexDirection: 'row',
-              width: windowWidth / 8,
+              width: windowWidth / 7,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 430,
+              bottom: windowHeight / 2 - 428,
             }}>
             <Svg
               style={{width: 20, height: 30}}
@@ -1176,12 +1176,12 @@ class Happy extends Component {
           <TouchableOpacity
             style={{
               backgroundColor: '#ECECEC',
-              height: windowHeight / 26,
+              height: windowHeight / 23,
               left: windowWidth / 1.3,
               flexDirection: 'row',
-              width: windowWidth / 6,
+              width: windowWidth / 5,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 397,
+              bottom: windowHeight / 2 - 400,
             }}
             onPress={() => this.save()}>
             <Image
