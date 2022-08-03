@@ -291,8 +291,8 @@ class DisplayAnImage extends Component {
             <Text
               style={{
                 alignSelf: 'center',
-                top: 22,
-                right: windowWidth,
+                top: 26,
+                right: 360,
                 fontWeight: 'bold',
                 color: 'black',
                 fontSize: 17,
@@ -304,7 +304,7 @@ class DisplayAnImage extends Component {
             <Text
               style={{
                 alignSelf: 'center',
-                top: 42,
+                top: 46,
                 right: 350,
                 fontWeight: 'bold',
                 color: 'black',
