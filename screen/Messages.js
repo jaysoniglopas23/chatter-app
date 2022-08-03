@@ -59,7 +59,7 @@ class Messages extends Component {
           style={{
             height: '180%',
             width: '105%',
-            borderWidth: 10,
+            // borderWidth: 10,
             borderColor: '#FAEA48',
             borderBottomWidth: 0,
           }}>

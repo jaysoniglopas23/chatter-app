@@ -550,8 +550,9 @@ class Post extends Component {
         style={{
           backgroundColor: '#fff',
           height: '100%',
-          flex: 1,
-          borderWidth: 10,
+          width:"100%",
+          // flex: 1,
+          // borderWidth: 10,
           borderColor: '#FAEA48',
           borderBottomWidth: 0,
         }}>
@@ -609,6 +610,7 @@ class Post extends Component {
           data={this.state.posts}
           extraData={this.state.refresh}
           keyExtractor={item => item.id}
+          style={{width:windowWidth ,height:"100%",alignSelf:'center'}}
           renderItem={({item}) => (
             <Card>
               <UserInfo>

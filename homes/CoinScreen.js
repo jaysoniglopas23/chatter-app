@@ -480,7 +480,7 @@ class CoinScreen extends Component {
           flex: 1,
           flexDirection: 'column',
           height: windowHeight,
-          borderWidth: 10,
+ 
           borderColor: '#FAEA48',
         }}>
         <View
@@ -559,7 +559,7 @@ class CoinScreen extends Component {
             removeClippedSubviews={true}
             extraData={this.state.refresh}
             style={{
-              width: windowWidth - 31,
+              width: '100%',
               marginLeft: 5,
               paddingTop: windowHeight - 800,
               backgroundColor: '#fff',

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import {
   Container,
@@ -23,6 +24,9 @@ import Tabs from '../navigation/tabs';
 import Chat from './Chat';
 import {Message} from 'react-native-gifted-chat';
 
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
 class MessagesScrean extends Component {
@@ -202,6 +206,7 @@ class MessagesScrean extends Component {
       <Container>
         <FlatList
           data={this.state.ret}
+          style={{width:windowWidth-40 ,height:"100%",alignSelf:'center'}}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <Card

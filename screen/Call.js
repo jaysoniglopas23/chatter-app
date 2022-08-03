@@ -411,7 +411,7 @@ export default class Call extends Component {
           backgroundColor: '#fff',
           height: '100%',
           flex: 1,
-          borderWidth: 10,
+          // borderWidth: 10,
           borderColor: '#FAEA48',
           borderBottomWidth: 0,
         }}>
