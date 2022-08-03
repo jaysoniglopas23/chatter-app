@@ -25,7 +25,7 @@ class Picture extends Component {
 
         <View
           style={{
-            height: windowHeight / 13,
+            height: windowHeight ,
             width: '100%',
             top: windowHeight / 1 - 290,
           }}>
