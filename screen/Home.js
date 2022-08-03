@@ -290,9 +290,8 @@ class DisplayAnImage extends Component {
             </Text> */}
             <Text
               style={{
-                alignSelf: 'center',
                 top: 26,
-                right: 360,
+                left:windowWidth/10 - 121,
                 fontWeight: 'bold',
                 color: 'black',
                 fontSize: 17,
@@ -305,7 +304,7 @@ class DisplayAnImage extends Component {
               style={{
                 alignSelf: 'center',
                 top: 46,
-                right: 350,
+                left:windowWidth/10 - 121,
                 fontWeight: 'bold',
                 color: 'black',
                 position: 'absolute',
@@ -472,7 +471,7 @@ const styles = StyleSheet.create({
   },
   nickname: {
     alignSelf: 'center',
-    right: 370,
+    right: windowWidth,
     top: 0,
     fontSize: 20,
     fontWeight: 'bold',
