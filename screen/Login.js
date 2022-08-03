@@ -343,7 +343,7 @@ class Login extends Component {
               backgroundColor: '#fff',
               width: '70%',
               borderRadius: 5,
-              right: 10,
+              right: windowWidth / 39,
             }}
             onChangeText={password => this.setState({password: password})}
             value={this.state.password}
