@@ -302,6 +302,17 @@ class Login extends Component {
             onChangeText={email => this.setState({email: email})}
             value={this.state.email}
           />
+          <Text
+            style={{
+              color: 'black',
+              backgroundColor: '#fff',
+              fontSize: 10,
+              fontFamily: 'SemiBold',
+              right: 195,
+              bottom: 24,
+            }}>
+            メールアドレス
+          </Text>
         </View>
         <View
           style={{
@@ -397,7 +408,7 @@ class Login extends Component {
             新しいユーザー
           </Text>
         </TouchableOpacity>
-        <View style={{flex: 1}}>
+        <View style={{height: '100%', width: '100%', bottom: 15}}>
           <View
             style={{
               flexDirection: 'row',
@@ -409,19 +420,10 @@ class Login extends Component {
               paddingVertical: 0,
               left: 65,
               // bottom: 382,
-              top: windowWidth / 2 - 580,
-              height: 18,
-            }}>
-            <Text
-              style={{
-                color: 'black',
-                backgroundColor: '#fff',
-                fontSize: 10,
-                fontFamily: 'SemiBold',
-              }}>
-              メールアドレス
-            </Text>
-          </View>
+              width: '100%',
+              top: windowWidth / 2 - 565,
+              height: 20,
+            }}></View>
           <View
             style={{
               flexDirection: 'row',
@@ -432,8 +434,9 @@ class Login extends Component {
               borderRadius: 0,
               paddingVertical: 3,
               left: 65,
-              top: windowWidth / 2 - 585,
+              top: windowWidth / 2 - 573,
               height: 20,
+              width: '100%',
             }}>
             <Text
               style={{
