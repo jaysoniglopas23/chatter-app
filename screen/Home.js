@@ -291,7 +291,7 @@ class DisplayAnImage extends Component {
             <Text
               style={{
                 top: 26,
-                left:windowWidth/10 - 121,
+                left: windowWidth / 10 - 121,
                 fontWeight: 'bold',
                 color: 'black',
                 fontSize: 17,
@@ -304,7 +304,7 @@ class DisplayAnImage extends Component {
               style={{
                 alignSelf: 'center',
                 top: 46,
-                left:windowWidth/10 - 121,
+                left: windowWidth / 10 - 121,
                 fontWeight: 'bold',
                 color: 'black',
                 position: 'absolute',
@@ -330,7 +330,7 @@ class DisplayAnImage extends Component {
                 width: 40,
                 height: 40,
                 marginRight: windowWidth / 11,
-                right: 130,
+                right: windowWidth / 2.9,
                 resizeMode: 'contain',
                 position: 'absolute',
               }}
@@ -470,8 +470,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   nickname: {
-    alignSelf: 'center',
-    right: windowWidth,
+    left: windowWidth / 10 - 121,
     top: 0,
     fontSize: 20,
     fontWeight: 'bold',
