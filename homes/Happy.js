@@ -1142,7 +1142,7 @@ class Happy extends Component {
         {/* Back Button */}
         <View
           style={{
-            height: '10%',
+            height: windowHeight / 13,
             width: '100%',
           }}>
           <TouchableOpacity
@@ -1182,7 +1182,7 @@ class Happy extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 294,
+              bottom: windowHeight / 2 - 324,
             }}
             onPress={() => this.save()}>
             <Image
