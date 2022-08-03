@@ -1150,9 +1150,8 @@ class Happy extends Component {
             style={{
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
-              height: 31,
+              height: windowHeight / 23,
               right: 150,
-              marginBottom: 30,
               flexDirection: 'row',
               width: '16%',
               borderRadius: 2,
@@ -1178,9 +1177,8 @@ class Happy extends Component {
             style={{
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
-              height: 31,
+              height: windowHeight / 23,
               left: windowWidth / 3.4,
-              marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
