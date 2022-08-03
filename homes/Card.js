@@ -182,8 +182,8 @@ class Card extends Component {
       <View
         style={{
           backgroundColor: '#fff',
-          height: '100%',
-          flex: 1,
+          height: '85%',
+          // flex: 1,
           width: '100%',
         }}>
         {this.state.hasProfilePhoto ? (
