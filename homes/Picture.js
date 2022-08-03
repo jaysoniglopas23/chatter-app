@@ -27,7 +27,7 @@ class Picture extends Component {
           style={{
             height: windowHeight / 13,
             width: '100%',
-            top: windowHeight / 1.5 - 20,
+            top: windowHeight / 1 - 290,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
