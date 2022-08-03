@@ -313,7 +313,7 @@ class Happy extends Component {
 
     let Bloodtype = [{value: 'A'}, {value: 'B'}, {value: 'O'}, {value: 'AB'}];
     return (
-      <View style={{backgroundColor: '#fff', height: '85%',width:'100%'}}>
+      <View style={{backgroundColor: '#fff', height: '85%', width: '100%'}}>
         <ScrollView>
           <View style={{marginBottom: 50}}>
             <View style={styles.container}>
@@ -1144,14 +1144,14 @@ class Happy extends Component {
           style={{
             height: windowHeight / 13,
             width: '100%',
-
+            top: windowHeight / 2 - 420,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
               height: windowHeight / 26,
-              left: windowWidth/16,
+              left: windowWidth / 16,
               flexDirection: 'row',
               width: windowWidth / 8,
               borderRadius: 2,
