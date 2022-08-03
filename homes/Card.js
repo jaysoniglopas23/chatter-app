@@ -179,7 +179,13 @@ class Card extends Component {
   render() {
     let {photo} = this.state;
     return (
-      <View style={{backgroundColor: '#fff', height:'100%', flex: 1,width:"100%"}}>
+      <View
+        style={{
+          backgroundColor: '#fff',
+          height: '100%',
+          flex: 1,
+          width: '100%',
+        }}>
         {this.state.hasProfilePhoto ? (
           <Image
             source={{uri: this.state.profilePhoto}}
@@ -207,20 +213,20 @@ class Card extends Component {
         <View
           style={{
             width: '100%',
-            height: "100%",
-            top: windowHeight /2 - 650,
+            height: windowHeight,
+            top: windowHeight / 2 - 250,
             // flex: 1,
-            // backgroundColor:'black'
+            backgroundColor: 'black',
           }}>
           <TouchableOpacity
             style={{
               width: 110,
               height: 30,
               backgroundColor: '#ececec',
-            
+
               marginLeft: windowWidth / 2 - 10,
               borderRadius: 3,
-              bottom: windowHeight / 2 -848,
+              bottom: windowHeight / 2 - 488,
             }}
             onPress={() => this.openPhotoAlbum()}>
             <Svg
@@ -260,7 +266,7 @@ class Card extends Component {
               marginTop: 25,
               left: 315,
               borderRadius: 3,
-              bottom: windowHeight / 2 - 793,
+              bottom: windowHeight / 2 - 432,
             }}>
             <Svg
               style={{width: 20, height: 20, left: 10, top: 3}}
@@ -302,7 +308,7 @@ class Card extends Component {
               flexDirection: 'row',
               width: 50,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 760,
+              bottom: windowHeight / 2 - 408,
             }}>
             <Svg
               style={{width: 20, height: 30}}
