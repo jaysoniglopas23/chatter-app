@@ -327,8 +327,8 @@ class DisplayAnImage extends Component {
             <Image
               onPress={() => this.goSettings()}
               style={{
-                width: 40,
-                height: 40,
+                width: windowWidth / 7,
+                height: windowWidth / 9,
                 marginRight: windowWidth / 11,
                 right: windowWidth / 2.9,
                 resizeMode: 'contain',
@@ -351,8 +351,8 @@ class DisplayAnImage extends Component {
             <Image
               onPress={() => this.goCoin()}
               style={{
-                width: 40,
-                height: 40,
+                width: windowWidth / 9,
+                height: windowWidth / 9,
                 marginRight: 1,
                 right: 30,
                 resizeMode: 'contain',
