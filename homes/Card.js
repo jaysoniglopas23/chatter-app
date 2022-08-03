@@ -208,7 +208,7 @@ class Card extends Component {
           style={{
             width: '100%',
             height: windowHeight,
-            bottom: 300,
+            top: windowHeight / 2 - 700,
             flex: 1,
           }}>
           <TouchableOpacity
