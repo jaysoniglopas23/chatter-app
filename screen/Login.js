@@ -55,7 +55,7 @@ class Login extends Component {
       forgotPasswordButton: '',
       messageTwo: '',
       email: '',
-      password: 'asasin123',
+      password: '',
       loginginOpacity: 0,
       id: '',
       age: '',
@@ -80,8 +80,8 @@ class Login extends Component {
           registerButton: 'Sign Up',
           forgotPasswordButton: 'Forgot Password',
 
-          emailPlaceHolder: 'Please enter email address.',
-          passwordPlaceHolder: 'Please enter password.',
+          emailPlaceHolder: '',
+          passwordPlaceHolder: '',
           messageOne:
             'If you have already registered, please enter your email address and password to log in.',
           messageTwo: 'New to Goodlookin, Sign up here',
@@ -306,6 +306,7 @@ class Login extends Component {
               backgroundColor: '#fff',
               borderRadius: 5,
               right: 10,
+              color: 'black',
             }}
             onChangeText={email => this.setState({email: email})}
             value={this.state.email}
@@ -344,6 +345,7 @@ class Login extends Component {
               width: '70%',
               borderRadius: 5,
               right: windowWidth / 39,
+              color: 'black',
             }}
             onChangeText={password => this.setState({password: password})}
             value={this.state.password}
