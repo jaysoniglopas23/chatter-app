@@ -243,9 +243,10 @@ class DisplayAnImage extends Component {
           backgroundColor: '#fff',
           height: '180%',
           // flex: 1,
-          borderWidth: 10,
-          borderColor: '#FAEA48',
+          // borderWidth: 10,
+          // borderColor: '#FAEA48',
           borderBottomWidth: 0,
+          width: '100%',
         }}>
         <View style={styles.container}>
           <TouchableOpacity onPress={() => this.goPhoto()} style={{left: 2}}>
@@ -262,8 +263,8 @@ class DisplayAnImage extends Component {
                 position: 'absolute',
                 alignSelf: 'center',
                 top: 10,
-                width: 100,
-                height: 100,
+                width: windowWidth / 4,
+                height: windowWidth / 4,
                 borderRadius: 1,
                 right: 110,
               }}
@@ -441,7 +442,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     left: 20,
     // backgroundColor:'black',
-    height: 100,
+    height: '10%',
+    width: '100%',
   },
   avatar: {
     paddingTop: 10,

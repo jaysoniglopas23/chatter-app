@@ -120,7 +120,7 @@ const SeachStack = ({navigation}) => (
         // headerShown: false,
       })}
     />
-     <Stack.Screen
+    <Stack.Screen
       name="Call"
       component={Call}
       options={{
@@ -160,7 +160,7 @@ const Homestack = ({navigation}) => (
         headerShown: false,
       }}
     />
-        {/* <Stack.Screen
+    {/* <Stack.Screen
       name="Launcher"
       component={Launcher}
       options={{
@@ -174,7 +174,6 @@ const Homestack = ({navigation}) => (
         headerShown: false,
       }}
     /> */}
-    
   </Stack.Navigator>
 );
 
@@ -191,9 +190,7 @@ const Tabs = () => {
   };
 
   return (
-    <Tab.Navigator
-      tabBarOptions={{showLabel: false}}
-      screenOptions={{tabBarStyle: {borderWidth: 10, borderColor: '#FAEA48'}}}>
+    <Tab.Navigator tabBarOptions={{showLabel: false}} screenOptions={{}}>
       <Tab.Screen
         name="home"
         component={Homestack}
@@ -216,7 +213,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Chat" 
+        name="Chat"
         component={MessageStack}
         options={{
           headerShown: false,
