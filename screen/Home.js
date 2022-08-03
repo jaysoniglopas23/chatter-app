@@ -330,7 +330,7 @@ class DisplayAnImage extends Component {
               style={{
                 width: 40,
                 height: 40,
-                marginRight: 1,
+                marginRight: windowWidth / 11,
                 right: 130,
                 resizeMode: 'contain',
                 position: 'absolute',
@@ -346,7 +346,7 @@ class DisplayAnImage extends Component {
               flexDirection: 'row',
               justifyContent: 'flex-end',
               marginTop: 35,
-              marginLeft: 200,
+              marginLeft: windowWidth / 2.2,
               position: 'absolute',
             }}>
             <Image
