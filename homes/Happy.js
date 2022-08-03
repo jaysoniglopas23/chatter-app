@@ -1142,10 +1142,8 @@ class Happy extends Component {
         {/* Back Button */}
         <View
           style={{
-           
             height: '10%',
             width: '100%',
-            bottom: windowHeight / 9,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
@@ -1156,9 +1154,9 @@ class Happy extends Component {
               right: 150,
               marginBottom: 30,
               flexDirection: 'row',
-              width: 50,
+              width: '16%',
               borderRadius: 2,
-              bottom: windowHeight / 2 - 520,
+              bottom: windowHeight / 2 - 355,
             }}>
             <Svg
               style={{width: 20, height: 30}}
@@ -1186,7 +1184,7 @@ class Happy extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 460,
+              bottom: windowHeight / 2 - 294,
             }}
             onPress={() => this.save()}>
             <Image
