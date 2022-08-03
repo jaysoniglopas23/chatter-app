@@ -160,7 +160,7 @@ class Star extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height:"90%",width:'100%'}}>
+      <View style={{backgroundColor: '#fff', height: '90%', width: '100%'}}>
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
@@ -189,7 +189,7 @@ class Star extends Component {
           ListFooterComponent={this.renderFooter}
         />
 
-      <View
+        <View
           style={{
             height: windowHeight / 13,
             width: '100%',
@@ -222,7 +222,7 @@ class Star extends Component {
             </Svg>
             <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{
               backgroundColor: '#ECECEC',
               height: windowHeight / 25,
@@ -238,7 +238,7 @@ class Star extends Component {
               style={{left: 9, top: 5, height: 20, width: 20}}
             />
             <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     );

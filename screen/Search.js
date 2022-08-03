@@ -254,6 +254,7 @@ export default class Search extends Component {
               borderColor: 'black',
               width: 120,
               left: 160,
+              color:"black"
             }}
             onChangeText={this.handleSearch}
             value={this.state.query}

@@ -426,7 +426,7 @@ export default class Call extends Component {
             alignSelf: 'center',
           }}>
           <TextInput
-            style={{backgroundColor: '#fff', fontSize: 10}}
+            style={{backgroundColor: '#fff', fontSize: 10,color:'black'}}
             onChangeText={this.handleSearch}
             value={this.state.query}
           />

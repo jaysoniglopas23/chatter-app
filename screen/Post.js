@@ -565,7 +565,7 @@ class Post extends Component {
             borderColor: 'black',
           }}>
           <TextInput
-            style={{backgroundColor: '#fff'}}
+            style={{backgroundColor: '#fff',color:'black'}}
             onChangeText={this.handleSearch}
             value={this.state.query}
           />
