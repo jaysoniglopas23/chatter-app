@@ -9,12 +9,14 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Avatar} from 'react-native-elements';
 import Svg, {G, Path} from 'react-native-svg';
+import Modal from 'react-native-modal';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -28,6 +30,8 @@ class User extends Component {
     this.state = {
       id: '',
       details: '',
+
+      modalReportVisible: false,
     };
 
     this.getUser = this.getUser.bind(this);
@@ -171,6 +175,77 @@ class User extends Component {
     });
   }
 
+  closeReportModal() {
+    this.setState({
+      modalReportVisible: false,
+    });
+  }
+
+  inap() {
+    let self = this;
+
+    this.setState(
+      {
+        modalReportVisible: false,
+      },
+      () => {
+        let confrimMessage = '';
+
+        if (global.locale == 'en') {
+          confrimMessage = 'Report this user';
+        } else {
+          confrimMessage = 'このユーザーを報告';
+        }
+
+        self.setState({
+          modalConfirmVisible: true,
+          confirmMessage: confrimMessage,
+          reportType: 2,
+        });
+      },
+    );
+  }
+
+  spam() {
+    let self = this;
+
+    this.setState(
+      {
+        modalReportVisible: false,
+      },
+      () => {
+        let confrimMessage = '';
+
+        if (global.locale == 'en') {
+          confrimMessage = 'Report this user';
+        } else {
+          confrimMessage = 'このユーザーを報告';
+        }
+
+        self.setState({
+          modalConfirmVisible: true,
+          confirmMessage: confrimMessage,
+          reportType: 1,
+        });
+      },
+    );
+  }
+
+  report(id) {
+    let self = this;
+
+    this.setState(
+      {
+        modalVisible: false,
+      },
+      () => {
+        self.setState({
+          modalReportVisible: true,
+        });
+      },
+    );
+  }
+
   render() {
     return (
       <View style={{backgroundColor: '#fff', height: '100%', flex: 1}}>
@@ -203,6 +278,116 @@ class User extends Component {
           </Svg>
           {/* <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text> */}
         </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            left: 360,
+            marginTop: windowHeight / 10 - 120,
+            width: 50,
+            height: 30,
+          }}
+          onPress={() => this.report()}>
+          <Svg
+            style={{width: 20, height: 30}}
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fal"
+            data-icon="angle-left"
+            class="svg-inline--fa fa-angle-left fa-w-6"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512">
+            <Path
+              fill="black"
+              d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+            />
+          </Svg>
+        </TouchableOpacity>
+        <Modal
+          animationType="slide"
+          // transparent={true}
+          isVisible={this.state.modalReportVisible}
+          style={{bottom: 400, alignSelf: 'center'}}>
+          <View
+            style={{
+              width: windowWidth,
+              height: windowHeight - 180,
+              borderRadius: 30,
+              flexDirection: 'column',
+            }}>
+            <TouchableWithoutFeedback
+              style={{
+                width: windowWidth,
+                height: windowHeight - 290,
+              }}
+              onPress={() => this.closeReportModal()}>
+              <View
+                style={{
+                  width: '100%',
+                  height: windowHeight - 180,
+                }}></View>
+            </TouchableWithoutFeedback>
+
+            <View
+              style={{
+                width: windowWidth,
+                height: windowHeight,
+              }}>
+              <View
+                style={{
+                  height: 180,
+                  width: windowWidth,
+                  backgroundColor: '#f2f2f2',
+                  borderRadius: 15,
+                }}>
+                <TouchableOpacity
+                  style={{
+                    width: windowWidth - 20,
+                    height: 30,
+                    backgroundColor: '#fff',
+                    marginTop: 10,
+                    marginLeft: 10,
+                    borderRadius: 3,
+                  }}
+                  onPress={() => this.spam()}>
+                  <Text
+                    style={{
+                      width: '100%',
+                      height: 30,
+                      textAlign: 'center',
+                      lineHeight: 30,
+                      fontSize: 12,
+                      color: global.glTextColor,
+                    }}>
+                    {this.state.spamText}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={{
+                    width: windowWidth - 20,
+                    height: 30,
+                    backgroundColor: '#fff',
+                    marginTop: 10,
+                    marginLeft: 10,
+                    borderRadius: 3,
+                  }}
+                  onPress={() => this.inap()}>
+                  <Text
+                    style={{
+                      width: '100%',
+                      height: 30,
+                      textAlign: 'center',
+                      lineHeight: 30,
+                      fontSize: 12,
+                      color: global.glTextColor,
+                    }}>
+                    {this.state.inapText}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
         <Image
           source={{
             uri:
@@ -258,12 +443,13 @@ class User extends Component {
             </View>
           </ScrollView>
         </View>
+
         <View style={styles.Mview}>
           <TouchableOpacity
             onPress={() => this.goChat(id, name, lastmessage)}
             style={styles.button}>
             <Svg
-              style={{width: 16, height: 16, left: 10}}
+              style={{width: 15, height: 15, left: 7}}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512">
               <Path
@@ -272,6 +458,38 @@ class User extends Component {
               />
             </Svg>
             <Text style={styles.Mtxt}>メッセージを送信</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{left: 115, bottom: 30}}>
+          <TouchableOpacity
+            onPress={() => this.goChat(id, name, lastmessage)}
+            style={styles.button1}>
+            <Svg
+              style={{width: 16, height: 16, left: 10}}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512">
+              <Path
+                fill="grey"
+                d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM86.7 109.3C52.62 148.6 32 199.9 32 256C32 379.7 132.3 480 256 480C312.1 480 363.4 459.4 402.7 425.3L86.7 109.3zM480 256C480 132.3 379.7 32 256 32C199.9 32 148.6 52.62 109.3 86.7L425.3 402.7C459.4 363.4 480 312.1 480 255.1V256z"
+              />
+            </Svg>
+            <Text style={styles.Mtxt}>ブロック</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{right: 115, bottom: 60}}>
+          <TouchableOpacity
+            onPress={() => this.goChat(id, name, lastmessage)}
+            style={styles.button1}>
+            <Svg
+              style={{width: 16, height: 16, left: 10}}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512">
+              <Path
+                fill="grey"
+                d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 480c-123.5 0-224-100.5-224-224s100.5-224 224-224s224 100.5 224 224S379.5 480 256 480zM256 304c8.844 0 16-7.156 16-16V128c0-8.844-7.156-16-16-16S240 119.2 240 128v160C240 296.8 247.2 304 256 304zM256 344c-13.25 0-24 10.75-24 24s10.75 24 24 24s24-10.75 24-24S269.3 344 256 344z"
+              />
+            </Svg>
+            <Text style={styles.Mtxt}>レポート</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -297,7 +515,7 @@ const styles = StyleSheet.create({
 
   Mtxt: {
     bottom: 1,
-    left: 20,
+    left: 11,
     color: 'black',
   },
 
@@ -309,7 +527,18 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: '#cdd5d5',
     top: 50,
-    marginHorizontal: 140,
+    marginHorizontal: 145,
+  },
+
+  button1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 5,
+    borderWidth: 1,
+    height: 30,
+    borderColor: '#cdd5d5',
+    top: 50,
+    marginHorizontal: 165,
   },
 
   scrollview: {
@@ -345,14 +574,14 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width:windowHeight / 2 - 340,
+    width: windowHeight / 2 - 340,
   },
 
   email: {
     bottom: 11,
     left: 3,
     backgroundColor: '#fff',
-   width:windowHeight / 2 - 340,
+    width: windowHeight / 2 - 340,
     color: 'black',
   },
 
