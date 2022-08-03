@@ -189,11 +189,11 @@ class Star extends Component {
           ListFooterComponent={this.renderFooter}
         />
 
-<View
+      <View
           style={{
             height: windowHeight / 13,
             width: '100%',
-            top: windowHeight / 2 - 420,
+            top: windowHeight / 2 - 460,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
