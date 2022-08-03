@@ -1142,7 +1142,7 @@ class Happy extends Component {
         {/* Back Button */}
         <View
           style={{
-            backgroundColor: 'white',
+           
             height: '10%',
             width: '100%',
             bottom: windowHeight / 9,
@@ -1158,7 +1158,7 @@ class Happy extends Component {
               flexDirection: 'row',
               width: 50,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 435,
+              bottom: windowHeight / 2 - 520,
             }}>
             <Svg
               style={{width: 20, height: 30}}
@@ -1186,7 +1186,7 @@ class Happy extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 374,
+              bottom: windowHeight / 2 - 460,
             }}
             onPress={() => this.save()}>
             <Image
