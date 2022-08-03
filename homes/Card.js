@@ -228,7 +228,7 @@ class Card extends Component {
                 marginTop: 25,
                 marginLeft: windowWidth / 2 - 10,
                 borderRadius: 3,
-                bottom: windowHeight / 2 - 320,
+                bottom: windowHeight / 2 - 260,
               }}
               onPress={() => this.openPhotoAlbum()}>
               <Svg
@@ -268,7 +268,7 @@ class Card extends Component {
                 marginTop: 25,
                 left: 315,
                 borderRadius: 3,
-                bottom: windowHeight / 2 - 265,
+                bottom: windowHeight / 2 - 205,
               }}>
               <Svg
                 style={{width: 20, height: 20, left: 10, top: 3}}
@@ -311,7 +311,7 @@ class Card extends Component {
             flexDirection: 'row',
             width: 50,
             borderRadius: 2,
-            bottom: windowHeight / 2 - 325,
+            bottom: windowHeight / 2 - 305,
           }}>
           <Svg
             style={{width: 20, height: 30}}
