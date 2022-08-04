@@ -123,7 +123,7 @@ class Posttoboard extends Component {
 
     let postid = postid;
     let datetime = datetime;
-    let description = self.state.getDescription;
+    let description = self.state.description;
     let boardid = boardid;
     let fkboard = fkboard;
 
@@ -135,8 +135,8 @@ class Posttoboard extends Component {
       () => {
         global.socket.on('emit-post-save', function (ret) {
           global.socket.off('emit-post-save');
-          alert(JSON.stringify(ret));
-          console.log(JSON.stringify(ret));
+          // alert(JSON.stringify(ret));
+          // console.log(JSON.stringify(ret));
 
           self.setState({
             postid: ret.postid,
