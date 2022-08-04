@@ -555,7 +555,7 @@ class Post extends Component {
         <View
           style={{
             borderWidth: 1,
-            width: 280,
+            width: windowWidth / 1.4,
             height: 41,
             top: 12,
             left: 17,
@@ -567,13 +567,16 @@ class Post extends Component {
             value={this.state.query}
           />
         </View>
-        <View>
+        <View
+          style={{
+            width: "100%",
+          }}>
           <TouchableOpacity
             onPress={() => this.goPost()}
             style={{
-              width: 70,
+              width: windowWidth / 6,
               height: 33,
-              left: 310,
+              left: windowWidth - 75,
               bottom: 26,
               backgroundColor: '#ECECEC',
             }}>
@@ -592,9 +595,9 @@ class Post extends Component {
         <Text
           style={{
             fontSize: 10,
-            marginHorizontal: 169,
+           width:windowWidth/5,
             bottom: 68,
-            right: 147,
+            left:windowWidth/15,
             backgroundColor: '#fff',
             color: 'black',
           }}>
@@ -604,7 +607,7 @@ class Post extends Component {
         <StatusBar style="light-content" />
         <View
           style={{
-            width: "100%",
+            width: '100%',
             height: windowHeight,
             alignSelf: 'center',
           }}>
@@ -612,9 +615,18 @@ class Post extends Component {
             data={this.state.posts}
             extraData={this.state.refresh}
             keyExtractor={item => item.id}
-            style={{width: windowWidth , height: '100%', alignSelf: 'center',top:windowHeight/2-400}}
+            style={{
+              height: '100%',
+              alignSelf: 'center',
+              top: windowHeight / 2 - 400,
+            }}
             renderItem={({item}) => (
-              <View   style={{width:'100%' , height: windowHeight - 380, alignSelf: 'center'}}>
+              <View
+                style={{
+                  width: '100%',
+                  height: windowHeight - 380,
+                  alignSelf: 'center',
+                }}>
                 <UserInfo>
                   <UserImgWrapper onPress={() => this.goChat(item.userid)}>
                     <UserImg
