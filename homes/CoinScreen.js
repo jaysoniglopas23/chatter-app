@@ -564,6 +564,7 @@ class CoinScreen extends Component {
               paddingTop: windowHeight - 800,
               backgroundColor: '#fff',
               borderRadius: 3,
+              alignSelf:'center',
             }}
             viewabilityConfig={this.viewabilityConfig}
             data={this.state.res}
@@ -609,6 +610,7 @@ const CoinCell = ({item, self}) => (
       multiline={true}
       style={{
         height: 40,
+        width:windowWidth - 120,
         lineHeight: item.index == 7 ? 20 : 40,
         fontSize: 17,
         paddingLeft: 10,

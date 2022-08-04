@@ -550,11 +550,7 @@ class Post extends Component {
         style={{
           backgroundColor: '#fff',
           height: '100%',
-          width:"100%",
-          // flex: 1,
-          // borderWidth: 10,
-          borderColor: '#FAEA48',
-          borderBottomWidth: 0,
+          width: '100%',
         }}>
         <View
           style={{
@@ -566,7 +562,7 @@ class Post extends Component {
             borderColor: 'black',
           }}>
           <TextInput
-            style={{backgroundColor: '#fff',color:'black'}}
+            style={{backgroundColor: '#fff', color: 'black'}}
             onChangeText={this.handleSearch}
             value={this.state.query}
           />
@@ -606,107 +602,114 @@ class Post extends Component {
         </Text>
 
         <StatusBar style="light-content" />
-        <FlatList
-          data={this.state.posts}
-          extraData={this.state.refresh}
-          keyExtractor={item => item.id}
-          style={{width:windowWidth ,height:"100%",alignSelf:'center'}}
-          renderItem={({item}) => (
-            <Card>
-              <UserInfo>
-                <UserImgWrapper onPress={() => this.goChat(item.userid)}>
-                  <UserImg
-                    source={{
-                      uri:
-                        URL_TEMP +
-                        '/' +
-                        item.profilephotopath +
-                        '/' +
-                        item.profilephotofile,
-                    }}
-                  />
-                </UserImgWrapper>
-
-                <TextSection>
-                  <UserInfoText>
-                    <UserName>{item.name}</UserName>
-                    <PostTime>{item.datetime}</PostTime>
-                    {item.userid != global.myid ? (
-                      <TouchableOpacity
-                        style={{
-                          left: 40,
-                          marginTop: windowHeight / 10 - 93,
-                          width: 50,
-                          height: 30,
-                        }}
-                        onPress={() => this.report(item.id)}>
-                        <Svg
-                          style={{width: 20, height: 30}}
-                          aria-hidden="true"
-                          focusable="false"
-                          data-prefix="fal"
-                          data-icon="angle-left"
-                          class="svg-inline--fa fa-angle-left fa-w-6"
-                          role="img"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 448 512">
-                          <Path
-                            fill="gray"
-                            d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
-                          />
-                        </Svg>
-                      </TouchableOpacity>
-                    ) : (
-                      <></>
-                    )}
-                  </UserInfoText>
-                  <MessageText>{item.description}</MessageText>
-                  {item.path ? (
-                    <UserImg1
+        <View
+          style={{
+            width: "100%",
+            height: windowHeight,
+            alignSelf: 'center',
+          }}>
+          <FlatList
+            data={this.state.posts}
+            extraData={this.state.refresh}
+            keyExtractor={item => item.id}
+            style={{width: windowWidth , height: '100%', alignSelf: 'center',top:windowHeight/2-400}}
+            renderItem={({item}) => (
+              <View   style={{width:'100%' , height: windowHeight - 380, alignSelf: 'center'}}>
+                <UserInfo>
+                  <UserImgWrapper onPress={() => this.goChat(item.userid)}>
+                    <UserImg
                       source={{
-                        uri: URL_TEMP + '/' + item.path + '/' + item.file,
+                        uri:
+                          URL_TEMP +
+                          '/' +
+                          item.profilephotopath +
+                          '/' +
+                          item.profilephotofile,
                       }}
                     />
-                  ) : (
-                    <View style={{paddingBottom: 10}}></View>
-                  )}
-                </TextSection>
-              </UserInfo>
-              {item.userid == global.myid ? (
-                <UserInfo1>
-                  <MessageText1>
-                    {'  お気に入り' + '(' + item.post_likes_count + ')'}
-                  </MessageText1>
-                </UserInfo1>
-              ) : (
-                <UserInfo1 onPress={() => this.likeCount(item.id)}>
-                  <MessageText1>
-                    {'  お気に入り' + '(' + item.post_likes_count + ')'}
-                  </MessageText1>
-                </UserInfo1>
-              )}
-              {item.userid == global.myid ? (
-                <UserInfo2 onPress={() => this.deletePost(item.id)}>
-                  <MessageText2>削除</MessageText2>
-                </UserInfo2>
-              ) : (
-                <></>
-              )}
+                  </UserImgWrapper>
 
-              {item.userid == global.myid ? (
-                <UserInfo3 onPress={() => this.goEdit()}>
-                  <MessageText3>編集</MessageText3>
-                </UserInfo3>
-              ) : (
-                <></>
-              )}
-            </Card>
-          )}
-          // keyExtractor={item => item.messageText}
-          // ItemSeparatorComponent={this.renderSeparator}
+                  <TextSection>
+                    <UserInfoText>
+                      <UserName>{item.name}</UserName>
+                      <PostTime>{item.datetime}</PostTime>
+                      {item.userid != global.myid ? (
+                        <TouchableOpacity
+                          style={{
+                            left: 40,
+                            marginTop: windowHeight / 10 - 93,
+                            width: 50,
+                            height: 30,
+                          }}
+                          onPress={() => this.report(item.id)}>
+                          <Svg
+                            style={{width: 20, height: 30}}
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fal"
+                            data-icon="angle-left"
+                            class="svg-inline--fa fa-angle-left fa-w-6"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512">
+                            <Path
+                              fill="gray"
+                              d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+                            />
+                          </Svg>
+                        </TouchableOpacity>
+                      ) : (
+                        <></>
+                      )}
+                    </UserInfoText>
+                    <MessageText>{item.description}</MessageText>
+                    {item.path ? (
+                      <UserImg1
+                        source={{
+                          uri: URL_TEMP + '/' + item.path + '/' + item.file,
+                        }}
+                      />
+                    ) : (
+                      <View style={{paddingBottom: 10}}></View>
+                    )}
+                  </TextSection>
+                </UserInfo>
+                {item.userid == global.myid ? (
+                  <UserInfo1>
+                    <MessageText1>
+                      {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                    </MessageText1>
+                  </UserInfo1>
+                ) : (
+                  <UserInfo1 onPress={() => this.likeCount(item.id)}>
+                    <MessageText1>
+                      {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                    </MessageText1>
+                  </UserInfo1>
+                )}
+                {item.userid == global.myid ? (
+                  <UserInfo2 onPress={() => this.deletePost(item.id)}>
+                    <MessageText2>削除</MessageText2>
+                  </UserInfo2>
+                ) : (
+                  <></>
+                )}
 
-          ListFooterComponent={this.renderFooter}
-        />
+                {item.userid == global.myid ? (
+                  <UserInfo3 onPress={() => this.goEdit()}>
+                    <MessageText3>編集</MessageText3>
+                  </UserInfo3>
+                ) : (
+                  <></>
+                )}
+              </View>
+            )}
+            // keyExtractor={item => item.messageText}
+            // ItemSeparatorComponent={this.renderSeparator}
+
+            ListFooterComponent={this.renderFooter}
+          />
+        </View>
         <Modal
           animationType="slide"
           // transparent={true}

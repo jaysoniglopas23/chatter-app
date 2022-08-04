@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.View`
-  flex: 1;
+  // flex: 1;
   padding-left: 20px;
   padding-right: 20px;
   align-items: center;
@@ -9,10 +9,10 @@ export const Container = styled.View`
 `;
 
 export const Card = styled.View`
-  width: 10%;
-  left: 15px;
-  bottom: 60px;
-  padding-top: 0px;
+  width: 100%;
+  // height:100%;
+  // bottom: 60px;
+  // padding-top: 0px;
 `;
 
 export const UserInfo = styled.View`
