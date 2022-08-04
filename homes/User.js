@@ -508,13 +508,12 @@ const styles = StyleSheet.create({
 
   Mview: {
     // borderWidth: 1,
-    flex:1,
+    flex: 1,
     borderColor: '#cdd5d5',
     alignItems: 'center',
     top: windowHeight / 38,
     width: windowWidth - 2,
     flexDirection: 'row',
-    
   },
 
   Mtxt: {
@@ -530,7 +529,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowWidth - 520,
+    right: windowWidth - 530,
     width: windowWidth / 2.7,
   },
 
@@ -541,7 +540,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowWidth - 530,
+    right: windowWidth - 540,
     width: windowWidth / 4.5,
   },
 
