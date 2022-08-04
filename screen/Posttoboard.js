@@ -215,7 +215,7 @@ class Posttoboard extends Component {
             backgroundColor: '#FAEA48',
             height: windowHeight / 10,
             right: windowWidth / 2 - 205,
-            marginTop: windowHeight / 2 - 400,
+            marginTop: windowHeight / 2 - 415,
           }}>
           <TouchableOpacity
             style={{
