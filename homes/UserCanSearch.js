@@ -42,7 +42,7 @@ class UserCanSearch extends Component {
 
   goBack() {
     // this.props.Call.init();
-    this.props.navigation.push('Call');
+    this.props.navigation.push('Search');
 
     // let self = this;
 
@@ -546,7 +546,7 @@ const styles = StyleSheet.create({
   scrollview: {
     top: 30,
     left: 15,
-    height: 450,
+    height: windowHeight - 10,
   },
 
   view: {
@@ -576,14 +576,14 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowHeight / 2 - 340,
+    width: windowHeight - 670,
   },
 
   email: {
     bottom: 11,
     left: 3,
     backgroundColor: '#fff',
-    width: windowHeight / 2 - 340,
+    width: windowHeight / 2 - 280,
     color: 'black',
   },
 

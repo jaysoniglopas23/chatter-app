@@ -461,8 +461,7 @@ class User extends Component {
             </Svg>
             <Text style={styles.Mtxt}>メッセージを送信</Text>
           </TouchableOpacity>
-        </View>
-        <View style={{left: 115, bottom: 30}}>
+
           <TouchableOpacity
             onPress={() => this.goChat(id, name, lastmessage)}
             style={styles.button1}>
@@ -477,11 +476,10 @@ class User extends Component {
             </Svg>
             <Text style={styles.Mtxt}>ブロック</Text>
           </TouchableOpacity>
-        </View>
-        <View style={{right: 115, bottom: 60}}>
+
           <TouchableOpacity
             onPress={() => this.goChat(id, name, lastmessage)}
-            style={styles.button1}>
+            style={styles.button2}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
               xmlns="http://www.w3.org/2000/svg"
@@ -508,12 +506,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  // Mview: {
-  //   borderWidth: 1,
-  //   borderColor: '#cdd5d5',
-  //   backgroundColor: 'black',
-  //   top: 50,
-  // },
+  Mview: {
+    // borderWidth: 1,
+    borderColor: '#cdd5d5',
+    top: windowHeight / 12,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
 
   Mtxt: {
     bottom: 1,
@@ -528,8 +527,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    top: 50,
-    marginHorizontal: 145,
+    right: windowWidth - 520,
+    width: windowWidth / 2.8,
   },
 
   button1: {
@@ -539,8 +538,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    top: 50,
-    marginHorizontal: 165,
+    right: windowWidth - 510,
+    width: windowWidth / 4.5,
+  },
+
+  button2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 5,
+    borderWidth: 1,
+    height: 30,
+    borderColor: '#cdd5d5',
+    right: windowWidth - 140,
+    width: windowWidth / 4.5,
   },
 
   scrollview: {
