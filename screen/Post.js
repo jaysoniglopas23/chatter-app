@@ -624,7 +624,7 @@ class Post extends Component {
               <View
                 style={{
                   width: '100%',
-                  height: windowHeight - 380,
+                  height: windowHeight/2.5,
                   alignSelf: 'center',
                 }}>
                 <UserInfo>

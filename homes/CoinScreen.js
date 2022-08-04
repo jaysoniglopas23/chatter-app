@@ -175,7 +175,7 @@ class CoinScreen extends Component {
 
         global.price = self.state.price;
 
-        alert(JSON.stringify(global.price));
+        // alert(JSON.stringify(global.price));
         this.getCoins();
       });
     });

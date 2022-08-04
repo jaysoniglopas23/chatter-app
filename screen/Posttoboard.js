@@ -202,46 +202,56 @@ class Posttoboard extends Component {
       <View
         style={{
           backgroundColor: '#FFF',
-          flex: 1,
-          borderWidth: 10,
-          borderColor: '#FAEA48',
+
+          // flex: 1,
+          width: '100%',
+          height: '100%',
           borderBottomWidth: 0,
           borderTopWidth: 10,
         }}>
-        <TouchableOpacity
+        <View
           style={{
-            marginLeft: 10,
-            marginTop: windowHeight / 12 - 69,
-            width: 50,
-            height: 30,
-          }}
-          onPress={() => this.back()}>
-          <Svg
-            style={{width: 20, height: 30}}
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fal"
-            data-icon="angle-left"
-            class="svg-inline--fa fa-angle-left fa-w-6"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 192 512">
-            <Path
-              fill="black"
-              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
-          </Svg>
-        </TouchableOpacity>
-
-        <Text
-          style={{
-            color: 'gray',
-            fontSize: 25,
-            left: 120,
-            marginTop: windowHeight / 12 - 99,
+            width: '100%',
+          
+            backgroundColor: '#FAEA48',
+            height: windowHeight/10,
+            right:windowWidth/2 -205,
+            marginTop:windowHeight/2 -430
           }}>
-          新しい投稿を作成
-        </Text>
+          <TouchableOpacity
+            style={{
+              marginLeft: 10,
+              marginTop: windowHeight / 12 - 39,
+              width: 50,
+              height: 30,
+            }}
+            onPress={() => this.back()}>
+            <Svg
+              style={{width: 20, height: 30}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512">
+              <Path
+                fill="black"
+                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+            </Svg>
+          </TouchableOpacity>
 
+          <Text
+            style={{
+              color: 'gray',
+              fontSize: 25,
+              left: 120,
+              marginTop: windowHeight / 12 - 99,
+            }}>
+            新しい投稿を作成
+          </Text>
+        </View>
         {this.state.hasUploadPhoto ? (
           <Image
             source={{uri: this.state.UploadPhoto}}

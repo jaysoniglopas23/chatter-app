@@ -175,7 +175,7 @@ componentDidMount(){
           self.setState({
             notify_updates : 1,
           });
-          alert('1111111');
+          // alert('1111111');
         } else {
           self.setState({
             notify_updates : 0,
@@ -186,7 +186,7 @@ componentDidMount(){
           self.setState({
             notify_likes : 1,
           });
-          alert('wweqweqwe11');
+          // alert('wweqweqwe11');
         } else {
           self.setState({
             notify_likes : 0,

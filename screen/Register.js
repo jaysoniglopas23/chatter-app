@@ -294,7 +294,7 @@ class Register extends Component {
       () => {
         global.socket.on('emit-register', function (ret) {
           global.socket.off('emit-register');
-          alert(JSON.stringify(ret));
+          // alert(JSON.stringify(ret));
 
           if (ret == 0) {
             self.setState({
@@ -307,7 +307,7 @@ class Register extends Component {
 
           global.socket.on('emit-login', function (ret1) {
             global.socket.off('emit-login');
-            alert(ret1);
+            // alert(ret1);
 
             if (ret.id == 0) {
               self.setState({
