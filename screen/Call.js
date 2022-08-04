@@ -417,25 +417,32 @@ export default class Call extends Component {
         }}>
         <View
           style={{
-            borderWidth: 1,
-            width: 320,
+            width: '100%',
             height: 41,
             top: 10,
             // left: 70,
-            borderColor: 'black',
+            // borderColor: 'black',
             alignSelf: 'center',
           }}>
           <TextInput
-            style={{backgroundColor: '#fff', fontSize: 10,color:'black'}}
+            style={{
+              backgroundColor: '#fff',
+              fontSize: 10,
+              color: 'black',
+              borderWidth: 1,
+              borderColor: 'black',
+              width: windowWidth / 1.3,
+              alignSelf: 'center',
+            }}
             onChangeText={this.handleSearch}
             value={this.state.query}
           />
           <Text
             style={{
               fontSize: 10,
-              marginHorizontal: 133,
+            width:windowWidth/5,
               bottom: 45,
-              right: 130,
+              left:windowWidth/7,
               backgroundColor: '#fff',
               color: 'black',
             }}>
@@ -523,8 +530,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F7F7',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 160,
+    height:windowHeight/4,
     flex: 1,
+    width:'100%',
     marginHorizontal: 2,
     marginVertical: 2,
     borderWidth: 18,
@@ -536,7 +544,7 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'gray',
     position: 'absolute',
-    right:105,
+    right: windowWidth/6,
     bottom: 50,
     // backgroundColor: 'white',
     padding: 1,
