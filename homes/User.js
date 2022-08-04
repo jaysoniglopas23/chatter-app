@@ -258,15 +258,11 @@ class User extends Component {
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{
-            // backgroundColor: '#ECECEC',
-            marginHorizontal: 170,
-            height: 31,
-            right: 150,
-            marginBottom: 30,
-            flexDirection: 'row',
+            left: 30,
+            marginTop: windowHeight / 10 - 60,
             width: 50,
-            borderRadius: 2,
-            top: windowHeight / 2 - 375,
+            height: 30,
+            marginBottom: windowHeight / 10 - 30,
           }}>
           <Svg
             style={{width: 20, height: 30}}
@@ -287,7 +283,7 @@ class User extends Component {
         <TouchableOpacity
           style={{
             left: 360,
-            marginTop: windowHeight / 10 - 120,
+            marginTop: windowHeight / 10 - 150,
             width: 50,
             height: 30,
           }}
