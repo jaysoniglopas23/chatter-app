@@ -212,17 +212,16 @@ class Posttoboard extends Component {
         <View
           style={{
             width: '100%',
-            backgroundColor: '#FAEA48',
             height: windowHeight / 20,
             right: windowWidth / 2 - 205,
-            marginTop: windowHeight / 2 - 395,
+            marginTop: windowHeight / 2 - 415,
           }}>
           <TouchableOpacity
             style={{
               marginLeft: 10,
               marginTop: windowHeight / 12 - 59,
               width: 50,
-              height: 30,
+              height: "100%",
             }}
             onPress={() => this.back()}>
             <Svg
@@ -246,7 +245,8 @@ class Posttoboard extends Component {
               color: 'gray',
               fontSize: 25,
               left: 120,
-              marginTop: windowHeight / 12 - 99,
+              height: "100%",
+              marginTop: windowHeight / 12 - 115,
             }}>
             新しい投稿を作成
           </Text>
