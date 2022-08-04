@@ -42,7 +42,7 @@ class UserCanSearch extends Component {
 
   goBack() {
     // this.props.Call.init();
-    this.props.navigation.push('Search');
+    this.props.navigation.push('Call');
 
     // let self = this;
 
@@ -248,19 +248,21 @@ class UserCanSearch extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '100%', flex: 1}}>
+      <View
+        style={{
+          backgroundColor: '#fff',
+          height: '100%',
+          flex: 1,
+          width: '100%',
+        }}>
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{
-            // backgroundColor: '#ECECEC',
-            marginHorizontal: 170,
-            height: 31,
-            right: 150,
-            marginBottom: 30,
-            flexDirection: 'row',
+            left: 30,
+            marginTop: windowHeight / 10 - 60,
             width: 50,
-            borderRadius: 2,
-            top: windowHeight / 2 - 400,
+            height: 30,
+            marginBottom: windowHeight / 10 - 30,
           }}>
           <Svg
             style={{width: 20, height: 30}}
@@ -281,7 +283,7 @@ class UserCanSearch extends Component {
         <TouchableOpacity
           style={{
             left: 360,
-            marginTop: windowHeight / 10 - 120,
+            marginTop: windowHeight / 10 - 150,
             width: 50,
             height: 30,
           }}
@@ -399,7 +401,7 @@ class UserCanSearch extends Component {
           }}
           style={styles.Image}
         />
-        <View>
+        <View style={{width: '100%', height: windowHeight / 1.7}}>
           <ScrollView style={styles.scrollview}>
             <View style={styles.view}>
               <Text style={styles.label}> ニックネーム</Text>

@@ -401,7 +401,7 @@ class User extends Component {
           }}
           style={styles.Image}
         />
-        <View>
+        <View style={{width: '100%', height: windowHeight / 1.7}}>
           <ScrollView style={styles.scrollview}>
             <View style={styles.view}>
               <Text style={styles.label}> ニックネーム</Text>
@@ -546,7 +546,7 @@ const styles = StyleSheet.create({
   scrollview: {
     top: 30,
     left: 15,
-    height: 450,
+    height: windowHeight - 10,
   },
 
   view: {
@@ -576,14 +576,14 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowHeight / 2 - 340,
+    width: windowHeight - 670,
   },
 
   email: {
     bottom: 11,
     left: 3,
     backgroundColor: '#fff',
-    width: windowHeight / 2 - 340,
+    width: windowHeight / 2 - 280,
     color: 'black',
   },
 
