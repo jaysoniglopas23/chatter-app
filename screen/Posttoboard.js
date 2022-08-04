@@ -205,7 +205,7 @@ class Posttoboard extends Component {
 
           // flex: 1,
           width: '100%',
-          height: '100%',
+          height: windowHeight,
           borderBottomWidth: 0,
           borderTopWidth: 10,
         }}>
