@@ -513,7 +513,7 @@ const styles = StyleSheet.create({
     top: windowHeight / 15,
     width: windowWidth - 2,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    
   },
 
   Mtxt: {
@@ -530,7 +530,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: '#cdd5d5',
     right: windowWidth - 520,
-    width: windowWidth / 2.8,
+    width: windowWidth / 2.7,
   },
 
   button1: {
@@ -540,7 +540,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowWidth - 510,
+    right: windowWidth - 530,
     width: windowWidth / 4.5,
   },
 
@@ -551,7 +551,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowWidth - 140,
+    right: windowWidth - 190,
     width: windowWidth / 4.5,
   },
 
