@@ -509,7 +509,8 @@ const styles = StyleSheet.create({
   Mview: {
     // borderWidth: 1,
     borderColor: '#cdd5d5',
-    top: windowHeight / 12,
+    alignItems: 'center',
+    top: windowHeight / 17,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
