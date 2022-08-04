@@ -440,9 +440,9 @@ export default class Call extends Component {
           <Text
             style={{
               fontSize: 10,
-            width:windowWidth/5,
+              width: windowWidth / 5,
               bottom: 45,
-              left:windowWidth/7,
+              left: windowWidth / 7,
               backgroundColor: '#fff',
               color: 'black',
             }}>
@@ -530,9 +530,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F7F7',
     alignItems: 'center',
     justifyContent: 'center',
-    height:windowHeight/4,
+    height: windowHeight / 4,
     flex: 1,
-    width:'100%',
+    width: '100%',
     marginHorizontal: 2,
     marginVertical: 2,
     borderWidth: 18,
@@ -544,7 +544,7 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'gray',
     position: 'absolute',
-    right: windowWidth/6,
+    right: windowWidth / 6,
     bottom: 50,
     // backgroundColor: 'white',
     padding: 1,

@@ -18,6 +18,7 @@ import Posttoboard from '../screen/Posttoboard';
 import CoinScreen from '../homes/CoinScreen';
 import Launcher from '../screen/launcher';
 import Dashboard from '../screen/Dashboard';
+import UserCanSearch from '../homes/UserCanSearch';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -112,12 +113,12 @@ const SeachStack = ({navigation}) => (
       }}
     />
     <Stack.Screen
-      name="User"
-      component={User}
+      name="UserCanSearch"
+      component={UserCanSearch}
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
-        // headerShown: false,
+        headerShown: false,
       })}
     />
     <Stack.Screen

@@ -23,7 +23,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
-class User extends Component {
+class UserCanSearch extends Component {
   constructor(props) {
     super(props);
 
@@ -42,7 +42,7 @@ class User extends Component {
 
   goBack() {
     // this.props.Call.init();
-    this.props.navigation.push('Call');
+    this.props.navigation.push('Search');
 
     // let self = this;
 
@@ -248,13 +248,7 @@ class User extends Component {
 
   render() {
     return (
-      <View
-        style={{
-          backgroundColor: '#fff',
-          height: '100%',
-          flex: 1,
-          width: '100%',
-        }}>
+      <View style={{backgroundColor: '#fff', height: '100%', flex: 1}}>
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{
@@ -266,7 +260,7 @@ class User extends Component {
             flexDirection: 'row',
             width: 50,
             borderRadius: 2,
-            top: windowHeight / 2 - 375,
+            top: windowHeight / 2 - 400,
           }}>
           <Svg
             style={{width: 20, height: 30}}
@@ -503,7 +497,7 @@ class User extends Component {
   }
 }
 
-export default User;
+export default UserCanSearch;
 
 const styles = StyleSheet.create({
   container: {

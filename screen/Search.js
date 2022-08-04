@@ -58,7 +58,7 @@ export default class Search extends Component {
   }
 
   goCall(id) {
-    this.props.navigation.navigate('User');
+    this.props.navigation.navigate('UserCanSearch');
 
     let self = this;
 
@@ -254,7 +254,7 @@ export default class Search extends Component {
               borderColor: 'black',
               width: 120,
               left: 160,
-              color:"black"
+              color: 'black',
             }}
             onChangeText={this.handleSearch}
             value={this.state.query}
