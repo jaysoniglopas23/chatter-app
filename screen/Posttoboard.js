@@ -201,7 +201,7 @@ class Posttoboard extends Component {
     return (
       <View
         style={{
-          backgroundColor: '#FFF',
+          backgroundColor: '#fff',
 
           // flex: 1,
           width: '100%',
@@ -214,14 +214,14 @@ class Posttoboard extends Component {
             width: '100%',
             height: windowHeight / 20,
             right: windowWidth / 2 - 205,
-            marginTop: windowHeight / 2 - 415,
+            // marginTop: windowHeight / 2 - 415,
           }}>
           <TouchableOpacity
             style={{
               marginLeft: 10,
-              marginTop: windowHeight / 12 - 59,
+              marginTop: windowHeight / 12 - 69,
               width: 50,
-              height: "100%",
+              height: '100%',
             }}
             onPress={() => this.back()}>
             <Svg
@@ -245,8 +245,8 @@ class Posttoboard extends Component {
               color: 'gray',
               fontSize: 25,
               left: 120,
-              height: "100%",
-              marginTop: windowHeight / 12 - 115,
+              height: '100%',
+              marginTop: windowHeight / 12 - 105,
             }}>
             新しい投稿を作成
           </Text>
@@ -300,11 +300,11 @@ class Posttoboard extends Component {
           <Text
             style={{
               fontSize: 14,
-              marginHorizontal: 154,
-              marginTop: windowHeight / 12 - 127,
-              right: 150,
+              marginTop: windowHeight / 12 - 125,
               backgroundColor: '#fff',
+              left: windowHeight / 86,
               color: 'black',
+              width: windowWidth / 7,
             }}>
             コメント
           </Text>
