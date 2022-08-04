@@ -212,11 +212,10 @@ class Posttoboard extends Component {
         <View
           style={{
             width: '100%',
-          
             backgroundColor: '#FAEA48',
-            height: windowHeight/10,
-            right:windowWidth/2 -205,
-            marginTop:windowHeight/2 -430
+            height: windowHeight / 10,
+            right: windowWidth / 2 - 205,
+            marginTop: windowHeight / 2 - 400,
           }}>
           <TouchableOpacity
             style={{
