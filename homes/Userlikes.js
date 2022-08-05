@@ -425,7 +425,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderColor: '#cdd5d5',
     alignItems: 'center',
-    top: windowHeight / 38,
+    top: windowWidth / 38,
     width: '100%',
     flexDirection: 'row',
   },
