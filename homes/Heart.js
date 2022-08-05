@@ -195,7 +195,7 @@ class Heart extends Component {
             height: windowHeight / 13,
             backgroundColor:'black',
             width: '100%',
-            top: windowHeight / 2 - 480,
+            top: windowHeight / 2 - 800,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
@@ -206,7 +206,7 @@ class Heart extends Component {
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              top:windowHeight /24,
+              top:windowHeight /29,
              
             }}>
             <Svg
