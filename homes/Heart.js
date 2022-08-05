@@ -195,7 +195,7 @@ class Heart extends Component {
             height: windowHeight / 13,
             backgroundColor:'black',
             width: '100%',
-            top: windowWidth / 2 - 300,
+            bottom: windowWidth / 2 - 70,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
