@@ -160,7 +160,7 @@ class Heart extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '90%'}}>
+      <View style={{backgroundColor: '#fff', height: '100%'}}>
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
@@ -195,7 +195,7 @@ class Heart extends Component {
             height: windowHeight / 13,
             backgroundColor:'black',
             width: '100%',
-            top: windowHeight / 2 - 400,
+            top: windowHeight / 2 - 480,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
