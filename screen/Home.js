@@ -38,6 +38,7 @@ import Policy from '../homes/Terms';
 import SpecialCC from '../homes/SpecialCC';
 import Privacy from '../homes/Privacy';
 import Launcher from './launcher';
+import Userlikes from '../homes/Userlikes';
 
 const DeviceWidth = Dimensions.get('window').width;
 const windowWidth = Dimensions.get('window').width;
@@ -424,8 +425,8 @@ class DisplayAnImage extends Component {
               <Stack.Screen name="SpecialCC">
                 {props => <SpecialCC navigationRef={navigationRef} />}
               </Stack.Screen>
-              <Stack.Screen name="User">
-                {props => <User navigationRef={navigationRef} />}
+              <Stack.Screen name="Userlikes">
+                {props => <Userlikes navigationRef={navigationRef} />}
               </Stack.Screen>
             </Stack.Navigator>
           </NavigationContainer>
