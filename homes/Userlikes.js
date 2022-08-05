@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
     alignItems: 'center',
     top: windowHeight / 38,
-    width: windowWidth - 2,
+    width: '100%',
     flexDirection: 'row',
   },
 
