@@ -19,6 +19,7 @@ import CoinScreen from '../homes/CoinScreen';
 import Launcher from '../screen/launcher';
 import Dashboard from '../screen/Dashboard';
 import UserCanSearch from '../homes/UserCanSearch';
+import Heart from '../homes/Heart';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -133,7 +134,7 @@ const SeachStack = ({navigation}) => (
 
 const Homestack = ({navigation}) => (
   <Stack.Navigator>
-    <Stack.Screen
+    <Stack.Screen 
       name="home"
       component={Home}
       options={{
@@ -161,20 +162,20 @@ const Homestack = ({navigation}) => (
         headerShown: false,
       }}
     />
-    {/* <Stack.Screen
-      name="Launcher"
-      component={Launcher}
+    <Stack.Screen
+      name="Heart"
+      component={Heart}
       options={{
         headerShown: false,
       }}
     />
         <Stack.Screen
-      name="Dashboard"
-      component={Dashboard}
+      name="User"
+      component={User}
       options={{
         headerShown: false,
       }}
-    /> */}
+    />
   </Stack.Navigator>
 );
 

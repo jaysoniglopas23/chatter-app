@@ -17,6 +17,7 @@ import {createAppContainer} from 'react-navigation';
 import Tabs from '../navigation/tabs';
 
 import Happy from '../homes/Happy';
+import User from '../homes/User';
 import Calls from '../homes/Calls';
 import Card from '../homes/Card';
 import Heart from '../homes/Heart';
@@ -422,6 +423,9 @@ class DisplayAnImage extends Component {
               </Stack.Screen>
               <Stack.Screen name="SpecialCC">
                 {props => <SpecialCC navigationRef={navigationRef} />}
+              </Stack.Screen>
+              <Stack.Screen name="User">
+                {props => <User navigationRef={navigationRef} />}
               </Stack.Screen>
             </Stack.Navigator>
           </NavigationContainer>

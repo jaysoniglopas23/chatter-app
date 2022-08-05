@@ -67,12 +67,52 @@ class Heart extends Component {
     this.props.navigationRef.current?.navigate('Dashboard');
   }
 
-  goChat() {
-    this.props.navigation.navigate('User');
+  goChat(id) {
+    this.props.navigationRef.current?.navigate('User');
+    
+    let self = this;
+
+    this.setState(
+      {
+        saving: true,
+      },
+
+      () => {
+        global.socket.on('emit-likes', function (ret) {
+          global.socket.off('emit-likes');
+          // alert(JSON.stringify(ret));
+
+          self.setState({
+            image: ret.image,
+            nickname: ret.nickname,
+            id: ret.id,
+            users: ret.users,
+          });
+        });
+        let params = {};
+
+        params['boardid'] = this.state.boardid;
+        params['lastname'] = '';
+        params['pages'] = '';
+        params['id'] = this.state.id;
+        params['nickname'] = this.state.nickname;
+        params['image'] = this.state.image;
+        params['path'] = '';
+        params['start'] = 1;
+        params['size'] = 2;
+
+        global.socket.emit('on-likes', params);
+      },
+    );
   }
 
-  componentDidMount() {
+  componentDidMount(){
+    this.getUser();
     this.makeRemoteRequest();
+  }
+
+  getUser() {
+   
 
     let self = this;
 
@@ -166,9 +206,9 @@ class Heart extends Component {
           keyExtractor={item => item.id}
           style={{backgroundColor: '#fff', height: '90%'}}
           renderItem={({item}) => (
-            <Card>
+            <Card onPress={() => this.goChat(item.id)}>
               <UserInfo>
-                <UserImgWrapper onPress={() => this.goChat()}>
+                <UserImgWrapper >
                   <UserImg
                     source={{
                       uri: URL_TEMP + '/' + item.path + '/' + item.image,
@@ -193,7 +233,7 @@ class Heart extends Component {
         <View
           style={{
             height: windowHeight / 13,
-            backgroundColor:'black',
+            // backgroundColor:'black',
             width: '100%',
             bottom: windowWidth / 2 - 80,
           }}>
