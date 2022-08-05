@@ -446,6 +446,7 @@ const styles = StyleSheet.create({
     right: windowHeight / 10 - 180,
     width: windowWidth / 2.5,
     bottom: windowWidth / 6,
+    marginLeft: windowHeight / 140,
   },
 
   button1: {
