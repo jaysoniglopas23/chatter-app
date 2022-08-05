@@ -511,7 +511,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderColor: '#cdd5d5',
     alignItems: 'center',
-    top: windowHeight / 38,
+    top: windowWidth / 38,
     width: '100%',
     flexDirection: 'row',
   },
@@ -531,6 +531,7 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
     right: windowHeight - 815,
     width: windowWidth / 2.5,
+    marginLeft: windowHeight / 10 - 80,
   },
 
   button1: {
@@ -541,7 +542,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: '#cdd5d5',
     right: windowHeight - 815,
-    width: windowWidth / 4.4,
+    width: windowWidth / 4.3,
   },
 
   button2: {
