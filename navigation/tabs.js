@@ -101,6 +101,15 @@ const CallStack = ({navigation}) => (
         headerShown: false,
       })}
     />
+
+    <Stack.Screen
+      name="Chat"
+      component={Chat}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerShown: false,
+      })}
+    />
   </Stack.Navigator>
 );
 
@@ -215,7 +224,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Chat"
+        name="Messages"
         component={MessageStack}
         options={{
           headerShown: false,

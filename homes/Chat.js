@@ -133,20 +133,21 @@ class Chat extends Component {
           self.setState({
             showLoading: false,
             loadingChats: false,
-            id: ret[0].otherid,
+            id: ret.otherid,
             ret: ret,
-            data: ret[0].data,
-            profile_image: ret[0].profile_image,
-            profile_image_dir: ret[0].profile_image_dir,
-            datetime: ret[0].datetime,
-            msg_to: ret[0].msg_to,
-            msg_from: ret[0].msg_from,
-            timezone: ret[0].timezone,
+            data: ret.data,
+            profile_image: ret.profile_image,
+            profile_image_dir: ret.profile_image_dir,
+            datetime: ret.datetime,
+            msg_to: ret.msg_to,
+            msg_from: ret.msg_from,
+            timezone: ret.timezone,
           });
+          // console.log(se.data);
 
           self.flatListRef.scrollToOffset({
             animated: true,
-            offset: self.state.data.length,
+            // offset: self.state.data.length,
           });
         });
         let params = {};
@@ -162,7 +163,7 @@ class Chat extends Component {
         // params[''] = ;
 
         global.socket.emit('on-messages', params);
-        // console.log(params);
+        console.log(params);
       },
     );
 
@@ -422,9 +423,9 @@ class Chat extends Component {
                   uri:
                     URL_TEMP +
                     '/' +
-                    this.state.profile_image_dir +
+                    global.profile_image_dir +
                     '/' +
-                    this.state.profile_image,
+                    global.profile_image,
                 }}
                 defaultSource={require('.././icon/Picture.png')}
               />
@@ -590,10 +591,10 @@ class Chat extends Component {
                       borderRadius: 5,
                       padding: 0,
                       color: 'black',
-                      fontSize:20,
-                      fontWeight:'bold',
+                      fontSize: 20,
+                      fontWeight: 'bold',
                       left: 0,
-                      top:10,
+                      top: 10,
                       alignSelf: 'center',
                     }}>
                     メッセージへのポイントはありません

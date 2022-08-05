@@ -10,6 +10,7 @@ import {
   FlatList,
   Dimensions,
   TouchableWithoutFeedback,
+  Alert,
 } from 'react-native';
 import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -58,54 +59,50 @@ class User extends Component {
 
     let params = {};
 
-    this.setState(
+    self.setState(
       {
         params: params,
         refresh: 1,
       },
-
       () => {
-        global.socket.on('emit-matched', function (ret) {
-          global.socket.off('emit-matthed');
+        global.socket.on('emit-user-details', function (ret) {
+          global.socket.off('emit-user-details');
           // alert(JSON.stringify(ret));
-          // console.log(ret);
-
           self.setState({
-            id: ret[0].id,
-            date_time: ret[0].date_time,
-            lastmessage: ret[0].lastmessage,
-            message_count: ret[0].message_count,
-            name: ret[0].name,
-            online: ret[0].online,
-            profile_image: ret[0].profile_image,
-            profile_image_dir: ret[0].profile_image_dir,
-            save: ret[0].save,
-            timezone: ret[0].timezone,
-            unread_count: ret[0].unread_count,
-            ret: ret,
+            id: ret.id,
+            details: ret,
+            profile_image: ret.profile_image,
+            profile_image_dir: ret.profile_image_dir,
+            nickname: ret.nickname,
+            email: ret.email,
+            introduction: ret.introduction,
+            character: ret.character,
+            hobbie: ret.hobbie,
+            school: ret.school,
+            bloodtype: ret.bloodtype,
+            nickname: ret.nickname,
           });
         });
+
         let params = {};
-        params['id'] = id;
-        params['date_time'] = this.state.date_time;
-        params['lastmessage'] = lastmessage;
-        params['message_count'] = this.state.message_count;
-        params['name'] = name;
-        params['online'] = this.state.online;
+
+        params['id'] = global.otherid;
+        params['lastmessage'] = global.lastmessage;
+        params['name'] = self.state.nickname;
         params['profile_image'] = this.state.profile_image;
         params['profile_image_dir'] = this.state.profile_image_dir;
-        params['save'] = this.state.save;
-        params['timezone'] = this.state.timezone;
-        params['unread_count'] = this.state.unread_count;
 
-        global.otherid = id;
-        global.name = name;
-        global.lastmessage = lastmessage;
+        global.otherid = global.otherid;
+        global.name = this.state.nickname;
+        global.profile_image_dir = this.state.profile_image_dir;
+        global.profile_image = this.state.profile_image;
+        global.lastmessage = global.lastmessage;
+        // global.name = name;
+        // global.lastmessage = lastmessage;
+        // alert(global.userid);
 
-        // alert(self.state.name);
-
-        global.socket.emit('on-matched', params);
-        // console.log(params);
+        global.socket.emit('on-user-details', params);
+        console.log(params);
       },
     );
   }
@@ -120,7 +117,7 @@ class User extends Component {
     self.setState({}, () => {
       global.socket.on('emit-user-details', function (ret) {
         global.socket.off('emit-user-details');
-        console.log(ret);
+        // console.log(ret);
         self.setState({
           id: ret.id,
           details: ret,
@@ -138,7 +135,7 @@ class User extends Component {
 
       let params = {};
 
-      params['id'] = global.user_id;
+      params['id'] = global.otherid;
       params['about'] = this.state.about;
       params['firstname'] = this.state.firstname;
       params['lastname'] = this.state.lastname;
@@ -162,7 +159,7 @@ class User extends Component {
       params['hobbie'] = this.state.hobbie;
       params['bloodtype'] = this.state.bloodtype;
       params['email'] = this.state.email;
-      params['name'] = this.state.name;
+      params['name'] = self.state.nickname;
       params['introduction'] = this.state.introduction;
       params['character'] = this.state.character;
       params['location'] = this.state.location;
@@ -171,6 +168,10 @@ class User extends Component {
       params['call_minutes'] = this.state.call_minutes;
       params['pkuser'] = this.state.pkuser;
 
+      global.otherid = global.otherid;
+      global.name = self.state.nickname;
+      global.lastmessage = global.lastmessage;
+      // console.log(params);
       global.socket.emit('on-user-details', params);
     });
   }
@@ -448,7 +449,7 @@ class User extends Component {
 
         <View style={styles.Mview}>
           <TouchableOpacity
-            onPress={() => this.goChat(id, name, lastmessage)}
+            onPress={() => this.goChat(global.userid)}
             style={styles.button}>
             <Svg
               style={{width: 15, height: 15, left: 7}}
@@ -463,7 +464,7 @@ class User extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => this.goChat(id, name, lastmessage)}
+            onPress={() => this.goChat()}
             style={styles.button1}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
@@ -478,7 +479,7 @@ class User extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => this.goChat(id, name, lastmessage)}
+            onPress={() => this.goChat()}
             style={styles.button2}>
             <Svg
               style={{width: 16, height: 16, left: 10}}

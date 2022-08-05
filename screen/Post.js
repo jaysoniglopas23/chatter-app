@@ -569,7 +569,7 @@ class Post extends Component {
         </View>
         <View
           style={{
-            width: "100%",
+            width: '100%',
           }}>
           <TouchableOpacity
             onPress={() => this.goPost()}
@@ -595,9 +595,9 @@ class Post extends Component {
         <Text
           style={{
             fontSize: 10,
-           width:windowWidth/5,
+            width: windowWidth / 5,
             bottom: 68,
-            left:windowWidth/15,
+            left: windowWidth / 15,
             backgroundColor: '#fff',
             color: 'black',
           }}>
@@ -618,13 +618,13 @@ class Post extends Component {
             style={{
               height: '100%',
               alignSelf: 'center',
-              top: windowHeight / 2 - 400,
+              top: windowHeight / 2 - 380,
             }}
             renderItem={({item}) => (
               <View
                 style={{
                   width: '100%',
-                  height: windowHeight/2.5,
+                  height: windowHeight / 2.2,
                   alignSelf: 'center',
                 }}>
                 <UserInfo>
@@ -645,34 +645,6 @@ class Post extends Component {
                     <UserInfoText>
                       <UserName>{item.name}</UserName>
                       <PostTime>{item.datetime}</PostTime>
-                      {item.userid != global.myid ? (
-                        <TouchableOpacity
-                          style={{
-                            left: 40,
-                            marginTop: windowHeight / 10 - 93,
-                            width: 50,
-                            height: 30,
-                          }}
-                          onPress={() => this.report(item.id)}>
-                          <Svg
-                            style={{width: 20, height: 30}}
-                            aria-hidden="true"
-                            focusable="false"
-                            data-prefix="fal"
-                            data-icon="angle-left"
-                            class="svg-inline--fa fa-angle-left fa-w-6"
-                            role="img"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 448 512">
-                            <Path
-                              fill="gray"
-                              d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
-                            />
-                          </Svg>
-                        </TouchableOpacity>
-                      ) : (
-                        <></>
-                      )}
                     </UserInfoText>
                     <MessageText>{item.description}</MessageText>
                     {item.path ? (
@@ -722,92 +694,6 @@ class Post extends Component {
             ListFooterComponent={this.renderFooter}
           />
         </View>
-        <Modal
-          animationType="slide"
-          // transparent={true}
-          isVisible={this.state.modalReportVisible}
-          style={{bottom: 400, alignSelf: 'center'}}>
-          <View
-            style={{
-              width: windowWidth,
-              height: windowHeight - 180,
-              borderRadius: 30,
-              flexDirection: 'column',
-            }}>
-            <TouchableWithoutFeedback
-              style={{
-                width: windowWidth,
-                height: windowHeight - 290,
-              }}
-              onPress={() => this.closeReportModal()}>
-              <View
-                style={{
-                  width: '100%',
-                  height: windowHeight - 180,
-                }}></View>
-            </TouchableWithoutFeedback>
-
-            <View
-              style={{
-                width: windowWidth,
-                height: windowHeight,
-              }}>
-              <View
-                style={{
-                  height: 180,
-                  width: windowWidth,
-                  backgroundColor: '#f2f2f2',
-                  borderRadius: 15,
-                }}>
-                <TouchableOpacity
-                  style={{
-                    width: windowWidth - 20,
-                    height: 30,
-                    backgroundColor: '#fff',
-                    marginTop: 10,
-                    marginLeft: 10,
-                    borderRadius: 3,
-                  }}
-                  onPress={() => this.spam()}>
-                  <Text
-                    style={{
-                      width: '100%',
-                      height: 30,
-                      textAlign: 'center',
-                      lineHeight: 30,
-                      fontSize: 12,
-                      color: global.glTextColor,
-                    }}>
-                    {this.state.spamText}
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={{
-                    width: windowWidth - 20,
-                    height: 30,
-                    backgroundColor: '#fff',
-                    marginTop: 10,
-                    marginLeft: 10,
-                    borderRadius: 3,
-                  }}
-                  onPress={() => this.inap()}>
-                  <Text
-                    style={{
-                      width: '100%',
-                      height: 30,
-                      textAlign: 'center',
-                      lineHeight: 30,
-                      fontSize: 12,
-                      color: global.glTextColor,
-                    }}>
-                    {this.state.inapText}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </Modal>
         <Modal
           animationType="slide"
           // transparent={true}

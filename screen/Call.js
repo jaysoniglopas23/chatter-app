@@ -159,7 +159,7 @@ export default class Call extends Component {
         params['userid'] = this.state.userid;
         params['id'] = id;
 
-        global.user_id = id;
+        global.otherid = id;
 
         global.socket.emit('on-users-for-search', params);
         console.log(params);
