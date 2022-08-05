@@ -16,6 +16,7 @@ export const Card = styled.TouchableOpacity`
 
 export const UserInfo = styled.View`
   flex-direction: row;
+  width: 100%;
   justify-content: space-between;
   top: 50px;
 `;
@@ -60,8 +61,8 @@ export const TextSection = styled.View`
   justify-content: center;
   padding: 15px;
   padding-left: 0;
-  margin-left: 10px;
-  width: 300px;
+  margin-left: 30px;
+  width: 100%;
   border-bottom-width: 1px;
   border-bottom-color: #cccccc;
   padding-bottom: 35px;
@@ -74,7 +75,7 @@ export const UserInfoText = styled.View`
 `;
 
 export const UserName = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   font-family: 'Lato-Regular';
   color: #100c08;
