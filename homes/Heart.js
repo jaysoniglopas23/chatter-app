@@ -164,6 +164,7 @@ class Heart extends Component {
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
+          style={{backgroundColor: '#fff', height: '90%'}}
           renderItem={({item}) => (
             <Card>
               <UserInfo>
@@ -192,19 +193,21 @@ class Heart extends Component {
         <View
           style={{
             height: windowHeight / 13,
+            backgroundColor:'black',
             width: '100%',
-            top: windowHeight / 2 - 460,
+            top: windowHeight / 2 - 400,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
-              height: windowHeight / 24,
+              // height: windowHeight / 24,
               left: windowWidth / 16,
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 428,
+              top:10,
+             
             }}>
             <Svg
               style={{width: 20, height: 30}}

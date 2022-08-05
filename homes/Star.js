@@ -164,6 +164,7 @@ class Star extends Component {
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
+          style={{backgroundColor: '#fff', height:windowHeight, width: '100%'}}
           renderItem={({item}) => (
             <Card>
               <UserInfo>
