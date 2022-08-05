@@ -67,13 +67,53 @@ class Star extends Component {
     this.props.navigationRef.current?.navigate('Dashboard');
   }
 
-  goChat() {
-    this.props.navigation.navigate('User');
+  goChat(id) {
+    this.props.navigationRef.current?.navigate('Userlikes');
+
+    let self = this;
+
+    this.setState(
+      {
+        saving: true,
+      },
+
+      () => {
+        global.socket.on('emit-likes', function (ret) {
+          global.socket.off('emit-likes');
+          // alert(JSON.stringify(ret));
+
+          self.setState({
+            image: ret.image,
+            nickname: ret.nickname,
+            id: ret.id,
+            users: ret.users,
+          });
+        });
+        let params = {};
+
+        params['boardid'] = this.state.boardid;
+        params['lastname'] = '';
+        params['pages'] = '';
+        params['id'] = id;
+        params['nickname'] = this.state.nickname;
+        params['image'] = this.state.image;
+        params['path'] = '';
+        params['start'] = 1;
+        params['size'] = 2;
+
+        global.user_id = id;
+
+        global.socket.emit('on-likes', params);
+      },
+    );
   }
 
   componentDidMount() {
+    this.getUser();
     this.makeRemoteRequest();
+  }
 
+  getUser() {
     let self = this;
 
     this.setState(
@@ -160,15 +200,15 @@ class Star extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '90%', width: '100%'}}>
+      <View style={{backgroundColor: '#fff', height: '100%'}}>
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
-          style={{backgroundColor: '#fff', height:windowHeight, width: '100%'}}
+          style={{backgroundColor: '#fff', height: '90%'}}
           renderItem={({item}) => (
-            <Card>
+            <Card onPress={() => this.goChat(item.id)}>
               <UserInfo>
-                <UserImgWrapper onPress={() => this.goChat()}>
+                <UserImgWrapper>
                   <UserImg
                     source={{
                       uri: URL_TEMP + '/' + item.path + '/' + item.image,
@@ -193,8 +233,9 @@ class Star extends Component {
         <View
           style={{
             height: windowHeight / 13,
+            // backgroundColor:'black',
             width: '100%',
-            top: windowHeight / 2 - 460,
+            bottom: windowWidth / 2 - 80,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
@@ -205,7 +246,7 @@ class Star extends Component {
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 428,
+              top: windowWidth / 45,
             }}>
             <Svg
               style={{width: 20, height: 30}}

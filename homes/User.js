@@ -512,7 +512,7 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
     alignItems: 'center',
     top: windowHeight / 38,
-    width: windowWidth - 2,
+    width: '100%',
     flexDirection: 'row',
   },
 
@@ -529,8 +529,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowWidth - 530,
-    width: windowWidth / 2.7,
+    right: windowHeight - 815,
+    width: windowWidth / 2.5,
   },
 
   button1: {
@@ -540,8 +540,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowWidth - 540,
-    width: windowWidth / 4.5,
+    right: windowHeight - 815,
+    width: windowWidth / 4.4,
   },
 
   button2: {
@@ -551,8 +551,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowWidth - 190,
-    width: windowWidth / 4.5,
+    right: windowHeight - 505,
+    width: windowWidth / 4.2,
   },
 
   scrollview: {
