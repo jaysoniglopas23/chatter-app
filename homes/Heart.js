@@ -206,7 +206,7 @@ class Heart extends Component {
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              top:windowHeight /29,
+              top:windowWidth /45,
              
             }}>
             <Svg
