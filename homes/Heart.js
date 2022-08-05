@@ -201,7 +201,7 @@ class Heart extends Component {
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
-              // height: windowHeight / 24,
+              height: windowHeight / 24,
               left: windowWidth / 16,
               flexDirection: 'row',
               width: windowWidth / 7,
