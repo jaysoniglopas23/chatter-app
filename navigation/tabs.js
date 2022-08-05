@@ -134,7 +134,7 @@ const SeachStack = ({navigation}) => (
 
 const Homestack = ({navigation}) => (
   <Stack.Navigator>
-    <Stack.Screen 
+    <Stack.Screen
       name="home"
       component={Home}
       options={{
@@ -169,7 +169,7 @@ const Homestack = ({navigation}) => (
         headerShown: false,
       }}
     />
-        <Stack.Screen
+    <Stack.Screen
       name="User"
       component={User}
       options={{

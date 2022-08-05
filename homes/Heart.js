@@ -68,8 +68,8 @@ class Heart extends Component {
   }
 
   goChat(id) {
-    this.props.navigationRef.current?.navigate('User');
-    
+    this.props.navigationRef.current?.navigate('Userlikes');
+
     let self = this;
 
     this.setState(
@@ -94,26 +94,26 @@ class Heart extends Component {
         params['boardid'] = this.state.boardid;
         params['lastname'] = '';
         params['pages'] = '';
-        params['id'] = this.state.id;
+        params['id'] = id;
         params['nickname'] = this.state.nickname;
         params['image'] = this.state.image;
         params['path'] = '';
         params['start'] = 1;
         params['size'] = 2;
 
+        global.user_id = id;
+
         global.socket.emit('on-likes', params);
       },
     );
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getUser();
     this.makeRemoteRequest();
   }
 
   getUser() {
-   
-
     let self = this;
 
     this.setState(
@@ -208,7 +208,7 @@ class Heart extends Component {
           renderItem={({item}) => (
             <Card onPress={() => this.goChat(item.id)}>
               <UserInfo>
-                <UserImgWrapper >
+                <UserImgWrapper>
                   <UserImg
                     source={{
                       uri: URL_TEMP + '/' + item.path + '/' + item.image,
@@ -246,8 +246,7 @@ class Heart extends Component {
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              top:windowWidth /45,
-             
+              top: windowWidth / 45,
             }}>
             <Svg
               style={{width: 20, height: 30}}
