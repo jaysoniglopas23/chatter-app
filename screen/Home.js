@@ -298,7 +298,7 @@ class DisplayAnImage extends Component {
                 color: 'black',
                 fontSize: 17,
                 position: 'absolute',
-                width: windowWidth / 4.5,
+                width: windowWidth / 3,
               }}>
               通話 : {this.state.mail_count}分
             </Text>
@@ -311,7 +311,7 @@ class DisplayAnImage extends Component {
                 color: 'black',
                 position: 'absolute',
                 fontSize: 17,
-                width: windowWidth / 3.9,
+                width: windowWidth / 3,
               }}>
               メール : {this.state.call_minutes}通
             </Text>
