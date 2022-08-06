@@ -37,7 +37,7 @@ class MessagesScrean extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat(id, name, lastmessage) {
+  goChat(id, name, lastmessage,profile_image,profile_image_dir) {
     this.props.navigation.navigate('Chat');
 
     let self = this;
@@ -78,8 +78,8 @@ class MessagesScrean extends Component {
         params['message_count'] = this.state.message_count;
         params['name'] = name;
         params['online'] = this.state.online;
-        params['profile_image'] = this.state.profile_image;
-        params['profile_image_dir'] = this.state.profile_image_dir;
+        params['profile_image'] = profile_image;
+        params['profile_image_dir'] = profile_image_dir;
         params['save'] = this.state.save;
         params['timezone'] = this.state.timezone;
         params['unread_count'] = this.state.unread_count;
@@ -87,10 +87,10 @@ class MessagesScrean extends Component {
         global.otherid = id;
         global.name = name;
         global.lastmessage = lastmessage;
-        global.profile_image_dir = this.state.profile_image_dir;
-        global.profile_image = this.state.profile_image;
+        global.profile_image_dir = profile_image_dir;
+        global.profile_image = profile_image;
 
-        // alert(self.state.name);
+        alert(global.profile_image);
 
         global.socket.emit('on-matched', params);
         // console.log(params);
@@ -212,7 +212,7 @@ class MessagesScrean extends Component {
           renderItem={({item}) => (
             <Card
               style={{paddingTop: 10}}
-              onPress={() => this.goChat(item.id, item.name, item.lastmessage)}>
+              onPress={() => this.goChat(item.id, item.name, item.lastmessage,item.profile_image,item.profile_image_dir)}>
               <UserInfo>
                 <UserImgWrapper>
                   <UserImg

@@ -147,20 +147,22 @@ class Chat extends Component {
 
           self.flatListRef.scrollToOffset({
             animated: true,
-            // offset: self.state.data.length,
+            offset: self.state.data.length,
           });
         });
         let params = {};
         params['name'] = global.name;
         params['otherid'] = global.otherid;
         params['data'] = this.state.data;
-        params['profile_image'] = this.state.profile_image;
-        params['profile_image_dir'] = this.state.profile_image_dir;
+        params['profile_image'] = global.profile_image;
+        params['profile_image_dir'] = global.profile_image_dir;
         params[' datetime'] = this.state.datetime;
         params['msg_to'] = this.state.msg_to;
         params['msg_from'] = this.state.msg_from;
         params['lastmessage'] = global.lastmessage;
         // params[''] = ;
+
+     
 
         global.socket.emit('on-messages', params);
         console.log(params);

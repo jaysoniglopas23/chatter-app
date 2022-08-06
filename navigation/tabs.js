@@ -69,6 +69,7 @@ const PostStack = ({navigation}) => (
         // title: route.params.userName,
         // headerShown: false,
         headerBackTitleVisible: false,
+       
       })}
     />
     <Stack.Screen
