@@ -90,7 +90,7 @@ class MessagesScrean extends Component {
         global.profile_image_dir = profile_image_dir;
         global.profile_image = profile_image;
 
-        alert(global.profile_image);
+        // alert(global.profile_image);
 
         global.socket.emit('on-matched', params);
         // console.log(params);

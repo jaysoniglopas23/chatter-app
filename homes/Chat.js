@@ -133,15 +133,15 @@ class Chat extends Component {
           self.setState({
             showLoading: false,
             loadingChats: false,
-            id: ret.otherid,
+            id: ret[0].otherid,
             ret: ret,
-            data: ret.data,
-            profile_image: ret.profile_image,
-            profile_image_dir: ret.profile_image_dir,
-            datetime: ret.datetime,
-            msg_to: ret.msg_to,
-            msg_from: ret.msg_from,
-            timezone: ret.timezone,
+            data: ret[0].data,
+            profile_image: ret[0].profile_image,
+            profile_image_dir: ret[0].profile_image_dir,
+            datetime: ret[0].datetime,
+            msg_to: ret[0].msg_to,
+            msg_from: ret[0].msg_from,
+            timezone: ret[0].timezone,
           });
           // console.log(se.data);
 
@@ -255,7 +255,7 @@ class Chat extends Component {
     global.socket.on('emit-send-message-from', function (ret) {
       global.socket.off('emit-send-message-from');
 
-      // alert(ret);
+      //  alert(JSON.stringify(ret));
       self.setState({
         photo: ret.file,
         msgid: ret.msgid,
