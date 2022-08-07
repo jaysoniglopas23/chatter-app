@@ -124,19 +124,22 @@ class Calls extends Component {
             現在の通話設定 :
           </Text>
         </View>
-        <View style={{top: 455}}>
+        <View
+          style={{
+            height: windowHeight,
+            width: '100%',
+            top: windowHeight / 1 - 340,
+          }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
-              marginHorizontal: 170,
-              height: 31,
-              right: 150,
-              marginBottom: 30,
+              height: windowHeight / 24,
+              left: windowWidth / 16,
               flexDirection: 'row',
-              width: 50,
+              width: windowWidth / 7,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 540,
+              bottom: windowHeight / 2 - 428,
             }}>
             <Svg
               style={{width: 20, height: 30}}
@@ -165,7 +168,7 @@ class Calls extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 480,
+              bottom: windowHeight / 2 - 397,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}

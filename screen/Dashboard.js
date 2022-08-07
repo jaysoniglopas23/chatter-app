@@ -37,6 +37,8 @@ const navigationRef = React.createRef();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -155,9 +157,9 @@ class Dashboard extends Component {
               modalConfirmLogout: false,
             },
             () => {
-              // self.props.Launcher.init();r
+              // self.props.launcher.init();
 
-              self.props.navigationRef.current.navigate('Launcher');
+              self.props.navigation.navigate('Launcher');
             },
           );
         });
@@ -470,7 +472,6 @@ class Dashboard extends Component {
             </View>
           </View>
         </Modal>
-
         <View
           style={{
             flex: 0.6,

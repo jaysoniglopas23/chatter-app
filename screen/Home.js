@@ -40,6 +40,7 @@ import Privacy from '../homes/Privacy';
 import Launcher from './launcher';
 import Userlikes from '../homes/Userlikes';
 
+
 const DeviceWidth = Dimensions.get('window').width;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -379,16 +380,13 @@ class DisplayAnImage extends Component {
                 gestureEnable: true,
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
               }}>
+              
               <Stack.Screen name="Dashboard">
                 {props => <Dashboard navigationRef={navigationRef} />}
               </Stack.Screen>
               <Stack.Screen name="Happy">
                 {props => <Happy navigationRef={navigationRef} />}
               </Stack.Screen>
-              {/* <Stack.Screen name="home">
-                {props => <DisplayAnImage navigationRef={navigationRef} />}
-              </Stack.Screen> */}
-
               <Stack.Screen name="Calls">
                 {props => <Calls navigationRef={navigationRef} />}
               </Stack.Screen>

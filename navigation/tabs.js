@@ -24,6 +24,8 @@ import Heart from '../homes/Heart';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+
+
 const MessageStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
@@ -49,6 +51,13 @@ const MessageStack = ({navigation}) => (
         headerBackTitleVisible: false,
         headerShown: false,
       })}
+    />
+     <Stack.Screen
+      name="Call"
+      component={Call}
+      options={{
+        headerShown: false,
+      }}
     />
   </Stack.Navigator>
 );
@@ -144,6 +153,7 @@ const SeachStack = ({navigation}) => (
 
 const Homestack = ({navigation}) => (
   <Stack.Navigator>
+    
     <Stack.Screen
       name="home"
       component={Home}
@@ -186,10 +196,16 @@ const Homestack = ({navigation}) => (
         headerShown: false,
       }}
     />
+   
   </Stack.Navigator>
 );
 
+
+
 const Tabs = () => {
+
+  
+  
   const getTabBarVisibility = route => {
     const routeName = route.state
       ? route.state.routes[route.state.index].name
@@ -202,6 +218,7 @@ const Tabs = () => {
   };
 
   return (
+    
     <Tab.Navigator tabBarOptions={{showLabel: false}} screenOptions={{}}>
       <Tab.Screen
         name="home"

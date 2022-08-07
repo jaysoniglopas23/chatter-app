@@ -135,7 +135,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 116
-        versionName "116.0"
+        versionName "116`.0"
         multiDexEnabled true
         missingDimensionStrategy 'store', 'play'
     }

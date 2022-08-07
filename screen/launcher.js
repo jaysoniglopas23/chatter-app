@@ -268,7 +268,7 @@ class Launcher extends Component {
           if (parseInt(d.password) == 1 && !global.passwordCorrect) {
             global.passcodeValue = d.PasscodeValue;
 
-            self.props.navigationRef.current?.navigate('Login');
+            self.props.navigationRef.current?.navigate('Tabs');
           } else {
             d.username = data.username;
             d.password = data.password;
@@ -287,7 +287,7 @@ class Launcher extends Component {
 
               // self.addGlobalListeners();
 
-              self.props.navigationRef.current?.navigate('Login');
+              self.props.navigationRef.current?.navigate('Tabs');
             });
           }
         });
