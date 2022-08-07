@@ -418,7 +418,7 @@ class Chat extends Component {
                 marginTop: windowHeight / 10 - 65,
                 flexDirection: 'row',
               }}
-              onPress={() => this.gotoUserProfile(msg_from)}>
+              onPress={() => this.gotoUserProfile(global.otherid)}>
               <Image
                 style={{width: 30, height: 30, borderRadius: 30}}
                 source={{
