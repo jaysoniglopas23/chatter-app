@@ -70,11 +70,11 @@ class Happy extends Component {
     });
   }
 
-  handleDate(datetime) {
+  handleDate(dob) {
     this.setState({
       modalDatePicker: false,
-      chosenDate: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
-      // moment(datetime).format('YYYY-MM-DD  HH:mm:ss '),
+      dob: moment(new Date()).format('YYYY-MM-DD'),
+      // dob: moment(datetime).format('YYYY-MM-DD  HH:mm:ss '),
     });
   }
 
@@ -171,7 +171,7 @@ class Happy extends Component {
 
         params['firstname'] = '';
         params['lastname'] = '';
-        params['dob'] = moment(new Date()).format('YYYY-MM-DD  HH:mm:ss ');
+        params['dob'] = moment(new Date()).format('YYYY-MM-DD');
         params['about'] = '';
         params['job_title'] = this.state.job_title;
         params['company'] = this.state.company;
@@ -206,9 +206,9 @@ class Happy extends Component {
     );
   }
 
-componentDidMount(){
-  this.getProfile();
-}
+  componentDidMount() {
+    this.getProfile();
+  }
 
   getProfile() {
     let self = this;
@@ -246,9 +246,9 @@ componentDidMount(){
 
       params['firstname'] = '';
       params['lastname'] = '';
-      params['dob'] = moment(new Date()).format('YYYY-MM-DD  HH:mm:ss ');
+      params['dob'] = moment(new Date()).format('YYYY-MM-DD');
       params['about'] = '';
-      params['job_title'] =this.state.job_title;
+      params['job_title'] = this.state.job_title;
       params['company'] = this.state.company;
       params['school'] = this.state.school;
       params['gender'] = 1;
@@ -270,7 +270,6 @@ componentDidMount(){
       params['introduction'] = this.state.introduction;
       params['character'] = this.state.character;
       params['location'] = '';
-     
 
       // if (gender_rb == '0') {
       // }
@@ -374,10 +373,10 @@ componentDidMount(){
 
     this.setState(
       {
-        job_title:job_title,
+        job_title: job_title,
       },
       () => {
-        if (job == '') {
+        if (job_title == '') {
         } else {
           self.valid1 = true;
 
@@ -396,7 +395,7 @@ componentDidMount(){
 
     this.setState(
       {
-        company:company,
+        company: company,
       },
       () => {
         if (company == '') {
@@ -418,7 +417,7 @@ componentDidMount(){
 
     this.setState(
       {
-        school:school,
+        school: school,
       },
       () => {
         if (school == '') {
@@ -435,7 +434,27 @@ componentDidMount(){
     );
   }
 
+  getSchool(gender) {
+    let self = this;
 
+    this.setState(
+      {
+        gender: gender,
+      },
+      () => {
+        if (school == '') {
+        } else {
+          self.valid1 = true;
+
+          self.setState({
+            schoolOpacity: 0,
+          });
+        }
+
+        // self.goSave();
+      },
+    );
+  }
 
   render() {
     let gender = [
@@ -950,9 +969,14 @@ componentDidMount(){
                 style={{width: windowWidth, height: 40}}
                 onPress={() => this.closeDateModal()}>
                 <View style={{width: '100%', height: 40}}>
-                  <Text style={{top: 15}}>{this.chosenDate}</Text>
+                  <Text
+                    style={{bottom: 10, alignSelf: 'center', color: 'black'}}
+                    value={this.state.dob}
+                    onChangeText={value => this.handleDate(value)}
+                    placeholder={this.state.dob}></Text>
                 </View>
               </TouchableWithoutFeedback>
+
               <Modal
                 animationType="slide"
                 transparent={true}
@@ -961,9 +985,9 @@ componentDidMount(){
                   modalDatePicker={this.state.modalDatePicker}
                   textColor={global.textColor}
                   testID="dateTimePicker"
-                  value={new Date(1598051730000)}
+                  value={new Date()}
                   mode={'date'}
-                  is24Hour={true}
+                  // is24Hour={true}
                   display="spinner"
                   onChange={this.handleDate}
                 />
@@ -977,7 +1001,8 @@ componentDidMount(){
                   marginHorizontal: 177,
                   color: 'black',
                   width: windowWidth / 7.5,
-                  // this is graduate bloodtype*********
+
+                  // this is graduate dateofbirth*********
                 }}>
                 生年月日
               </Text>
@@ -993,23 +1018,45 @@ componentDidMount(){
                 borderColor: '#cdd5d5',
                 alignItems: 'center',
               }}>
-              <RadioForm
-                radio_props={gender}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
-                buttonSize={10}
-                buttonOuterSize={20}
-                buttonColor={'grey'}
-                selectedButtonColor={'grey'}
-                selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
-                disabled={false}
-                formHorizontal={true}
-                labelHorizontal={true}
-                style={{top: 30}}
-              />
+              {this.state.gender == 1 ? (
+                <RadioForm
+                  radio_props={gender}
+                  initial={0}
+                  onPress={value => {
+                    ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                  }}
+                  buttonSize={10}
+                  // value={}
+                  buttonOuterSize={20}
+                  buttonColor={'grey'}
+                  selectedButtonColor={'grey'}
+                  selectedLabelColor={'black'}
+                  labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                  disabled={false}
+                  formHorizontal={true}
+                  labelHorizontal={true}
+                  style={{top: 30}}
+                />
+              ) : (
+                <RadioForm
+                  radio_props={gender}
+                  initial={1}
+                  onPress={value => {
+                    ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                  }}
+                  buttonSize={10}
+                  // value={}
+                  buttonOuterSize={20}
+                  buttonColor={'grey'}
+                  selectedButtonColor={'grey'}
+                  selectedLabelColor={'black'}
+                  labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                  disabled={false}
+                  formHorizontal={true}
+                  labelHorizontal={true}
+                  style={{top: 30}}
+                />
+              )}
             </View>
             <Text
               style={{
