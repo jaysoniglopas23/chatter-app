@@ -355,6 +355,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 145,
                       color: 'black',
+                      width: windowWidth / 4.6,
                       // this is nickname*********************
                     }}>
                     ニックネーム
