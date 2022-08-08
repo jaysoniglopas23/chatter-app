@@ -173,9 +173,9 @@ class Happy extends Component {
         params['lastname'] = '';
         params['dob'] = moment(new Date()).format('YYYY-MM-DD  HH:mm:ss ');
         params['about'] = '';
-        params['job_title'] = this.state.job_title;
-        params['company'] = this.state.company;
-        params['school'] = this.state.school;
+        params['job'] = '';
+        params['company'] = '';
+        params['school'] = '';
         params['gender'] = 1;
         params['gender_pref'] = 1;
         params['distance_threshold'] = 0;
@@ -188,12 +188,12 @@ class Happy extends Component {
         params['marriage_desire'] = 0;
         params['presence_of_pet'] = 0;
         params['holiday'] = 0;
-        params['hobbie'] = this.state.hobbie;
+        params['hobbie'] = '';
         params['bloodtype'] = '';
         params['email'] = this.state.email;
         params['name'] = '';
-        params['introduction'] = this.state.introduction;
-        params['character'] = this.state.character;
+        params['introduction'] = '';
+        params['character'] = '';
         params['location'] = '';
 
         // if (gender_rb == '0') {
@@ -205,12 +205,7 @@ class Happy extends Component {
       },
     );
   }
-
-componentDidMount(){
-  this.getProfile();
-}
-
-  getProfile() {
+  componentDidMount() {
     let self = this;
 
     this.setState({}, () => {
@@ -220,25 +215,6 @@ componentDidMount(){
         self.setState({
           nickname: ret.nickname,
           email: ret.email,
-          introduction: ret.introduction,
-          character: ret.character,
-          gender: ret.gender,
-          company: ret.company,
-          dob: ret.dob,
-          drinking: ret.drinking,
-          gender: ret.gender,
-          gender_pref: ret.gender_pref,
-          hobbie: ret.hobbie,
-          holiday: ret.holiday,
-          job_title: ret.job_title,
-          like_children_or_not: ret.like_children_or_not,
-          location: ret.location,
-          merriage_desire: ret.merriage_desire,
-          marrried: ret.marrried,
-          presence_of_children: ret.presence_of_children,
-          presence_of_pet: ret.presence_of_pet,
-          school: ret.school,
-          smoking: ret.smoking,
         });
       });
 
@@ -248,9 +224,9 @@ componentDidMount(){
       params['lastname'] = '';
       params['dob'] = moment(new Date()).format('YYYY-MM-DD  HH:mm:ss ');
       params['about'] = '';
-      params['job_title'] =this.state.job_title;
-      params['company'] = this.state.company;
-      params['school'] = this.state.school;
+      params['job'] = '';
+      params['company'] = '';
+      params['school'] = '';
       params['gender'] = 1;
       params['gender_pref'] = 1;
       params['distance_threshold'] = 0;
@@ -263,14 +239,13 @@ componentDidMount(){
       params['marriage_desire'] = 0;
       params['presence_of_pet'] = 0;
       params['holiday'] = 0;
-      params['hobbie'] = this.state.hobbie;
+      params['hobbie'] = '';
       params['bloodtype'] = '';
       params['email'] = this.state.email;
       params['name'] = '';
-      params['introduction'] = this.state.introduction;
-      params['character'] = this.state.character;
+      params['introduction'] = '';
+      params['character'] = '';
       params['location'] = '';
-     
 
       // if (gender_rb == '0') {
       // }
@@ -278,164 +253,6 @@ componentDidMount(){
       global.socket.emit('on-details', params);
     });
   }
-
-  getIntroduction(introduction) {
-    let self = this;
-
-    this.setState(
-      {
-        introduction: introduction,
-      },
-      () => {
-        if (introduction == '') {
-        } else {
-          self.valid1 = true;
-
-          self.setState({
-            introductionOpacity: 0,
-          });
-        }
-
-        // self.goSave();
-      },
-    );
-  }
-
-  getIntroduction(introduction) {
-    let self = this;
-
-    this.setState(
-      {
-        introduction: introduction,
-      },
-      () => {
-        if (introduction == '') {
-        } else {
-          self.valid1 = true;
-
-          self.setState({
-            introductionOpacity: 0,
-          });
-        }
-
-        // self.goSave();
-      },
-    );
-  }
-
-  getLocation() {}
-
-  getCharacter(character) {
-    let self = this;
-
-    this.setState(
-      {
-        character: character,
-      },
-      () => {
-        if (character == '') {
-        } else {
-          self.valid1 = true;
-
-          self.setState({
-            characterOpacity: 0,
-          });
-        }
-
-        // self.goSave();
-      },
-    );
-  }
-
-  getHobbie(hobbie) {
-    let self = this;
-
-    this.setState(
-      {
-        hobbie: hobbie,
-      },
-      () => {
-        if (hobbie == '') {
-        } else {
-          self.valid1 = true;
-
-          self.setState({
-            hobbieOpacity: 0,
-          });
-        }
-
-        // self.goSave();
-      },
-    );
-  }
-
-  getJob(job_title) {
-    let self = this;
-
-    this.setState(
-      {
-        job_title:job_title,
-      },
-      () => {
-        if (job == '') {
-        } else {
-          self.valid1 = true;
-
-          self.setState({
-            jobOpacity: 0,
-          });
-        }
-
-        // self.goSave();
-      },
-    );
-  }
-
-  getCompany(company) {
-    let self = this;
-
-    this.setState(
-      {
-        company:company,
-      },
-      () => {
-        if (company == '') {
-        } else {
-          self.valid1 = true;
-
-          self.setState({
-            companyOpacity: 0,
-          });
-        }
-
-        // self.goSave();
-      },
-    );
-  }
-
-  getSchool(school) {
-    let self = this;
-
-    this.setState(
-      {
-        school:school,
-      },
-      () => {
-        if (school == '') {
-        } else {
-          self.valid1 = true;
-
-          self.setState({
-            schoolOpacity: 0,
-          });
-        }
-
-        // self.goSave();
-      },
-    );
-  }
-
-
 
   render() {
     let gender = [
@@ -617,9 +434,6 @@ componentDidMount(){
                       borderRadius: 4,
                       color: 'black',
                     }}
-                    placeholder={this.state.introduction}
-                    value={this.state.introduction}
-                    onChangeText={value => this.getIntroduction(value)}
                   />
                   <Text
                     style={{
@@ -704,9 +518,6 @@ componentDidMount(){
                       borderRadius: 4,
                       color: 'black',
                     }}
-                    placeholder={this.state.character}
-                    value={this.state.character}
-                    onChangeText={value => this.getCharacter(value)}
                   />
                   <Text
                     style={{
@@ -749,9 +560,6 @@ componentDidMount(){
                       borderRadius: 4,
                       color: 'black',
                     }}
-                    placeholder={this.state.hobbie}
-                    value={this.state.hobbie}
-                    onChangeText={value => this.getHobbie(value)}
                   />
                   <Text
                     style={{
@@ -762,7 +570,7 @@ componentDidMount(){
                       marginHorizontal: 160,
                       color: 'black',
                       width: windowWidth / 12.2,
-                      // this is hobbie*********
+                      // this is society*********
                     }}>
                     趣味
                   </Text>
@@ -794,9 +602,6 @@ componentDidMount(){
                       borderRadius: 4,
                       color: 'black',
                     }}
-                    placeholder={this.state.job_title}
-                    value={this.state.job_title}
-                    onChangeText={value => this.getJob(value)}
                   />
                   <Text
                     style={{
@@ -807,7 +612,7 @@ componentDidMount(){
                       marginHorizontal: 143,
                       color: 'black',
                       width: windowWidth / 12.2,
-                      // this is job*********
+                      // this is graduate school*********
                     }}>
                     仕事
                   </Text>
@@ -839,9 +644,6 @@ componentDidMount(){
                       borderRadius: 4,
                       color: 'black',
                     }}
-                    placeholder={this.state.company}
-                    value={this.state.company}
-                    onChangeText={value => this.getCompany(value)}
                   />
                   <Text
                     style={{
@@ -852,7 +654,6 @@ componentDidMount(){
                       marginHorizontal: 143,
                       color: 'black',
                       width: windowWidth / 12.2,
-                      // this is company*********
                     }}>
                     会社
                   </Text>
@@ -884,9 +685,6 @@ componentDidMount(){
                       borderRadius: 4,
                       color: 'black',
                     }}
-                    placeholder={this.state.school}
-                    value={this.state.school}
-                    onChangeText={value => this.getSchool(value)}
                   />
                   <Text
                     style={{
@@ -897,7 +695,6 @@ componentDidMount(){
                       marginHorizontal: 143,
                       color: 'black',
                       width: windowWidth / 7.2,
-                      // Graduating school*************
                     }}>
                     出身大学
                   </Text>
