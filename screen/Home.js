@@ -40,7 +40,6 @@ import Privacy from '../homes/Privacy';
 import Launcher from './launcher';
 import Userlikes from '../homes/Userlikes';
 
-
 const DeviceWidth = Dimensions.get('window').width;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -166,7 +165,6 @@ class DisplayAnImage extends Component {
 
   componentDidMount() {
     this.getProfile();
-    
   }
 
   getProfile() {
@@ -281,17 +279,6 @@ class DisplayAnImage extends Component {
               onChangeText={value => this.getProfile(value)}>
               {this.state.nickname}
             </Text>
-            {/* <Text
-              style={{
-                alignSelf: 'center',
-                top: 15,
-                right: 175,
-                color: 'black',
-                fontWeight: 'bold',
-                position: 'absolute',
-              }}>
-              Age : {this.state.age}
-            </Text> */}
             <Text
               style={{
                 top: 26,
@@ -302,7 +289,7 @@ class DisplayAnImage extends Component {
                 position: 'absolute',
                 width: windowWidth / 3,
               }}>
-              通話 : {this.state.mail_count}分
+              通話 :{this.state.mail_count}分
             </Text>
             <Text
               style={{
@@ -315,7 +302,7 @@ class DisplayAnImage extends Component {
                 fontSize: 17,
                 width: windowWidth / 3,
               }}>
-              メール : {this.state.call_minutes}通
+              メール :{this.state.call_minutes}通
             </Text>
           </View>
           <TouchableOpacity
@@ -381,7 +368,6 @@ class DisplayAnImage extends Component {
                 gestureEnable: true,
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
               }}>
-              
               <Stack.Screen name="Dashboard">
                 {props => <Dashboard navigationRef={navigationRef} />}
               </Stack.Screen>

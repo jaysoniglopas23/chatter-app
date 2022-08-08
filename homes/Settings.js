@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import ToggleSwitch from 'toggle-switch-react-native';
 import Slider from '@react-native-community/slider';
-import { getVersion } from 'react-native-device-info';
+import {getVersion} from 'react-native-device-info';
 import Svg, {G, Path} from 'react-native-svg';
 import Modal from 'react-native-modal';
 import Storage from '../utils/storage';
@@ -20,9 +20,7 @@ import Storage from '../utils/storage';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
 const version = getVersion();
-
 
 class Settings extends Component {
   constructor(props) {
@@ -33,8 +31,7 @@ class Settings extends Component {
       // toggled2: true,
       sliderValue: '0',
       modalConfirmLogout: false,
-      loadingLogoutConfrimReport:false
-     
+      loadingLogoutConfrimReport: false,
     };
 
     this.goHome = this.goHome.bind(this);
@@ -44,11 +41,10 @@ class Settings extends Component {
     this.props.navigation.navigate('home');
   }
 
-componentDidMount(){
-  this.toggleSwitch2();
-  this.toggleSwitch();
-}
-  
+  componentDidMount() {
+    this.toggleSwitch2();
+    this.toggleSwitch();
+  }
 
   // toggleSwitch2 = value2 => {
   //   this.setState({toggled2: value2});
@@ -59,42 +55,36 @@ componentDidMount(){
 
     let notify_likes = 0;
 
-   
-
     this.setState(
       {
         toggled2: value2,
-      
       },
 
       () => {
         global.socket.on('emit-settings', function (ret) {
           global.socket.off('emit-settings');
-            // console.log(ret);
+          // console.log(ret);
           self.setState({
-         notify_likes:ret.notify_likes,
+            notify_likes: ret.notify_likes,
           });
           // alert(self.state.notify_likes);
-        
 
           if (self.state.notify_likes == 0) {
-             self.setState({
-            toggled2: false,
+            self.setState({
+              toggled2: false,
             });
-          
           } else {
             self.setState({
               toggled2: true,
             });
-           
           }
 
           // self.Save();
         });
         let params = {};
 
-        params[ "notify_likes"] = notify_likes;
-        params[ "notify_updates"] =this.state.notify_updates;
+        params['notify_likes'] = notify_likes;
+        params['notify_updates'] = this.state.notify_updates;
         global.value2 = value2;
         console.log(value2);
         global.socket.emit('on-settings', params);
@@ -102,27 +92,24 @@ componentDidMount(){
     );
   };
 
-  toggleSwitch = (value) => {
+  toggleSwitch = value => {
     let self = this;
 
     let notify_updates = 0;
-
 
     this.setState(
       {
         toggled: value,
       },
-     
 
       () => {
         global.socket.on('emit-settings', function (ret) {
           global.socket.off('emit-settings');
-            console.log(ret);
+          console.log(ret);
           self.setState({
-           notify_updates:ret.notify_updates,
+            notify_updates: ret.notify_updates,
           });
           // alert('sssssss');
-        
 
           if (self.state.notify_updates == 0) {
             self.setState({
@@ -138,10 +125,10 @@ componentDidMount(){
         });
         let params = {};
 
-        params[ "notify_updates"] =notify_updates;
-        params[ "notify_likes"] = this.state.notify_likes;
-        global.value = value
-       
+        params['notify_updates'] = notify_updates;
+        params['notify_likes'] = this.state.notify_likes;
+        global.value = value;
+
         console.log(params);
         global.socket.emit('on-settings', params);
       },
@@ -159,56 +146,55 @@ componentDidMount(){
 
     let value2 = global.value2;
 
-    
-
     this.setState(
-    {
-      toggled: value,
-      toggled2: value2,
-      saving: true,
-    }, 
+      {
+        toggled: value,
+        toggled2: value2,
+        saving: true,
+      },
 
-    () => {
-      global.socket.on('emit-settings-save', function (ret) {
-        global.socket.off('emit-settings-save');
-       
-        // self.setState({
-        //  notify_likes: ret.notify_likes,
-        //  notify_updates:ret.notify_updates,
-        // });
+      () => {
+        global.socket.on('emit-settings-save', function (ret) {
+          global.socket.off('emit-settings-save');
 
-        if (global.value == true) {
-          self.setState({
-            notify_updates : 1,
-          });
-          // alert('1111111');
-        } else {
-          self.setState({
-            notify_updates : 0,
-          });
-        }
+          // self.setState({
+          //  notify_likes: ret.notify_likes,
+          //  notify_updates:ret.notify_updates,
+          // });
 
-        if (global.value2 == true) {
-          self.setState({
-            notify_likes : 1,
-          });
-          // alert('wweqweqwe11');
-        } else {
-          self.setState({
-            notify_likes : 0,
-          });
-        }
-      });
+          if (global.value == true) {
+            self.setState({
+              notify_updates: 1,
+            });
+            // alert('1111111');
+          } else {
+            self.setState({
+              notify_updates: 0,
+            });
+          }
 
-      let params = {};
+          if (global.value2 == true) {
+            self.setState({
+              notify_likes: 1,
+            });
+            // alert('wweqweqwe11');
+          } else {
+            self.setState({
+              notify_likes: 0,
+            });
+          }
+        });
 
-      params[ "notify_updates"] = this.state.notify_updates;
-      params[ "notify_likes"] =this.state.notify_likes;
-      params['distanceThreshold'] = 4;
+        let params = {};
 
-      console.log(params);
-      global.socket.emit('on-settings-save', params);
-    });
+        params['notify_updates'] = this.state.notify_updates;
+        params['notify_likes'] = this.state.notify_likes;
+        params['distanceThreshold'] = 4;
+
+        console.log(params);
+        global.socket.emit('on-settings-save', params);
+      },
+    );
   }
 
   goLogout() {
@@ -258,7 +244,6 @@ componentDidMount(){
       },
     );
   }
-
 
   render() {
     return (
@@ -314,7 +299,9 @@ componentDidMount(){
             width: 350,
             borderRadius: 4,
           }}>
-          <Text style={{left: 85, top: 13,color: 'black'}}>最新情報を通知</Text>
+          <Text style={{left: 85, top: 13, color: 'black'}}>
+            最新情報を通知
+          </Text>
           <Switch
             style={{left: 100}}
             onValueChange={this.toggleSwitch}
@@ -330,7 +317,7 @@ componentDidMount(){
             width: 350,
             borderRadius: 4,
           }}>
-          <Text style={{left: 85, top: 13,color: 'black'}}>いいねの通知</Text>
+          <Text style={{left: 85, top: 13, color: 'black'}}>いいねの通知</Text>
           <Switch
             style={{left: 100}}
             onValueChange={this.toggleSwitch2}
@@ -338,68 +325,70 @@ componentDidMount(){
         </View>
 
         <View style={{top: 520}}>
-        <TouchableOpacity
-          onPress={() => this.goHome()}
-          style={{
-            backgroundColor: '#ECECEC',
-            marginHorizontal: 170,
-            height: 31,
-            right: 150,
-            marginBottom: 30,
-            flexDirection: 'row',
-            width: 50,
-            borderRadius: 2,
-            bottom: windowHeight / 2 - 550,
-          }}>
-          <Svg
-            style={{width: 20, height: 30}}
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fal"
-            data-icon="angle-left"
-            class="svg-inline--fa fa-angle-left fa-w-6"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 192 512">
-            <Path
-              fill="black"
-              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
-          </Svg>
-          <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
-        </TouchableOpacity>
-          <View  style={{
-            
-            alignItems:'center',
+          <TouchableOpacity
+            onPress={() => this.goHome()}
+            style={{
+              backgroundColor: '#ECECEC',
+              marginHorizontal: 170,
+              height: 31,
+              right: 150,
+              marginBottom: 30,
+              flexDirection: 'row',
+              width: 50,
+              borderRadius: 2,
+              bottom: windowHeight / 2 - 550,
+            }}>
+            <Svg
+              style={{width: 20, height: 30}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512">
+              <Path
+                fill="black"
+                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+            </Svg>
+            <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
+          </TouchableOpacity>
+          <View
+            style={{
+              alignItems: 'center',
               backgroundColor: '#ECECEC',
               paddingHorizontal: 130,
               height: 31,
-              left:67,
+              left: 67,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
-              borderWidth:1,
+              borderWidth: 1,
               borderRadius: 2,
-              bottom: 400 ,
+              bottom: 400,
             }}>
-          <Text style={{left: 85,position:'absolute',color:'black'}}>Version {version}</Text>
+            <Text style={{left: 85, position: 'absolute', color: 'black'}}>
+              Version {version}
+            </Text>
           </View>
           <TouchableOpacity
-          onPress={() => this.goLogout()}
+            onPress={() => this.goLogout()}
             style={{
               backgroundColor: '#ECECEC',
               height: 31,
-      
+
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              alignSelf:"center",
+              alignSelf: 'center',
               bottom: windowHeight / 2 - 25,
             }}>
-            <Text style={{left: 15, top: 5,color:'black'}}>Logout</Text>
+            <Text style={{left: 15, top: 5, color: 'black'}}>ログアウト</Text>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={() => this.Save()}
+            onPress={() => this.Save()}
             style={{
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
@@ -415,7 +404,7 @@ componentDidMount(){
               source={require('../icon/icons8-save-50.png')}
               style={{left: 9, top: 5, height: 20, width: 20}}
             />
-            <Text style={{left: 15, top: 5,color:'black'}}>保存</Text>
+            <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
         <Modal

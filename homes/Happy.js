@@ -323,6 +323,8 @@ class Happy extends Component {
                   top: 15,
                   right: 20,
                   marginHorizontal: 20,
+                  width: '100%',
+                  height: '100%',
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                 }}>
