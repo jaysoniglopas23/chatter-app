@@ -120,7 +120,7 @@ class Launcher extends Component {
   // }
 
   componentDidMount(){
-    
+    this.init();
   }
 
   init() {
@@ -260,15 +260,16 @@ class Launcher extends Component {
       });
       // alert(JSON.stringify(ret.id));
 
-      if (self.state.id == '') {
+      if (self.state.id == 0) {
         global.searchFields = data.searchSettings;
         self.props.navigationRef.current?.navigate('Login');
       } else {
         Storage.retrieveData().then(d => {
-          if (parseInt(d.password) == 1 && !global.passwordCorrect) {
+          // alert(2);
+          if (parseInt(d.password) == 0 && !global.passwordCorrect) {
             global.passcodeValue = d.PasscodeValue;
 
-            self.props.navigationRef.current?.navigate('Tabs');
+            self.props.navigationRef.current?.navigate('Login');
           } else {
             d.username = data.username;
             d.password = data.password;
@@ -287,6 +288,7 @@ class Launcher extends Component {
 
               // self.addGlobalListeners();
 
+   
               self.props.navigationRef.current?.navigate('Tabs');
             });
           }
@@ -298,8 +300,8 @@ class Launcher extends Component {
       id: this.state.id,
       socketid: this.state.socketid,
       phone_number: this.state.phone_number,
-      email: global.email,
-      password: global.password,
+      email: data.email,
+      password: data.password,
       new_password: this.state.new_password,
     };
 

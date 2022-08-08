@@ -88,9 +88,7 @@ class Appstacks extends Component {
           <Stack.Screen name="Dashboard">
             {props => <Dashboard navigationRef={navigationRef} />}
           </Stack.Screen>
-          <Stack.Screen name="Logout">
-            {props => <Logout navigationRef={navigationRef} />}
-          </Stack.Screen>
+         
         </Stack.Navigator>
       </NavigationContainer>
     );

@@ -166,6 +166,7 @@ class DisplayAnImage extends Component {
 
   componentDidMount() {
     this.getProfile();
+    
   }
 
   getProfile() {

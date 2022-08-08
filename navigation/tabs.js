@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {Image, View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
@@ -195,7 +195,14 @@ const Homestack = ({navigation}) => (
       options={{
         headerShown: false,
       }}
-    />
+    /> 
+    {/* <Stack.Screen
+    name="Launcher"
+    component={Launcher}
+    options={{
+      headerShown: false,
+    }}
+  /> */}
    
   </Stack.Navigator>
 );
@@ -204,14 +211,13 @@ const Homestack = ({navigation}) => (
 
 const Tabs = () => {
 
-  
-  
+
   const getTabBarVisibility = route => {
     const routeName = route.state
       ? route.state.routes[route.state.index].name
       : '';
 
-    if (routeName === 'Chat') {
+    if (routeName === 'home') {
       return false;
     }
     return true;

@@ -125,7 +125,7 @@ class Login extends Component {
       () => {
         global.socket.on('emit-login', function (ret) {
           global.socket.off('emit-login');
-          console.log(ret);
+          // console.log(ret);
 
           if (ret.id == 0) {
             self.setState({
@@ -160,7 +160,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     };
-    console.log(params);
+    // console.log(params);
 
     global.socket.emit('on-login', params);
   }

@@ -7,11 +7,15 @@ import {
   Switch,
   StyleSheet,
   Dimensions,
+  TouchableWithoutFeedback,
+  ActivityIndicator,
 } from 'react-native';
 import ToggleSwitch from 'toggle-switch-react-native';
 import Slider from '@react-native-community/slider';
 import { getVersion } from 'react-native-device-info';
 import Svg, {G, Path} from 'react-native-svg';
+import Modal from 'react-native-modal';
+import Storage from '../utils/storage';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -28,6 +32,8 @@ class Settings extends Component {
       toggled: false,
       // toggled2: true,
       sliderValue: '0',
+      modalConfirmLogout: false,
+      loadingLogoutConfrimReport:false
      
     };
 
@@ -205,6 +211,54 @@ componentDidMount(){
     });
   }
 
+  goLogout() {
+    let self = this;
+
+    this.setState({
+      modalConfirmLogout: true,
+    });
+  }
+
+  closeLogutConfirm() {
+    this.setState({
+      modalConfirmLogout: false,
+    });
+  }
+
+  continueLogoutConfirm() {
+    let self = this;
+
+    this.setState(
+      {
+        loadingLogoutConfrimReport: true,
+      },
+      () => {
+        let jsonData = {
+          id: '',
+          profile_image: '',
+          nickname: '',
+          username: '',
+          password: '',
+          searchSettings: global.searchFields,
+          likes: 0,
+        };
+
+        Storage.storeData(jsonData).then(() => {
+          self.setState(
+            {
+              modalConfirmLogout: false,
+            },
+            () => {
+              // self.props.launcher.init();
+
+              self.props.navigation.push('Launcher');
+            },
+          );
+        });
+      },
+    );
+  }
+
 
   render() {
     return (
@@ -330,6 +384,21 @@ componentDidMount(){
           <Text style={{left: 85,position:'absolute',color:'black'}}>Version {version}</Text>
           </View>
           <TouchableOpacity
+          onPress={() => this.goLogout()}
+            style={{
+              backgroundColor: '#ECECEC',
+              height: 31,
+      
+              marginBottom: 30,
+              flexDirection: 'row',
+              width: 70,
+              borderRadius: 2,
+              alignSelf:"center",
+              bottom: windowHeight / 2 - 25,
+            }}>
+            <Text style={{left: 15, top: 5,color:'black'}}>Logout</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={() => this.Save()}
             style={{
               backgroundColor: '#ECECEC',
@@ -349,6 +418,119 @@ componentDidMount(){
             <Text style={{left: 15, top: 5,color:'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
+        <Modal
+          animationType="slide"
+          // transparent={true}
+          isVisible={this.state.modalConfirmLogout}
+          style={{bottom: 400, alignSelf: 'center'}}>
+          <View
+            style={{
+              width: windowWidth,
+              backgroundColorL: 'black',
+              height: windowHeight - 100,
+              borderRadius: 30,
+              flexDirection: 'column',
+            }}>
+            <TouchableWithoutFeedback
+              style={{width: windowWidth, height: windowHeight - 290}}
+              onPress={() => this.closeLogutConfirm()}>
+              <View style={{width: '100%', height: windowHeight - 180}}></View>
+            </TouchableWithoutFeedback>
+
+            <View
+              style={{
+                width: windowWidth,
+                height: windowHeight,
+              }}>
+              <View
+                style={{
+                  height: 180,
+                  width: windowWidth,
+                  backgroundColor: '#f2f2f2',
+                  borderRadius: 15,
+                }}>
+                <Text
+                  style={{
+                    width: '100%',
+                    height: 30,
+                    lineHeight: 30,
+                    marginTop: 30,
+                    textAlign: 'center',
+                    fontSize: 13,
+                    color: global.textColor,
+                  }}>
+                  {this.state.logoutText}
+                </Text>
+
+                {this.state.loadingLogoutConfrimReport ? (
+                  <View
+                    style={{
+                      width: 20,
+                      height: 50,
+                      flexDirection: 'row',
+                      marginLeft: windowWidth / 2 - 10,
+                    }}>
+                    <ActivityIndicator size="small" color="#69747f" />
+                  </View>
+                ) : (
+                  <View
+                    style={{
+                      width: 210,
+                      height: 50,
+                      flexDirection: 'row',
+                      marginLeft: windowWidth / 2 - 105,
+                    }}>
+                    <TouchableOpacity
+                      style={{
+                        width: 100,
+                        height: 30,
+                        backgroundColor: '#fff',
+                        marginTop: 10,
+                        marginRight: 5,
+                        borderRadius: 3,
+                      }}
+                      onPress={() => this.closeLogutConfirm()}>
+                      <Text
+                        style={{
+                          width: '100%',
+                          height: 30,
+                          textAlign: 'center',
+                          lineHeight: 30,
+                          fontSize: 12,
+                          color: 'black',
+                        }}>
+                        キャンセル
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={{
+                        width: 100,
+                        height: 30,
+                        backgroundColor: '#fff',
+                        marginTop: 10,
+                        marginLeft: 5,
+                        borderRadius: 3,
+                      }}
+                      onPress={() => this.continueLogoutConfirm()}>
+                      <Text
+                        style={{
+                          width: '100%',
+                          height: 30,
+                          textAlign: 'center',
+                          lineHeight: 30,
+                          fontSize: 12,
+                          color: 'black',
+                        }}>
+                        はい
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }
