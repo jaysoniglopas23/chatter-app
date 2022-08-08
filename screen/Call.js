@@ -190,7 +190,7 @@ export default class Call extends Component {
         params: params,
       },
       () => {
-        global.socket.on('emit-users-for-search', function (ret1) {
+        global.socket.on('emit-users-for-search', function (ret) {
           global.socket.off('emit-users-for-search');
           // console.log(ret1);
           for (var i = 0; i < ret.length; i++) {
