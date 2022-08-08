@@ -399,7 +399,7 @@ class Happy extends Component {
                       fontSize: 12,
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
-                      width: 65,
+                      width: windowWidth / 4.2,
                       color: 'black',
                       // this is email*********************
                     }}>
@@ -443,6 +443,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 140,
                       color: 'black',
+                      width: windowWidth / 7.2,
                       // this is self introduction*********************
                     }}>
                     自己紹介
@@ -483,7 +484,7 @@ class Happy extends Component {
                       fontSize: 12,
                       backgroundColor: '#fff',
                       marginHorizontal: 139,
-                      width: 64,
+                      width: windowWidth / 4.2,
                       color: 'black',
                       // this is  area live in*********************
                     }}>
@@ -526,6 +527,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 150,
                       color: 'black',
+                      width: windowWidth / 12.2,
                       // this is character*********
                     }}>
                     性格
@@ -567,6 +569,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 160,
                       color: 'black',
+                      width: windowWidth / 12.2,
                       // this is society*********
                     }}>
                     趣味
@@ -608,6 +611,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
+                      width: windowWidth / 12.2,
                       // this is graduate school*********
                     }}>
                     仕事
@@ -649,6 +653,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
+                      width: windowWidth / 12.2,
                     }}>
                     会社
                   </Text>
@@ -689,6 +694,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
+                      width: windowWidth / 7.2,
                     }}>
                     出身大学
                   </Text>
@@ -719,6 +725,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
+                width: windowWidth / 9.2,
                 // this is graduate bloodtype*********
               }}>
               血液型
@@ -766,6 +773,7 @@ class Happy extends Component {
                   backgroundColor: '#fff',
                   marginHorizontal: 177,
                   color: 'black',
+                  width: windowWidth / 7.5,
                   // this is graduate bloodtype*********
                 }}>
                 生年月日
@@ -802,12 +810,13 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
+                bottom: 98,
                 right: 148,
                 fontSize: 12,
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
+                width: windowWidth / 7.5,
                 // this is graduate bloodtype*********
               }}>
               恋愛対象
@@ -829,16 +838,23 @@ class Happy extends Component {
                 onPress={value => {
                   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
                 }}
-                buttonSize={10}
-                buttonOuterSize={20}
+                buttonSize={8}
+                buttonOuterSize={18}
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 12, paddingHorizontal: 30}}
+                labelStyle={{
+                  fontSize: 9,
+                  paddingHorizontal: 0,
+                  width: windowWidth / 6.5,
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
-                style={{top: 30, left: 13}}
+                style={{
+                  top: 30,
+                  width: windowWidth - 70,
+                }}
               />
             </View>
             <Text
@@ -849,6 +865,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
+                width: windowWidth / 9.5,
                 // this is graduate bloodtype*********
               }}>
               タバコ
@@ -870,16 +887,23 @@ class Happy extends Component {
                 onPress={value => {
                   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
                 }}
-                buttonSize={10}
-                buttonOuterSize={20}
+                buttonSize={8}
+                buttonOuterSize={18}
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 12, paddingHorizontal: 30}}
+                labelStyle={{
+                  fontSize: 9,
+                  paddingHorizontal: 0,
+                  width: windowWidth / 6.5,
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
-                style={{top: 30, left: 13}}
+                style={{
+                  top: 30,
+                  width: windowWidth - 70,
+                }}
               />
             </View>
             <Text
@@ -890,6 +914,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
+                width: windowWidth / 10.5,
                 // this is graduate bloodtype*********
               }}>
               飲酒
@@ -931,6 +956,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
+                width: windowWidth / 9.5,
                 // this is graduate bloodtype*********
               }}>
               結婚歴
@@ -972,6 +998,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 167,
                 color: 'black',
+                width: windowWidth / 4.8,
                 // this is graduate bloodtype*********
               }}>
               子どもの有無
@@ -1013,6 +1040,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
+                width: windowWidth / 6.3,
                 // this is graduate bloodtype*********
               }}>
               結婚願望
@@ -1054,6 +1082,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 170,
                 color: 'black',
+                width: windowWidth / 5.5,
                 // this is graduate bloodtype*********
               }}>
               子ども好き
@@ -1095,6 +1124,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 168,
                 color: 'black',
+                width: windowWidth / 5,
                 // this is graduate bloodtype*********
               }}>
               ペットの有無
@@ -1136,6 +1166,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 185,
                 color: 'black',
+                width: windowWidth / 12,
                 // this is graduate bloodtype*********
               }}>
               休日
