@@ -229,6 +229,7 @@ class Happy extends Component {
           gender: ret.gender,
           gender_pref: ret.gender_pref,
           hobbie: ret.hobbie,
+          about:ret.about,
           holiday: ret.holiday,
           job_title: ret.job_title,
           like_children_or_not: ret.like_children_or_not,
@@ -241,7 +242,7 @@ class Happy extends Component {
           smoking: ret.smoking,
         });
 
-        // alert(self.state.job_title);
+       
       });
 
       let params = {};
@@ -274,6 +275,7 @@ class Happy extends Component {
       params['location'] = '';
 
       global.job_title = this.state.job_title;
+      //  alert(global.about);
 
       // if (gender_rb == '0') {
       // }
