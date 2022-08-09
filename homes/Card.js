@@ -37,10 +37,6 @@ class Card extends Component {
       modalVisible: false,
 
       profilePhoto: '',
-
-      livVerFiles: ret.licver_image,
-
-      strLicVerHash: ret.licver_image_dir,
     };
 
     this.goBack = this.goBack.bind(this);
@@ -182,39 +178,49 @@ class Card extends Component {
       <View
         style={{
           backgroundColor: '#fff',
-          height: '85%',
-          // flex: 1,
+          height: windowHeight,
+          flex: 1,
           width: '100%',
         }}>
-        {this.state.hasProfilePhoto ? (
-          <Image
-            source={{uri: this.state.profilePhoto}}
-            style={{
-              alignSelf: 'center',
-              top: 50,
-              width: 350,
-              height: 350,
-              borderRadius: 1,
-            }}
-          />
-        ) : (
-          <Image
-            source={require('../images/image.jpg')}
-            style={{
-              top: 50,
-              width: 350,
-              height: 350,
-              borderRadius: 1,
-              alignSelf: 'center',
-            }}
-          />
-        )}
+        <View
+          style={{
+            backgroundColor: '#fff',
+            height: windowHeight / 2,
+            width: windowWidth - 40,
+            alignSelf: 'center',
+            marginTop: 20,
+          }}>
+          {this.state.hasProfilePhoto ? (
+            <Image
+              source={{uri: this.state.profilePhoto}}
+              style={{
+                alignSelf: 'center',
+                top: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: 1,
+              }}
+            />
+          ) : (
+            <Image
+              source={require('../icon/userprofile.png')}
+              style={{
+                top: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: 1,
+                alignSelf: 'center',
+                opacity: 0.3,
+              }}
+            />
+          )}
+        </View>
 
         <View
           style={{
             width: '100%',
             height: windowHeight / 13,
-            top: windowHeight / 2 - 232,
+            top: windowWidth / 12,
             // flex: 1,
             // backgroundColor: 'black',
           }}>
@@ -223,7 +229,7 @@ class Card extends Component {
               width: 110,
               height: 30,
               backgroundColor: '#ececec',
-
+              left: windowWidth / 10 - 54,
               marginLeft: windowWidth / 2 - 10,
               borderRadius: 3,
               bottom: windowHeight / 2 - 432,
@@ -264,7 +270,7 @@ class Card extends Component {
               height: 30,
               backgroundColor: '#ececec',
               marginTop: 25,
-              left: 315,
+              left: windowWidth / 1.3,
               borderRadius: 3,
               bottom: windowHeight / 2 - 377,
             }}>
