@@ -337,8 +337,8 @@ class Register extends Component {
           });
 
           let params = {
-            nickname:'ニックネームを変更する',
-            email:global.email,
+            nickname: 'ニックネームを変更する',
+            email: global.email,
             password: global.password,
           };
 
@@ -383,7 +383,8 @@ class Register extends Component {
       {label: '>女性', value: 1},
     ];
     return (
-      <View style={{backgroundColor: '#fff', height: '100%'}}>
+      <View
+        style={{backgroundColor: '#fff', height: windowHeight, width: '100%'}}>
         <TouchableOpacity
           style={{
             marginLeft: 5,
@@ -436,9 +437,9 @@ class Register extends Component {
               width: '100%',
               height: 15,
               lineHeight: 15,
-              color: global.textColor,
+              color: 'red',
               fontSize: 11,
-              color: global.errorTextColor,
+              color: 'red',
               textAlign: 'right',
               opacity: this.state.emailErrorOpacity,
             }}>
@@ -447,11 +448,11 @@ class Register extends Component {
         </View>
         <Text
           style={{
-            bottom: 65,
-            left: 29,
             backgroundColor: '#fff',
-            marginRight: 370,
             color: 'black',
+            bottom: windowWidth / 5.5,
+            width: windowWidth / 7,
+            left: 30,
           }}>
           Eメール
         </Text>
@@ -499,7 +500,7 @@ class Register extends Component {
           <Text
             style={{
               bottom: 28,
-              right: 268,
+              right: 280,
               backgroundColor: '#fff',
               color: 'black',
             }}>
@@ -533,11 +534,11 @@ class Register extends Component {
         </View>
         <Text
           style={{
-            bottom: 64,
-            right: 339,
-            marginLeft: 363,
             backgroundColor: '#fff',
             color: 'black',
+            bottom: windowWidth / 5.5,
+            width: windowWidth / 6,
+            left: 30,
           }}>
           電話番号
         </Text>
@@ -582,11 +583,11 @@ class Register extends Component {
         </View>
         <Text
           style={{
-            bottom: 64,
-            right: 328,
-            marginLeft: 355,
             backgroundColor: '#fff',
             color: 'black',
+            bottom: windowWidth / 5.5,
+            width: windowWidth / 5,
+            left: 30,
           }}>
           パスワード
         </Text>
@@ -630,11 +631,11 @@ class Register extends Component {
 
         <Text
           style={{
-            bottom: 68,
-            right: 270,
-            marginLeft: 300,
             backgroundColor: '#fff',
             color: 'black',
+            bottom: windowWidth / 5.5,
+            width: windowWidth / 2.5,
+            left: 30,
           }}>
           パスワードを認証する
         </Text>
