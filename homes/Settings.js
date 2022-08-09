@@ -380,7 +380,7 @@ class Settings extends Component {
 
               marginBottom: 30,
               flexDirection: 'row',
-              width: 70,
+              width: windowWidth / 3.8,
               borderRadius: 2,
               alignSelf: 'center',
               bottom: windowHeight / 2 - 25,
