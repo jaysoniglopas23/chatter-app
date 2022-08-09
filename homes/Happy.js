@@ -172,7 +172,7 @@ class Happy extends Component {
         params['firstname'] = '';
         params['lastname'] = '';
         params['dob'] = moment(new Date()).format('YYYY-MM-DD');
-        params['about'] = '';
+        params['about'] = this.state.about;
         params['job_title'] = this.state.job_title;
         params['company'] = this.state.company;
         params['school'] = this.state.school;
@@ -240,6 +240,8 @@ class Happy extends Component {
           school: ret.school,
           smoking: ret.smoking,
         });
+
+        // alert(self.state.job_title);
       });
 
       let params = {};
@@ -247,7 +249,7 @@ class Happy extends Component {
       params['firstname'] = '';
       params['lastname'] = '';
       params['dob'] = moment(new Date()).format('YYYY-MM-DD');
-      params['about'] = '';
+      params['about'] = this.state.about;
       params['job_title'] = this.state.job_title;
       params['company'] = this.state.company;
       params['school'] = this.state.school;
@@ -270,6 +272,8 @@ class Happy extends Component {
       params['introduction'] = this.state.introduction;
       params['character'] = this.state.character;
       params['location'] = '';
+
+      global.job_title = this.state.job_title;
 
       // if (gender_rb == '0') {
       // }
@@ -300,20 +304,42 @@ class Happy extends Component {
     );
   }
 
-  getIntroduction(introduction) {
+  // getIntroduction(introduction) {
+  //   let self = this;
+
+  //   this.setState(
+  //     {
+  //       introduction: introduction,
+  //     },
+  //     () => {
+  //       if (introduction == '') {
+  //       } else {
+  //         self.valid1 = true;
+
+  //         self.setState({
+  //           introductionOpacity: 0,
+  //         });
+  //       }
+
+  //       // self.goSave();
+  //     },
+  //   );
+  // }
+
+  getLocation(about) {
     let self = this;
 
     this.setState(
       {
-        introduction: introduction,
+        about: about,
       },
       () => {
-        if (introduction == '') {
+        if (about == '') {
         } else {
           self.valid1 = true;
 
           self.setState({
-            introductionOpacity: 0,
+            characterOpacity: 0,
           });
         }
 
@@ -321,8 +347,6 @@ class Happy extends Component {
       },
     );
   }
-
-  getLocation() {}
 
   getCharacter(character) {
     let self = this;
@@ -681,6 +705,9 @@ class Happy extends Component {
                       borderRadius: 4,
                       color: 'black',
                     }}
+                    placeholder={this.state.about}
+                    value={this.state.about}
+                    onChangeText={value => this.getLocation(value)}
                   />
                   <Text
                     style={{
@@ -813,7 +840,7 @@ class Happy extends Component {
                       borderRadius: 4,
                       color: 'black',
                     }}
-                    placeholder={this.state.job_title}
+                    placeholder={global.job_title}
                     value={this.state.job_title}
                     onChangeText={value => this.getJob(value)}
                   />
@@ -1609,15 +1636,15 @@ const searchFields = [
     db_name: 'my_blood',
     rn_name: 'blood',
   },
-  {
-    name: 'job',
-    type: 2,
+  // {
+  //   name: 'job',
+  //   type: 2,
 
-    title: '職業',
-    title_en: 'Job',
-    db_name: 'my_job',
-    rn_name: 'job',
-  },
+  //   title: '職業',
+  //   title_en: 'Job',
+  //   db_name: 'my_job',
+  //   rn_name: 'job',
+  // },
 
   {
     name: 'wine',
