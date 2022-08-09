@@ -22,8 +22,11 @@ export const UserInfo = styled.View`
 `;
 
 export const UserImgWrapper = styled.TouchableOpacity`
-  padding-top: 15px;
+  padding-top: 0px;
   padding-bottom: 15px;
+  height:50px;
+  background-color: black;
+  border-radius: 25px;
 `;
 
 export const ReportWrapper = styled.TouchableOpacity`
@@ -41,8 +44,9 @@ export const UserImg = styled.Image`
 export const UserImg1 = styled.Image`
   width: 300px;
   height: 200px;
-  border-radius: 25px;
+  border-radius: 15px;
   top: 10px;
+  right:30px;
   margin-bottom: 25px;
 `;
 
@@ -67,7 +71,7 @@ export const TextSection = styled.View`
   padding-left: 0;
   margin-left: 10px;
   width: 300px;
-  border-bottom-width: 1px;
+  // border-bottom-width: 1px;
   border-bottom-color: #cccccc;
   padding-bottom: 35px;
 `;
@@ -109,19 +113,19 @@ export const MessageText2 = styled.Text`
   font-size: 12px;
   top: 6px;
   color: #333333;
-  align-self: center;
+  left:27px;
 `;
 
 export const MessageText3 = styled.Text`
   font-size: 12px;
   top: 6px;
   color: #333333;
-  align-self: center;
+  left:27px;
 `;
 
 export const UserInfo1 = styled.TouchableOpacity`
   top: 10px;
-  right: 60px;
+  right: 85px;
   background-color: #dddddd;
   margin-horizontal: 117px;
   height: 30px;
@@ -131,21 +135,22 @@ export const UserInfo1 = styled.TouchableOpacity`
 
 export const UserInfo2 = styled.TouchableOpacity`
   bottom: 20px;
-  left: 190px;
+  left: 150px;
   background-color: #dddddd;
   margin-horizontal: 117px;
   height: 30px;
-  width: 50px;
+  width: 60px;
+  
   border-radius: 4px;
 `;
 
 export const UserInfo3 = styled.TouchableOpacity`
   bottom: 49px;
-  left: 130px;
+  left: 80px;
   background-color: #dddddd;
   margin-horizontal: 117px;
   height: 30px;
-  width: 50px;
+  width: 60px;
   border-radius: 4px;
 `;
 

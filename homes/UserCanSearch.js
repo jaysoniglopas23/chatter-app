@@ -10,6 +10,9 @@ import {
   FlatList,
   Dimensions,
   TouchableWithoutFeedback,
+  Alert,
+  BackHandler,
+  ToastAndroid
 } from 'react-native';
 import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -23,7 +26,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
-class UserCanSearch extends Component {
+class User extends Component {
   constructor(props) {
     super(props);
 
@@ -58,61 +61,69 @@ class UserCanSearch extends Component {
 
     let params = {};
 
-    this.setState(
+    self.setState(
       {
         params: params,
         refresh: 1,
       },
-
       () => {
-        global.socket.on('emit-matched', function (ret) {
-          global.socket.off('emit-matthed');
+        global.socket.on('emit-user-details', function (ret) {
+          global.socket.off('emit-user-details');
           // alert(JSON.stringify(ret));
-          // console.log(ret);
-
           self.setState({
-            id: ret[0].id,
-            date_time: ret[0].date_time,
-            lastmessage: ret[0].lastmessage,
-            message_count: ret[0].message_count,
-            name: ret[0].name,
-            online: ret[0].online,
-            profile_image: ret[0].profile_image,
-            profile_image_dir: ret[0].profile_image_dir,
-            save: ret[0].save,
-            timezone: ret[0].timezone,
-            unread_count: ret[0].unread_count,
-            ret: ret,
+            id: ret.id,
+            details: ret,
+            profile_image: ret.profile_image,
+            profile_image_dir: ret.profile_image_dir,
+            nickname: ret.nickname,
+            email: ret.email,
+            introduction: ret.introduction,
+            character: ret.character,
+            hobbie: ret.hobbie,
+            school: ret.school,
+            bloodtype: ret.bloodtype,
+            nickname: ret.nickname,
           });
         });
+
         let params = {};
-        params['id'] = id;
-        params['date_time'] = this.state.date_time;
-        params['lastmessage'] = lastmessage;
-        params['message_count'] = this.state.message_count;
-        params['name'] = name;
-        params['online'] = this.state.online;
+
+        params['id'] = global.otherid;
+        params['lastmessage'] = global.lastmessage;
+        params['name'] = self.state.nickname;
         params['profile_image'] = this.state.profile_image;
         params['profile_image_dir'] = this.state.profile_image_dir;
-        params['save'] = this.state.save;
-        params['timezone'] = this.state.timezone;
-        params['unread_count'] = this.state.unread_count;
 
-        global.otherid = id;
-        global.name = name;
-        global.lastmessage = lastmessage;
+        global.otherid = global.otherid;
+        global.name = this.state.nickname;
+        global.profile_image_dir = this.state.profile_image_dir;
+        global.profile_image = this.state.profile_image;
+        global.lastmessage = global.lastmessage;
+        // global.name = name;
+        // global.lastmessage = lastmessage;
+        // alert(global.userid);
 
-        // alert(self.state.name);
-
-        global.socket.emit('on-matched', params);
-        // console.log(params);
+        global.socket.emit('on-user-details', params);
+        console.log(params);
       },
     );
   }
 
   componentDidMount() {
     this.getUser();
+    // BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
   }
+
+  // componentWillUnmount() {
+  //     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  // }
+
+  // handleBackButton() {
+  //     ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
+  //     return true;
+  // }
+  
+
 
   getUser() {
     let self = this;
@@ -120,7 +131,7 @@ class UserCanSearch extends Component {
     self.setState({}, () => {
       global.socket.on('emit-user-details', function (ret) {
         global.socket.off('emit-user-details');
-        console.log(ret);
+        // console.log(ret);
         self.setState({
           id: ret.id,
           details: ret,
@@ -138,7 +149,7 @@ class UserCanSearch extends Component {
 
       let params = {};
 
-      params['id'] = global.user_id;
+      params['id'] = global.otherid;
       params['about'] = this.state.about;
       params['firstname'] = this.state.firstname;
       params['lastname'] = this.state.lastname;
@@ -162,7 +173,7 @@ class UserCanSearch extends Component {
       params['hobbie'] = this.state.hobbie;
       params['bloodtype'] = this.state.bloodtype;
       params['email'] = this.state.email;
-      params['name'] = this.state.name;
+      params['name'] = self.state.nickname;
       params['introduction'] = this.state.introduction;
       params['character'] = this.state.character;
       params['location'] = this.state.location;
@@ -171,6 +182,10 @@ class UserCanSearch extends Component {
       params['call_minutes'] = this.state.call_minutes;
       params['pkuser'] = this.state.pkuser;
 
+      global.otherid = global.otherid;
+      global.name = self.state.nickname;
+      global.lastmessage = global.lastmessage;
+      // console.log(params);
       global.socket.emit('on-user-details', params);
     });
   }
@@ -448,7 +463,7 @@ class UserCanSearch extends Component {
 
         <View style={styles.Mview}>
           <TouchableOpacity
-            onPress={() => this.goChat(id, name, lastmessage)}
+            onPress={() => this.goChat(global.userid)}
             style={styles.button}>
             <Svg
               style={{width: 15, height: 15, left: 7}}
@@ -461,10 +476,9 @@ class UserCanSearch extends Component {
             </Svg>
             <Text style={styles.Mtxt}>メッセージを送信</Text>
           </TouchableOpacity>
-        </View>
-        <View style={{left: 115, bottom: 30}}>
+
           <TouchableOpacity
-            onPress={() => this.goChat(id, name, lastmessage)}
+            onPress={() => this.goChat()}
             style={styles.button1}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
@@ -477,11 +491,10 @@ class UserCanSearch extends Component {
             </Svg>
             <Text style={styles.Mtxt}>ブロック</Text>
           </TouchableOpacity>
-        </View>
-        <View style={{right: 115, bottom: 60}}>
+
           <TouchableOpacity
-            onPress={() => this.goChat(id, name, lastmessage)}
-            style={styles.button1}>
+            onPress={() => this.goChat()}
+            style={styles.button2}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
               xmlns="http://www.w3.org/2000/svg"
@@ -499,7 +512,7 @@ class UserCanSearch extends Component {
   }
 }
 
-export default UserCanSearch;
+export default User;
 
 const styles = StyleSheet.create({
   container: {
@@ -508,12 +521,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  // Mview: {
-  //   borderWidth: 1,
-  //   borderColor: '#cdd5d5',
-  //   backgroundColor: 'black',
-  //   top: 50,
-  // },
+  Mview: {
+    // borderWidth: 1,
+    flex: 1,
+    borderColor: '#cdd5d5',
+    alignItems: 'center',
+    top: windowWidth / 4.5,
+    width: '100%',
+    flexDirection: 'row',
+  },
 
   Mtxt: {
     bottom: 1,
@@ -528,8 +544,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    top: 50,
-    marginHorizontal: 145,
+    right: windowHeight / 10 - 180,
+    width: windowWidth / 2.5,
+    bottom: windowWidth / 6,
+    marginLeft: windowHeight / 140,
   },
 
   button1: {
@@ -539,8 +557,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    top: 50,
-    marginHorizontal: 165,
+    right: windowHeight / 10 - 185,
+    width: windowWidth / 4.4,
+    bottom: windowWidth / 6,
+  },
+
+  button2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 5,
+    borderWidth: 1,
+    height: 30,
+    borderColor: '#cdd5d5',
+    right: windowHeight / 3.4,
+    width: windowWidth / 4.3,
+    bottom: windowWidth / 6,
   },
 
   scrollview: {

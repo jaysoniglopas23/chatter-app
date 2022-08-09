@@ -57,8 +57,54 @@ export default class Search extends Component {
     this.getUsers();
   }
 
+  getUsers() {
+    this.makeRemoteRequest();
+
+    // this.refreshTimeline();
+
+    let self = this;
+
+    this.setState(
+      {},
+
+      () => {
+        global.socket.on('emit-users-for-search', function (ret) {
+          global.socket.off('emit-users-for-search');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            callRefreshed: true,
+            refresh: 1,
+
+            name: ret.name,
+            image: ret.image,
+            path: ret.path,
+            users: ret.users,
+            id: ret.id,
+            drop_calls: ret.drop_calls,
+          });
+
+          // console.log(id);
+        });
+        let params = {};
+
+        params['start'] = 20;
+        params['size'] = 100;
+        params['filter_type'] = '0';
+        params['order'] = '0';
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+        params['id'] = id;
+        global.socket.emit('on-users-for-search', params);
+        // console.log(params);
+      },
+    );
+    // this.props.navigationRef.current?.navigate('Dashboard');
+  }
+
   goCall(id) {
-    this.props.navigation.navigate('UserCanSearch');
+    this.props.navigation.push('UserCanSearch');
 
     let self = this;
 
@@ -86,61 +132,20 @@ export default class Search extends Component {
         });
         let params = {};
 
-        params['start'] = 0;
-        params['size'] = 15;
+        params['start'] = 20;
+        params['size'] = 1000;
         params['filter_type'] = '0';
         params['order'] = '0';
         params['name'] = this.state.name;
         params['userid'] = this.state.userid;
         params['id'] = id;
 
-        global.user_id = id;
+        global.otherid = id;
 
         global.socket.emit('on-users-for-search', params);
         console.log(params);
       },
     );
-  }
-
-  getUsers() {
-    this.makeRemoteRequest();
-
-    let self = this;
-
-    this.setState(
-      {
-        saving: true,
-      },
-
-      () => {
-        global.socket.on('emit-users-for-search', function (ret) {
-          global.socket.off('emit-users-for-search');
-          // JSON.stringify(ret);
-          // console.log(ret.users);
-
-          self.setState({
-            name: ret.name,
-            image: ret.image,
-            path: ret.path,
-            users: ret.users,
-          });
-
-          // console.log(ret.name);
-        });
-        let params = {};
-
-        params['start'] = this.state.start;
-        params['size'] = '1000';
-        params['filter_type'] = '0';
-        params['order'] = '0';
-        params['name'] = this.state.name;
-        params['userid'] = this.state.userid;
-
-        global.socket.emit('on-users-for-search', params);
-        // console.log(params);
-      },
-    );
-    // this.props.navigationRef.current?.navigate('Dashboard');
   }
 
   makeRemoteRequest = _.debounce(() => {

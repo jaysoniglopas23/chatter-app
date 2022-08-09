@@ -162,6 +162,8 @@ class Chat extends Component {
         params['lastmessage'] = global.lastmessage;
         // params[''] = ;
 
+        alert(global.otherid);
+
      
 
         global.socket.emit('on-messages', params);

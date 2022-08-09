@@ -54,7 +54,7 @@ class User extends Component {
   }
 
   goChat(id, name, lastmessage) {
-    this.props.navigation.navigate('Chat');
+   
     let self = this;
 
     let params = {};
@@ -99,7 +99,8 @@ class User extends Component {
         global.lastmessage = global.lastmessage;
         // global.name = name;
         // global.lastmessage = lastmessage;
-        // alert(global.userid);
+        // alert(global.otherid); 
+        this.props.navigation.navigate('Chat');
 
         global.socket.emit('on-user-details', params);
         console.log(params);
