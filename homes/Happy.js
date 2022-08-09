@@ -175,7 +175,7 @@ class Happy extends Component {
         params['about'] = '';
         params['job_title'] = this.state.job_title;
         params['company'] = this.state.company;
-        params['school'] = this.state.scho;
+        params['school'] = this.state.school;
         params['gender'] = 1;
         params['gender_pref'] = 1;
         params['distance_threshold'] = 0;
@@ -216,7 +216,7 @@ class Happy extends Component {
     this.setState({}, () => {
       global.socket.on('emit-details', function (ret) {
         global.socket.off('on-details');
-
+        // alert(JSON.stringify(ret));
         self.setState({
           nickname: ret.nickname,
           email: ret.email,
@@ -434,27 +434,27 @@ class Happy extends Component {
     );
   }
 
-  getSchool(gender) {
-    let self = this;
+  // getSchool(gender) {
+  //   let self = this;
 
-    this.setState(
-      {
-        gender: gender,
-      },
-      () => {
-        if (school == '') {
-        } else {
-          self.valid1 = true;
+  //   this.setState(
+  //     {
+  //       gender: gender,
+  //     },
+  //     () => {
+  //       if (school == '') {
+  //       } else {
+  //         self.valid1 = true;
 
-          self.setState({
-            schoolOpacity: 0,
-          });
-        }
+  //         self.setState({
+  //           schoolOpacity: 0,
+  //         });
+  //       }
 
-        // self.goSave();
-      },
-    );
-  }
+  //       // self.goSave();
+  //     },
+  //   );
+  // }
 
   render() {
     let gender = [
