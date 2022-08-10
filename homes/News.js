@@ -164,7 +164,7 @@ class News extends Component {
             </Svg>
           </TouchableOpacity>
         </View>
-        <View style={{top: 490, backgroundColor: '#ffff', flex: 1}}>
+        <View style={{top: windowWidth - 20, backgroundColor: '#ffff', flex: 1,width:'100%' ,height:windowHeight}}>
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{

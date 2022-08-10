@@ -107,16 +107,16 @@ class Calls extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#ffff', height: '100%', flex: 1}}>
+      <View style={{backgroundColor: '#ffff', height: '100%', flex: 1,width:'100%'}}>
         <View style={styles.view}>
           <Switch
-            style={{left: 170, top: 24}}
+            style={{left:windowWidth + 90, bottom:windowWidth - 5}}
             onValueChange={this.toggleSwitch}
             value={this.state.toggled}
           />
           <Text
             style={{
-              left: 400,
+              left:windowWidth/1.8,
               fontWeight: 'bold',
               color: 'black',
               fontSize: 20,
@@ -128,7 +128,7 @@ class Calls extends Component {
           style={{
             height: windowHeight,
             width: '100%',
-            top: windowHeight / 1 - 340,
+            bottom: windowWidth /1.3 ,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
@@ -203,8 +203,10 @@ const styles = StyleSheet.create({
 
   view: {
     top: 90,
-    height: 50,
+    height: windowHeight,
     right: 370,
+    justifyContent:'space-evenly',
+    flexDirection:'row'
   },
 
   view1: {

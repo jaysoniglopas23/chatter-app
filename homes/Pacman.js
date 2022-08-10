@@ -26,7 +26,7 @@ class Pacman extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', flex: 1}}>
+      <View style={{backgroundColor: '#fff', flex: 1 ,width:'100%', height:windowHeight}}>
         <View style={{flexDirection: 'row'}}>
           <Image
             source={require('../icon/Asset66.png')}
@@ -62,8 +62,11 @@ class Pacman extends Component {
             marginHorizontal: 1,
             borderWidth: 1,
             borderColor: 'black',
-            marginBottom: 130,
+            marginBottom: 150,
             top: 40,
+            width:windowWidth-10,
+            alignSelf:'center',
+            height:windowHeight ,
           }}>
           <View style={{marginBottom: 30}}>
             <View style={{marginLeft: 10, marginRight: 30}}>
@@ -266,7 +269,7 @@ class Pacman extends Component {
             </View>
           </View>
         </ScrollView>
-        <View style={{bottom: 150}}>
+        <View style={{bottom:windowWidth /2.2 , width:'100%'}}>
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{
