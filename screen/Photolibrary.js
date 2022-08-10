@@ -49,7 +49,7 @@ class PhotoLibrary extends Component {
     this.getImage = this.getImage.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getImage();
   }
 
@@ -59,14 +59,13 @@ class PhotoLibrary extends Component {
     this.setState(
       {
         modalVisible: false,
-        
       },
       () => {
         launchImageLibrary(options, function (assets) {
           // alert(JSON.stringify(assets));
           self.setState({
             // filename: assets.assets[0].fileName,
-            UploadPhoto:assets.assets[0].uri,
+            UploadPhoto: assets.assets[0].uri,
             hasUploadPhoto: true,
           });
         });
@@ -118,7 +117,7 @@ class PhotoLibrary extends Component {
               body: data,
             })
               .then(body => {
-                self.props.navigation.navigate('home');
+                self.props.navigation.push('home');
               })
               .catch(err => {
                 console.log(err);
@@ -174,7 +173,7 @@ class PhotoLibrary extends Component {
                 alignSelf: 'center',
               }}
             />
-            <Text style={{alignSelf: 'center', color: 'gray',top:100}}>
+            <Text style={{alignSelf: 'center', color: 'gray', top: 100}}>
               プロフィール画像はこちら
             </Text>
           </View>
@@ -193,7 +192,7 @@ class PhotoLibrary extends Component {
           color="#69747f"
         />
 
-        <View style={{right: 140, top: 200}}>
+        <View style={{right: 140, top: 180, alignSelf: 'center'}}>
           <TouchableOpacity
             style={{
               backgroundColor: '#ECECEC',
