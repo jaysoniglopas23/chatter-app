@@ -264,7 +264,7 @@ class Card extends Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.goback()}
+            onPress={() => this.goSave()}
             style={{
               width: 60,
               height: 30,
