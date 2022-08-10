@@ -22,6 +22,8 @@ import {
 
 var Sound = require('react-native-sound');
 
+import moment from 'moment';
+
 import Svg, {G, Path} from 'react-native-svg';
 
 import StringUtils from '../utils/stringutils';
@@ -46,6 +48,7 @@ class Chat extends Component {
       loadingChats: true,
       refresh: 0,
       message: '',
+      datetime: moment(new Date()).format('YYYY-MM-DD'),
       chatsRefreshed: true,
       receivedAdded: false,
     };
@@ -68,6 +71,11 @@ class Chat extends Component {
   }
 
   componentDidMount() {
+    this.getChat();
+    this.getChatPoint();
+  }
+
+  componentWillUnmount() {
     this.getChat();
     this.getChatPoint();
   }
@@ -162,9 +170,7 @@ class Chat extends Component {
         params['lastmessage'] = global.lastmessage;
         // params[''] = ;
 
-        alert(global.otherid);
-
-     
+        // alert(global.otherid);
 
         global.socket.emit('on-messages', params);
         console.log(params);
@@ -184,7 +190,7 @@ class Chat extends Component {
   onEndReached() {}
 
   back() {
-    this.props.navigation.navigate('Messages');
+    this.props.navigation.push('Messages');
     // if (global.previousPage == 'UserProfile') {
     //   this.props.navigationRef.current?.navigate('UserProfile');
     // } else {
@@ -269,7 +275,7 @@ class Chat extends Component {
 
     let params = {};
 
-    params['datetime'] = this.state.datetime;
+    params['datetime'] = moment(new Date()).format('YYYY-MM-DD');
     params['to'] = global.otherid;
     params['from'] = this.state.msg_from;
     params['timezone'] = this.state.timezone;

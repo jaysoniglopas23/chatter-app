@@ -37,7 +37,7 @@ class MessagesScrean extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat(id, name, lastmessage,profile_image,profile_image_dir) {
+  goChat(id, name, lastmessage, profile_image, profile_image_dir) {
     this.props.navigation.navigate('Chat');
 
     let self = this;
@@ -98,7 +98,15 @@ class MessagesScrean extends Component {
     );
   }
 
-  componentDidMount(id, name) {
+  // componentDidUpdate() {
+  //   this.getChats();
+  // }
+
+  componentDidMount() {
+    this.getChats();
+  }
+
+  getChats(id, name) {
     // this.makeRemoteRequest();
 
     let self = this;
@@ -113,7 +121,7 @@ class MessagesScrean extends Component {
 
       () => {
         global.socket.on('emit-matched', function (ret) {
-          global.socket.off('emit-matthed');
+          global.socket.off('emit-mathed');
           // alert(JSON.stringify(ret));
           // console.log(ret);
 
@@ -212,7 +220,15 @@ class MessagesScrean extends Component {
           renderItem={({item}) => (
             <Card
               style={{paddingTop: 10}}
-              onPress={() => this.goChat(item.id, item.name, item.lastmessage,item.profile_image,item.profile_image_dir)}>
+              onPress={() =>
+                this.goChat(
+                  item.id,
+                  item.name,
+                  item.lastmessage,
+                  item.profile_image,
+                  item.profile_image_dir,
+                )
+              }>
               <UserInfo>
                 <UserImgWrapper>
                   <UserImg
