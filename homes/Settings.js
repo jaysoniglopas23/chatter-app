@@ -38,7 +38,7 @@ class Settings extends Component {
   }
 
   goHome() {
-    this.props.navigation.navigate('home');
+    this.props.navigation.push('home');
   }
 
   componentDidMount() {
@@ -247,48 +247,11 @@ class Settings extends Component {
 
   render() {
     return (
-      <View>
-        {/* <View style={{left: 40, top: 30, backgroundColor: 'white'}}>
-          <Text>面積距離</Text>
-        </View> */}
-        {/* <View
-          style={{
-            alignSelf: 'center',
-            top: 20,
-            flexDirection: 'column',
-            borderWidth: 1,
-            height: 150,
-            width: 350,
-            borderRadius: 4,
-          }}>
-          <Text style={{color: '#000000', alignSelf: 'center', top: 20}}>
-            km {this.state.sliderValue}
-          </Text>
-          <Slider
-            style={{width: 200, height: 40, top: 20, left: 75}}
-            minimumValue={0}
-            maximumValue={500}
-            step={1}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
-            // value={this.state.sliderValue}
-            onValueChange={sliderValue => this.setState({sliderValue})}
-          />
-          <Text style={{left: 120, top: 60}}>on/off</Text>
-          <Switch
-            style={{right: 110, top: 40}}
-            onValueChange={this.toggleSwitch2}
-            value={this.state.toggled2}></Switch>
-        </View>
-        <View
-          style={{
-            left: 40,
-            bottom: 140,
-            backgroundColor: 'white',
-            marginRight: 355,
-          }}>
-          <Text>面積距離</Text>
-        </View> */}
+      <View
+        style={{
+          height: windowHeight,
+          width: '100%',
+        }}>
         <View
           style={{
             alignSelf: 'center',
@@ -324,7 +287,7 @@ class Settings extends Component {
             value={this.state.toggled2}></Switch>
         </View>
 
-        <View style={{top: 520}}>
+        <View style={{width:'100%' ,height:windowWidth ,alignItems:'center'}}>
           <TouchableOpacity
             onPress={() => this.goHome()}
             style={{
@@ -336,7 +299,7 @@ class Settings extends Component {
               flexDirection: 'row',
               width: 50,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 550,
+              bottom: windowHeight / 2 - 970,
             }}>
             <Svg
               style={{width: 20, height: 30}}
@@ -360,13 +323,13 @@ class Settings extends Component {
               backgroundColor: '#ECECEC',
               paddingHorizontal: 130,
               height: 31,
-              left: 67,
+              left: windowWidth /2-190,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderWidth: 1,
               borderRadius: 2,
-              bottom: 400,
+              bottom: windowWidth/2 -270,
             }}>
             <Text style={{left: 85, position: 'absolute', color: 'black'}}>
               Version {version}
@@ -383,7 +346,7 @@ class Settings extends Component {
               width: windowWidth / 3.8,
               borderRadius: 2,
               alignSelf: 'center',
-              bottom: windowHeight / 2 - 25,
+              bottom: windowHeight / 2 - 555,
             }}>
             <Text style={{left: 15, top: 5, color: 'black'}}>ログアウト</Text>
           </TouchableOpacity>
@@ -398,7 +361,7 @@ class Settings extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 425,
+              bottom: windowHeight / 2 -789,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}

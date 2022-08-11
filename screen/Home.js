@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Button,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {Avatar} from 'react-native-elements';
@@ -15,7 +16,6 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 
 import Tabs from '../navigation/tabs';
-
 import Happy from '../homes/Happy';
 import User from '../homes/User';
 import Calls from '../homes/Calls';
@@ -39,6 +39,7 @@ import SpecialCC from '../homes/SpecialCC';
 import Privacy from '../homes/Privacy';
 import Launcher from './launcher';
 import Userlikes from '../homes/Userlikes';
+import {panHandlerName} from 'react-native-gesture-handler/lib/typescript/handlers/PanGestureHandler';
 
 const DeviceWidth = Dimensions.get('window').width;
 const windowWidth = Dimensions.get('window').width;
@@ -77,27 +78,27 @@ class DisplayAnImage extends Component {
       profile_image_dir: '',
     };
 
-    this.goProfile = this.goProfile.bind(this);
+    // this.goProfile = this.goProfile.bind(this);
 
     this.goLogout = this.goLogout.bind(this);
 
-    this.goCard = this.goCard.bind(this);
+    // this.goCard = this.goCard.bind(this);
 
-    this.goCall = this.goCall.bind(this);
+    // this.goCall = this.goCall.bind(this);
 
-    this.goHeart = this.goHeart.bind(this);
+    // this.goHeart = this.goHeart.bind(this);
 
-    this.goLock = this.goLock.bind(this);
+    // this.goLock = this.goLock.bind(this);
 
-    this.goNews = this.goNews.bind(this);
+    // this.goNews = this.goNews.bind(this);
 
-    this.goPacman = this.goPacman.bind(this);
+    // this.goPacman = this.goPacman.bind(this);
 
-    this.goPicture = this.goPicture.bind(this);
+    // this.goPicture = this.goPicture.bind(this);
 
-    this.goStart = this.goStar.bind(this);
+    // this.goStart = this.goStar.bind(this);
 
-    this.goCoin = this.goCoin.bind(this);
+    // this.goCoin = this.goCoin.bind(this);
 
     this.goSettings = this.goSettings.bind(this);
 
@@ -116,41 +117,41 @@ class DisplayAnImage extends Component {
     this.props.navigation.navigate('Coin');
   }
 
-  goCard() {
-    this.props.navigationRef.current?.navigate('Card');
-  }
+  // goCard() {
+  //   this.props.navigationRef.current?.navigate('Card');
+  // }
 
-  goCall() {
-    this.props.navigationRef.current?.navigate('Calls');
-  }
+  // goCall() {
+  //   this.props.navigationRef.current?.navigate('Calls');
+  // }
 
-  goHeart() {
-    this.props.navigationRef.current?.navigate('Heart');
-  }
+  // goHeart() {
+  //   this.props.navigationRef.current?.navigate('Heart');
+  // }
 
-  goLock() {
-    this.props.navigationRef.current?.navigate('Lock');
-  }
+  // goLock() {
+  //   this.props.navigationRef.current?.navigate('Lock');
+  // }
 
-  goNews() {
-    this.props.navigationRef.current?.navigate('News');
-  }
+  // goNews() {
+  //   this.props.navigationRef.current?.navigate('News');
+  // }
 
-  goPacman() {
-    this.props.navigationRef.current?.navigate('Pacman');
-  }
+  // goPacman() {
+  //   this.props.navigationRef.current?.navigate('Pacman');
+  // }
 
-  goStar() {
-    this.props.navigationRef.current?.navigate('Star');
-  }
+  // goStar() {
+  //   this.props.navigationRef.current?.navigate('Star');
+  // }
 
-  goPicture() {
-    this.props.navigationRef.current?.navigate('Picture');
-  }
+  // goPicture() {
+  //   this.props.navigationRef.current?.navigate('Picture');
+  // }
 
-  goProfile() {
-    this.props.navigationRef.current?.navigate('Happy');
-  }
+  // goProfile() {
+  //   this.props.navigationRef.current?.navigate('Happy');
+  // }
 
   goLogout() {
     this.props.navigationRef.current?.navigate('Login');
@@ -165,7 +166,12 @@ class DisplayAnImage extends Component {
 
   componentDidMount() {
     this.getProfile();
+
   }
+
+  // componentWillUnmount() {
+  //   this.getProfile();
+  // }
 
   getProfile() {
     let self = this;
