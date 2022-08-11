@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {Image, View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
@@ -20,11 +20,10 @@ import Launcher from '../screen/launcher';
 import Dashboard from '../screen/Dashboard';
 import UserCanSearch from '../homes/UserCanSearch';
 import Heart from '../homes/Heart';
+import Login from '../screen/Login';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-
 
 const MessageStack = ({navigation}) => (
   <Stack.Navigator>
@@ -52,7 +51,7 @@ const MessageStack = ({navigation}) => (
         headerShown: false,
       })}
     />
-     <Stack.Screen
+    <Stack.Screen
       name="Call"
       component={Call}
       options={{
@@ -78,7 +77,6 @@ const PostStack = ({navigation}) => (
         // title: route.params.userName,
         // headerShown: false,
         headerBackTitleVisible: false,
-       
       })}
     />
     <Stack.Screen
@@ -153,7 +151,6 @@ const SeachStack = ({navigation}) => (
 
 const Homestack = ({navigation}) => (
   <Stack.Navigator>
-    
     <Stack.Screen
       name="home"
       component={Home}
@@ -195,23 +192,11 @@ const Homestack = ({navigation}) => (
       options={{
         headerShown: false,
       }}
-    /> 
-    {/* <Stack.Screen
-    name="Launcher"
-    component={Launcher}
-    options={{
-      headerShown: false,
-    }}
-  /> */}
-   
+    />
   </Stack.Navigator>
 );
 
-
-
-const Tabs = () => {
-
-
+const Tabs = ({navigation}) => {
   const getTabBarVisibility = route => {
     const routeName = route.state
       ? route.state.routes[route.state.index].name
@@ -223,8 +208,18 @@ const Tabs = () => {
     return true;
   };
 
+  // React.useEffect(() => {
+  //   const focusHandler = navigation.addListener('focus', () => {
+  //     Alert.alert('Refreshed');
+  //   });
+  //   return focusHandler;
+  // }, [navigation]);
+
+  // const gotoTestStackScreen = () => {
+  //   navigation.navigate('Test');
+  // };
+
   return (
-    
     <Tab.Navigator tabBarOptions={{showLabel: false}} screenOptions={{}}>
       <Tab.Screen
         name="home"
