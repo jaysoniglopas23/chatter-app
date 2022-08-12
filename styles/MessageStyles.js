@@ -50,12 +50,15 @@ export const UserName = styled.Text`
   font-weight: bold;
   font-family: 'Lato-Regular';
   color: #100c08;
+  position: absolute;
 `;
 
 export const PostTime = styled.Text`
   font-size: 11px;
   color: #666;
   height: 20px;
+  width: 100%;
+  margin-left: 170px;
   font-family: 'Lato-Regular';
 `;
 

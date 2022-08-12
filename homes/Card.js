@@ -21,6 +21,8 @@ import Svg, {G, Path} from 'react-native-svg';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+const URL_UPLOAD_LIC_VERIFY = 'http://18.181.88.243:8081/LicenseVerification';
+
 class Card extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +56,7 @@ class Card extends Component {
     this.setState({}, () => {
       global.socket.on('emit-license_verification', function (ret) {
         global.socket.off('emit-license_verification');
-        // console.log(ret);
+        console.log(ret);
 
         self.setState({
           livVerFiles: ret.licver_image,
@@ -67,55 +69,41 @@ class Card extends Component {
           const data = new FormData();
 
           // console.log(3);
-          let body = {
-            socketid: socketid,
-          };
+          // let body = {
+          //   socketid: socketid,
+          // };
 
-          data.append(body);
-          console.log(body);
+          data.append('socketid', socketid);
 
-          let i = {
-            method: 'post',
-            uri: self.state.profilePhoto,
-            type: 'multipart/form-data',
-            name: `image.jpg`,
-          };
+          // console.log(body);
 
-          data.append('post', i);
-          console.log(i);
+          let i =
+            ('photo',
+            {
+              method: 'POST',
+              uri: self.state.profilePhoto,
+              name: 'image.jpg',
+              type: 'image/jpg',
+            });
 
-          fetch('http://18.181.88.243:8081/LicenseVerification', {
-            method: 'post',
+          data.append('POST', i);
+          // console.log(i);
+
+          fetch(URL_UPLOAD_LIC_VERIFY, {
             headers: {
+              Accept: 'application/json',
               'Content-Type': 'multipart/form-data',
             },
+            method: 'POST',
+
             body: data,
           })
-            .then(response => {
+            .then(body => {
               self.props.navigationRef.current?.navigate('Dashboard');
             })
             .catch(err => {
               console.log(err);
             });
-
-          // console.log(5);
-
-          // axios
-          //   .request({
-          //     method: 'post',
-          //     url: 'http://18.181.88.243:8081/LicenseVerification',
-          //     data: data,
-          //     onUploadProgress: p => {
-          //       console.log(p);
-          //       // this.setState({
-          //       //   fileprogress: p.loaded / p.total,
-          //       // });
-          //     },
-          //   })
-
-          // .then(data => {
-          //   self.props.navigationRef.current?.navigate('Dashboard');
-          // });
         }
       });
 
@@ -124,15 +112,15 @@ class Card extends Component {
       params['licver_image_dir'] = this.state.strLicVerHash;
       params['licver_image'] = this.state.livVerFiles;
 
-      params['age'] = this.state.age;
+      // params['age'] = this.state.age;
 
-      params['nickname'] = this.state.nickname;
+      // params['nickname'] = this.state.nickname;
 
-      params['email'] = this.state.email;
+      // params['email'] = this.state.email;
 
-      params['points'] = this.state.points;
-      params['mail_count'] = this.state.mail_count;
-      params['call_minutes'] = this.state.call_minutes;
+      // params['points'] = this.state.points;
+      // params['mail_count'] = this.state.mail_count;
+      // params['call_minutes'] = this.state.call_minutes;
 
       params['socketid'] = global.socketid;
 

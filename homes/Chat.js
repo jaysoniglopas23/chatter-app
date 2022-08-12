@@ -48,7 +48,7 @@ class Chat extends Component {
       loadingChats: true,
       refresh: 0,
       message: '',
-      datetime: moment(new Date()).format('YYYY-MM-DD'),
+      date: moment(new Date()).format('YYYY-MM-DD  HH:mm'),
       chatsRefreshed: true,
       receivedAdded: false,
     };
@@ -275,7 +275,7 @@ class Chat extends Component {
 
     let params = {};
 
-    params['datetime'] = moment(new Date()).format('YYYY-MM-DD');
+    params['datetime'] = this.state.date;
     params['to'] = global.otherid;
     params['from'] = this.state.msg_from;
     params['timezone'] = this.state.timezone;

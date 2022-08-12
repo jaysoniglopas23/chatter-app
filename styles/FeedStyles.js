@@ -24,7 +24,7 @@ export const UserInfo = styled.View`
 export const UserImgWrapper = styled.TouchableOpacity`
   padding-top: 0px;
   padding-bottom: 15px;
-  height:50px;
+  height: 50px;
   background-color: black;
   border-radius: 25px;
 `;
@@ -46,7 +46,7 @@ export const UserImg1 = styled.Image`
   height: 200px;
   border-radius: 15px;
   top: 10px;
-  right:30px;
+  right: 30px;
   margin-bottom: 25px;
 `;
 
@@ -113,14 +113,14 @@ export const MessageText2 = styled.Text`
   font-size: 12px;
   top: 6px;
   color: #333333;
-  left:27px;
+  left: 27px;
 `;
 
 export const MessageText3 = styled.Text`
   font-size: 12px;
   top: 6px;
   color: #333333;
-  left:27px;
+  left: 27px;
 `;
 
 export const UserInfo1 = styled.TouchableOpacity`
@@ -140,7 +140,7 @@ export const UserInfo2 = styled.TouchableOpacity`
   margin-horizontal: 117px;
   height: 30px;
   width: 60px;
-  
+
   border-radius: 4px;
 `;
 
