@@ -38,7 +38,7 @@ class MessagesScrean extends Component {
   }
 
   goChat(id, name, lastmessage, profile_image, profile_image_dir) {
-    this.props.navigation.navigate('Chat');
+    this.props.navigation.push('Chat');
 
     let self = this;
 
@@ -90,7 +90,7 @@ class MessagesScrean extends Component {
         global.profile_image_dir = profile_image_dir;
         global.profile_image = profile_image;
 
-        // alert(global.profile_image);
+        // alert(global.otherid);
 
         global.socket.emit('on-matched', params);
         // console.log(params);

@@ -12,7 +12,7 @@ import {
   TouchableWithoutFeedback,
   Alert,
   BackHandler,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native';
 import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -56,7 +56,6 @@ class User extends Component {
   }
 
   goChat(id, name, lastmessage) {
-    this.props.navigation.navigate('Chat');
     let self = this;
 
     let params = {};
@@ -101,7 +100,8 @@ class User extends Component {
         global.lastmessage = global.lastmessage;
         // global.name = name;
         // global.lastmessage = lastmessage;
-        // alert(global.userid);
+        alert(global.otherid);
+        this.props.navigation.navigate('Chat');
 
         global.socket.emit('on-user-details', params);
         console.log(params);
@@ -122,8 +122,6 @@ class User extends Component {
   //     ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
   //     return true;
   // }
-  
-
 
   getUser() {
     let self = this;

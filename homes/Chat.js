@@ -141,21 +141,21 @@ class Chat extends Component {
           self.setState({
             showLoading: false,
             loadingChats: false,
-            id: ret[0].otherid,
+            id: ret.otherid,
             ret: ret,
-            data: ret[0].data,
-            profile_image: ret[0].profile_image,
-            profile_image_dir: ret[0].profile_image_dir,
-            datetime: ret[0].datetime,
-            msg_to: ret[0].msg_to,
-            msg_from: ret[0].msg_from,
-            timezone: ret[0].timezone,
+            data: ret.data,
+            profile_image: ret.profile_image,
+            profile_image_dir: ret.profile_image_dir,
+            datetime: ret.datetime,
+            msg_to: ret.msg_to,
+            msg_from: ret.msg_from,
+            timezone: ret.timezone,
           });
           // console.log(se.data);
 
           self.flatListRef.scrollToOffset({
             animated: true,
-            offset: self.state.data.length,
+            // offset: self.state.data.length,
           });
         });
         let params = {};
@@ -295,24 +295,26 @@ class Chat extends Component {
       msg_from: global.user_id,
     };
 
+    console.log(message);
+
     self.setState(
       prevState => ({
         message: '',
-        data: [message, ...prevState.data],
+        // data: [message, ...prevState.data],
       }),
-      () => {
-        self.setState(
-          {
-            refresh: 1,
-          },
-          () => {
-            self.flatListRef.scrollToOffset({
-              animated: true,
-              offset: self.state.data.length,
-            });
-          },
-        );
-      },
+      // () => {
+      //   self.setState(
+      //     {
+      //       refresh: 1,
+      //     },
+      //     () => {
+      //       self.flatListRef.scrollToOffset({
+      //         animated: true,
+      //         offset: self.state.data.length,
+      //       });
+      //     },
+      //   );
+      // },
     );
   }
 
@@ -479,24 +481,35 @@ class Chat extends Component {
                 d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
             </Svg>
           </TouchableOpacity>
-          {global.call_minutes != 0 ? (
-            <TouchableOpacity>
-              <Image
-                style={{
-                  resizeMode: 'contain',
-                  height: 35,
-                  width: 35,
-                  left: 320,
-                  top: 10,
-                }}
-                source={require('../icon/Asset5.png')}
-              />
-            </TouchableOpacity>
-          ) : (
-            <Text style={{color: 'red', left: 265, top: 15}}>
-              通話ポイントなし
-            </Text>
-          )}
+          <View
+            style={{
+              width: windowWidth / 2 - 30,
+
+              height: windowHeight / 2 - 500,
+              right: windowWidth / 2 - 345,
+              bottom: windowWidth / 10 - 35,
+            }}>
+            {global.call_minutes != 0 ? (
+              <TouchableOpacity>
+                <Image
+                  style={{
+                    resizeMode: 'contain',
+                    height: 35,
+                    width: 35,
+                    top: 6,
+                    left: 30,
+                    alignSelf: 'center',
+                  }}
+                  source={require('../icon/Asset5.png')}
+                />
+              </TouchableOpacity>
+            ) : (
+              <Text
+                style={{color: 'red', left: 265, top: 15, alignSelf: 'center'}}>
+                通話ポイントなし
+              </Text>
+            )}
+          </View>
         </View>
 
         <KeyboardAvoidingView

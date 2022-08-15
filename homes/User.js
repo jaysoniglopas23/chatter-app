@@ -98,7 +98,7 @@ class User extends Component {
         global.lastmessage = global.lastmessage;
         // global.name = name;
         // global.lastmessage = lastmessage;
-        // alert(global.otherid);
+        alert(global.otherid);
         this.props.navigation.navigate('Chat');
 
         global.socket.emit('on-user-details', params);
@@ -118,6 +118,7 @@ class User extends Component {
       global.socket.on('emit-user-details', function (ret) {
         global.socket.off('emit-user-details');
         // console.log(ret);
+        // alert(JSON.stringify(ret));
         self.setState({
           id: ret.id,
           details: ret,
