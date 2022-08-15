@@ -21,6 +21,7 @@ import Svg, {G, Path} from 'react-native-svg';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 const URL_UPLOAD_LIC_VERIFY = 'http://18.181.88.243:8081/LicenseVerification';
 
 class Card extends Component {
@@ -59,8 +60,8 @@ class Card extends Component {
         console.log(ret);
 
         self.setState({
-          livVerFiles: ret.licver_image,
-          strLicVerHash: ret.licver_image_dir,
+          licver_image: ret.licver_image,
+          licver_image_dir: ret.licver_image_dir,
           socketid: global.socketid,
         });
 
@@ -77,16 +78,14 @@ class Card extends Component {
 
           // console.log(body);
 
-          let i =
-            ('photo',
-            {
-              method: 'POST',
-              uri: self.state.profilePhoto,
-              name: 'image.jpg',
-              type: 'image/jpg',
-            });
+          data.append('photo', {
+            method: 'POST',
+            uri: self.state.profilePhoto,
+            name: 'image.jpg',
+            type: 'image/jpg',
+          });
 
-          data.append('POST', i);
+          data.append('POST');
           // console.log(i);
 
           fetch(URL_UPLOAD_LIC_VERIFY, {
@@ -98,7 +97,12 @@ class Card extends Component {
 
             body: data,
           })
-            .then(body => {
+            .then(response => {
+              let params = {};
+
+              params['licver_image_dir'] = self.state.licver_image_dir;
+              params['licver_image'] = self.state.licver_image;
+
               self.props.navigationRef.current?.navigate('Dashboard');
             })
             .catch(err => {
@@ -109,22 +113,47 @@ class Card extends Component {
 
       let params = {};
 
-      params['licver_image_dir'] = this.state.strLicVerHash;
-      params['licver_image'] = this.state.livVerFiles;
-
-      // params['age'] = this.state.age;
-
-      // params['nickname'] = this.state.nickname;
-
-      // params['email'] = this.state.email;
-
-      // params['points'] = this.state.points;
-      // params['mail_count'] = this.state.mail_count;
-      // params['call_minutes'] = this.state.call_minutes;
+      params['licver_image_dir'] = this.state.licver_image_dir;
+      params['licver_image'] = this.state.licver_image;
 
       params['socketid'] = global.socketid;
 
-      // console.log(params);
+      global.socket.emit('on-license_verification', params);
+    });
+
+    // this.props.navigationRef.current?.navigate('Dashboard');
+  }
+
+  componentDidMount() {
+    this.getLicense();
+  }
+
+  getLicense() {
+    let self = this;
+
+    this.setState({}, () => {
+      global.socket.on('emit-license_verification', function (ret) {
+        global.socket.off('emit-license_verification');
+        console.log(ret);
+       
+
+        self.setState({
+          licver_image: ret.licver_image,
+          licver_image_dir: ret.licver_image_dir,
+          socketid: global.socketid,
+        });
+        global.licver_image = self.state.licver_image;
+        global.licver_image_dir = self.state.licver_image_dir;
+
+        // alert(JSON.stringify(global.licver_image));
+      });
+
+      let params = {};
+
+      params['licver_image_dir'] = this.state.licver_image_dir;
+      params['licver_image'] = this.state.licver_image;
+
+      params['socketid'] = global.socketid;
 
       global.socket.emit('on-license_verification', params);
     });
@@ -191,14 +220,21 @@ class Card extends Component {
             />
           ) : (
             <Image
-              source={require('../icon/userprofile.png')}
+              source={{
+                uri:
+                  URL_TEMP +
+                  '/' +
+                  global.licver_image_dir +
+                  '/' +
+                  global.licver_image,
+              }}
               style={{
                 top: 0,
                 width: '100%',
                 height: '100%',
                 borderRadius: 1,
                 alignSelf: 'center',
-                opacity: 0.3,
+                // opacity: 0.3,
               }}
             />
           )}
