@@ -38,8 +38,8 @@ class Savemessages extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat(id, name, lastmessage) {
-    this.props.navigation.navigate('Chat');
+  goChat(id, name, lastmessage, profile_image, profile_image_dir) {
+    this.props.navigation.push('Chat');
 
     let self = this;
 
@@ -79,8 +79,8 @@ class Savemessages extends Component {
         params['message_count'] = this.state.message_count;
         params['name'] = name;
         params['online'] = this.state.online;
-        params['profile_image'] = this.state.profile_image;
-        params['profile_image_dir'] = this.state.profile_image_dir;
+        params['profile_image'] = profile_image;
+        params['profile_image_dir'] = profile_image_dir;
         params['save'] = this.state.save;
         params['timezone'] = this.state.timezone;
         params['unread_count'] = this.state.unread_count;
@@ -88,8 +88,10 @@ class Savemessages extends Component {
         global.otherid = id;
         global.name = name;
         global.lastmessage = lastmessage;
+        global.profile_image_dir = profile_image_dir;
+        global.profile_image = profile_image;
 
-        // alert(self.state.name);
+        // alert(global.otherid);
 
         global.socket.emit('on-matched', params);
         // console.log(params);
@@ -97,7 +99,15 @@ class Savemessages extends Component {
     );
   }
 
-  componentDidMount(id, name) {
+  // componentDidUpdate() {
+  //   this.getChats();
+  // }
+
+  componentDidMount() {
+    this.getChats();
+  }
+
+  getChats(id, name) {
     // this.makeRemoteRequest();
 
     let self = this;
@@ -112,7 +122,7 @@ class Savemessages extends Component {
 
       () => {
         global.socket.on('emit-matched', function (ret) {
-          global.socket.off('emit-matthed');
+          global.socket.off('emit-mathed');
           // alert(JSON.stringify(ret));
           // console.log(ret);
 
@@ -206,12 +216,20 @@ class Savemessages extends Component {
       <Container>
         <FlatList
           data={this.state.ret}
-          style={{width:windowWidth ,height:"100%",alignSelf:'center'}}
+          style={{width: windowWidth - 40, height: '100%', alignSelf: 'center'}}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <Card
               style={{paddingTop: 10}}
-              onPress={() => this.goChat(item.id, item.name, item.lastmessage)}>
+              onPress={() =>
+                this.goChat(
+                  item.id,
+                  item.name,
+                  item.lastmessage,
+                  item.profile_image,
+                  item.profile_image_dir,
+                )
+              }>
               <UserInfo>
                 <UserImgWrapper>
                   <UserImg

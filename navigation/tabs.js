@@ -21,6 +21,7 @@ import Dashboard from '../screen/Dashboard';
 import UserCanSearch from '../homes/UserCanSearch';
 import Heart from '../homes/Heart';
 import Login from '../screen/Login';
+import SearchGrid from '../homes/SearchGrid';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -142,6 +143,13 @@ const SeachStack = ({navigation}) => (
     <Stack.Screen
       name="Call"
       component={Call}
+      options={{
+        headerShown: false,
+      }}
+    />
+     <Stack.Screen
+      name="SearchGrid"
+      component={SearchGrid}
       options={{
         headerShown: false,
       }}
