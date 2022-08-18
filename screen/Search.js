@@ -17,9 +17,18 @@ import {ListItem, Avatar} from 'react-native-elements';
 import {getUsers, contains} from '../styles/index';
 import UserPost from '../styles/UserPost';
 import {width} from 'cli';
+import SearchGrid from '../homes/SearchGrid';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
+import {CardStyleInterpolators} from '@react-navigation/stack';
 
 const numColumns = 3;
 const DeviceWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+const Stack = createStackNavigator();
+const navigationRef = React.createRef();
 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
@@ -51,6 +60,7 @@ export default class Search extends Component {
 
     this.goCall = this.goCall.bind(this);
     this.getUsers = this.getUsers.bind(this);
+    this.goToSearchGrid = this.goToSearchGrid.bind(this);
   }
 
   componentDidMount() {
@@ -148,6 +158,10 @@ export default class Search extends Component {
     );
   }
 
+  goToSearchGrid() {
+    this.props.navigation.push('SearchGrid');
+  }
+
   makeRemoteRequest = _.debounce(() => {
     this.setState({loading: true});
     getUsers(20, this.state.query)
@@ -237,18 +251,25 @@ export default class Search extends Component {
             }}
             source={require('../icon/bars.png')}
           />
-          <Image
+          <TouchableOpacity
+            onPress={() => this.goToSearchGrid()}
             style={{
-              resizeMode: 'contain',
-              width: 25,
-              height: 25,
-              left: 10,
+              backgroundColor: 'red',
+              width: windowWidth / 2 - 200,
               top: 45,
-              left: 280,
-              color: 'black',
-            }}
-            source={require('../icon/Asset45.png')}
-          />
+              alignSelf: 'center',
+              marginLeft: 200,
+            }}>
+            <Image
+              style={{
+                resizeMode: 'contain',
+                width: 25,
+                height: 25,
+                color: 'black',
+              }}
+              source={require('../icon/Asset45.png')}
+            />
+          </TouchableOpacity>
           <TextInput
             style={{
               backgroundColor: '#fff',
@@ -299,40 +320,29 @@ export default class Search extends Component {
             numColumns={numColumns}
           />
         </View>
-        {/* <View style={{flexDirection: 'row', top: 50}}>
-          <Text style={{alignSelf: 'center', left: 190}}>1/2</Text>
-
-          <View style={{left: 308, marginTop: 10, width: 70}}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: 'tranparent',
-                marginHorizontal: 170,
-                height: 50,
-                right: 167,
-                top: 10,
+        <View
+          style={{
+            flex: 0.6,
+            justifyContent: 'center',
+            flexDirection: 'row',
+            backgroundColor: 'white',
+          }}>
+          <NavigationContainer independent={true} ref={navigationRef}>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+                gestureEnable: true,
+                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
               }}>
-              <Image
-                source={require('../icon/forward.png')}
-                style={{height: 30}}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{right: 80, marginTop: 9, width: 70}}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: 'tranparent',
-                marginHorizontal: 170,
-                height: 50,
-                right: 167,
-                top: 10,
-              }}>
-              <Image
-                source={require('../icon/arrow.png')}
-                style={{height: 30}}
-              />
-            </TouchableOpacity>
-          </View>
-        </View> */}
+              <Stack.Screen name="SearchGrid">
+                {props => <SearchGrid navigationRef={navigationRef} />}
+              </Stack.Screen>
+              <Stack.Screen name="Search">
+                {props => <Search navigationRef={navigationRef} />}
+              </Stack.Screen>
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
       </View>
     );
   }
