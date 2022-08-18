@@ -124,7 +124,7 @@ export default class SearchGrid extends Component {
   }
 
   goCall(id) {
-    this.props.navigation.push('User');
+    this.props.navigation.push('UserCanSearch');
 
     let self = this;
 
@@ -334,6 +334,10 @@ export default class SearchGrid extends Component {
     }
   }
 
+  goToSearch() {
+    this.props.navigation.push('Search');
+  }
+
   makeRemoteRequest = _.debounce(() => {
     this.setState({loading: true});
 
@@ -377,32 +381,15 @@ export default class SearchGrid extends Component {
       return <View style={(itemStyle, itemInvisible)}></View>;
     }
 
-    if (item.drop_calls == 1) {
-      return (
-        <TouchableOpacity
-          style={itemStyle}
-          onPress={() => this.goCall(item.id)}>
-          {item.drop_calls == 1 ? (
-            <Image
-              style={styles.iconCanCall}
-              source={require('../icon/Asset5.png')}
-            />
-          ) : (
-            <Image
-              style={styles.iconCantCall}
-              source={require('../icon/Asset5.png')}
-            />
-          )}
-          <Text style={textStyle}>{item.name}</Text>
-          <Image
-            style={styles.iconRight}
-            source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
-          />
-        </TouchableOpacity>
-      );
-    } else {
-      return <View></View>;
-    }
+    return (
+      <TouchableOpacity style={itemStyle} onPress={() => this.goCall(item.id)}>
+        <Text style={textStyle}>{item.name}</Text>
+        <Image
+          style={styles.iconRight}
+          source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
+        />
+      </TouchableOpacity>
+    );
   };
 
   renderFooter = () => {
@@ -439,22 +426,27 @@ export default class SearchGrid extends Component {
             }}
             source={require('../icon/filter.png')}
           />
-          <Image
-            style={{
-              resizeMode: 'contain',
-              width: 25,
-              height: 20,
-              left: 10,
-              top: 67,
-              left: 315,
-              color: 'black',
-            }}
-            source={require('../icon/bars.png')}
-          />
           <TouchableOpacity
-            onPress={() => this.goToSearchGrid()}
+            onPress={() => this.goToSearch()}
             style={{
-              backgroundColor: 'red',
+              width: windowWidth / 2 - 200,
+              top: 70,
+              alignSelf: 'center',
+              marginLeft: 260,
+            }}>
+            <Image
+              style={{
+                resizeMode: 'contain',
+                width: 25,
+                height: 25,
+                color: 'black',
+              }}
+              source={require('../icon/bars.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            // onPress={() => this.goToSearchGrid()}
+            style={{
               width: windowWidth / 2 - 200,
               top: 45,
               alignSelf: 'center',
@@ -503,16 +495,16 @@ export default class SearchGrid extends Component {
           <Text
             style={{
               fontSize: 10,
-              marginHorizontal: 165,
+              width:windowWidth/2-110,
               bottom: 68,
-              left: 1,
+              left: windowWidth/2.4,
               backgroundColor: '#fff',
               color: 'black',
             }}>
             プロフィール検索
           </Text>
         </View>
-        <View style={{bottom:90}}>
+        <View style={{bottom: 90}}>
           <FlatList
             data={this.state.users}
             renderItem={this._renderItem}
@@ -571,8 +563,9 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     width: 100,
     height: 100,
-    marginBottom: 50,
+    marginBottom: 40,
     marginRight: 180,
+    top:20
   },
   button: {
     backgroundColor: 'blue',
@@ -608,10 +601,13 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'gray',
     position: 'absolute',
-    right: windowWidth / 6,
-    bottom: 50,
+    right: windowWidth / 8,
+    bottom: 60,
     // backgroundColor: 'white',
     padding: 1,
     fontSize: 30,
+    marginLeft:200,
+    textAlign:'center'
+
   },
 });

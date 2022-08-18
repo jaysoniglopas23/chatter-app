@@ -254,7 +254,6 @@ export default class Search extends Component {
           <TouchableOpacity
             onPress={() => this.goToSearchGrid()}
             style={{
-              backgroundColor: 'red',
               width: windowWidth / 2 - 200,
               top: 45,
               alignSelf: 'center',
@@ -303,9 +302,9 @@ export default class Search extends Component {
           <Text
             style={{
               fontSize: 10,
-              marginHorizontal: 165,
+              width:windowWidth/2-110,
               bottom: 68,
-              left: 1,
+              left: windowWidth/2.4,
               backgroundColor: '#fff',
               color: 'black',
             }}>
@@ -319,29 +318,6 @@ export default class Search extends Component {
             keyExtractor={(item, index) => index.toString()}
             numColumns={numColumns}
           />
-        </View>
-        <View
-          style={{
-            flex: 0.6,
-            justifyContent: 'center',
-            flexDirection: 'row',
-            backgroundColor: 'white',
-          }}>
-          <NavigationContainer independent={true} ref={navigationRef}>
-            <Stack.Navigator
-              screenOptions={{
-                headerShown: false,
-                gestureEnable: true,
-                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-              }}>
-              <Stack.Screen name="SearchGrid">
-                {props => <SearchGrid navigationRef={navigationRef} />}
-              </Stack.Screen>
-              <Stack.Screen name="Search">
-                {props => <Search navigationRef={navigationRef} />}
-              </Stack.Screen>
-            </Stack.Navigator>
-          </NavigationContainer>
         </View>
       </View>
     );
