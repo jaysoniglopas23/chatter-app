@@ -47,7 +47,7 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 import Svg, {G, Path} from 'react-native-svg';
 import Modal from 'react-native-modal';
-import SearchEngine from 'react-native-search-engine';
+// import SearchEngine from 'react-native-search-engine';
 
 const Stack = createStackNavigator();
 const windowWidth = Dimensions.get('window').width;

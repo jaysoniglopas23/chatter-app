@@ -483,11 +483,12 @@ class Chat extends Component {
           </TouchableOpacity>
           <View
             style={{
-              width: windowWidth / 2 - 30,
-
-              height: windowHeight / 2 - 500,
-              right: windowWidth / 2 - 345,
-              bottom: windowWidth / 10 - 35,
+              position: 'absolute',
+                width: '100%',
+                height: 30,
+                marginLeft: 295,
+                marginTop: windowHeight / 10 - 75,
+                flexDirection: 'row',
             }}>
             {global.call_minutes != 0 ? (
               <TouchableOpacity>
