@@ -252,7 +252,7 @@ export default class Search extends Component {
               width: 25,
               height: 20,
               top: 67,
-              marginLeft: 320,
+              marginLeft:windowHeight/2-82,
               color: 'black',
             }}
             source={require('../icon/bars.png')}
