@@ -5,7 +5,7 @@ import UserPost from './UserPost';
 export const contains = ({name, image, path, id, description}, query) => {
   // const {first, last} = userName;
   if (
-    image.includes(query) ||
+    description.includes(query) ||
     path.includes(query) ||
     name.includes(query) ||
     nickname.includes(query)

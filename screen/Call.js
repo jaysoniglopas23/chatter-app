@@ -11,6 +11,7 @@ import {
   Animated,
   FlatList,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import _ from 'lodash';
@@ -404,6 +405,16 @@ export default class Call extends Component {
     }
   };
 
+  renderFooter = () => {
+    if (!this.state.loading) return null;
+
+    return (
+      <View style={{}}>
+        <ActivityIndicator animating size="large" />
+      </View>
+    );
+  };
+
   render() {
     return (
       <View
@@ -436,6 +447,7 @@ export default class Call extends Component {
             }}
             onChangeText={this.handleSearch}
             value={this.state.query}
+            clearButtonMode={'always'}
           />
           <Text
             style={{
@@ -460,6 +472,7 @@ export default class Call extends Component {
             scrollEnabled={this.state.scrollEnabled}
             extraData={this.state.refresh}
             initialNumToRender={100}
+            ListFooterComponent={this.renderFooter}
           />
         </View>
       </View>

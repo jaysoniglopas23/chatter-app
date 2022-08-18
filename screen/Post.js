@@ -37,7 +37,7 @@ import {
 import _ from 'lodash';
 import {ListItem, SearchBar, Avatar} from 'react-native-elements';
 // import {getUsers, contains} from './api/index';
-import {getUsers, contains} from '../styles/index';
+import {getUsers, contains} from '../styles/postindex';
 // import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import User from '../homes/User';
 import Tabs from '../navigation/tabs';
@@ -47,6 +47,7 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 import Svg, {G, Path} from 'react-native-svg';
 import Modal from 'react-native-modal';
+import SearchEngine from 'react-native-search-engine';
 
 const Stack = createStackNavigator();
 const windowWidth = Dimensions.get('window').width;
@@ -366,10 +367,10 @@ class Post extends Component {
     });
   }
 
-  makeRemoteRequest = _.debounce(() => {
+  makeRemoteRequest = () => {
     this.setState({loading: true});
 
-    getUsers(20, this.state.query)
+    getUsers(100, this.state.query)
       .then(data => {
         this.setState({
           loading: false,
@@ -380,14 +381,14 @@ class Post extends Component {
       .catch(error => {
         this.setState({error, loading: false});
       });
-  }, 250);
+  };
 
   handleSearch = text => {
     const formattedQuery = text.toLowerCase();
-    const users = _.filter(this.state.users, users => {
-      return contains(users, formattedQuery);
+    const posts = _.filter(this.state.posts, posts => {
+      return contains(posts, formattedQuery);
     });
-    this.setState({users, query: text}, () => this.makeRemoteRequest());
+    this.setState({posts, query: text}, () => this.makeRemoteRequest());
   };
 
   renderSeparator = () => {
@@ -467,6 +468,14 @@ class Post extends Component {
         });
       },
     );
+  }
+
+  setOption() {
+    this.setState({
+      loading: false,
+      data: [],
+      fullData: [],
+    });
   }
 
   report(id) {
@@ -564,8 +573,9 @@ class Post extends Component {
           }}>
           <TextInput
             style={{backgroundColor: '#fff', color: 'black'}}
-            onChangeText={this.handleSearch}
+            onChangeText={value => this.handleSearch(value)}
             value={this.state.query}
+            clearButtonMode="always"
           />
         </View>
         <View

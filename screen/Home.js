@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+// import {TouchableOpacity} from 'react-native-gesture-handler';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {Avatar} from 'react-native-elements';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
@@ -166,7 +167,6 @@ class DisplayAnImage extends Component {
 
   componentDidMount() {
     this.getProfile();
-
   }
 
   // componentWillUnmount() {
@@ -320,6 +320,7 @@ class DisplayAnImage extends Component {
               marginTop: 35,
               marginLeft: windowWidth / 1.4,
               position: 'absolute',
+              backgroundColor: 'black',
             }}>
             <Image
               onPress={() => this.goSettings()}
@@ -330,6 +331,7 @@ class DisplayAnImage extends Component {
                 right: windowWidth / 2.9,
                 resizeMode: 'contain',
                 position: 'absolute',
+                alignItems: 'center',
               }}
               source={require('../icon/Asset12.png')}
             />

@@ -154,6 +154,10 @@ class DisplayAnImage extends Component {
   };
 
   componentDidMount() {
+    this.getDetails();
+  }
+
+  getDetails() {
     let self = this;
 
     this.setState({}, () => {
@@ -249,7 +253,7 @@ class DisplayAnImage extends Component {
             <Text
               style={styles.nickname}
               value={ret}
-              onChangeText={value => this.componentDidMount(value)}>
+              onChangeText={value => this.getDetails(value)}>
               {this.state.nickname}
             </Text>
             <Text
