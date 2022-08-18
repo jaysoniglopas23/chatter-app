@@ -225,28 +225,34 @@ export default class Search extends Component {
           // borderWidth: 10,
           borderColor: '#FAEA48',
           borderBottomWidth: 0,
+          width:"100%"
         }}>
-        <View style={{flexDirection: 'column', bottom: 70}}>
+        <View style={{flexDirection: 'column', bottom: 70,width:"100%"}}>
+        <TouchableOpacity
+            onPress={() => this.goToSearchGrid()}
+            style={{
+              width: windowWidth / 2 - 200,
+              top: 88,
+              alignSelf: 'center',
+              marginLeft: 330,
+            }}>
           <Image
             style={{
               resizeMode: 'contain',
               width: 25,
               height: 22,
-              left: 10,
-              top: 89,
-              left: 345,
               color: 'black',
             }}
             source={require('../icon/filter.png')}
           />
+          </TouchableOpacity>
           <Image
             style={{
               resizeMode: 'contain',
               width: 25,
               height: 20,
-              left: 10,
               top: 67,
-              left: 315,
+              right: windowWidth/2 - 489,
               color: 'black',
             }}
             source={require('../icon/bars.png')}
@@ -257,7 +263,7 @@ export default class Search extends Component {
               width: windowWidth / 2 - 200,
               top: 45,
               alignSelf: 'center',
-              marginLeft: 200,
+              marginLeft:windowWidth - 130,
             }}>
             <Image
               style={{
