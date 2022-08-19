@@ -225,10 +225,16 @@ export default class Search extends Component {
           // borderWidth: 10,
           borderColor: '#FAEA48',
           borderBottomWidth: 0,
-          width:"100%"
+          width: '100%',
         }}>
-        <View style={{flexDirection: 'column', bottom: 70,width:windowWidth -10,alignSelf:'center'}}>
-        <TouchableOpacity
+        <View
+          style={{
+            flexDirection: 'column',
+            bottom: 70,
+            width: windowWidth - 10,
+            alignSelf: 'center',
+          }}>
+          <TouchableOpacity
             onPress={() => this.goToSearchGrid()}
             style={{
               width: windowWidth / 2 - 200,
@@ -236,34 +242,41 @@ export default class Search extends Component {
               alignSelf: 'center',
               marginLeft: 330,
             }}>
-          <Image
-            style={{
-              resizeMode: 'contain',
-              width: 25,
-              height: 22,
-              color: 'black',
-            }}
-            source={require('../icon/filter.png')}
-          />
+            <Image
+              style={{
+                resizeMode: 'contain',
+                width: 25,
+                height: 22,
+                color: 'black',
+              }}
+              source={require('../icon/filter.png')}
+            />
           </TouchableOpacity>
-          <Image
+          <TouchableOpacity
+            onPress={() => this.goToSearchGrid()}
             style={{
-              resizeMode: 'contain',
-              width: 25,
-              height: 20,
-              top: 67,
-              marginLeft:windowHeight/2-82,
-              color: 'black',
-            }}
-            source={require('../icon/bars.png')}
-          />
+              width: windowWidth / 2 - 200,
+              top: 65,
+              alignSelf: 'center',
+              left: 137,
+            }}>
+            <Image
+              style={{
+                resizeMode: 'contain',
+                width: 25,
+                height: 20,
+                color: 'black',
+              }}
+              source={require('../icon/bars.png')}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.goToSearchGrid()}
             style={{
               width: windowWidth / 2 - 200,
               top: 45,
               alignSelf: 'center',
-              marginLeft:windowWidth - 180,
+              left: 110,
             }}>
             <Image
               style={{
@@ -308,9 +321,9 @@ export default class Search extends Component {
           <Text
             style={{
               fontSize: 10,
-              width:windowWidth/2-110,
+              width: windowWidth / 2 - 110,
               bottom: 68,
-              left: windowWidth/2.4,
+              left: windowWidth / 2.4,
               backgroundColor: '#fff',
               color: 'black',
             }}>
