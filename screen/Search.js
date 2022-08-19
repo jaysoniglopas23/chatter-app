@@ -227,7 +227,7 @@ export default class Search extends Component {
           borderBottomWidth: 0,
           width:"100%"
         }}>
-        <View style={{flexDirection: 'column', bottom: 70,width:"100%",justifyContent:'space-evenly'}}>
+        <View style={{flexDirection: 'column', bottom: 70,width:"100%"}}>
         <TouchableOpacity
             onPress={() => this.goToSearchGrid()}
             style={{
