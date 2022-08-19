@@ -319,9 +319,9 @@ export default class Search extends Component {
             プロフィール検索
           </Text>
           <Text
-            style={{
-              fontSize: 10,
-              width: windowWidth / 2 - 110,
+             style={{
+              fontSize: 9,
+              width: windowWidth / 2 - 120,
               bottom: 68,
               left: windowWidth / 2.4,
               backgroundColor: '#fff',

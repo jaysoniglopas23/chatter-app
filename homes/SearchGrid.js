@@ -413,44 +413,54 @@ export default class SearchGrid extends Component {
           borderColor: '#FAEA48',
           borderBottomWidth: 0,
         }}>
-        <View style={{flexDirection: 'column', bottom: 70}}>
-          <Image
-            style={{
-              resizeMode: 'contain',
-              width: 25,
-              height: 22,
-              left: 10,
-              top: 89,
-              left: 345,
-              color: 'black',
-            }}
-            source={require('../icon/filter.png')}
-          />
+        <View
+          style={{
+            flexDirection: 'column',
+            bottom: 70,
+            width: windowWidth - 10,
+            alignSelf: 'center',
+          }}>
           <TouchableOpacity
-            onPress={() => this.goToSearch()}
             style={{
               width: windowWidth / 2 - 200,
-              top: 70,
+              top: 88,
               alignSelf: 'center',
-              marginLeft: 260,
+              marginLeft: 330,
             }}>
             <Image
               style={{
                 resizeMode: 'contain',
                 width: 25,
-                height: 25,
+                height: 22,
+                color: 'black',
+              }}
+              source={require('../icon/filter.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.goToSearch()}
+            style={{
+              width: windowWidth / 2 - 200,
+              top: 65,
+              alignSelf: 'center',
+              left: 137,
+            }}>
+            <Image
+              style={{
+                resizeMode: 'contain',
+                width: 25,
+                height: 20,
                 color: 'black',
               }}
               source={require('../icon/bars.png')}
             />
           </TouchableOpacity>
           <TouchableOpacity
-            // onPress={() => this.goToSearchGrid()}
             style={{
               width: windowWidth / 2 - 200,
               top: 45,
               alignSelf: 'center',
-              marginLeft: 200,
+              left: 110,
             }}>
             <Image
               style={{
@@ -494,10 +504,10 @@ export default class SearchGrid extends Component {
           </Text>
           <Text
             style={{
-              fontSize: 10,
-              width:windowWidth/2-110,
+              fontSize: 9,
+              width: windowWidth / 2 - 120,
               bottom: 68,
-              left: windowWidth/2.4,
+              left: windowWidth / 2.4,
               backgroundColor: '#fff',
               color: 'black',
             }}>
@@ -565,7 +575,7 @@ const styles = StyleSheet.create({
     height: 100,
     marginBottom: 40,
     marginRight: 180,
-    top:20
+    top: 20,
   },
   button: {
     backgroundColor: 'blue',
@@ -606,8 +616,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'white',
     padding: 1,
     fontSize: 30,
-    marginLeft:200,
-    textAlign:'center'
-
+    marginLeft: 200,
+    textAlign: 'center',
   },
 });
