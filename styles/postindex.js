@@ -16,7 +16,7 @@ export const contains = ({name, image, path, id, description}, query) => {
   return false;
 };
 
-export const getUsers = (limit = 90, query = '') => {
+export const getUsers = (limit = 250, query = '') => {
   return new Promise((resolve, reject) => {
     if (query.length === 0) {
       resolve(_.take(UserPost, limit));

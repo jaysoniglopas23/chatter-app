@@ -19,6 +19,7 @@ export const UserInfo = styled.View`
   flex-direction: row;
   justify-content: space-between;
   top: 50px;
+  // background-color: black;
 `;
 
 export const UserImgWrapper = styled.TouchableOpacity`
@@ -48,6 +49,7 @@ export const UserImg1 = styled.Image`
   top: 10px;
   right: 30px;
   margin-bottom: 25px;
+  // background-color: black;
 `;
 
 export const UserIcon = styled.Image`
@@ -131,6 +133,7 @@ export const UserInfo1 = styled.TouchableOpacity`
   height: 30px;
   width: 100px;
   border-radius: 4px;
+  
 `;
 
 export const UserInfo2 = styled.TouchableOpacity`
