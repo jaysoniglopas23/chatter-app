@@ -97,7 +97,7 @@ class Post extends Component {
 
       file: '',
 
-      value:'',
+      value: '',
 
       datetime: '',
 
@@ -133,7 +133,8 @@ class Post extends Component {
   componentDidMount() {
     this.getPost();
     this.getMe();
-     this.makeRemoteRequest();
+    this.initPost();
+    this.searchItems();
   }
 
   goPost() {
@@ -246,9 +247,78 @@ class Post extends Component {
     );
   }
 
-  getPost() {
-   
+  initPost() {
+    let self = this;
 
+    let params = {};
+
+    this.setState(
+      {
+        params: params,
+        refresh: 1,
+      },
+
+      () => {
+        global.socket.on('emit-posts', function (ret) {
+          global.socket.off('emit-posts');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            data: ret,
+            post_likes_count: ret.post_likes_count,
+            nickname: ret[0].nickname,
+            posts_description: ret[0].posts_description,
+            id: ret[0].id,
+            datetime: ret[0].datetime,
+            userid: ret[0].userid,
+            postid: ret[0].postid,
+            path: ret[0].path,
+            file: ret[0].file,
+            profilephotopath: ret[0].profilephotopath,
+            profilephotofile: ret[0].profilephotofile,
+          });
+          // alert(global.socketid);
+          // if (self.state.hasUploadPhoto != "") {
+          //   self.state.path
+          //   self.state.file
+          // };
+          if (self.state.path) {
+            self.setState({
+              hasUploadPhoto: true,
+            });
+          } else {
+            self.setState({
+              hasUploadPhoto: false,
+            });
+          }
+          global.posts = self.state.posts;
+          // alert(global.posts);
+        });
+        let params = {};
+
+        params['start'] = 0;
+        params['size'] = '1000';
+        params['boardid'] = 1;
+        params['posts_description'] = this.state.posts_description;
+        params['nickname'] = this.state.nickname;
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+        params['path'] = this.state.path;
+        params['file'] = this.state.file;
+        params['datetime'] = this.state.datetime;
+        params['post_likes_count'] = this.state.post_likes_count;
+        // params['posts'] = this.state.posts.filter;
+
+        // global.posts = this.state.posts;
+
+        global.socket.emit('on-posts', params);
+        console.log(params);
+      },
+    );
+  }
+
+  getPost() {
     let self = this;
 
     let params = {};
@@ -309,9 +379,9 @@ class Post extends Component {
         params['file'] = this.state.file;
         params['datetime'] = this.state.datetime;
         params['post_likes_count'] = this.state.post_likes_count;
+        // params['posts'] = this.state.posts.filter;
 
         // global.posts = this.state.posts;
-    
 
         global.socket.emit('on-posts', params);
         console.log(params);
@@ -373,29 +443,29 @@ class Post extends Component {
     });
   }
 
-  makeRemoteRequest = () => {
-    this.setState({loading: true});
+  // makeRemoteRequest = () => {
+  //   this.setState({loading: true});
 
-    getUsers(100, this.state.query)
-      .then(posts => {
-        this.setState({
-          loading: false,
-          // data: [],
-          fullData: [],
-        });
-      })
-      .catch(error => {
-        this.setState({error, loading: false});
-      });
-  };
+  //   getUsers(100, this.state.query)
+  //     .then(posts => {
+  //       this.setState({
+  //         loading: false,
+  //         // data: [],
+  //         fullData: [],
+  //       });
+  //     })
+  //     .catch(error => {
+  //       this.setState({error, loading: false});
+  //     });
+  // };
 
-  handleSearch = text => {
-    const formattedQuery = text.toLowerCase();
-    const posts = _.filter(this.state.posts, posts => {
-      return contains(posts, formattedQuery);
-    });
-    this.setState({posts, query: text}, () => this.makeRemoteRequest());
-  };
+  // handleSearch = text => {
+  //   const formattedQuery = text.toLowerCase();
+  //   const posts = _.filter(this.state.posts, posts => {
+  //     return contains(posts, formattedQuery);
+  //   });
+  //   this.setState({posts, query: text}, () => this.makeRemoteRequest());
+  // };
 
   renderSeparator = () => {
     return (
@@ -567,18 +637,19 @@ class Post extends Component {
   }
 
   searchItems = text => {
-    const newData = this.state.posts.filter(item => {
-      const itemData = `${item.description.toUpperCase()}`;
+    const posts = global.posts;
+    const newData = _.filter(this.state.posts, item => {
+      const itemData = `${item.description.toUpperCase()},${item.nickname.toUpperCase()}`;
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
 
-    if(this.state.data == ""){
+    if (this.state.data == '') {
       this.setState({
-        data: global.posts,
+        data: posts,
         value: text,
       });
-      alert(global.posts);
+      // alert(this.state.data) ;
     } else {
       this.setState({
         data: newData,
@@ -680,8 +751,8 @@ class Post extends Component {
                       height: windowHeight / 2,
                       alignSelf: 'center',
                       // backgroundColor: 'red',
-                      paddingBottom:40,
-                      marginTop:10
+                      paddingBottom: 40,
+                      marginTop: 10,
                     }}>
                     <UserInfo>
                       <UserImgWrapper onPress={() => this.goChat(item.userid)}>

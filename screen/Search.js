@@ -65,11 +65,11 @@ export default class Search extends Component {
 
   componentDidMount() {
     this.getUsers();
+    this.searchItems();
+    this.initSearch();
   }
 
-  getUsers() {
-    this.makeRemoteRequest();
-
+  initSearch() {
     // this.refreshTimeline();
 
     let self = this;
@@ -86,16 +86,18 @@ export default class Search extends Component {
           self.setState({
             callRefreshed: true,
             refresh: 1,
-
             name: ret.name,
             image: ret.image,
             path: ret.path,
-            users: ret.users,
+            data: ret.users,
             id: ret.id,
             drop_calls: ret.drop_calls,
           });
 
           // console.log(id);
+          global.users = ret.users;
+
+        
         });
         let params = {};
 
@@ -106,11 +108,100 @@ export default class Search extends Component {
         params['name'] = this.state.name;
         params['userid'] = this.state.userid;
         params['id'] = id;
+       
         global.socket.emit('on-users-for-search', params);
         // console.log(params);
       },
     );
-    // this.props.navigationRef.current?.navigate('Dashboard');
+  }
+
+  getUsers() {
+    // this.refreshTimeline();
+
+    let self = this;
+
+    this.setState(
+      {},
+
+      () => {
+        global.socket.on('emit-users-for-search', function (ret) {
+          global.socket.off('emit-users-for-search');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            callRefreshed: true,
+            refresh: 1,
+            name: ret.name,
+            image: ret.image,
+            path: ret.path,
+            users: ret.users,
+            id: ret.id,
+            drop_calls: ret.drop_calls,
+          });
+
+          // console.log(id);
+          global.users = ret.users;
+        });
+        let params = {};
+
+        params['start'] = 20;
+        params['size'] = 100;
+        params['filter_type'] = '0';
+        params['order'] = '0';
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+        params['id'] = id;
+
+        global.socket.emit('on-users-for-search', params);
+        // console.log(params);
+      },
+    );
+  }
+
+  goCall(id) {
+    this.props.navigation.push('User');
+
+    let self = this;
+
+    this.setState(
+      {},
+
+      () => {
+        global.socket.on('emit-users-for-search', function (ret) {
+          global.socket.off('emit-users-for-search');
+          // JSON.stringify(ret);
+          // console.log(ret);
+
+          self.setState({
+            callRefreshed: true,
+            refresh: 1,
+
+            name: ret.name,
+            image: ret.image,
+            path: ret.path,
+            users: ret.users,
+            id: ret.id,
+          });
+
+          // console.log(id);
+        });
+        let params = {};
+
+        params['start'] = 20;
+        params['size'] = 1000;
+        params['filter_type'] = '0';
+        params['order'] = '0';
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+        params['id'] = id;
+
+        global.otherid = id;
+
+        global.socket.emit('on-users-for-search', params);
+        console.log(params);
+      },
+    );
   }
 
   goCall(id) {
@@ -195,6 +286,37 @@ export default class Search extends Component {
     }
 
     return users;
+  };
+
+
+  searchItems = text => {
+    const myusers = global.users;
+    const newData = _.filter(this.state.users, item => {
+      const itemData = `${item.name.toUpperCase()}`;
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    // alert(newData)
+    // global.users = newData;
+
+    this.setState({
+      value: text,
+      refresh: 1,
+    });
+
+    if (newData == '') {
+      this.setState({
+        data: myusers,
+        value: text,
+        refresh: 1,
+      });
+    } else {
+      this.setState({
+        data: newData,
+        value: text,
+        refresh: 1,
+      });
+    }
   };
 
   _renderItem = ({item, index}) => {
@@ -300,8 +422,8 @@ export default class Search extends Component {
               left: 160,
               color: 'black',
             }}
-            onChangeText={this.handleSearch}
-            value={this.state.query}
+            onChangeText={this.searchItems}
+            value={this.state.value}
           />
           <Image
             style={{
@@ -319,7 +441,7 @@ export default class Search extends Component {
             プロフィール検索
           </Text>
           <Text
-             style={{
+            style={{
               fontSize: 9,
               width: windowWidth / 2 - 120,
               bottom: 68,
@@ -332,7 +454,7 @@ export default class Search extends Component {
         </View>
         <View style={{bottom: 80}}>
           <FlatList
-            data={this.state.users}
+            data={this.state.data}
             renderItem={this._renderItem}
             keyExtractor={(item, index) => index.toString()}
             numColumns={numColumns}
