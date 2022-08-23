@@ -93,6 +93,8 @@ class Post extends Component {
 
       id: '',
 
+      count: 0,
+
       path: '',
 
       file: '',
@@ -204,10 +206,30 @@ class Post extends Component {
   //     likeActive: !this.state.likeActive,
   //     like: this.state.likeActive ? this.state.like - 1 : this.state.like + 1,
   //   });
-  // }
+  // }\
+
+  // incrementMe = id => {
+  //   const newCount = this.state.count_like + 1;
+  //   this.setState({
+  //     count: newCount,
+  //   });
+  // };
 
   likeCount(id) {
+    const newCount = this.state.count_like + 1;
+    const prevCount = this.state.count_like - 1;
     let self = this;
+    // global.likes = global.likes + 1;
+
+    if (global.count_like == 0) {
+      this.setState({
+        count: newCount,
+      });
+    } else {
+      this.setState({
+        count: prevCount,
+      });
+    }
 
     this.setState(
       {
@@ -218,30 +240,38 @@ class Post extends Component {
           global.socket.off('emit-like-post');
           // console.log(ret);
 
-          // if(ret.count_like >= 0){
-          //   item => item.post_likes_count + 1,
-
-          //   // return;
-          // } else {
-
-          // };
-
           self.setState({
             count_like: ret.count_like,
             count_unlike: ret.count_unlike,
             post_id: ret.post_id,
             refresh: 1,
           });
+          global.likes = ret.count_like;
+          // alert(global.likes);
+          // if (ret.count_like == 0) {
+          //   item => item.post_likes_count + 1;
+          // } else {
+          //   item => item.post_likes_count - 1;
+          // }
+          // if (global.likes >= 0) {
+          //   self.setState({
+          //     post_likes_count: global.likes,
+          //   });
+          // } else {
+          //   self.setState({
+          //     post_likes_count: self.state.post_likes_count,
+          //   });
+          // }
         });
 
         let params = {};
 
         params['count_like'] = this.state.count_like;
         params['count_unlike'] = this.state.count_unlike;
-        params['postid'] = id;
+        params['postid'] = this.state.id;
         params['socket'] = this.state.socketid;
-
-        console.log(params);
+        // global.likes = this.state.post_likes_count;
+        // alert(global.likes);
         global.socket.emit('on-like-post', params);
       },
     );
@@ -266,7 +296,7 @@ class Post extends Component {
 
           self.setState({
             data: ret,
-            post_likes_count: ret.post_likes_count,
+            post_likes_count: ret[0].post_likes_count,
             nickname: ret[0].nickname,
             posts_description: ret[0].posts_description,
             id: ret[0].id,
@@ -278,11 +308,7 @@ class Post extends Component {
             profilephotopath: ret[0].profilephotopath,
             profilephotofile: ret[0].profilephotofile,
           });
-          // alert(global.socketid);
-          // if (self.state.hasUploadPhoto != "") {
-          //   self.state.path
-          //   self.state.file
-          // };
+          // global.likes = self.state.post_likes_count;
           if (self.state.path) {
             self.setState({
               hasUploadPhoto: true,
@@ -293,7 +319,8 @@ class Post extends Component {
             });
           }
           global.posts = self.state.posts;
-          // alert(global.posts);
+
+          // alert(global.likes);
         });
         let params = {};
 
@@ -319,6 +346,7 @@ class Post extends Component {
   }
 
   getPost() {
+    // this.likeCount();
     let self = this;
 
     let params = {};
@@ -337,7 +365,7 @@ class Post extends Component {
 
           self.setState({
             posts: ret,
-            post_likes_count: ret.post_likes_count,
+            post_likes_count: ret[0].post_likes_count,
             nickname: ret[0].nickname,
             posts_description: ret[0].posts_description,
             id: ret[0].id,
@@ -354,6 +382,7 @@ class Post extends Component {
           //   self.state.path
           //   self.state.file
           // };
+          global.likes = self.state.post_likes_count;
           if (self.state.path) {
             self.setState({
               hasUploadPhoto: true,
@@ -794,7 +823,7 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                          {'  お気に入り' + '(' + this.state.count + ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}

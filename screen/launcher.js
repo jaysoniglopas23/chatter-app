@@ -10,6 +10,7 @@ import {
   NativeModules,
   Platform,
   Dimensions,
+  PermissionsAndroid,
 } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNavigationContainerRef} from '@react-navigation/native';
@@ -33,6 +34,30 @@ const navigationRef = React.createRef();
 
 const version = getVersion();
 
+// async function requestCameraPermission() {
+//   try {
+//     const granted = await PermissionsAndroid.request(
+//       PermissionsAndroid.PERMISSIONS.CAMERA,
+//       {
+//         title: 'Cool Photo App Camera Permission',
+//         message:
+//           'Cool Photo App needs access to your camera ' +
+//           'so you can take awesome pictures.',
+//         buttonNeutral: 'Ask Me Later',
+//         buttonNegative: 'Cancel',
+//         buttonPositive: 'OK',
+//       },
+//     );
+//     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+//       console.log('You can use the camera');
+//     } else {
+//       console.log('Camera permission denied');
+//     }
+//   } catch (err) {
+//     console.warn(err);
+//   }
+// }
+
 class Launcher extends Component {
   constructor(props) {
     super(props);
@@ -52,8 +77,6 @@ class Launcher extends Component {
     };
 
     // this.addGlobalListeners = this.addGlobalListeners.bind(this);
-
-
 
     global.passcodeCorrect = true;
   }
@@ -119,7 +142,7 @@ class Launcher extends Component {
   //   });
   // }
 
-  componentDidMount(){
+  componentDidMount() {
     this.init();
   }
 
@@ -219,7 +242,7 @@ class Launcher extends Component {
                 console.log('Connected. With Data');
 
                 let params = {
-                  id:id,
+                  id: id,
                   deviceWidth: windowWidth,
                   deviceHeight: windowHeight,
                 };
@@ -288,7 +311,6 @@ class Launcher extends Component {
 
               // self.addGlobalListeners();
 
-   
               self.props.navigationRef.current?.navigate('Tabs');
             });
           }
