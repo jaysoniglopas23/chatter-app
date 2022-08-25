@@ -2,7 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {Image, View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  getFocusedRouteNameFromRoute,
+  NavigationContainer,
+} from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 
 import Call from './../screen/Call';
@@ -92,6 +95,12 @@ const PostStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
+// const getTabBarStyle = (route) => {  
+//   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Call';
+//   let display = (routeName === 'User') ? 'none':'flex';
+//   return {display}
+// }
+
 const CallStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
@@ -105,9 +114,10 @@ const CallStack = ({navigation}) => (
       name="User"
       component={User}
       options={({route}) => ({
-        // title: route.params.userName,
+        // title: route.name.User,
         headerBackTitleVisible: false,
         headerShown: false,
+       
       })}
     />
 
@@ -205,6 +215,15 @@ const Homestack = ({navigation}) => (
 );
 
 const Tabs = ({navigation}) => {
+  // const goTabBarVisibility = () => {
+  //   const routeName = getFocusedRouteNameFromRoute(route);
+  //   if (routeName === 'User') {
+  //     navigation.setOptions({tabBarVisible: false});
+  //   } else {
+  //     navigation.setOptions({tabBarVisible: true});
+  //   }
+  // };
+
   const getTabBarVisibility = () => {
     if (global.age_verified == 0) {
       return true;
@@ -215,36 +234,34 @@ const Tabs = ({navigation}) => {
     }
   };
 
-  // const getTabBarVisibility = route => {
+  // const goTabBarVisibility = route => {
   //   const routeName = route.state
   //     ? route.state.routes[route.state.index].name
   //     : '';
 
-  //   if (routeName === 'home') {
-  //     return false;
+  //   if (routeName === 'User') {
+  //     return 'none';
   //   }
-  //   return true;
+  //   return 'flex';
   // };
 
-  // const goTabBarVisibility = ({}) => {
-  //   if (global.age_verified == 0) {
-  //     return false;
-  //   } else if (global.age_verified == 2){
-  //     return false;
-  //   } else if(global.age_verified == 1)
-  //   return true}
-  // };
+  const getTabBarCall = (route) => {  
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Call';
+    let display = (routeName === 'User') ? 'none':'flex';
+    return {display}
+  }
 
-  // React.useEffect(() => {
-  //   const focusHandler = navigation.addListener('focus', () => {
-  //     Alert.alert('Refreshed');
-  //   });
-  //   return focusHandler;
-  // }, [navigation]);
+  const goTabBarSearch = (route) => {  
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Search';
+    let display = (routeName === 'UserCanSearch') ? 'none':'flex';
+    return {display}
+  }
 
-  // const gotoTestStackScreen = () => {
-  //   navigation.navigate('Test');
-  // };
+  const goTabBarPost = (route) => {  
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Post';
+    let display = (routeName === 'Posttoboard') ? 'none':'flex';
+    return {display}
+  }
 
   return (
     <Tab.Navigator
@@ -300,7 +317,7 @@ const Tabs = ({navigation}) => {
         name="Call"
         component={CallStack}
         options={({route}) => ({
-          // tabBarVisible: getTabBarVisibility(route),
+          tabBarStyle: getTabBarCall(route),
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <View
@@ -321,8 +338,9 @@ const Tabs = ({navigation}) => {
       <Tab.Screen
         name="Search"
         component={SeachStack}
-        options={{
+        options={({route}) => ({
           headerShown: false,
+          tabBarStyle: goTabBarSearch(route),
           tabBarIcon: ({focused}) => (
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
@@ -337,13 +355,14 @@ const Tabs = ({navigation}) => {
               />
             </View>
           ),
-        }}
+        })}
       />
       <Tab.Screen
         name="Post"
         component={PostStack}
-        options={{
+        options={({route}) => ({
           headerShown: false,
+          tabBarStyle: goTabBarPost(route),
           tabBarIcon: ({focused}) => (
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
@@ -358,7 +377,7 @@ const Tabs = ({navigation}) => {
               />
             </View>
           ),
-        }}
+        })}
       />
     </Tab.Navigator>
   );

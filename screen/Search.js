@@ -69,6 +69,19 @@ export default class Search extends Component {
     this.initSearch();
   }
 
+  
+
+  componentWillUnmount() {
+     this.setState({
+      data : [],
+    
+     })
+
+     alert(1);
+  
+    // this.searchItems = [];
+  }
+
   initSearch() {
     // this.refreshTimeline();
 
@@ -96,8 +109,6 @@ export default class Search extends Component {
 
           // console.log(id);
           global.users = ret.users;
-
-        
         });
         let params = {};
 
@@ -108,7 +119,7 @@ export default class Search extends Component {
         params['name'] = this.state.name;
         params['userid'] = this.state.userid;
         params['id'] = id;
-       
+
         global.socket.emit('on-users-for-search', params);
         // console.log(params);
       },
@@ -287,7 +298,6 @@ export default class Search extends Component {
 
     return users;
   };
-
 
   searchItems = text => {
     const myusers = global.users;
