@@ -253,6 +253,7 @@ class DisplayAnImage extends Component {
           // flex: 1,
           // borderWidth: 10,
           // borderColor: '#FAEA48',
+          // backgroundColor:'black',
           borderBottomWidth: 0,
           width: '100%',
         }}>
@@ -424,6 +425,24 @@ class DisplayAnImage extends Component {
             </Stack.Navigator>
           </NavigationContainer>
         </View>
+
+        {global.age_verified != 1 ? (
+          <View>
+            {global.age_verified == 2 ? (
+              <View style={{bottom: windowWidth / 2 - 50, width: '100%'}}>
+                <Text style={{alignSelf: 'center'}}>確認中</Text>
+              </View>
+            ) : (
+              <View style={{bottom: windowWidth / 2 - 50, width: '100%'}}>
+                <Text style={{alignSelf: 'center'}}>
+                  本人確認登録後に利用可能
+                </Text>
+              </View>
+            )}
+          </View>
+        ) : (
+          <></>
+        )}
       </View>
     );
   }

@@ -55,8 +55,8 @@ class Card extends Component {
     let self = this;
 
     this.setState({}, () => {
-      global.socket.on('emit-license_verification', function (ret) {
-        global.socket.off('emit-license_verification');
+      global.socket.on('emit-posts', function (ret) {
+        global.socket.off('emit-posts');
         console.log(ret);
 
         self.setState({
@@ -100,8 +100,8 @@ class Card extends Component {
             .then(response => {
               let params = {};
 
-              params['licver_image_dir'] = self.state.licver_image_dir;
-              params['licver_image'] = self.state.licver_image;
+              // params['licver_image_dir'] = self.state.licver_image_dir;
+              // params['licver_image'] = self.state.licver_image;
 
               self.props.navigationRef.current?.navigate('Dashboard');
             })
@@ -112,13 +112,18 @@ class Card extends Component {
       });
 
       let params = {};
+      params['boardid'] = this.state.boardid;
+      params['lastname'] = '';
+      params['description'] = '';
+      params['start'] = 1;
+      params['size'] = 1;
 
-      params['licver_image_dir'] = this.state.licver_image_dir;
-      params['licver_image'] = this.state.licver_image;
+      // params['licver_image_dir'] = this.state.licver_image_dir;
+      // params['licver_image'] = this.state.licver_image;
 
       params['socketid'] = global.socketid;
 
-      global.socket.emit('on-license_verification', params);
+      global.socket.emit('on-posts', params);
     });
 
     // this.props.navigationRef.current?.navigate('Dashboard');
@@ -154,6 +159,11 @@ class Card extends Component {
       params['licver_image'] = this.state.licver_image;
 
       params['socketid'] = global.socketid;
+      alert(    URL_TEMP +
+        '/' +
+        global.licver_image_dir +
+        '/' +
+        global.licver_image,);
 
       global.socket.emit('on-license_verification', params);
     });

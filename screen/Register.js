@@ -330,7 +330,7 @@ class Register extends Component {
                   global.points = ret.points;
                   global.profile_image = ret.profile_image;
 
-                  self.props.navigationRef.current?.navigate('Tabs');
+                  self.props.navigationRef.current?.navigate('home');
                 });
               });
             }
@@ -353,6 +353,7 @@ class Register extends Component {
           phone_number: this.state.phone_number,
           confirm_password: this.state.confirm_password,
           gender: this.state.gender,
+          age_verified:0,
           datetime: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
         };
 

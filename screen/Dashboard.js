@@ -37,8 +37,6 @@ const navigationRef = React.createRef();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);

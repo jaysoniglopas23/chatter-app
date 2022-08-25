@@ -147,7 +147,7 @@ const SeachStack = ({navigation}) => (
         headerShown: false,
       }}
     />
-     <Stack.Screen
+    <Stack.Screen
       name="SearchGrid"
       component={SearchGrid}
       options={{
@@ -205,16 +205,35 @@ const Homestack = ({navigation}) => (
 );
 
 const Tabs = ({navigation}) => {
-  const getTabBarVisibility = route => {
-    const routeName = route.state
-      ? route.state.routes[route.state.index].name
-      : '';
-
-    if (routeName === 'home') {
+  const getTabBarVisibility = () => {
+    if (global.age_verified == 0) {
+      return true;
+    } else if (global.age_verified == 2) {
+      return true;
+    } else if (global.age_verified == 1) {
       return false;
     }
-    return true;
   };
+
+  // const getTabBarVisibility = route => {
+  //   const routeName = route.state
+  //     ? route.state.routes[route.state.index].name
+  //     : '';
+
+  //   if (routeName === 'home') {
+  //     return false;
+  //   }
+  //   return true;
+  // };
+
+  // const goTabBarVisibility = ({}) => {
+  //   if (global.age_verified == 0) {
+  //     return false;
+  //   } else if (global.age_verified == 2){
+  //     return false;
+  //   } else if(global.age_verified == 1)
+  //   return true}
+  // };
 
   // React.useEffect(() => {
   //   const focusHandler = navigation.addListener('focus', () => {
@@ -228,7 +247,13 @@ const Tabs = ({navigation}) => {
   // };
 
   return (
-    <Tab.Navigator tabBarOptions={{showLabel: false}} screenOptions={{}}>
+    <Tab.Navigator
+      tabBarOptions={{
+        showLabel: false,
+        // tabBarVisible: global.age_verified == 0 ? true : false,
+        tabBarVisible: getTabBarVisibility(),
+      }}
+      screenOptions={{}}>
       <Tab.Screen
         name="home"
         component={Homestack}
@@ -275,7 +300,7 @@ const Tabs = ({navigation}) => {
         name="Call"
         component={CallStack}
         options={({route}) => ({
-          tabBarVisible: getTabBarVisibility(route),
+          // tabBarVisible: getTabBarVisibility(route),
           headerShown: false,
           tabBarIcon: ({focused}) => (
             <View

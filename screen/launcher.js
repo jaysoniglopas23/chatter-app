@@ -282,7 +282,7 @@ class Launcher extends Component {
         password: ret.password,
       });
       // alert(JSON.stringify(ret.id));
-
+     
       if (self.state.id == 0) {
         global.searchFields = data.searchSettings;
         self.props.navigationRef.current?.navigate('Login');
@@ -306,9 +306,10 @@ class Launcher extends Component {
               global.nickname = ret.nickname;
               global.points = ret.points;
               global.socketid = ret.socketid;
+              global.age_verified = ret.age_verified;
 
               global.searchFields = data.searchSettings;
-
+              // alert(global.age_verified);
               // self.addGlobalListeners();
 
               self.props.navigationRef.current?.navigate('Tabs');
