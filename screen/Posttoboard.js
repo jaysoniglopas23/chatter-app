@@ -62,9 +62,11 @@ class Posttoboard extends Component {
       boardid: '',
       fkboard: 1,
       descriptionOpacity: 1,
+      loadingOpacity: 0,
     };
 
     this.goChat = this.goChat.bind(this);
+    this.goSave = this.goSave.bind(this);
   }
 
   goChat() {
@@ -130,6 +132,7 @@ class Posttoboard extends Component {
     this.setState(
       {
         saving: true,
+        loadingOpacity: 1,
       },
 
       () => {
@@ -140,6 +143,7 @@ class Posttoboard extends Component {
 
           self.setState({
             postid: ret.postid,
+            loadingOpacity: 1,
           });
 
           if (self.state.hasUploadPhoto) {
@@ -342,26 +346,42 @@ class Posttoboard extends Component {
           </Text>
         </View>
 
-        <View
-          style={{
-            alignSelf: 'center',
-            top: 210,
-            backgroundColor: '#f8f8f9',
-            width: 182,
-            height: 25,
-          }}>
-          <TouchableOpacity onPress={() => this.goSave()}>
-            <Text
-              style={{
-                color: 'black',
-                alignSelf: 'center',
-                top: 1,
-                fontSize: 16,
-              }}>
-              注意事項をご理解の上、投稿する
-            </Text>
-          </TouchableOpacity>
-        </View>
+        {this.state.loadingOpacity == 0 ? (
+          <View
+            style={{
+              alignSelf: 'center',
+              top: 210,
+              backgroundColor: '#f8f8f9',
+              width: 182,
+              height: 25,
+            }}>
+            <TouchableOpacity onPress={() => this.goSave()}>
+              <Text
+                style={{
+                  color: 'black',
+                  alignSelf: 'center',
+                  top: 1,
+                  fontSize: 16,
+                }}>
+                注意事項をご理解の上、投稿する
+              </Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <ActivityIndicator
+            style={{
+              marginLeft: windowWidth / 2 - 15,
+              width: 30,
+              height: 30,
+              marginTop: 210,
+              fontSize: 13,
+              alignItems: 'center',
+              opacity: this.state.loadingOpacity,
+            }}
+            size="small"
+            color="#69747f"
+          />
+        )}
       </View>
     );
   }
