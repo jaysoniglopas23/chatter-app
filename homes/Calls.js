@@ -113,14 +113,14 @@ class Calls extends Component {
           height: windowHeight,
           flex: 1,
           width: '100%',
-          alignItems:'center'
+          alignItems: 'center',
         }}>
         <View style={styles.view}>
           <Switch
             style={{
-              left: windowWidth /2,
-               bottom: windowWidth / 2 -185
-              }}
+              left: windowWidth / 2,
+              bottom: windowWidth / 2 - 197,
+            }}
             onValueChange={this.toggleSwitch}
             value={this.state.toggled}
           />
@@ -136,12 +136,11 @@ class Calls extends Component {
         <View
           style={{
             height: windowHeight / 1 - 1000,
-            width: windowWidth -25 ,
-            bottom: windowWidth / 2 - 680,
-            flexDirection:'row',
-            alignSelf:'center',
+            width: windowWidth - 25,
+            bottom: windowWidth / 2 - 660,
+            flexDirection: 'row',
+            alignSelf: 'center',
             // backgroundColor:'black',
-           
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
@@ -151,7 +150,6 @@ class Calls extends Component {
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              
             }}>
             <Svg
               style={{width: 20, height: 30}}
@@ -177,7 +175,7 @@ class Calls extends Component {
               left: windowWidth / 1.7,
               flexDirection: 'row',
               width: 70,
-              borderRadius: 2,  
+              borderRadius: 2,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}
@@ -213,9 +211,9 @@ const styles = StyleSheet.create({
   view: {
     top: 90,
     height: windowHeight / 2 - 350,
-   width:windowWidth,
+    width: windowWidth,
     flexDirection: 'row',
-    alignSelf:'center',
+    alignItems: 'center',
     // backgroundColor:'black',
   },
 
