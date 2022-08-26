@@ -73,6 +73,7 @@ class Chat extends Component {
   componentDidMount() {
     this.getChat();
     this.getChatPoint();
+  
   }
 
   componentWillUnmount() {
@@ -190,12 +191,12 @@ class Chat extends Component {
   onEndReached() {}
 
   back() {
-    this.props.navigation.push('Messages');
-    // if (global.previousPage == 'UserProfile') {
-    //   this.props.navigationRef.current?.navigate('UserProfile');
-    // } else {
-    //   this.props.navigationRef.current?.navigate('Messages');
-    // }
+    // this.props.navigation.push('Messages');
+    if (global.prevPage == 'UserCanSearch') {
+      this.props.navigation.push('UserCanSearch');
+    } else {
+      this.props.navigation.push('Messages');
+    }
   }
 
   handleScrollView() {
