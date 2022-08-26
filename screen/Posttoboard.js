@@ -211,7 +211,7 @@ class Posttoboard extends Component {
           width: '100%',
           height: windowHeight,
           borderBottomWidth: 0,
-          borderTopWidth: 10,
+          // borderTopWidth: 10,
         }}>
         <View
           style={{
