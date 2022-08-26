@@ -110,7 +110,7 @@ class Calls extends Component {
       <View
         style={{
           backgroundColor: '#ffff',
-          height: '100%',
+          height: windowHeight,
           flex: 1,
           width: '100%',
         }}>
@@ -135,17 +135,18 @@ class Calls extends Component {
             height: windowHeight,
             width: '100%',
             bottom: windowWidth / 1.3,
+            flexDirection:'row'
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
               height: windowHeight / 24,
-              left: windowWidth / 16,
+              left: 20,
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 428,
+              
             }}>
             <Svg
               style={{width: 20, height: 30}}
@@ -167,14 +168,12 @@ class Calls extends Component {
             onPress={() => this.Save()}
             style={{
               backgroundColor: '#ECECEC',
-              marginHorizontal: 170,
               height: 31,
-              left: 130,
+              left: 240,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
-              borderRadius: 2,
-              bottom: windowHeight / 2 - 397,
+              borderRadius: 2,  
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}
