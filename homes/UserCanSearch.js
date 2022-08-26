@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: '#cdd5d5',
     // right: windowHeight / 3.4,
-    left:8,
+    left:"2%",
     width: windowWidth / 4.3,
   },
 
