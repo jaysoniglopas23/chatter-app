@@ -172,7 +172,7 @@ class Calls extends Component {
             style={{
               backgroundColor: '#ECECEC',
               height: 31,
-              left: 220,
+              left: windowWidth / 1.7,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,  
