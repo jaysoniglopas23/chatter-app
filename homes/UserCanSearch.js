@@ -521,7 +521,7 @@ const styles = StyleSheet.create({
 
     borderColor: '#cdd5d5',
     alignSelf: 'center',
-    // justifyContent:'center',
+    justifyContent:'center',
     top: windowWidth / 4.5,
     width: windowWidth - 33,
     height: windowHeight / 2 - 370,
@@ -542,7 +542,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    left:103,
+    left:93,
     width: windowWidth / 2.5,
   },
 
@@ -553,7 +553,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right:windowWidth/2 - 40,
+    right:windowWidth/2 - 32,
     width: windowWidth / 4.2,
   },
 
@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: '#cdd5d5',
     // right: windowHeight / 3.4,
-    left:17,
+    left:8,
     width: windowWidth / 4.3,
   },
 
