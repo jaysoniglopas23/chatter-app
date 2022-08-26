@@ -612,15 +612,15 @@ const styles = StyleSheet.create({
     bottom: 11,
     left: 3,
     backgroundColor: '#fff',
-    width: windowHeight / 2 - 280,
+    width: windowWidth / 2 - 90,
     color: 'black',
   },
 
   introduction: {
     bottom: 11,
-    right: 135,
+    left: 7,
     backgroundColor: '#fff',
-    marginHorizontal: 142,
+    width: windowWidth / 2 - 130,
     color: 'black',
   },
 
