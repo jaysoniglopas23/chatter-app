@@ -133,7 +133,7 @@ class Calls extends Component {
         <View
           style={{
             height: windowHeight,
-            width: '100%',
+            width: windowWidth,
             bottom: windowWidth / 1.3,
             flexDirection:'row'
           }}>
