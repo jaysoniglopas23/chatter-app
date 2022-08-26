@@ -613,7 +613,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 90,
+    width: windowWidth / 2 - 78,
   },
 
   label3: {
@@ -629,7 +629,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 150,
+    width: windowWidth / 2 - 135,
   },
 
   label5: {
@@ -645,22 +645,22 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 125,
+    width: windowWidth / 2 - 110,
   },
 
   label7: {
-   bottom: 11,
-    left:5,
+    bottom: 11,
+    left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 135,
+    width: windowWidth / 2 - 125,
   },
 
   email: {
     bottom: 14,
     left: 3,
     backgroundColor: '#fff',
-    width: windowWidth / 2 - 20,
+    width: windowWidth / 2 - 70,
     color: 'black',
   },
 
@@ -668,7 +668,7 @@ const styles = StyleSheet.create({
     bottom: 11,
     left: 7,
     backgroundColor: '#fff',
-    width: windowWidth / 2 - 150,
+    width: windowWidth / 2 - 135,
     color: 'black',
   },
 
