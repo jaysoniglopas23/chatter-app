@@ -221,7 +221,7 @@ class Posttoboard extends Component {
             alignSelf:'center',
             backgroundColor:'pink',
             justifyContent:'center',
-            marginTop: windowWidth / 2 - 203,
+            top: windowWidth / 2 - 190,
           }}>
           <TouchableOpacity
             style={{
@@ -255,6 +255,7 @@ class Posttoboard extends Component {
               fontSize: 25,
               fontWeight:'bold',
               height: '100%',
+              bottom:10,
               alignSelf:'center',
             }}>
             新しい投稿を作成
