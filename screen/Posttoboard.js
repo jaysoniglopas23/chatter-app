@@ -339,22 +339,34 @@ class Posttoboard extends Component {
             flexDirection: 'column',
             width: windowWidth - 40,
             alignSelf: 'center',
-            height: windowHeight / 2-150,
+            height: windowHeight / 2 - 150,
           }}>
-          <Text style={{color: 'black', fontSize: 16, justifyContent: 'center',}}>※掲示板注意事項</Text>
-          <Text style={{color: 'black', fontSize: 16, top: 15,justifyContent: 'center'}}>
+          <Text style={{color: 'black', fontSize: 16}}>※掲示板注意事項</Text>
+          <Text style={{color: 'black', fontSize: 16, top: 15}}>
             掲示板は不特定多数の方が見れる場所になります。
           </Text>
-          <Text style={{color: 'black', fontSize: 16, top: 30,justifyContent: 'center'}}>
+          <Text style={{color: 'black', fontSize: 16, top: 30}}>
             電話番号、ラインID、メールアドレス、
           </Text>
-          <Text style={{color: 'black', fontSize: 16, top: 45,justifyContent: 'center'}}>
+          <Text style={{color: 'black', fontSize: 16, top: 45}}>
             SNSアカウント等の古竿はお控えください。
           </Text>
-          <Text style={{color: 'black', fontSize: 16, top: 60, width: 350,justifyContent: 'center'}}>
+          <Text
+            style={{
+              color: 'black',
+              fontSize: 16,
+              top: 60,
+              width: windowWidth - 40,
+            }}>
             事件、トラブルの元になりますので、見つけ次第削除させていただきます。
           </Text>
-          <Text style={{color: 'black', fontSize: 16, top: 75, width: 350,justifyContent: 'center'}}>
+          <Text
+            style={{
+              color: 'black',
+              fontSize: 16,
+              top: 75,
+              width: windowWidth - 40,
+            }}>
             また記載されていても無闇に電話をしたりしないようお気をつけください。
           </Text>
         </View>
