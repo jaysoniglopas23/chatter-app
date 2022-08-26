@@ -268,7 +268,7 @@ class Pacman extends Component {
             </View>
           </View>
         </ScrollView>
-        <View style={{bottom:windowWidth /2.2 , width:'100%', height:windowWidth / 2 - 140}}>
+        <View style={{bottom:windowWidth /3.1 , width:'100%', height:windowHeight/4 - 140 }}>
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{
@@ -280,7 +280,7 @@ class Pacman extends Component {
             flexDirection: 'row',
             width: 50,
             borderRadius: 2,
-            bottom: windowHeight / 2 - 483,
+            top:28
           }}>
           <Svg
             style={{width: 20, height: 30}}
