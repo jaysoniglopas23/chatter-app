@@ -117,13 +117,15 @@ class Calls extends Component {
         }}>
         <View style={styles.view}>
           <Switch
-            style={{left: windowWidth + 90, bottom: windowWidth / 1.1}}
+            style={{
+              left: windowWidth /2,
+               bottom: windowWidth / 2 -185
+              }}
             onValueChange={this.toggleSwitch}
             value={this.state.toggled}
           />
           <Text
             style={{
-              left: windowWidth / 1.8,
               fontWeight: 'bold',
               color: 'black',
               fontSize: 20,
@@ -135,9 +137,9 @@ class Calls extends Component {
           style={{
             height: windowHeight / 1 - 1000,
             width: windowWidth -25 ,
-            bottom: windowWidth / 1.5,
+            bottom: windowWidth / 2 - 680,
             flexDirection:'row',
-            alignSelfs:'center',
+            alignSelf:'center',
             // backgroundColor:'black',
            
           }}>
@@ -210,10 +212,11 @@ const styles = StyleSheet.create({
 
   view: {
     top: 90,
-    height: windowHeight,
-    right: 370,
-    justifyContent: 'space-evenly',
+    height: windowHeight / 2 - 350,
+   width:windowWidth,
     flexDirection: 'row',
+    alignSelf:'center',
+    // backgroundColor:'black',
   },
 
   view1: {
