@@ -118,8 +118,9 @@ class Calls extends Component {
         <View style={styles.view}>
           <Switch
             style={{
-              left: windowWidth / 2,
-              bottom: windowWidth / 2 - 197,
+              left: 200,
+              // bottom: windowWidth / 2 - 190,
+              justifyContent: 'center',
             }}
             onValueChange={this.toggleSwitch}
             value={this.state.toggled}
@@ -128,6 +129,7 @@ class Calls extends Component {
             style={{
               fontWeight: 'bold',
               color: 'black',
+              justifyContent: 'center',
               fontSize: 20,
             }}>
             現在の通話設定 :
@@ -209,12 +211,13 @@ const styles = StyleSheet.create({
   },
 
   view: {
-    top: 90,
-    height: windowHeight / 2 - 350,
+    top: 70,
+    height: windowHeight / 2 - 320,
     width: windowWidth,
     flexDirection: 'row',
     alignItems: 'center',
-    // backgroundColor:'black',
+
+    // backgroundColor: 'black',
   },
 
   view1: {
