@@ -542,7 +542,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    left:windowWidth /2 - 95,
+    left:windowHeight /2 - 300,
     width: windowWidth / 2.5,
   },
 
@@ -553,8 +553,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right:windowWidth/2 - 40,
-    width: windowWidth / 4.4,
+    right:windowHeight/2 - 245,
+    width: windowWidth / 4.2,
   },
 
   button2: {
@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: '#cdd5d5',
     // right: windowHeight / 3.4,
-    left:22,
+    left:17,
     width: windowWidth / 4.3,
   },
 
