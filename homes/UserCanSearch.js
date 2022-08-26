@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
     bottom: 11,
     left: 3,
     backgroundColor: '#fff',
-    width: windowWidth / 2 - 90,
+    width: windowWidth / 2 - 84,
     color: 'black',
   },
 
@@ -620,7 +620,7 @@ const styles = StyleSheet.create({
     bottom: 11,
     left: 7,
     backgroundColor: '#fff',
-    width: windowWidth / 2 - 130,
+    width: windowWidth / 2 - 124,
     color: 'black',
   },
 
