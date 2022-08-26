@@ -430,15 +430,15 @@ class User extends Component {
               <Text style={styles.text}>{this.state.introduction}</Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}>住んでいる地域</Text>
+              <Text style={styles.label2}>住んでいる地域</Text>
               <Text style={styles.text}>{this.state.nickname}</Text>
             </View>
             <View style={styles.view1}>
-              <Text style={styles.label}>性格</Text>
+              <Text style={styles.label3}>性格</Text>
               <Text style={styles.text}>{this.state.character}</Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}> 趣味</Text>
+              <Text style={styles.label4}> 趣味</Text>
               <Text style={styles.text}>{this.state.hobbie}</Text>
             </View>
             <View style={styles.view}>
@@ -446,15 +446,15 @@ class User extends Component {
               <Text style={styles.text}></Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}>会社</Text>
+              <Text style={styles.label5}>会社</Text>
               <Text style={styles.text}></Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}> 出身大学</Text>
+              <Text style={styles.label6}> 出身大学</Text>
               <Text style={styles.text}>{this.state.school}</Text>
             </View>
             <View style={styles.view}>
-              <Text style={styles.label}> 血液型</Text>
+              <Text style={styles.label7}> 血液型</Text>
               <Text style={styles.text}>{this.state.bloodtype}</Text>
             </View>
           </ScrollView>
@@ -608,11 +608,60 @@ const styles = StyleSheet.create({
     width: windowWidth / 2 - 90,
   },
 
-  email: {
+  label2: {
     bottom: 11,
+    left: 5,
+    backgroundColor: '#fff',
+    color: 'black',
+    width: windowWidth / 2 - 90,
+  },
+
+  label3: {
+    bottom: 11,
+    left: 5,
+    backgroundColor: '#fff',
+    color: 'black',
+    width: windowWidth / 2 - 150,
+  },
+
+  label4: {
+    bottom: 11,
+    left: 5,
+    backgroundColor: '#fff',
+    color: 'black',
+    width: windowWidth / 2 - 150,
+  },
+
+  label5: {
+    bottom: 11,
+    left: 5,
+    backgroundColor: '#fff',
+    color: 'black',
+    width: windowWidth / 2 - 150,
+  },
+
+  label6: {
+    bottom: 11,
+    left: 5,
+    backgroundColor: '#fff',
+    color: 'black',
+    width: windowWidth / 2 - 125,
+  },
+
+  label7: {
+   bottom: 11,
+    flex:.7,
+    left:5,
+    backgroundColor: '#fff',
+    color: 'black',
+    width: windowWidth / 2 - 135,
+  },
+
+  email: {
+    bottom: 14,
     left: 3,
     backgroundColor: '#fff',
-    width: windowWidth / 2 - 84,
+    width: windowWidth / 2 - 20,
     color: 'black',
   },
 
@@ -620,7 +669,7 @@ const styles = StyleSheet.create({
     bottom: 11,
     left: 7,
     backgroundColor: '#fff',
-    width: windowWidth / 2 - 124,
+    width: windowWidth / 2 - 150,
     color: 'black',
   },
 
