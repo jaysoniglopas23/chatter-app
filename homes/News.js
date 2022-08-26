@@ -171,7 +171,7 @@ class News extends Component {
             // flex: 1,
             width: windowWidth - 25,
             height: windowHeight / 2 - 550,
-            backgroundColor: 'black',
+            // backgroundColor: 'black',
             alignSelf:'center'
           }}>
           <TouchableOpacity

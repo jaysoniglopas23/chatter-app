@@ -582,10 +582,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#cdd5d5',
     height: 50,
-    marginHorizontal: 22,
+    width:windowWidth -40,
+    alignSelf:'center',
     right: 20,
     borderRadius: 5,
     marginBottom: 20,
+
   },
 
   view1: {
@@ -593,7 +595,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#cdd5d5',
     height: 100,
-    marginHorizontal: 22,
+    width:windowWidth -40,
+    alignSelf:'center',
     right: 20,
     borderRadius: 5,
     marginBottom: 20,
