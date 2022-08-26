@@ -138,7 +138,7 @@ class Calls extends Component {
             bottom: windowWidth / 1.5,
             flexDirection:'row',
             alignSelfs:'center',
-            backgroundColor:'black',
+            // backgroundColor:'black',
            
           }}>
           <TouchableOpacity
@@ -172,7 +172,7 @@ class Calls extends Component {
             style={{
               backgroundColor: '#ECECEC',
               height: 31,
-              left: 240,
+              left: 220,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,  
