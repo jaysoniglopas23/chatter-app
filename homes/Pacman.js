@@ -280,7 +280,7 @@ class Pacman extends Component {
             flexDirection: 'row',
             width: 50,
             borderRadius: 2,
-            top:28
+            top:windowWidth /2 -165
           }}>
           <Svg
             style={{width: 20, height: 30}}
