@@ -268,7 +268,7 @@ class Pacman extends Component {
             </View>
           </View>
         </ScrollView>
-        <View style={{bottom:windowWidth /2.2 , width:'100%'}}>
+        <View style={{bottom:windowWidth /2.2 , width:'100%', height:windowWidth / 2 - 140}}>
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{
