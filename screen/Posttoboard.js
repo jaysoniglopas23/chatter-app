@@ -209,14 +209,14 @@ class Posttoboard extends Component {
           // flex: 1,
           width: '100%',
           height: windowHeight,
-          borderBottomWidth: 0,
+          // borderBottomWidth: 0,
           // borderTopWidth: 10,
         }}>
         <View
           style={{
             width: windowWidth - 30,
             height: '4%',
-            alignSelf: 'center',
+            // alignSelf: 'center',
             // backgroundColor: 'pink',
             justifyContent: 'center',
             marginTop: windowWidth / 2 - 180,
@@ -224,12 +224,12 @@ class Posttoboard extends Component {
           }}>
           <TouchableOpacity
             style={{
-              width: 50,
-              backgroundColor: 'pink',
+              width: 70,
+              // backgroundColor: 'pink',
               height: '100%',
               alignItems: 'center',
-              right: '100%',
-              // justifyContent: 'center',
+              right: 40,
+              justifyContent: 'center',
             }}
             onPress={() => this.back()}>
             <Svg
