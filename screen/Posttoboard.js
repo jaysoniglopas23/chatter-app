@@ -219,7 +219,7 @@ class Posttoboard extends Component {
             height: '4%',
             // right: windowWidth / 2 - 205,
             alignSelf: 'center',
-            backgroundColor: 'pink',
+            // backgroundColor: 'pink',
             justifyContent: 'center',
             marginTop: windowWidth/ 2 - 180,
             flexDirection:'row'
@@ -227,7 +227,6 @@ class Posttoboard extends Component {
           <TouchableOpacity
             style={{
               width: 50,
-              backgroundColor: 'red',
               height: '100%',
               alignItems:'center',
              right:"100%"
@@ -314,7 +313,7 @@ class Posttoboard extends Component {
               backgroundColor: '#fff',
               left: windowHeight / 86,
               color: 'black',
-              width: windowWidth / 7,
+              width: windowWidth / 2-125,
             }}>
             コメント
           </Text>
@@ -333,7 +332,7 @@ class Posttoboard extends Component {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={{top: 120, left: 20, flexDirection: 'column'}}>
+        <View style={{top: 120, left: 20, flexDirection: 'column',width:windowWidth,alignSelf:'center'}}>
           <Text style={{color: 'black', fontSize: 16}}>※掲示板注意事項</Text>
           <Text style={{color: 'black', fontSize: 16, top: 15}}>
             掲示板は不特定多数の方が見れる場所になります。
