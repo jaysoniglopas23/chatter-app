@@ -133,9 +133,10 @@ class Calls extends Component {
         <View
           style={{
             height: windowHeight,
-            width: windowWidth,
+            width: windowWidth ,
             bottom: windowWidth / 1.3,
-            flexDirection:'row'
+            flexDirection:'row',
+            alignSelfs:'center'
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
