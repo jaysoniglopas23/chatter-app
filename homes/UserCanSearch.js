@@ -54,10 +54,9 @@ class User extends Component {
       this.props.navigation.push('Search');
     }
   }
-  
 
   goChat(id, name, lastmessage) {
-    global.prevPage = "UserCanSearch";
+    global.prevPage = 'UserCanSearch';
     this.props.navigation.push('Chat');
     let self = this;
 
@@ -104,7 +103,6 @@ class User extends Component {
         // global.name = name;
         // global.lastmessage = lastmessage;
         // alert(global.otherid);
-      
 
         global.socket.emit('on-user-details', params);
         console.log(params);
@@ -582,12 +580,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#cdd5d5',
     height: 50,
-    width:windowWidth -40,
-    alignSelf:'center',
+    width: windowWidth - 40,
+    alignSelf: 'center',
     right: 20,
     borderRadius: 5,
     marginBottom: 20,
-
+    flex: 1,
   },
 
   view1: {
@@ -595,8 +593,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#cdd5d5',
     height: 100,
-    width:windowWidth -40,
-    alignSelf:'center',
+    width: windowWidth - 40,
+    alignSelf: 'center',
     right: 20,
     borderRadius: 5,
     marginBottom: 20,
@@ -607,8 +605,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    flex:1,
-    width: windowWidth/2-106,
+    width: windowWidth / 2 - 90,
   },
 
   email: {
