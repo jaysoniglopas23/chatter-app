@@ -607,7 +607,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowHeight - 670,
+    width: windowWidth/2-106,
   },
 
   email: {
