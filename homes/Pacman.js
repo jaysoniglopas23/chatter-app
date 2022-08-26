@@ -27,11 +27,10 @@ class Pacman extends Component {
   render() {
     return (
       <View style={{backgroundColor: '#fff', flex: 1 ,width:'100%', height:windowHeight}}>
-        <View style={{flexDirection: 'row',width:windowWidth - 20}}>
+        <View style={{flexDirection: 'row',width:windowWidth - 20 ,marginLeft:10}}>
           <Image
             source={require('../icon/Asset66.png')}
             style={{
-              marginLeft: windowWidth / 2 - 190,
               width: 40,
               height: 40,
               resizeMode: 'contain',
@@ -45,7 +44,7 @@ class Pacman extends Component {
         <View
           style={{
             top: 20,
-            width: windowWidth-40,
+            width: windowWidth-30,
             alignSelf: 'center',
             fontWeight: 'bold',
           }}>
