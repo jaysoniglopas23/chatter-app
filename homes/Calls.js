@@ -113,6 +113,7 @@ class Calls extends Component {
           height: windowHeight,
           flex: 1,
           width: '100%',
+          alignItems:'center'
         }}>
         <View style={styles.view}>
           <Switch
@@ -132,18 +133,19 @@ class Calls extends Component {
         </View>
         <View
           style={{
-            height: windowHeight,
-            width: windowWidth ,
-            bottom: windowWidth / 1.3,
+            height: windowHeight / 1 - 1000,
+            width: windowWidth -25 ,
+            bottom: windowWidth / 1.5,
             flexDirection:'row',
-            alignSelfs:'center'
+            alignSelfs:'center',
+            backgroundColor:'black',
+           
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
               height: windowHeight / 24,
-              left: 20,
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
@@ -171,7 +173,6 @@ class Calls extends Component {
               backgroundColor: '#ECECEC',
               height: 31,
               left: 240,
-              marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,  
