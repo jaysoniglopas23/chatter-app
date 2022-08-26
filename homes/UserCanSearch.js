@@ -526,7 +526,7 @@ const styles = StyleSheet.create({
     width: windowWidth - 33,
     height: windowHeight / 2 - 370,
     flexDirection: 'row',
-    backgroundColor: 'gray',
+    // backgroundColor: 'gray',
   },
 
   Mtxt: {

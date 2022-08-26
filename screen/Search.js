@@ -454,7 +454,7 @@ export default class Search extends Component {
           <Text
             style={{
               fontSize: 9,
-              width: windowWidth / 2 - 120,
+              width: '20%',
               bottom: 68,
               left: windowWidth / 2.4,
               backgroundColor: '#fff',
