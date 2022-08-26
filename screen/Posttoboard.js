@@ -215,22 +215,23 @@ class Posttoboard extends Component {
         }}>
         <View
           style={{
-            width: windowWidth -30,
-            height: "8%",
+            width: windowWidth - 30,
+            height: '4%',
             // right: windowWidth / 2 - 205,
-            alignSelf:'center',
-            backgroundColor:'pink',
-            justifyContent:'center',
+            alignSelf: 'center',
+            backgroundColor: 'pink',
+            justifyContent: 'center',
             top: windowWidth / 2 - 190,
+            flexDirection:'row'
           }}>
           <TouchableOpacity
             style={{
-              top:40,
               width: 50,
-              backgroundColor:'red',
-              height: '70%',
-           
-              justifyContent:'center',
+              backgroundColor: 'red',
+              height: '100%',
+              alignItems:'center',
+             right:"100%"
+              // justifyContent: 'center',
             }}
             onPress={() => this.back()}>
             <Svg
@@ -253,10 +254,9 @@ class Posttoboard extends Component {
             style={{
               color: 'gray',
               fontSize: 25,
-              fontWeight:'bold',
+              fontWeight: 'bold',
               height: '100%',
-              bottom:10,
-              alignSelf:'center',
+              alignSelf: 'center',
             }}>
             新しい投稿を作成
           </Text>
