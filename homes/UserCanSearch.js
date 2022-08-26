@@ -520,7 +520,8 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
 
     borderColor: '#cdd5d5',
-    alignSelf: 'center',
+    // alignSelf: 'center',
+    justifyContent:'center',
     top: windowWidth / 4.5,
     width: windowWidth - 20,
     height: windowHeight / 2 - 370,
@@ -543,7 +544,6 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
     right: windowHeight / 10 - 180,
     width: windowWidth / 2.5,
-    marginLeft: windowHeight / 140,
   },
 
   button1: {
