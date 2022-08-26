@@ -206,7 +206,6 @@ class Posttoboard extends Component {
       <View
         style={{
           backgroundColor: '#fff',
-
           // flex: 1,
           width: '100%',
           height: windowHeight,
@@ -217,7 +216,6 @@ class Posttoboard extends Component {
           style={{
             width: windowWidth - 30,
             height: '4%',
-            // right: windowWidth / 2 - 205,
             alignSelf: 'center',
             // backgroundColor: 'pink',
             justifyContent: 'center',
@@ -227,6 +225,7 @@ class Posttoboard extends Component {
           <TouchableOpacity
             style={{
               width: 50,
+              backgroundColor: 'pink',
               height: '100%',
               alignItems: 'center',
               right: '100%',
@@ -253,6 +252,7 @@ class Posttoboard extends Component {
             style={{
               color: 'gray',
               fontSize: 25,
+              // backgroundColor: 'pink',
               fontWeight: 'bold',
               height: '100%',
               alignSelf: 'center',
@@ -313,7 +313,7 @@ class Posttoboard extends Component {
               backgroundColor: '#fff',
               left: windowHeight / 86,
               color: 'black',
-              width: windowWidth / 2 - 125,
+              width:"20%",
             }}>
             コメント
           </Text>
@@ -334,7 +334,6 @@ class Posttoboard extends Component {
         </View>
         <View
           style={{
-            backgroundColor: 'pink',
             top: 120,
             flexDirection: 'column',
             width: windowWidth - 40,
