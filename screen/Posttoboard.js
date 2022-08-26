@@ -221,7 +221,7 @@ class Posttoboard extends Component {
             alignSelf:'center',
             backgroundColor:'pink',
             justifyContent:'center',
-            marginTop: windowHeight / 2 - 403,
+            marginTop: windowWidth / 2 - 203,
           }}>
           <TouchableOpacity
             style={{
