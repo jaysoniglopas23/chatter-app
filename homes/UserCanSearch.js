@@ -520,10 +520,10 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
 
     borderColor: '#cdd5d5',
-    // alignSelf: 'center',
-    justifyContent:'center',
+    alignSelf: 'center',
+    // justifyContent:'center',
     top: windowWidth / 4.5,
-    width: windowWidth - 20,
+    width: windowWidth - 33,
     height: windowHeight / 2 - 370,
     flexDirection: 'row',
     backgroundColor: 'gray',
