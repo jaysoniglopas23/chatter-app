@@ -542,7 +542,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    left:windowWidth /2 - 95,
+    left:103,
     width: windowWidth / 2.5,
   },
 
