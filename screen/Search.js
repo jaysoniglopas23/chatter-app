@@ -456,7 +456,7 @@ export default class Search extends Component {
               fontSize: 9,
               width: '21%',
               bottom: 68,
-              left: "43%",
+              left: 165,
               backgroundColor: '#fff',
               color: 'black',
             }}>
