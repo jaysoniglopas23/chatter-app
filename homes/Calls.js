@@ -139,7 +139,7 @@ class Calls extends Component {
           style={{
             height: windowHeight / 1 - 1000,
             width: windowWidth - 25,
-            bottom: windowWidth / 2 - 660,
+            bottom: windowWidth / 2 - 630,
             flexDirection: 'row',
             alignSelf: 'center',
             // backgroundColor:'black',
