@@ -56,6 +56,8 @@ class User extends Component {
   }
 
   goChat(id, name, lastmessage) {
+    global.prevPage = "UserCanSearch";
+    this.props.navigation.push('Chat');
     let self = this;
 
     let params = {};
@@ -100,8 +102,8 @@ class User extends Component {
         global.lastmessage = global.lastmessage;
         // global.name = name;
         // global.lastmessage = lastmessage;
-        alert(global.otherid);
-        this.props.navigation.navigate('Chat');
+        // alert(global.otherid);
+      
 
         global.socket.emit('on-user-details', params);
         console.log(params);
@@ -475,9 +477,7 @@ class User extends Component {
             <Text style={styles.Mtxt}>メッセージを送信</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => this.goChat()}
-            style={styles.button1}>
+          <TouchableOpacity style={styles.button1}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
               xmlns="http://www.w3.org/2000/svg"
@@ -490,9 +490,7 @@ class User extends Component {
             <Text style={styles.Mtxt}>ブロック</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => this.goChat()}
-            style={styles.button2}>
+          <TouchableOpacity style={styles.button2}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
               xmlns="http://www.w3.org/2000/svg"

@@ -464,9 +464,7 @@ class User extends Component {
             <Text style={styles.Mtxt}>メッセージを送信</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => this.goChat()}
-            style={styles.button1}>
+          <TouchableOpacity style={styles.button1}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
               xmlns="http://www.w3.org/2000/svg"
@@ -479,9 +477,7 @@ class User extends Component {
             <Text style={styles.Mtxt}>ブロック</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => this.goChat()}
-            style={styles.button2}>
+          <TouchableOpacity style={styles.button2}>
             <Svg
               style={{width: 16, height: 16, left: 10}}
               xmlns="http://www.w3.org/2000/svg"

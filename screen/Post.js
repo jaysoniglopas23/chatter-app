@@ -216,8 +216,8 @@ class Post extends Component {
   // };
 
   likeCount(id) {
-    const newCount = this.state.count_like + 1;
-    const prevCount = this.state.count_like - 1;
+    const newCount = this.state.count_like - 1;
+    const prevCount = this.state.count_like + 1;
     let self = this;
     // global.likes = global.likes + 1;
 
@@ -268,7 +268,7 @@ class Post extends Component {
 
         params['count_like'] = this.state.count_like;
         params['count_unlike'] = this.state.count_unlike;
-        params['postid'] = this.state.id;
+        params['postid'] = id;
         params['socket'] = this.state.socketid;
         // global.likes = this.state.post_likes_count;
         // alert(global.likes);
@@ -823,7 +823,7 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' + this.state.count + ')'}
+                          {'  お気に入り' + '(' + item.post_likes_count + ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}

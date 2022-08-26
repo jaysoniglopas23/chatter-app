@@ -164,6 +164,21 @@ const SeachStack = ({navigation}) => (
         headerShown: false,
       }}
     />
+     <Stack.Screen
+      name="Chat"
+      component={Chat}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerShown: false,
+      })}
+    />
+     <Stack.Screen
+      name="Messages"
+      component={Messages}
+      options={{
+        headerShown: false,
+      }}
+    />
   </Stack.Navigator>
 );
 
@@ -263,6 +278,12 @@ const Tabs = ({navigation}) => {
     return {display}
   }
 
+  const goTabBarChat = (route) => {  
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Messages';
+    let display = (routeName === 'Chat') ? 'none':'flex';
+    return {display}
+  }
+
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -295,8 +316,9 @@ const Tabs = ({navigation}) => {
       <Tab.Screen
         name="Messages"
         component={MessageStack}
-        options={{
+        options={({route}) => ({
           headerShown: false,
+          tabBarStyle: goTabBarChat(route),
           tabBarIcon: ({focused}) => (
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
@@ -311,7 +333,7 @@ const Tabs = ({navigation}) => {
               />
             </View>
           ),
-        }}
+        })}
       />
       <Tab.Screen
         name="Call"
