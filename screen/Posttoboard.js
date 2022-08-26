@@ -216,7 +216,7 @@ class Posttoboard extends Component {
         <View
           style={{
             width: windowWidth -30,
-            height: windowHeight / 2 -340,
+            height: "8%",
             // right: windowWidth / 2 - 205,
             alignSelf:'center',
             backgroundColor:'pink',
