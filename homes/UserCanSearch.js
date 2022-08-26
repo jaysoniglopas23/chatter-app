@@ -607,6 +607,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
+    flex:1,
     width: windowWidth/2-106,
   },
 
