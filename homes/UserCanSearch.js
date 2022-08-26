@@ -650,7 +650,6 @@ const styles = StyleSheet.create({
 
   label7: {
    bottom: 11,
-    flex:.7,
     left:5,
     backgroundColor: '#fff',
     color: 'black',
