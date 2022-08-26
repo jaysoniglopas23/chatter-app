@@ -518,12 +518,14 @@ const styles = StyleSheet.create({
 
   Mview: {
     // borderWidth: 1,
-    flex: 1,
+
     borderColor: '#cdd5d5',
-    alignItems: 'center',
+    alignSelf: 'center',
     top: windowWidth / 4.5,
-    width: '100%',
+    width: windowWidth - 20,
+    height: windowHeight / 2 - 370,
     flexDirection: 'row',
+    backgroundColor: 'gray',
   },
 
   Mtxt: {
@@ -541,7 +543,6 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
     right: windowHeight / 10 - 180,
     width: windowWidth / 2.5,
-    bottom: windowWidth / 6,
     marginLeft: windowHeight / 140,
   },
 
@@ -552,9 +553,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowHeight / 10 - 185,
+   
+    right: windowHeight / 2-245,
     width: windowWidth / 4.4,
-    bottom: windowWidth / 6,
   },
 
   button2: {
@@ -564,9 +565,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right: windowHeight / 3.4,
+    // right: windowHeight / 3.4,
+    left:20,
     width: windowWidth / 4.3,
-    bottom: windowWidth / 6,
   },
 
   scrollview: {
