@@ -166,25 +166,22 @@ class News extends Component {
         </View>
         <View
           style={{
-            top: windowWidth - 35,
+            top: windowWidth - 22,
             backgroundColor: '#ffff',
             // flex: 1,
-            width: '100%',
-            height: windowHeight / 2 -550,
-            // backgroundColor: 'black',
+            width: windowWidth - 25,
+            height: windowHeight / 2 - 550,
+            backgroundColor: 'black',
+            alignSelf:'center'
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
             style={{
               backgroundColor: '#ECECEC',
-              marginHorizontal: 170,
               height: 31,
-              right: 150,
-              marginBottom: 30,
               flexDirection: 'row',
               width: 50,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 415,
             }}>
             <Svg
               style={{width: 20, height: 30}}
