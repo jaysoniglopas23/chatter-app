@@ -71,16 +71,16 @@ export default class Search extends Component {
 
   
 
-  componentWillUnmount() {
-     this.setState({
-      data : [],
+  // componentWillUnmount() {
+  //    this.setState({
+  //     data : [],
     
-     })
+  //    })
 
-     alert(1);
+  //    alert(1);
   
-    // this.searchItems = [];
-  }
+  //   // this.searchItems = [];
+  // }
 
   initSearch() {
     // this.refreshTimeline();
@@ -216,6 +216,7 @@ export default class Search extends Component {
   }
 
   goCall(id) {
+    global.prevPageCall = 'UserCanSearch';
     this.props.navigation.push('UserCanSearch');
 
     let self = this;

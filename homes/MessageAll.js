@@ -38,6 +38,7 @@ class MessagesScrean extends Component {
   }
 
   goChat(id, name, lastmessage, profile_image, profile_image_dir) {
+    global.prevPage = 'Messages';
     this.props.navigation.push('Chat');
 
     let self = this;

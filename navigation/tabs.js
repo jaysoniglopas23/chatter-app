@@ -95,7 +95,7 @@ const PostStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
-// const getTabBarStyle = (route) => {  
+// const getTabBarStyle = (route) => {
 //   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Call';
 //   let display = (routeName === 'User') ? 'none':'flex';
 //   return {display}
@@ -117,7 +117,6 @@ const CallStack = ({navigation}) => (
         // title: route.name.User,
         headerBackTitleVisible: false,
         headerShown: false,
-       
       })}
     />
 
@@ -126,6 +125,15 @@ const CallStack = ({navigation}) => (
       component={Chat}
       options={({route}) => ({
         // title: route.params.userName,
+        headerShown: false,
+      })}
+    />
+    <Stack.Screen
+      name="UserCanSearch"
+      component={UserCanSearch}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
         headerShown: false,
       })}
     />
@@ -164,7 +172,7 @@ const SeachStack = ({navigation}) => (
         headerShown: false,
       }}
     />
-     <Stack.Screen
+    <Stack.Screen
       name="Chat"
       component={Chat}
       options={({route}) => ({
@@ -172,7 +180,7 @@ const SeachStack = ({navigation}) => (
         headerShown: false,
       })}
     />
-     <Stack.Screen
+    <Stack.Screen
       name="Messages"
       component={Messages}
       options={{
@@ -260,29 +268,29 @@ const Tabs = ({navigation}) => {
   //   return 'flex';
   // };
 
-  const getTabBarCall = (route) => {  
+  const getTabBarCall = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Call';
-    let display = (routeName === 'User') ? 'none':'flex';
-    return {display}
-  }
+    let display = routeName === 'UserCanSearch'  ? 'none' : 'flex'; 
+    return {display};
+  };
 
-  const goTabBarSearch = (route) => {  
+  const goTabBarSearch = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Search';
-    let display = (routeName === 'UserCanSearch') ? 'none':'flex';
-    return {display}
-  }
+    let display = routeName === 'UserCanSearch'  ? 'none' : 'flex';
+    return {display};
+  };
 
-  const goTabBarPost = (route) => {  
+  const goTabBarPost = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Post';
-    let display = (routeName === 'Posttoboard') ? 'none':'flex';
-    return {display}
-  }
+    let display = routeName === 'Posttoboard' ? 'none' : 'flex';
+    return {display};
+  };
 
-  const goTabBarChat = (route) => {  
+  const goTabBarChat = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Messages';
-    let display = (routeName === 'Chat') ? 'none':'flex';
-    return {display}
-  }
+    let display = routeName === 'Chat' ? 'none' : 'flex';
+    return {display};
+  };
 
   return (
     <Tab.Navigator

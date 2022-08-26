@@ -45,15 +45,16 @@ class User extends Component {
 
   goBack() {
     // this.props.Call.init();
-    this.props.navigation.push('Search');
+    // this.props.navigation.push('Search');
 
-    // let self = this;
-
-    // this.setState({}, () => {
-    //   self.props.Call.init();
-    //   self.props.navigation.navigate('Call');
-    // });
+    if (global.prevPageCall == 'Call') {
+      this.props.navigation.push('Call');
+      global.otherid;
+    } else {
+      this.props.navigation.push('Search');
+    }
   }
+  
 
   goChat(id, name, lastmessage) {
     global.prevPage = "UserCanSearch";

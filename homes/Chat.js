@@ -73,7 +73,6 @@ class Chat extends Component {
   componentDidMount() {
     this.getChat();
     this.getChatPoint();
-  
   }
 
   componentWillUnmount() {
@@ -185,7 +184,7 @@ class Chat extends Component {
     //   }
 
     //   self.getProfile();
-    // });
+    // });a
   }
 
   onEndReached() {}
@@ -194,6 +193,7 @@ class Chat extends Component {
     // this.props.navigation.push('Messages');
     if (global.prevPage == 'UserCanSearch') {
       this.props.navigation.push('UserCanSearch');
+      global.otherid;
     } else {
       this.props.navigation.push('Messages');
     }
@@ -485,11 +485,11 @@ class Chat extends Component {
           <View
             style={{
               position: 'absolute',
-                width: '100%',
-                height: 30,
-                marginLeft: 295,
-                marginTop: windowHeight / 10 - 75,
-                flexDirection: 'row',
+              width: '100%',
+              height: 30,
+              marginLeft: 295,
+              marginTop: windowHeight / 10 - 75,
+              flexDirection: 'row',
             }}>
             {global.call_minutes != 0 ? (
               <TouchableOpacity>
