@@ -26,8 +26,8 @@ class Pacman extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff' ,width:'100%', height:windowHeight ,justifyContent:'center'}}>
-        <View style={{flexDirection: 'row'}}>
+      <View style={{backgroundColor: '#fff', flex: 1 ,width:'100%', height:windowHeight}}>
+        <View style={{flexDirection: 'row',width:'100%'}}>
           <Image
             source={require('../icon/Asset66.png')}
             style={{
@@ -45,7 +45,7 @@ class Pacman extends Component {
         <View
           style={{
             top: 20,
-            width: '97%',
+            width: '100%',
             alignSelf: 'center',
             fontWeight: 'bold',
           }}>
