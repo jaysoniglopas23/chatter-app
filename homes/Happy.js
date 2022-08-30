@@ -41,6 +41,8 @@ class Happy extends Component {
 
       email: '',
 
+      // intgender:  this.state.intgender,
+
       modalDatePicker: false,
 
       saving: false,
@@ -57,6 +59,10 @@ class Happy extends Component {
     this.closeDateModal = this.closeDateModal.bind(this);
 
     this.openDateModal = this.openDateModal.bind(this);
+
+    this.getProfile = this.getProfile.bind(this);
+
+    this.getJob = this.getJob.bind(this);
   }
   closeDateModal() {
     this.setState({
@@ -173,21 +179,21 @@ class Happy extends Component {
         params['lastname'] = '';
         params['dob'] = moment(new Date()).format('YYYY-MM-DD');
         params['about'] = this.state.about;
-        params['job_title'] = this.state.job_title;
+        params['job'] = this.state.job_title;
         params['company'] = this.state.company;
         params['school'] = this.state.school;
-        params['gender'] = 1;
+        params['gender'] = this.state.gender;
         params['gender_pref'] = 1;
         params['distance_threshold'] = 0;
         params['nickname'] = this.state.nickname;
-        params['smoking'] = 0;
-        params['drinking'] = 0;
-        params['marrried'] = 0;
-        params['presence_of_children'] = 0;
-        params['like_children_or_not'] = 0;
-        params['marriage_desire'] = 0;
-        params['presence_of_pet'] = 0;
-        params['holiday'] = 0;
+        params['smoking'] = this.state.smoker;
+        params['drinking'] = this.state.drink;
+        params['marrried'] = this.state.married;
+        params['presence_of_children'] = this.state.presence_of_children;
+        params['like_children_or_not'] = this.state.like_children_or_not;
+        params['marriage_desire'] = this.state.marriage_desire;
+        params['presence_of_pet'] = this.state.presence_of_pet;
+        params['holiday'] = this.state.holiday;
         params['hobbie'] = this.state.hobbie;
         params['bloodtype'] = '';
         params['email'] = this.state.email;
@@ -210,39 +216,42 @@ class Happy extends Component {
     this.getProfile();
   }
 
+  
+
   getProfile() {
     let self = this;
 
     this.setState({}, () => {
       global.socket.on('emit-details', function (ret) {
-        global.socket.off('on-details');
-        // alert(JSON.stringify(ret));
+        global.socket.off('emit-details');
+        alert(JSON.stringify(ret));
         self.setState({
           nickname: ret.nickname,
           email: ret.email,
           introduction: ret.introduction,
           character: ret.character,
-          gender: ret.gender,
           company: ret.company,
           dob: ret.dob,
-          drinking: ret.drinking,
+          drink: ret.drink,
           gender: ret.gender,
           gender_pref: ret.gender_pref,
           hobbie: ret.hobbie,
-          about:ret.about,
+          about: ret.about,
           holiday: ret.holiday,
           job_title: ret.job_title,
           like_children_or_not: ret.like_children_or_not,
           location: ret.location,
-          merriage_desire: ret.merriage_desire,
-          marrried: ret.marrried,
+          marriage_desire: ret.marriage_desire,
+          married: ret.marital_status,
           presence_of_children: ret.presence_of_children,
           presence_of_pet: ret.presence_of_pet,
           school: ret.school,
-          smoking: ret.smoking,
+          smoker: ret.smoker,
         });
 
-       
+          // self.state.intgender = ret.gender;
+
+          global.gender = self.state.gender;
       });
 
       let params = {};
@@ -251,10 +260,10 @@ class Happy extends Component {
       params['lastname'] = '';
       params['dob'] = moment(new Date()).format('YYYY-MM-DD');
       params['about'] = this.state.about;
-      params['job_title'] = this.state.job_title;
+      params['job'] = this.state.job_title;
       params['company'] = this.state.company;
       params['school'] = this.state.school;
-      params['gender'] = 1;
+      params['gender'] = this.state.intgender;
       params['gender_pref'] = 1;
       params['distance_threshold'] = 0;
       params['nickname'] = this.state.nickname;
@@ -274,7 +283,9 @@ class Happy extends Component {
       params['character'] = this.state.character;
       params['location'] = '';
 
-      global.job_title = this.state.job_title;
+    
+      //  alert(this.state.job_title);
+      // global.job_title = this.state.job_title;
       //  alert(global.about);
 
       // if (gender_rb == '0') {
@@ -482,13 +493,76 @@ class Happy extends Component {
   //   );
   // }
 
+  getGender(gender) {
+    // alert(value);
+    this.setState({
+      gender: gender,
+    });
+  }
+
+  getSmoking(smoker) {
+    // alert(value);
+    this.setState({
+      smoker:smoker,
+    });
+  }
+
+  getDrinking(drink) {
+    // alert(value);
+    this.setState({
+      drink:drink,
+    });
+  }
+
+  getMarried(married){
+    this.setState({
+      married:married,
+    });
+  }
+
+  getMarried(married){
+    this.setState({
+      married:married,
+    });
+  }
+
+  getPoc(presence_of_children){
+    this.setState({
+      presence_of_children:presence_of_children,
+    });
+  }
+
+  getDtm( marriage_desire){
+    this.setState({
+      marriage_desire: marriage_desire,
+    });
+  }
+
+  getLcon(like_children_or_not){
+    this.setState({
+      like_children_or_not: like_children_or_not,
+    });
+  }
+
+  getPet(presence_of_pet){
+    this.setState({
+      presence_of_pet:presence_of_pet,
+    });
+  }
+
+  getHoliday(holiday){
+    this.setState({
+      holiday:holiday,
+    });
+  }
+
   render() {
-    let gender = [
+    let genders = [
       {label: '男性', value: 0},
 
       {label: '女性', value: 1},
     ];
-    let second = [
+    let smokings = [
       {label: '未設定', value: 0},
 
       {label: '吸う', value: 1},
@@ -497,7 +571,7 @@ class Happy extends Component {
 
       {label: '吸わない', value: 3},
     ];
-    let third = [
+    let drinkings = [
       {label: '未設定', value: 0},
 
       {label: '飲む', value: 1},
@@ -506,34 +580,34 @@ class Happy extends Component {
 
       {label: '飲まない', value: 3},
     ];
-    let fourth = [
+    let marrieds = [
       {label: '未婚', value: 0},
 
       {label: '既婚', value: 1},
 
       {label: '離婚', value: 2},
     ];
-    let fifth = [
+    let presence_of_childrens = [
       {label: 'いない', value: 0},
 
       {label: 'いる', value: 1},
     ];
-    let sixth = [
+    let  marriage_desires = [
       {label: 'あり', value: 0},
 
       {label: 'なし', value: 1},
     ];
-    let seventh = [
+    let like_children_or_nots = [
       {label: '好き', value: 0},
 
       {label: '嫌い', value: 1},
     ];
-    let Pets = [
+    let  presence_of_pets = [
       {label: 'いる', value: 0},
 
       {label: 'いない', value: 1},
     ];
-    let holiday = [
+    let holidays = [
       {label: 'インドア', value: 0},
 
       {label: 'アウトドア', value: 1},
@@ -842,7 +916,7 @@ class Happy extends Component {
                       borderRadius: 4,
                       color: 'black',
                     }}
-                    placeholder={global.job_title}
+                    placeholder={this.state.job_title}
                     value={this.state.job_title}
                     onChangeText={value => this.getJob(value)}
                   />
@@ -1047,45 +1121,25 @@ class Happy extends Component {
                 borderColor: '#cdd5d5',
                 alignItems: 'center',
               }}>
-              {this.state.gender == 1 ? (
-                <RadioForm
-                  radio_props={gender}
-                  initial={0}
-                  onPress={value => {
-                    ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                  }}
-                  buttonSize={10}
-                  // value={}
-                  buttonOuterSize={20}
-                  buttonColor={'grey'}
-                  selectedButtonColor={'grey'}
-                  selectedLabelColor={'black'}
-                  labelStyle={{fontSize: 15, paddingHorizontal: 30}}
-                  disabled={false}
-                  formHorizontal={true}
-                  labelHorizontal={true}
-                  style={{top: 30}}
-                />
-              ) : (
-                <RadioForm
-                  radio_props={gender}
-                  initial={1}
-                  onPress={value => {
-                    ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                  }}
-                  buttonSize={10}
-                  // value={}
-                  buttonOuterSize={20}
-                  buttonColor={'grey'}
-                  selectedButtonColor={'grey'}
-                  selectedLabelColor={'black'}
-                  labelStyle={{fontSize: 15, paddingHorizontal: 30}}
-                  disabled={false}
-                  formHorizontal={true}
-                  labelHorizontal={true}
-                  style={{top: 30}}
-                />
-              )}
+              <RadioForm
+                radio_props={genders}
+                initial={this.state.gender}
+                // onPress={value => {
+                //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                // }}
+                onPress={value => this.getGender(value)}
+                buttonSize={10}
+                value={this.state.gender}
+                buttonOuterSize={20}
+                buttonColor={'grey'}
+                selectedButtonColor={'grey'}
+                selectedLabelColor={'black'}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                disabled={false}
+                formHorizontal={true}
+                labelHorizontal={true}
+                style={{top: 30}}
+              />
             </View>
             <Text
               style={{
@@ -1112,11 +1166,13 @@ class Happy extends Component {
                 alignItems: 'center',
               }}>
               <RadioForm
-                radio_props={second}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
+                radio_props={smokings}
+                initial={this.state.smoker}
+                // onPress={value => {
+                //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                // }}
+                onPress={value => this.getSmoking(value)}
+                value={this.state.smoker}
                 buttonSize={8}
                 buttonOuterSize={18}
                 buttonColor={'grey'}
@@ -1145,7 +1201,7 @@ class Happy extends Component {
                 marginHorizontal: 177,
                 color: 'black',
                 width: windowWidth / 9.5,
-                // this is graduate bloodtype*********
+                // this is graduate prefGender*********
               }}>
               タバコ
             </Text>
@@ -1161,11 +1217,10 @@ class Happy extends Component {
                 alignItems: 'center',
               }}>
               <RadioForm
-                radio_props={third}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
+                radio_props={drinkings}
+                initial={this.state.drink}
+                onPress={value => this.getDrinking(value)}
+                value={this.state.drink}
                 buttonSize={8}
                 buttonOuterSize={18}
                 buttonColor={'grey'}
@@ -1210,11 +1265,10 @@ class Happy extends Component {
                 alignItems: 'center',
               }}>
               <RadioForm
-                radio_props={fourth}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
+                radio_props={marrieds}
+                initial={this.state.married}
+                onPress={value => this.getMarried(value)}
+                value={this.state.married}
                 buttonSize={10}
                 buttonOuterSize={20}
                 buttonColor={'grey'}
@@ -1238,7 +1292,7 @@ class Happy extends Component {
                 width: windowWidth / 9.5,
                 // this is graduate bloodtype*********
               }}>
-              結婚歴
+               結婚歴
             </Text>
             <View
               style={{
@@ -1248,15 +1302,14 @@ class Happy extends Component {
                 top: 20,
                 width: windowWidth / 1.2,
                 left: 25,
-                borderColor: '#cdd5d5',
+                borderColor: '#cdd5d5', 
                 alignItems: 'center',
               }}>
               <RadioForm
-                radio_props={fifth}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
+                radio_props={presence_of_childrens}
+                initial={this.state.presence_of_children}
+                onPress={value => this.getPoc(value)}
+                value={this.state.presence_of_children}
                 buttonSize={10}
                 buttonOuterSize={20}
                 buttonColor={'grey'}
@@ -1294,11 +1347,10 @@ class Happy extends Component {
                 alignItems: 'center',
               }}>
               <RadioForm
-                radio_props={sixth}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
+                radio_props={ marriage_desires}
+                initial={this.state. marriage_desire}
+                onPress={value => this.getDtm(value)}
+                value={this.state.marriage_desire}
                 buttonSize={10}
                 buttonOuterSize={20}
                 buttonColor={'grey'}
@@ -1336,11 +1388,10 @@ class Happy extends Component {
                 alignItems: 'center',
               }}>
               <RadioForm
-                radio_props={seventh}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
+                radio_props={like_children_or_nots}
+                initial={this.state.like_children_or_not}
+                onPress={value => this.getLcon(value)}
+                value={this.state.like_children_or_not}
                 buttonSize={10}
                 buttonOuterSize={20}
                 buttonColor={'grey'}
@@ -1378,11 +1429,10 @@ class Happy extends Component {
                 alignItems: 'center',
               }}>
               <RadioForm
-                radio_props={Pets}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
+                radio_props={ presence_of_pets}
+                initial={this.state.presence_of_pet}
+                onPress={value => this.getPet(value)}
+                value={this.state.presence_of_pet}
                 buttonSize={10}
                 buttonOuterSize={20}
                 buttonColor={'grey'}
@@ -1420,11 +1470,10 @@ class Happy extends Component {
                 alignItems: 'center',
               }}>
               <RadioForm
-                radio_props={holiday}
-                initial={0}
-                onPress={value => {
-                  ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
-                }}
+                radio_props={holidays}
+                initial={this.state.holiday}
+                onPress={value => this.getHoliday}
+                value={this.state.holiday}
                 buttonSize={10}
                 buttonOuterSize={20}
                 buttonColor={'grey'}
