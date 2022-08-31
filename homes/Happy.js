@@ -1496,7 +1496,7 @@ class Happy extends Component {
           style={{
             height: windowHeight / 13,
             width: '100%',
-            bottom: windowHeight / 2 - 270,
+            bottom: 90,
             backgroundColor: '#fff',
           }}>
           <TouchableOpacity
@@ -1533,7 +1533,7 @@ class Happy extends Component {
               flexDirection: 'row',
               width: windowWidth / 5 - 5,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 320,
+              bottom: 30,
             }}
             onPress={() => this.save()}>
             <Image
