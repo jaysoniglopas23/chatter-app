@@ -694,10 +694,10 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 88,
-                      right: 132,
+
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      left: windowWidth / 2 - 185,
+                      left: 10,
                       alignSelf: 'flex-start',
                       color: 'black',
                       // this is email*********************
@@ -740,10 +740,9 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 103,
-                      right: 130,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      left: windowWidth / 2 - 185,
+                      left: 10,
                       color: 'black',
                       alignSelf: 'flex-start',
                       // this is self introduction*********************
@@ -788,7 +787,7 @@ class Happy extends Component {
                       right: 130,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      left: windowWidth / 2 - 185,
+                      left: 10,
                       alignSelf: 'flex-start',
                       color: 'black',
                       // this is  area live in*********************
@@ -832,7 +831,7 @@ class Happy extends Component {
                       bottom: 103,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      left: windowWidth / 2 - 168,
+                      left: 10,
                       color: 'black',
                       alignSelf: 'flex-start',
                       // this is character*********
@@ -874,10 +873,9 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 42,
-                      right: 150,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      marginHorizontal: 160,
+                      left: 10,
                       color: 'black',
                       alignSelf: 'flex-start',
                       // this is hobbie*********
@@ -919,10 +917,9 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 44,
-                      right: 133,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      marginHorizontal: 143,
+                      left: 10,
                       color: 'black',
                       alignSelf: 'flex-start',
                       // this is job*********
@@ -964,10 +961,9 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 44,
-                      right: 133,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      marginHorizontal: 143,
+                      left: 10,
                       color: 'black',
                       alignSelf: 'flex-start',
                       // this is company*********
