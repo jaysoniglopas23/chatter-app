@@ -69,16 +69,14 @@ export default class Search extends Component {
     this.initSearch();
   }
 
-  
-
   // componentWillUnmount() {
   //    this.setState({
   //     data : [],
-    
+
   //    })
 
   //    alert(1);
-  
+
   //   // this.searchItems = [];
   // }
 
@@ -455,8 +453,8 @@ export default class Search extends Component {
             style={{
               fontSize: 9,
               // width: '21%',
-              alignSelf:'flex-start',
-              bottom: 68,
+              alignSelf: 'flex-start',
+              bottom: 71,
               left: 165,
               backgroundColor: '#fff',
               color: 'black',
