@@ -391,6 +391,10 @@ class Chat extends Component {
     );
   }
 
+  Callme() {
+    alert(' IS A CALL??');
+  }
+
   render() {
     let tableHeight = 0;
 
@@ -423,7 +427,9 @@ class Chat extends Component {
             <TouchableOpacity
               style={{
                 position: 'absolute',
-                width: '100%',
+                width: '30%',
+                // backgroundColor:'black',
+                // alignSelf:'flex-star',
                 height: 30,
                 marginLeft: 145,
                 marginTop: windowHeight / 10 - 65,
@@ -491,36 +497,60 @@ class Chat extends Component {
               top: '5%',
               flexDirection: 'row',
             }}>
-            {global.call_minutes == 100  ? (
-              <TouchableOpacity>
-                <Image
-                  style={{
-                    resizeMode: 'contain',
-                    height: 35,
-                    width: 35,
-                    top: 6,
-                    left: 30,
-                    alignSelf: 'center',
-                  }}
-                  source={require('../icon/Asset5.png')}
-                />
-              </TouchableOpacity>
-            ) : (
-              <Text
-                style={{
-                  color: 'red',
-                  right: '70%',
-                  top: '2%',
-                  alignSelf: 'center',
-                }}>
-                通話ポイントなし
-              </Text>
-            )}
+            {(() => {
+              if (global.call_minutes != 0) {
+                if (this.state.msg_from == 3) {
+                  return (
+                    <TouchableOpacity onPress={() => this.Callme()}>
+                      <Image
+                        style={{
+                          resizeMode: 'contain',
+                          height: 35,
+                          width: 35,
+                          top: 6,
+                          left: 30,
+                          alignSelf: 'center',
+                        }}
+                        source={require('../icon/Asset5.png')}
+                      />
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity>
+                      <Image
+                        style={{
+                          resizeMode: 'contain',
+                          height: 35,
+                          width: 35,
+                          top: 6,
+                          left: 30,
+                          alignSelf: 'center',
+                        }}
+                        source={require('../icon/Asset5.png')}
+                      />
+                    </TouchableOpacity>
+                  );
+                }
+              } else {
+                return (
+                  <Text
+                    style={{
+                      color: 'red',
+                      right: '70%',
+                      top: '2%',
+                      alignSelf: 'center',
+                    }}>
+                    通話ポイントなし
+                  </Text>
+                );
+              }
+            })()}
           </View>
         </View>
 
         <KeyboardAvoidingView
-          style={{width: '100%', height: tableHeight}}
+          style={{width: '100%', height: "95%"}}
           behavior="position">
           {this.state.loadingChats ? (
             <View
@@ -562,7 +592,7 @@ class Chat extends Component {
                     width: '100%',
                     padding: 100,
                     right: 90,
-                    top: 23,
+                    top: "23%",
                     flexDirection: 'row',
                     alignItems: 'flex-end',
                     // position: 'absolute',
