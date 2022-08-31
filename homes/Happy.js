@@ -253,7 +253,6 @@ class Happy extends Component {
   //       // global.gender = self.state.gender ;
   //     });
 
-
   //     // global.gender = this.state.gender;
   //     // let params = {};
 
@@ -336,10 +335,8 @@ class Happy extends Component {
         global.marriage_desire = self.state.marriage_desire;
         global.like_children_or_not = self.state.like_children_or_not;
         global.presence_of_pet = self.state.presence_of_pet;
-        global.holiday = self.state.holidat;
+        global.holiday = self.state.holiday;
       });
-
-
 
       // global.gender = this.state.gender;
       // let params = {};
@@ -1550,7 +1547,7 @@ class Happy extends Component {
               <RadioForm
                 radio_props={holidays}
                 initial={global.holiday}
-                onPress={value => this.getHoliday}
+                onPress={value => this.getHoliday(value)}
                 value={this.state.holiday}
                 buttonSize={10}
                 buttonOuterSize={20}
@@ -1573,7 +1570,7 @@ class Happy extends Component {
                 color: 'gray',
                 fontSize: 10,
                 alignSelf: 'flex-start',
-                // this is graduate bloodtype*********
+                // this is graduate holiday*********
               }}>
               休日
             </Text>
