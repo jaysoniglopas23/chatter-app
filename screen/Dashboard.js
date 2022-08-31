@@ -191,7 +191,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset11.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
                 プロフィール
               </Text>
             </TouchableOpacity>
@@ -210,7 +210,9 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset55.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>足あと</Text>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
+                足あと
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -226,7 +228,9 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset88.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>いいね</Text>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
+                いいね
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={{backgroundColor: '#fff', height: '100%'}}>
@@ -247,7 +251,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset33.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
                 写真登録
               </Text>
             </TouchableOpacity>
@@ -268,7 +272,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset66.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
                 各種使い方
               </Text>
             </TouchableOpacity>
@@ -288,7 +292,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset99.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
                 利用規約等
               </Text>
             </TouchableOpacity>
@@ -310,7 +314,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset44.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
                 個人証明書
               </Text>
             </TouchableOpacity>
@@ -330,7 +334,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset5.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
                 通話設定
               </Text>
             </TouchableOpacity>
@@ -350,7 +354,7 @@ class Dashboard extends Component {
                 style={styles.iconRight}
                 source={require('../icon/Asset10.png')}
               />
-              <Text style={{alignSelf: 'center', color: 'black'}}>
+              <Text style={{alignSelf: 'center', color: 'black', fontSize: 15}}>
                 ログアウト
               </Text>
             </TouchableOpacity>
