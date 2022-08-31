@@ -214,7 +214,86 @@ class Happy extends Component {
 
   componentDidMount() {
     this.getProfile();
+    // this.initProfile();
   }
+
+  // initProfile() {
+  //   let self = this;
+
+  //   this.setState({}, () => {
+  //     global.socket.on('emit-details', function (ret) {
+  //       global.socket.off('emit-details');
+  //       // alert(JSON.stringify(ret));
+  //       self.setState({
+  //         nickname: ret.nickname,
+  //         email: ret.email,
+  //         introduction: ret.introduction,
+  //         character: ret.character,
+  //         company: ret.company,
+  //         dob: ret.dob,
+  //         drink: ret.drink,
+  //         gender: ret.gender,
+  //         gender_pref: ret.gender_pref,
+  //         hobbie: ret.hobbie,
+  //         about: ret.about,
+  //         holiday: ret.holiday,
+  //         job_title: ret.job_title,
+  //         like_children_or_not: ret.like_children_or_not,
+  //         location: ret.location,
+  //         marriage_desire: ret.marriage_desire,
+  //         married: ret.marital_status,
+  //         presence_of_children: ret.presence_of_children,
+  //         presence_of_pet: ret.presence_of_pet,
+  //         school: ret.school,
+  //         smoker: ret.smoker,
+  //       });
+
+  //       // self.state.intgender = ret.gender;
+
+  //       // global.gender = self.state.gender ;
+  //     });
+
+
+  //     // global.gender = this.state.gender;
+  //     // let params = {};
+
+  //     // params['firstname'] = '';
+  //     // params['lastname'] = '';
+  //     // params['dob'] = moment(new Date()).format('YYYY-MM-DD');
+  //     // params['about'] = this.state.about;
+  //     // params['job'] = this.state.job_title;
+  //     // params['company'] = this.state.company;
+  //     // params['school'] = this.state.school;
+  //     // params['gender'] = this.state.intgender;
+  //     // params['gender_pref'] = 1;
+  //     // params['distance_threshold'] = 0;
+  //     // params['nickname'] = this.state.nickname;
+  //     // params['smoking'] = 0;
+  //     // params['drinking'] = 0;
+  //     // params['marrried'] = 0;
+  //     // params['presence_of_children'] = 0;
+  //     // params['like_children_or_not'] = 0;
+  //     // params['marriage_desire'] = 0;
+  //     // params['presence_of_pet'] = 0;
+  //     // params['holiday'] = 0;
+  //     // params['hobbie'] = this.state.hobbie;
+  //     // params['bloodtype'] = '';
+  //     // params['email'] = this.state.email;
+  //     // params['name'] = '';
+  //     // params['introduction'] = this.state.introduction;
+  //     // params['character'] = this.state.character;
+  //     // params['location'] = '';
+
+  //     //  alert(this.state.job_title);
+  //     // global.job_title = this.state.job_title;
+  //     //  alert(global.about);
+
+  //     // if (gender_rb == '0') {
+  //     // }
+
+  //     global.socket.emit('on-details');
+  //   });
+  // }
 
   getProfile() {
     let self = this;
@@ -250,36 +329,47 @@ class Happy extends Component {
         // self.state.intgender = ret.gender;
 
         global.gender = self.state.gender;
+        global.smoker = self.state.smoker;
+        global.drink = self.state.drink;
+        global.married = self.state.married;
+        global.presence_of_children = self.state.presence_of_children;
+        global.marriage_desire = self.state.marriage_desire;
+        global.like_children_or_not = self.state.like_children_or_not;
+        global.presence_of_pet = self.state.presence_of_pet;
+        global.holiday = self.state.holidat;
       });
 
-      let params = {};
 
-      params['firstname'] = '';
-      params['lastname'] = '';
-      params['dob'] = moment(new Date()).format('YYYY-MM-DD');
-      params['about'] = this.state.about;
-      params['job'] = this.state.job_title;
-      params['company'] = this.state.company;
-      params['school'] = this.state.school;
-      params['gender'] = this.state.intgender;
-      params['gender_pref'] = 1;
-      params['distance_threshold'] = 0;
-      params['nickname'] = this.state.nickname;
-      params['smoking'] = 0;
-      params['drinking'] = 0;
-      params['marrried'] = 0;
-      params['presence_of_children'] = 0;
-      params['like_children_or_not'] = 0;
-      params['marriage_desire'] = 0;
-      params['presence_of_pet'] = 0;
-      params['holiday'] = 0;
-      params['hobbie'] = this.state.hobbie;
-      params['bloodtype'] = '';
-      params['email'] = this.state.email;
-      params['name'] = '';
-      params['introduction'] = this.state.introduction;
-      params['character'] = this.state.character;
-      params['location'] = '';
+
+      // global.gender = this.state.gender;
+      // let params = {};
+
+      // params['firstname'] = '';
+      // params['lastname'] = '';
+      // params['dob'] = moment(new Date()).format('YYYY-MM-DD');
+      // params['about'] = this.state.about;
+      // params['job'] = this.state.job_title;
+      // params['company'] = this.state.company;
+      // params['school'] = this.state.school;
+      // params['gender'] = this.state.intgender;
+      // params['gender_pref'] = 1;
+      // params['distance_threshold'] = 0;
+      // params['nickname'] = this.state.nickname;
+      // params['smoking'] = 0;
+      // params['drinking'] = 0;
+      // params['marrried'] = 0;
+      // params['presence_of_children'] = 0;
+      // params['like_children_or_not'] = 0;
+      // params['marriage_desire'] = 0;
+      // params['presence_of_pet'] = 0;
+      // params['holiday'] = 0;
+      // params['hobbie'] = this.state.hobbie;
+      // params['bloodtype'] = '';
+      // params['email'] = this.state.email;
+      // params['name'] = '';
+      // params['introduction'] = this.state.introduction;
+      // params['character'] = this.state.character;
+      // params['location'] = '';
 
       //  alert(this.state.job_title);
       // global.job_title = this.state.job_title;
@@ -288,7 +378,7 @@ class Happy extends Component {
       // if (gender_rb == '0') {
       // }
 
-      global.socket.emit('on-details', params);
+      global.socket.emit('on-details');
     });
   }
 
@@ -517,11 +607,11 @@ class Happy extends Component {
     });
   }
 
-  getMarried(married) {
-    this.setState({
-      married: married,
-    });
-  }
+  // getMarried(married) {
+  //   this.setState({
+  //     married: married,
+  //   });
+  // }
 
   getPoc(presence_of_children) {
     this.setState({
@@ -614,7 +704,7 @@ class Happy extends Component {
     return (
       <View style={{backgroundColor: '#fff', height: '85%', width: '100%'}}>
         <ScrollView>
-          <View style={{marginBottom: 50}}>
+          <View style={{marginBottom: 110}}>
             <View style={styles.container}>
               <View
                 style={{
@@ -1112,7 +1202,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={genders}
-                initial={this.state.gender}
+                initial={global.gender}
                 // onPress={value => {
                 //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
                 // }}
@@ -1156,7 +1246,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={smokings}
-                initial={this.state.smoker}
+                initial={global.smoker}
                 // onPress={value => {
                 //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
                 // }}
@@ -1206,7 +1296,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={drinkings}
-                initial={this.state.drink}
+                initial={global.drink}
                 onPress={value => this.getDrinking(value)}
                 value={this.state.drink}
                 buttonSize={8}
@@ -1253,7 +1343,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={marrieds}
-                initial={this.state.married}
+                initial={global.married}
                 onPress={value => this.getMarried(value)}
                 value={this.state.married}
                 buttonSize={10}
@@ -1294,7 +1384,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={presence_of_childrens}
-                initial={this.state.presence_of_children}
+                initial={global.presence_of_children}
                 onPress={value => this.getPoc(value)}
                 value={this.state.presence_of_children}
                 buttonSize={10}
@@ -1336,7 +1426,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={marriage_desires}
-                initial={this.state.marriage_desire}
+                initial={global.marriage_desire}
                 onPress={value => this.getDtm(value)}
                 value={this.state.marriage_desire}
                 buttonSize={10}
@@ -1377,7 +1467,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={like_children_or_nots}
-                initial={this.state.like_children_or_not}
+                initial={global.like_children_or_not}
                 onPress={value => this.getLcon(value)}
                 value={this.state.like_children_or_not}
                 buttonSize={10}
@@ -1418,7 +1508,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={presence_of_pets}
-                initial={this.state.presence_of_pet}
+                initial={global.presence_of_pet}
                 onPress={value => this.getPet(value)}
                 value={this.state.presence_of_pet}
                 buttonSize={10}
@@ -1459,7 +1549,7 @@ class Happy extends Component {
               }}>
               <RadioForm
                 radio_props={holidays}
-                initial={this.state.holiday}
+                initial={global.holiday}
                 onPress={value => this.getHoliday}
                 value={this.state.holiday}
                 buttonSize={10}

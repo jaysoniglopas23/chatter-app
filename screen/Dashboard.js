@@ -123,6 +123,12 @@ class Dashboard extends Component {
       modalConfirmLogout: true,
     });
   }
+  // componentDidMount() {
+  //   const focusHandler = this.props.navigationRef.current?.addListener('focus', () => {
+  //     alert('Refreshed');
+  //   });
+  //   return focusHandler;
+  // }
 
   closeLogutConfirm() {
     this.setState({
