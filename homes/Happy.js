@@ -1483,7 +1483,6 @@ class Happy extends Component {
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1497,7 +1496,8 @@ class Happy extends Component {
           style={{
             height: windowHeight / 13,
             width: '100%',
-            top: windowHeight / 2 - 420,
+            bottom: windowHeight / 2 - 270,
+            backgroundColor: '#fff',
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
@@ -1508,7 +1508,6 @@ class Happy extends Component {
               flexDirection: 'row',
               width: windowWidth / 7,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 428,
             }}>
             <Svg
               style={{width: 20, height: 30}}
@@ -1534,7 +1533,7 @@ class Happy extends Component {
               flexDirection: 'row',
               width: windowWidth / 5 - 5,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 397,
+              bottom: windowHeight / 2 - 320,
             }}
             onPress={() => this.save()}>
             <Image
