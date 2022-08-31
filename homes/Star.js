@@ -233,9 +233,9 @@ class Star extends Component {
         <View
           style={{
             height: windowHeight / 13,
-            // backgroundColor:'black',
+            // backgroundColor: 'black',
             width: '100%',
-            bottom: windowWidth / 2 - 80,
+            bottom: 200,
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
