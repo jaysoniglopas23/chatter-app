@@ -487,7 +487,7 @@ class Chat extends Component {
               position: 'absolute',
               width: '100%',
               height: 30,
-              marginLeft: 295,
+              left:"73%",
               marginTop: windowHeight / 10 - 75,
               flexDirection: 'row',
             }}>
