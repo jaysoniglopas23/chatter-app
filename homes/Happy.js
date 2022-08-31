@@ -699,7 +699,7 @@ class Happy extends Component {
                       alignSelf: 'flex-start',
                       color: 'gray',
                       fontSize: 10,
-                      
+
                       // this is email*********************
                     }}>
                     メールアドレス
@@ -743,7 +743,8 @@ class Happy extends Component {
                       fontSize: 12,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is self introduction*********************
                     }}>
@@ -784,12 +785,11 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 44,
-                      right: 130,
-                      fontSize: 12,
                       backgroundColor: '#fff',
                       left: 10,
                       alignSelf: 'flex-start',
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
                       // this is  area live in*********************
                     }}>
                     住んでいる地域
@@ -829,10 +829,10 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 103,
-                      fontSize: 12,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is character*********
                     }}>
@@ -873,10 +873,10 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 42,
-                      fontSize: 12,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is hobbie*********
                     }}>
@@ -916,11 +916,11 @@ class Happy extends Component {
                   />
                   <Text
                     style={{
-                      bottom: 44,
-                      fontSize: 12,
+                      bottom: 42,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is job*********
                     }}>
@@ -960,11 +960,11 @@ class Happy extends Component {
                   />
                   <Text
                     style={{
-                      bottom: 44,
-                      fontSize: 12,
+                      bottom: 42,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is company*********
                     }}>
@@ -1004,12 +1004,11 @@ class Happy extends Component {
                   />
                   <Text
                     style={{
-                      bottom: 44,
-
-                      fontSize: 12,
+                      bottom: 42,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
                       alignSelf: 'flex-start',
                       // Graduating school*************
                     }}>
@@ -1036,11 +1035,11 @@ class Happy extends Component {
             />
             <Text
               style={{
-                bottom: 40,
-                fontSize: 12,
+                bottom: 38,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
@@ -1088,13 +1087,12 @@ class Happy extends Component {
               </Modal>
               <Text
                 style={{
-                  bottom: 78,
-
-                  fontSize: 12,
+                  bottom: 76,
                   backgroundColor: '#fff',
                   left: 30,
-                  color: 'black',
-                  width: windowWidth / 7.5,
+                  color: 'gray',
+                  fontSize: 10,
+                  alignSelf: 'flex-start',
 
                   // this is graduate dateofbirth*********
                 }}>
@@ -1134,12 +1132,12 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 98,
-
+                bottom: 96,
                 fontSize: 12,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
@@ -1185,12 +1183,11 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
-
-                fontSize: 12,
+                bottom: 76,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate prefGender*********
               }}>
@@ -1233,12 +1230,11 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
-
-                fontSize: 12,
+                bottom: 76,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
@@ -1274,12 +1270,12 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
-
+                bottom: 76,
                 fontSize: 12,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
@@ -1315,12 +1311,13 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
+                bottom: 76,
                 left: 30,
-                fontSize: 12,
+
                 backgroundColor: '#fff',
 
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
@@ -1356,12 +1353,12 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
+                bottom: 76,
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
@@ -1397,12 +1394,12 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
+                bottom: 76,
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
@@ -1438,12 +1435,12 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
+                bottom: 76,
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
@@ -1479,11 +1476,12 @@ class Happy extends Component {
             </View>
             <Text
               style={{
-                bottom: 78,
+                bottom: 76,
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                color: 'black',
+                color: 'gray',
+                fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>

@@ -521,7 +521,7 @@ const styles = StyleSheet.create({
 
     borderColor: '#cdd5d5',
     alignSelf: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     top: windowWidth / 4.5,
     width: windowWidth - 33,
     height: windowHeight / 2 - 370,
@@ -542,7 +542,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    left:'26%',
+    left: '26%',
     width: windowWidth / 2.5,
   },
 
@@ -553,7 +553,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 30,
     borderColor: '#cdd5d5',
-    right:'46%',
+    right: '46%',
     width: windowWidth / 4.2,
   },
 
@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: '#cdd5d5',
     // right: windowHeight / 3.4,
-    left:"2%",
+    left: '2%',
     width: windowWidth / 4.3,
   },
 
@@ -601,59 +601,66 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    bottom: 11,
+    bottom: 8,
     left: 5,
     backgroundColor: '#fff',
-    color: 'black',
-    alignSelf:'flex-start',
+    color: 'gray',
+    fontSize: 10,
+    alignSelf: 'flex-start',
   },
 
   label2: {
-    bottom: 11,
+    bottom: 8,
     left: 5,
     backgroundColor: '#fff',
-    color: 'black',
-    alignSelf:'flex-start',
+    color: 'gray',
+    fontSize: 10,
+    alignSelf: 'flex-start',
   },
 
   label3: {
-    bottom: 11,
+    bottom: 8,
     left: 5,
     backgroundColor: '#fff',
-    color: 'black',
-    alignSelf:'flex-start',
+    color: 'gray',
+    fontSize: 10,
+    alignSelf: 'flex-start',
   },
 
   label4: {
-    bottom: 11,
+    bottom: 8,
     left: 5,
     backgroundColor: '#fff',
-    color: 'black',
-    alignSelf:'flex-start',
+    color: 'gray',
+    fontSize: 10,
+    alignSelf: 'flex-start',
   },
 
   label5: {
-    bottom: 11,
+    bottom: 8,
     left: 5,
     backgroundColor: '#fff',
-    color: 'black',
-    alignSelf:'flex-start',
+    color: 'gray',
+    fontSize: 10,
+    alignSelf: 'flex-start',
   },
 
   label6: {
-    bottom: 11,
+    bottom: 8,
     left: 5,
     backgroundColor: '#fff',
-    color: 'black',
-    alignSelf:'flex-start',
+    color: 'gray',
+    fontSize: 10,
+    alignSelf: 'flex-start',
   },
 
   label7: {
-    bottom: 11,
+    bottom: 8,
     left: 5,
     backgroundColor: '#fff',
-    color: 'black',
-    alignSelf:'flex-start',
+    color: 'gray',
+    fontSize: 10,
+    alignSelf: 'flex-start',
   },
 
   email: {
@@ -665,11 +672,12 @@ const styles = StyleSheet.create({
   },
 
   introduction: {
-    bottom: 11,
+    bottom: 8,
     left: 7,
     backgroundColor: '#fff',
-    alignSelf:'flex-start',
-    color: 'black',
+    alignSelf: 'flex-start',
+    color: 'gray',
+    fontSize: 10,
   },
 
   text: {
