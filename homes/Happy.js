@@ -1008,7 +1008,7 @@ class Happy extends Component {
 
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      left: windowWidth / 2 - 168,
+                      left: 10,
                       color: 'black',
                       alignSelf: 'flex-start',
                       // Graduating school*************
@@ -1037,10 +1037,9 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 40,
-
                 fontSize: 12,
                 backgroundColor: '#fff',
-                left: windowWidth / 2 - 168,
+                left: 30,
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1090,10 +1089,10 @@ class Happy extends Component {
               <Text
                 style={{
                   bottom: 78,
-                  right: 148,
+
                   fontSize: 12,
                   backgroundColor: '#fff',
-                  marginHorizontal: 177,
+                  left: 30,
                   color: 'black',
                   width: windowWidth / 7.5,
 
@@ -1136,10 +1135,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 98,
-                right: 148,
+
                 fontSize: 12,
                 backgroundColor: '#fff',
-                left: windowWidth / 2 - 165,
+                left: 30,
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1187,10 +1186,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 78,
-                right: 148,
+
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 177,
+                left: 30,
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate prefGender*********
@@ -1235,10 +1234,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 78,
-                right: 148,
+
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 177,
+                left: 30,
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1276,10 +1275,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 78,
-                right: 148,
+
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 177,
+                left: 30,
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1317,10 +1316,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 78,
-                right: 139,
+                left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                left: windowWidth / 2 - 168,
+
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1358,10 +1357,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 78,
-                right: 148,
+                left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                left: windowWidth / 2 - 168,
+
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1399,10 +1398,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 78,
-                right: 142,
+                left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                left: windowWidth / 2 - 168,
+
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1440,10 +1439,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 78,
-                right: 138,
+                left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                left: windowWidth / 2 - 168,
+
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1481,10 +1480,10 @@ class Happy extends Component {
             <Text
               style={{
                 bottom: 78,
-                right: 155,
+                left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                left: windowWidth / 2 - 168,
+
                 color: 'black',
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
