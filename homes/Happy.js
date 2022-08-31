@@ -648,12 +648,12 @@ class Happy extends Component {
                   />
                   <Text
                     style={{
-                      bottom: 42,
                       left: 10,
                       backgroundColor: '#fff',
                       // marginHorizontal: 145,
                       color: 'gray',
                       fontSize: 10,
+                      bottom: 42,
                       alignSelf: 'flex-start',
                       // this is nickname*********************
                     }}>
@@ -693,13 +693,13 @@ class Happy extends Component {
                   />
                   <Text
                     style={{
-                      bottom: 88,
-
-                      fontSize: 12,
+                      bottom: 87,
                       backgroundColor: '#fff',
                       left: 10,
                       alignSelf: 'flex-start',
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
+                      
                       // this is email*********************
                     }}>
                     メールアドレス
