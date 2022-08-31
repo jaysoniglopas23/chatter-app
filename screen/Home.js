@@ -365,7 +365,7 @@ class DisplayAnImage extends Component {
 
         <View
           style={{
-            flex: 0.6,
+            flex: 0.8,
             justifyContent: 'center',
             flexDirection: 'row',
             backgroundColor: 'white',
