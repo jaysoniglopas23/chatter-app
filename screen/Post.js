@@ -740,7 +740,7 @@ class Post extends Component {
         <Text
           style={{
             fontSize: 10,
-            width: windowWidth / 5,
+            alignSelf: 'flex-start',
             bottom: 68,
             left: windowWidth / 15,
             backgroundColor: '#fff',

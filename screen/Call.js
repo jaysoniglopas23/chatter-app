@@ -556,7 +556,7 @@ export default class Call extends Component {
           <Text
             style={{
               fontSize: 10,
-              width: windowWidth / 5,
+              alignSelf: 'flex-start',
               bottom: 45,
               left: windowWidth / 7,
               backgroundColor: '#fff',
