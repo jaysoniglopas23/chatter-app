@@ -487,8 +487,8 @@ class Chat extends Component {
               position: 'absolute',
               width: '100%',
               height: 30,
-              left:"73%",
-              marginTop: windowHeight / 10 - 75,
+              left: '73%',
+              top: '8%',
               flexDirection: 'row',
             }}>
             {global.call_minutes != 0 ? (
