@@ -421,10 +421,10 @@ class User extends Component {
               <Text style={styles.label}> ニックネーム</Text>
               <Text style={styles.text}>{this.state.nickname}</Text>
             </View>
-            <View style={styles.view}>
+            {/* <View style={styles.view}>
               <Text style={styles.email}> メールアドレス</Text>
               <Text style={styles.text}>{this.state.email}</Text>
-            </View>
+            </View> */}
             <View style={styles.view1}>
               <Text style={styles.introduction}>自己紹介</Text>
               <Text style={styles.text}>{this.state.introduction}</Text>
@@ -605,7 +605,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 90,
+    alignSelf:'flex-start',
   },
 
   label2: {
@@ -613,7 +613,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 78,
+    alignSelf:'flex-start',
   },
 
   label3: {
@@ -621,7 +621,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 150,
+    alignSelf:'flex-start',
   },
 
   label4: {
@@ -629,7 +629,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 135,
+    alignSelf:'flex-start',
   },
 
   label5: {
@@ -637,7 +637,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 150,
+    alignSelf:'flex-start',
   },
 
   label6: {
@@ -645,7 +645,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 110,
+    alignSelf:'flex-start',
   },
 
   label7: {
@@ -653,7 +653,7 @@ const styles = StyleSheet.create({
     left: 5,
     backgroundColor: '#fff',
     color: 'black',
-    width: windowWidth / 2 - 125,
+    alignSelf:'flex-start',
   },
 
   email: {
@@ -668,7 +668,7 @@ const styles = StyleSheet.create({
     bottom: 11,
     left: 7,
     backgroundColor: '#fff',
-    width: windowWidth / 2 - 135,
+    alignSelf:'flex-start',
     color: 'black',
   },
 

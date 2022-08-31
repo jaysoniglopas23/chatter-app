@@ -224,7 +224,7 @@ class Happy extends Component {
     this.setState({}, () => {
       global.socket.on('emit-details', function (ret) {
         global.socket.off('emit-details');
-        alert(JSON.stringify(ret));
+        // alert(JSON.stringify(ret));
         self.setState({
           nickname: ret.nickname,
           email: ret.email,
@@ -652,12 +652,12 @@ class Happy extends Component {
                   <Text
                     style={{
                       bottom: 44,
-                      right: 137,
+                      left: windowWidth/2 -185,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      marginHorizontal: 145,
+                      // marginHorizontal: 145,
                       color: 'black',
-                      width: windowWidth / 4.6,
+                      alignSelf:'flex-start',
                       // this is nickname*********************
                     }}>
                     ニックネーム
@@ -700,8 +700,8 @@ class Happy extends Component {
                       right: 132,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      marginHorizontal: 143,
-                      width: windowWidth / 4.2,
+                      left: windowWidth/2 -185,
+                      alignSelf:'flex-start',
                       color: 'black',
                       // this is email*********************
                     }}>
@@ -748,7 +748,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 140,
                       color: 'black',
-                      width: windowWidth / 7.2,
+                      alignSelf:'flex-start',
                       // this is self introduction*********************
                     }}>
                     自己紹介
@@ -791,8 +791,8 @@ class Happy extends Component {
                       right: 130,
                       fontSize: 12,
                       backgroundColor: '#fff',
-                      marginHorizontal: 139,
-                      width: windowWidth / 4.2,
+                      left: windowWidth/2 -185,
+                      alignSelf:'flex-start',
                       color: 'black',
                       // this is  area live in*********************
                     }}>
@@ -838,7 +838,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 150,
                       color: 'black',
-                      width: windowWidth / 12.2,
+                      alignSelf:'flex-start',
                       // this is character*********
                     }}>
                     性格
@@ -883,7 +883,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 160,
                       color: 'black',
-                      width: windowWidth / 12.2,
+                      alignSelf:'flex-start',
                       // this is hobbie*********
                     }}>
                     趣味
@@ -928,7 +928,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
-                      width: windowWidth / 12.2,
+                      alignSelf:'flex-start',
                       // this is job*********
                     }}>
                     仕事
@@ -973,7 +973,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
-                      width: windowWidth / 12.2,
+                      alignSelf:'flex-start',
                       // this is company*********
                     }}>
                     会社
@@ -1018,7 +1018,7 @@ class Happy extends Component {
                       backgroundColor: '#fff',
                       marginHorizontal: 143,
                       color: 'black',
-                      width: windowWidth / 7.2,
+                      alignSelf:'flex-start',
                       // Graduating school*************
                     }}>
                     出身大学
@@ -1050,7 +1050,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
-                width: windowWidth / 9.2,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
               血液型
@@ -1147,9 +1147,9 @@ class Happy extends Component {
                 right: 148,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 177,
+                left: windowWidth/2 -165,
                 color: 'black',
-                width: windowWidth / 7.5,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
               恋愛対象
@@ -1200,7 +1200,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
-                width: windowWidth / 9.5,
+                alignSelf:'flex-start',
                 // this is graduate prefGender*********
               }}>
               タバコ
@@ -1248,7 +1248,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
-                width: windowWidth / 10.5,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
               飲酒
@@ -1289,7 +1289,7 @@ class Happy extends Component {
                 backgroundColor: '#fff',
                 marginHorizontal: 177,
                 color: 'black',
-                width: windowWidth / 9.5,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
                結婚歴
@@ -1328,9 +1328,9 @@ class Happy extends Component {
                 right: 139,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 167,
+                left: windowWidth/2 -168,
                 color: 'black',
-                width: windowWidth / 4.8,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
               子どもの有無
@@ -1369,9 +1369,9 @@ class Happy extends Component {
                 right: 148,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 177,
+                left: windowWidth/2 -168,
                 color: 'black',
-                width: windowWidth / 6.3,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
               結婚願望
@@ -1410,9 +1410,9 @@ class Happy extends Component {
                 right: 142,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 170,
+                left: windowWidth/2 -168,
                 color: 'black',
-                width: windowWidth / 5.5,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
               子ども好き
@@ -1451,9 +1451,9 @@ class Happy extends Component {
                 right: 138,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 168,
+                left: windowWidth/2 -168,
                 color: 'black',
-                width: windowWidth / 5,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
               ペットの有無
@@ -1492,9 +1492,9 @@ class Happy extends Component {
                 right: 155,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                marginHorizontal: 185,
+                left: windowWidth/2 -168,
                 color: 'black',
-                width: windowWidth / 12,
+                alignSelf:'flex-start',
                 // this is graduate bloodtype*********
               }}>
               休日
