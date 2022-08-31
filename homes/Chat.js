@@ -569,7 +569,7 @@ class Chat extends Component {
               {/* <Text></Text> */}
             </View>
           ) : (
-            <View style={{width: '100%', height: tableHeight}}>
+            <View style={{width: '100%', height:tableHeight}}>
               <FlatList
                 inverted
                 ref={ref => {
@@ -580,7 +580,7 @@ class Chat extends Component {
                 initialNumToRender={10}
                 removeClippedSubviews={true}
                 extraData={this.state.refresh}
-                style={{width: '100%', height: windowHeight - 500, top: 100}}
+                style={{width: '100%', height: windowHeight - 500, top: 15}}
                 data={this.state.ret}
                 renderItem={this.renderCell}
                 keyExtractor={item => item.id}
@@ -590,9 +590,10 @@ class Chat extends Component {
                 <View
                   style={{
                     width: '100%',
-                    padding: 100,
-                    right: 90,
-                    top: "23%",
+                    padding: 20,
+                    right: 10,
+                    // alignSelf:"center",
+                    // top: "23%",
                     flexDirection: 'row',
                     alignItems: 'flex-end',
                     // position: 'absolute',
