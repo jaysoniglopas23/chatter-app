@@ -488,10 +488,10 @@ class Chat extends Component {
               width: '100%',
               height: 30,
               left: '73%',
-              top: '8%',
+              top: '5%',
               flexDirection: 'row',
             }}>
-            {global.call_minutes != 0 ? (
+            {global.call_minutes == 100  ? (
               <TouchableOpacity>
                 <Image
                   style={{
@@ -507,7 +507,12 @@ class Chat extends Component {
               </TouchableOpacity>
             ) : (
               <Text
-                style={{color: 'red', left: 265, top: 15, alignSelf: 'center'}}>
+                style={{
+                  color: 'red',
+                  right: '70%',
+                  top: '2%',
+                  alignSelf: 'center',
+                }}>
                 通話ポイントなし
               </Text>
             )}
