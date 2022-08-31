@@ -648,12 +648,12 @@ class Happy extends Component {
                   />
                   <Text
                     style={{
-                      bottom: 44,
+                      bottom: 42,
                       left: 10,
-                      fontSize: 12,
                       backgroundColor: '#fff',
                       // marginHorizontal: 145,
-                      color: 'black',
+                      color: 'gray',
+                      fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is nickname*********************
                     }}>
