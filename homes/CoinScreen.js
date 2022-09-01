@@ -1,5 +1,3 @@
-
-
 import React, {Component} from 'react';
 
 import {
@@ -98,7 +96,7 @@ class CoinScreen extends Component {
       currentCoin: 0,
       buying: false,
       // currencyText: global.locale == 'en' ? ' Yen' : '円',
-      currencyText:'円',
+      currencyText: '円',
       items: Platform.select({
         android: [
           'trialpack',
@@ -108,12 +106,13 @@ class CoinScreen extends Component {
           'lightpack',
           'chatplan_01',
         ],
-        ios: [
-          // 'android.test.purchased',
-          // 'android.test.canceled',
-          // 'android.test.refunded',
-          // 'android.test.item_unavailable',
-          // 'point_1000', '5000_point', // dooboolab
+        android: [
+          'android.test.purchased',
+          'android.test.canceled',
+          'android.test.refunded',
+          'android.test.item_unavailable',
+          'point_1000',
+          '5000_point', // dooboolab
         ],
       }),
     };
@@ -141,7 +140,6 @@ class CoinScreen extends Component {
         let params = {};
 
         params['amount'] = global.price;
-
 
         global.socket.emit('on-buy-points-bundle', params);
 
@@ -246,19 +244,16 @@ class CoinScreen extends Component {
 
       self.setState({
         bundle: ret,
-        amount:ret[0].amount,
+        amount: ret[0].amount,
         // showLoading: false,
         bundleid: ret[0].bundleid,
-        description:ret[0].description,
+        description: ret[0].description,
       });
 
       global.amount = self.state.amount;
-
-     
     });
 
     let params = {bundleid: global.bundleid};
-  
 
     global.socket.emit('on-points-bundle', params);
   }
@@ -322,7 +317,7 @@ class CoinScreen extends Component {
           flex: 1,
           flexDirection: 'column',
           height: windowHeight,
- 
+
           borderColor: '#FAEA48',
         }}>
         <View
@@ -381,12 +376,17 @@ class CoinScreen extends Component {
           />
         </View>
 
-        <View style={{width: windowWidth, height: tableHeight , backgroundColor:'#fff'}}>
-          <View style={{width: windowWidth, height: 100 ,alignSelf:'center'}}>
+        <View
+          style={{
+            width: windowWidth,
+            height: tableHeight,
+            backgroundColor: '#fff',
+          }}>
+          <View style={{width: windowWidth, height: 100, alignSelf: 'center'}}>
             <Image
               source={require('../icon/coin1.png')}
               style={{
-                alignSelf:'center',
+                alignSelf: 'center',
                 top: windowWidth / 2 - 270,
                 width: 250,
                 height: 250,
@@ -406,7 +406,7 @@ class CoinScreen extends Component {
               paddingTop: windowHeight - 800,
               backgroundColor: '#fff',
               borderRadius: 3,
-              alignSelf:'center',
+              alignSelf: 'center',
             }}
             viewabilityConfig={this.viewabilityConfig}
             data={this.state.res}
@@ -452,13 +452,12 @@ const CoinCell = ({item, self}) => (
       multiline={true}
       style={{
         height: 40,
-        width:windowWidth - 120,
+        width: windowWidth - 120,
         lineHeight: item.index == 7 ? 20 : 40,
         fontSize: 17,
         paddingLeft: 10,
         color: 'black',
-        fontStyle:'italic',
-        
+        fontStyle: 'italic',
       }}>
       {item.item.description}
     </Text>
@@ -475,8 +474,7 @@ const CoinCell = ({item, self}) => (
         // paddingLeft: 10,
         fontWeight: 'bold',
         color: 'black',
-        borderWidth:1,
-
+        borderWidth: 1,
       }}>
       {Math.round(item.item.price)}
       {self.state.currencyText}
