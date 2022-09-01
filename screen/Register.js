@@ -353,7 +353,7 @@ class Register extends Component {
           phone_number: this.state.phone_number,
           confirm_password: this.state.confirm_password,
           gender: this.state.gender,
-          age_verified:0,
+          age_verified: 0,
           datetime: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
         };
 
@@ -450,10 +450,11 @@ class Register extends Component {
         <Text
           style={{
             backgroundColor: '#fff',
-            color: 'black',
-            bottom: windowWidth / 5.5,
-            width: windowWidth / 7,
+            color: 'gray',
+            fontSize: 10,
+            bottom: windowWidth / 5.6,
             left: 30,
+            alignSelf: 'flex-start',
           }}>
           Eメール
         </Text>
@@ -500,10 +501,12 @@ class Register extends Component {
           <Text style={{color: 'black'}}>女性</Text> */}
           <Text
             style={{
-              bottom: 28,
+              bottom: 11,
               right: 280,
               backgroundColor: '#fff',
-              color: 'black',
+              color: 'gray',
+              fontSize: 10,
+              alignSelf: 'flex-start',
             }}>
             性別
           </Text>
@@ -536,10 +539,11 @@ class Register extends Component {
         <Text
           style={{
             backgroundColor: '#fff',
-            color: 'black',
-            bottom: windowWidth / 5.5,
-            width: windowWidth / 6,
+            bottom: windowWidth / 5.7,
+            color: 'gray',
+            fontSize: 10,
             left: 30,
+            alignSelf: 'flex-start',
           }}>
           電話番号
         </Text>
@@ -585,10 +589,11 @@ class Register extends Component {
         <Text
           style={{
             backgroundColor: '#fff',
-            color: 'black',
-            bottom: windowWidth / 5.5,
-            width: windowWidth / 5,
+            bottom: windowWidth / 5.7,
+            color: 'gray',
+            fontSize: 10,
             left: 30,
+            alignSelf: 'flex-start',
           }}>
           パスワード
         </Text>
@@ -633,10 +638,11 @@ class Register extends Component {
         <Text
           style={{
             backgroundColor: '#fff',
-            color: 'black',
-            bottom: windowWidth / 5.5,
-            width: windowWidth / 2.5,
+            bottom: windowWidth / 5.7,
+            color: 'gray',
+            fontSize: 10,
             left: 30,
+            alignSelf: 'flex-start',
           }}>
           パスワードを認証する
         </Text>

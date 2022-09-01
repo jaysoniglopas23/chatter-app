@@ -313,7 +313,7 @@ class Login extends Component {
           />
           <Text
             style={{
-              color: 'black',
+              color: 'gray',
               backgroundColor: '#fff',
               fontSize: 10,
               fontFamily: 'SemiBold',
@@ -352,7 +352,7 @@ class Login extends Component {
           />
           <Text
             style={{
-              color: 'black',
+              color: 'gray',
               backgroundColor: 'white',
               fontSize: 9,
               fontFamily: 'SemiBold',
