@@ -452,7 +452,7 @@ class Register extends Component {
             backgroundColor: '#fff',
             color: 'gray',
             fontSize: 10,
-            bottom: windowWidth / 5.6,
+            bottom: 63,
             left: 30,
             alignSelf: 'flex-start',
           }}>
@@ -539,7 +539,7 @@ class Register extends Component {
         <Text
           style={{
             backgroundColor: '#fff',
-            bottom: windowWidth / 5.7,
+            bottom: 63,
             color: 'gray',
             fontSize: 10,
             left: 30,
@@ -589,7 +589,7 @@ class Register extends Component {
         <Text
           style={{
             backgroundColor: '#fff',
-            bottom: windowWidth / 5.7,
+            bottom: 63,
             color: 'gray',
             fontSize: 10,
             left: 30,
@@ -638,7 +638,7 @@ class Register extends Component {
         <Text
           style={{
             backgroundColor: '#fff',
-            bottom: windowWidth / 5.7,
+            bottom: 63,
             color: 'gray',
             fontSize: 10,
             left: 30,
