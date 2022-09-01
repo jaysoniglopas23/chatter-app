@@ -23,6 +23,7 @@ class Calls extends Component {
     this.state = {
       sliderValue: '0',
       drop_calls: '',
+      toggled: false,
     };
 
     this.goBack = this.goBack.bind(this);
@@ -33,10 +34,10 @@ class Calls extends Component {
   // };
 
   componentDidMount() {
-    this.toggleSwitch();
+    this.getToggleSwitch();
   }
 
-  toggleSwitch = value => {
+  getToggleSwitch = value => {
     let self = this;
 
     this.setState(
@@ -47,11 +48,10 @@ class Calls extends Component {
       () => {
         global.socket.on('emit-callsettings', function (ret) {
           global.socket.off('emit-callsettings');
-
+          // alert(JSON.stringify(ret));
           self.setState({
             drop_calls: ret.drop_calls,
           });
-          // alert(self.state.drop_calls);
 
           if (self.state.drop_calls == 0) {
             self.setState({
@@ -73,6 +73,22 @@ class Calls extends Component {
     );
   };
 
+  toggleSwitch = toggled => {
+    this.setState({
+      toggled: toggled,
+    });
+
+    if (toggled == false) {
+      this.setState({
+        drop_calls: 0,
+      });
+    } else {
+      this.setState({
+        drop_calls: 1,
+      });
+    }
+  };
+
   goBack() {
     this.props.navigationRef.current?.navigate('Dashboard');
   }
@@ -88,18 +104,12 @@ class Calls extends Component {
         self.setState({
           intDropCalls: ret.drop_calls,
         });
-
-        if ((toggled = false)) {
-          intDropCalls = 0;
-        } else {
-          intDropCalls = 1;
-        }
       });
 
       let params = {};
 
-      params['drop_calls'] = 1;
-
+      params['drop_calls'] = this.state.drop_calls;
+      this.props.navigationRef.current?.navigate('Dashboard');
       // console.log(params);
       global.socket.emit('on-callsettings-save', params);
     });
@@ -122,7 +132,7 @@ class Calls extends Component {
               // bottom: windowWidth / 2 - 190,
               justifyContent: 'center',
             }}
-            onValueChange={this.toggleSwitch}
+            onValueChange={value => this.toggleSwitch(value)}
             value={this.state.toggled}
           />
           <Text
