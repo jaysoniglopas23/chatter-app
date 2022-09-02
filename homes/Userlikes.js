@@ -255,55 +255,6 @@ class Userlikes extends Component {
           flex: 1,
           width: '100%',
         }}>
-        <TouchableOpacity
-          onPress={() => this.goBack()}
-          style={{
-            left: 30,
-            marginTop: windowHeight / 10 - 75,
-            width: 50,
-            height: 30,
-            marginBottom: windowHeight / 10 - 30,
-          }}>
-          <Svg
-            style={{width: 20, height: 30}}
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fal"
-            data-icon="angle-left"
-            class="svg-inline--fa fa-angle-left fa-w-6"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 192 512">
-            <Path
-              fill="black"
-              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
-          </Svg>
-          {/* <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text> */}
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            left: 360,
-            marginTop: windowHeight / 10 - 150,
-            width: 50,
-            height: 30,
-          }}
-          onPress={() => this.report()}>
-          <Svg
-            style={{width: 20, height: 30}}
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fal"
-            data-icon="angle-left"
-            class="svg-inline--fa fa-angle-left fa-w-6"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512">
-            <Path
-              fill="black"
-              d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
-            />
-          </Svg>
-        </TouchableOpacity>
         <Image
           source={{
             uri:
@@ -321,10 +272,10 @@ class Userlikes extends Component {
               <Text style={styles.label}> ニックネーム</Text>
               <Text style={styles.text}>{this.state.nickname}</Text>
             </View>
-            <View style={styles.view}>
+            {/* <View style={styles.view}>
               <Text style={styles.email}> メールアドレス</Text>
               <Text style={styles.text}>{this.state.email}</Text>
-            </View>
+            </View> */}
             <View style={styles.view1}>
               <Text style={styles.introduction}>自己紹介</Text>
               <Text style={styles.text}>{this.state.introduction}</Text>
@@ -359,7 +310,7 @@ class Userlikes extends Component {
             </View>
           </ScrollView>
         </View>
-        <View style={styles.Mview}>
+        {/* <View style={styles.Mview}>
           <TouchableOpacity
             onPress={() => this.goChat(id, name, lastmessage)}
             style={styles.button}>
@@ -399,6 +350,42 @@ class Userlikes extends Component {
               />
             </Svg>
             <Text style={styles.Mtxt}>レポート</Text>
+          </TouchableOpacity>
+        </View> */}
+        <View
+          style={{
+            bottom: windowWidth / 2- 225,
+            width: '100%',
+            height: windowHeight / 4 - 140,
+          }}>
+          <TouchableOpacity
+            onPress={() => this.goBack()}
+            style={{
+              backgroundColor: '#ECECEC',
+              marginHorizontal: 170,
+              height: 31,
+              right: 150,
+              marginBottom: 30,
+              flexDirection: 'row',
+              width: 50,
+              borderRadius: 2,
+              top: windowWidth / 2 - 170,
+            }}>
+            <Svg
+              style={{width: 20, height: 30}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512">
+              <Path
+                fill="black"
+                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+            </Svg>
+            <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -498,27 +485,27 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    bottom: 11,
-    left: 5,
+    bottom: 9,
+    left: 7,
     backgroundColor: '#fff',
-    color: 'black',
-    width: windowHeight - 670,
+    color: 'gray',
+    alignSelf:'flex-start',
   },
 
   email: {
-    bottom: 11,
-    left: 3,
+    bottom: 9,
+    left: 5,
     backgroundColor: '#fff',
-    width: windowHeight / 2 - 280,
-    color: 'black',
+    alignSelf:'flex-start',
+    color: 'gray',
   },
 
   introduction: {
-    bottom: 11,
-    right: 135,
+    bottom: 9,
+    left:7,
     backgroundColor: '#fff',
-    marginHorizontal: 142,
-    color: 'black',
+    alignSelf:'flex-start',
+    color: 'gray',
   },
 
   text: {
