@@ -207,21 +207,25 @@ class Heart extends Component {
           style={{backgroundColor: '#fff', height: '90%'}}
           renderItem={({item}) => (
             <Card onPress={() => this.goChat(item.id)}>
-              <UserInfo>
-                <UserImgWrapper>
-                  <UserImg
-                    source={{
-                      uri: URL_TEMP + '/' + item.path + '/' + item.image,
-                    }}
-                  />
-                </UserImgWrapper>
-                <TextSection>
-                  <UserInfoText>
-                    <UserName>{item.nickname}</UserName>
-                    <PostTime>{item.messageTime}</PostTime>
-                  </UserInfoText>
-                </TextSection>
-              </UserInfo>
+              {item.id == global.myuserid ? (
+                <></>
+              ) : (
+                <UserInfo>
+                  <UserImgWrapper>
+                    <UserImg
+                      source={{
+                        uri: URL_TEMP + '/' + item.path + '/' + item.image,
+                      }}
+                    />
+                  </UserImgWrapper>
+                  <TextSection>
+                    <UserInfoText>
+                      <UserName>{item.nickname}</UserName>
+                      <PostTime>{item.messageTime}</PostTime>
+                    </UserInfoText>
+                  </TextSection>
+                </UserInfo>
+              )}
             </Card>
           )}
           // keyExtractor={item => item.messageText}

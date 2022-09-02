@@ -190,6 +190,8 @@ class DisplayAnImage extends Component {
           profile_image: ret.profile_image,
           profile_image_dir: ret.profile_image_dir,
         });
+        
+        global.myuserid = ret.id;
 
         // global.socket.on('emit-profile-photo', function (ret1) {
         //   global.socket.off('emit-profile-photo');
