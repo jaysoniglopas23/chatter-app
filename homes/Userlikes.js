@@ -511,6 +511,7 @@ const styles = StyleSheet.create({
   text: {
     bottom: 5,
     left: 11,
+    fontSize:17,
     color: 'black',
   },
 
