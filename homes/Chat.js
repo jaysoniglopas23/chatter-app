@@ -550,7 +550,7 @@ class Chat extends Component {
         </View>
 
         <KeyboardAvoidingView
-          style={{width: '100%', height: "95%"}}
+          style={{width: '100%', height: '95%'}}
           behavior="position">
           {this.state.loadingChats ? (
             <View
@@ -569,7 +569,7 @@ class Chat extends Component {
               {/* <Text></Text> */}
             </View>
           ) : (
-            <View style={{width: '100%', height:tableHeight}}>
+            <View style={{width: '100%', height: tableHeight}}>
               <FlatList
                 inverted
                 ref={ref => {
@@ -687,9 +687,9 @@ const Left = ({msg, self}) => (
           uri:
             URL_TEMP +
             '/' +
-            self.state.profile_image_dir +
+            global.profile_image_dir +
             '/' +
-            self.state.profile_image,
+            global.profile_image,
         }}
         defaultSource={require('.././icon/Picture.png')}
       />

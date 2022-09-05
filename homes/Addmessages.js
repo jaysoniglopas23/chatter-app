@@ -230,27 +230,31 @@ class Addmessages extends Component {
                   item.profile_image_dir,
                 )
               }>
-              <UserInfo>
-                <UserImgWrapper>
-                  <UserImg
-                    source={{
-                      uri:
-                        URL_TEMP +
-                        '/' +
-                        item.profile_image_dir +
-                        '/' +
-                        item.profile_image,
-                    }}
-                  />
-                </UserImgWrapper>
-                <TextSection>
-                  <UserInfoText>
-                    <UserName>{item.name}</UserName>
-                    <PostTime>{item.date_time}</PostTime>
-                  </UserInfoText>
-                  <MessageText>{item.lastmessage}</MessageText>
-                </TextSection>
-              </UserInfo>
+              {item.id == global.myuserid ? (
+                <></>
+              ) : (
+                <UserInfo>
+                  <UserImgWrapper>
+                    <UserImg
+                      source={{
+                        uri:
+                          URL_TEMP +
+                          '/' +
+                          item.profile_image_dir +
+                          '/' +
+                          item.profile_image,
+                      }}
+                    />
+                  </UserImgWrapper>
+                  <TextSection>
+                    <UserInfoText>
+                      <UserName>{item.name}</UserName>
+                      <PostTime>{item.date_time}</PostTime>
+                    </UserInfoText>
+                    <MessageText>{item.lastmessage}</MessageText>
+                  </TextSection>
+                </UserInfo>
+              )}
             </Card>
           )}
         />
