@@ -230,6 +230,8 @@ class Post extends Component {
         count: prevCount,
       });
     }
+    this.initPost();
+    // this.getPost();
 
     this.setState(
       {
@@ -244,7 +246,6 @@ class Post extends Component {
             count_like: ret.count_like,
             count_unlike: ret.count_unlike,
             post_id: ret.post_id,
-            refresh: 1,
           });
           global.likes = ret.count_like;
           // alert(global.likes);
@@ -296,18 +297,19 @@ class Post extends Component {
 
           self.setState({
             data: ret,
-            post_likes_count: ret[0].post_likes_count,
-            nickname: ret[0].nickname,
-            posts_description: ret[0].posts_description,
-            id: ret[0].id,
-            datetime: ret[0].datetime,
-            userid: ret[0].userid,
-            postid: ret[0].postid,
-            path: ret[0].path,
-            file: ret[0].file,
-            profilephotopath: ret[0].profilephotopath,
-            profilephotofile: ret[0].profilephotofile,
+            post_likes_count: ret.post_likes_count,
+            nickname: ret.nickname,
+            posts_description: ret.posts_description,
+            id: ret.id,
+            datetime: ret.datetime,
+            userid: ret.userid,
+            postid: ret.postid,
+            path: ret.path,
+            file: ret.file,
+            profilephotopath: ret.profilephotopath,
+            profilephotofile: ret.profilephotofile,
           });
+
           // global.likes = self.state.post_likes_count;
           if (self.state.path) {
             self.setState({
@@ -365,18 +367,19 @@ class Post extends Component {
 
           self.setState({
             posts: ret,
-            post_likes_count: ret[0].post_likes_count,
-            nickname: ret[0].nickname,
-            posts_description: ret[0].posts_description,
-            id: ret[0].id,
-            datetime: ret[0].datetime,
-            userid: ret[0].userid,
-            postid: ret[0].postid,
-            path: ret[0].path,
-            file: ret[0].file,
-            profilephotopath: ret[0].profilephotopath,
-            profilephotofile: ret[0].profilephotofile,
+            post_likes_count: ret.post_likes_count,
+            nickname: ret.nickname,
+            posts_description: ret.posts_description,
+            id: ret.id,
+            datetime: ret.datetime,
+            userid: ret.userid,
+            postid: ret.postid,
+            path: ret.path,
+            file: ret.file,
+            profilephotopath: ret.profilephotopath,
+            profilephotofile: ret.profilephotofile,
           });
+
           // alert(global.socketid);
           // if (self.state.hasUploadPhoto != "") {
           //   self.state.path
