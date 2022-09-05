@@ -216,6 +216,8 @@ class Post extends Component {
   // };
 
   likeCount(id) {
+    // this.initPost();
+     this.getPost(); 
     const newCount = this.state.count_like - 1;
     const prevCount = this.state.count_like + 1;
     let self = this;
@@ -230,8 +232,8 @@ class Post extends Component {
         count: prevCount,
       });
     }
-    this.initPost();
-    // this.getPost();
+  
+   
 
     this.setState(
       {
@@ -310,7 +312,7 @@ class Post extends Component {
             profilephotofile: ret.profilephotofile,
           });
 
-          // global.likes = self.state.post_likes_count;
+          global.likes = self.state.post_likes_count;
           if (self.state.path) {
             self.setState({
               hasUploadPhoto: true,
@@ -385,7 +387,7 @@ class Post extends Component {
           //   self.state.path
           //   self.state.file
           // };
-          global.likes = self.state.post_likes_count;
+          global.likes = ret.post_likes_count;
           if (self.state.path) {
             self.setState({
               hasUploadPhoto: true,
@@ -826,7 +828,7 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                          {'  お気に入り' + '(' + this.state.count + ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}
