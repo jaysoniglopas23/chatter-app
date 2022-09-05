@@ -163,7 +163,7 @@ class Dashboard extends Component {
             () => {
               // self.props.launcher.init();
 
-              self.props.navigation.navigate('Launcher');
+              self.props.navigationRef.current?.navigate('Launcher');
             },
           );
         });

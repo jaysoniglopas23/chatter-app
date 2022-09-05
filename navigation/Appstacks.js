@@ -88,7 +88,6 @@ class Appstacks extends Component {
           <Stack.Screen name="Dashboard">
             {props => <Dashboard navigationRef={navigationRef} />}
           </Stack.Screen>
-         
         </Stack.Navigator>
       </NavigationContainer>
     );

@@ -190,7 +190,7 @@ class DisplayAnImage extends Component {
           profile_image: ret.profile_image,
           profile_image_dir: ret.profile_image_dir,
         });
-        
+
         global.myuserid = ret.id;
 
         // global.socket.on('emit-profile-photo', function (ret1) {
@@ -298,7 +298,7 @@ class DisplayAnImage extends Component {
                 position: 'absolute',
                 width: windowWidth / 3,
               }}>
-              通話 :{this.state.mail_count}分
+              通話 :{this.state.call_minutes}分
             </Text>
             <Text
               style={{
@@ -311,7 +311,7 @@ class DisplayAnImage extends Component {
                 fontSize: 17,
                 width: windowWidth / 3,
               }}>
-              メール :{this.state.call_minutes}通
+              メール :{this.state.mail_count}通
             </Text>
           </View>
           <TouchableOpacity
@@ -424,6 +424,9 @@ class DisplayAnImage extends Component {
               <Stack.Screen name="Userlikes">
                 {props => <Userlikes navigationRef={navigationRef} />}
               </Stack.Screen>
+              {/* <Stack.Screen name="Launcher">
+                {props => <Launcher navigationRef={navigationRef} />}
+              </Stack.Screen> */}
             </Stack.Navigator>
           </NavigationContainer>
         </View>
@@ -475,8 +478,8 @@ const styles = StyleSheet.create({
   },
   iconRight: {
     marginTop: 20,
-    width: 60,
-    height: 60,
+    width: 48,
+    height: 48,
     marginBottom: 5,
     marginLeft: 30,
   },
