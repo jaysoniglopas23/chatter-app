@@ -590,12 +590,11 @@ class Chat extends Component {
                 <View
                   style={{
                     width: '100%',
-                    padding: 20,
-                    right: 10,
+                    padding: 8,
                     // alignSelf:"center",
                     // top: "23%",
                     flexDirection: 'row',
-                    alignItems: 'flex-end',
+                    alignItems:"flex-end",
                     // position: 'absolute',
                   }}>
                   <TextInput
