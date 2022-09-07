@@ -48,7 +48,7 @@ class Chat extends Component {
       loadingChats: true,
       refresh: 0,
       message: '',
-      date: moment(new Date()).format('YYYY-MM-DD  HH:mm'),
+      date: moment(new Date()).format('YYYY-MM-DD  LT'),
       chatsRefreshed: true,
       receivedAdded: false,
     };
@@ -135,7 +135,7 @@ class Chat extends Component {
       () => {
         global.socket.on('emit-messages', function (ret) {
           global.socket.off('emit-messages');
-          // alert(JSON.stringify(ret));
+          alert(JSON.stringify(ret));
           // console.log(ret);
 
           self.setState({
@@ -168,6 +168,7 @@ class Chat extends Component {
         params['msg_to'] = this.state.msg_to;
         params['msg_from'] = this.state.msg_from;
         params['lastmessage'] = global.lastmessage;
+        params['read'] = 1;
         // params[''] = ;
 
         // alert(global.otherid);

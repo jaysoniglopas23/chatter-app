@@ -66,3 +66,9 @@ export const MessageText = styled.Text`
   font-size: 14px;
   color: #333333;
 `;
+
+export const Message1Text = styled.Text`
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+`;

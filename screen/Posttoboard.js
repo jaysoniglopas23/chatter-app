@@ -214,22 +214,32 @@ class Posttoboard extends Component {
         }}>
         <View
           style={{
-            width: windowWidth - 30,
-            height: '4%',
-            // alignSelf: 'center',
-            // backgroundColor: 'pink',
-            justifyContent: 'center',
-            marginTop: windowWidth / 2 - 180,
+            width: '100%',
+            backgroundColor: '#f8f8f9',
+            height: windowHeight / 13,
             flexDirection: 'row',
           }}>
+          <Text
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: 30,
+              lineHeight: 32,
+              textAlign: 'center',
+              fontSize: 13,
+              marginTop: windowHeight / 10 - 35,
+              fontWeight: 'bold',
+              color: '#FFF',
+            }}>
+            {this.state.title}
+          </Text>
+
           <TouchableOpacity
             style={{
-              width: 70,
-              // backgroundColor: 'pink',
-              height: '100%',
-              alignItems: 'center',
-              right: 40,
-              justifyContent: 'center',
+              marginLeft: 10,
+              marginTop: windowHeight / 10 - 65,
+              width: 50,
+              height: 30,
             }}
             onPress={() => this.back()}>
             <Svg
@@ -247,19 +257,19 @@ class Posttoboard extends Component {
                 d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
             </Svg>
           </TouchableOpacity>
-
           <Text
             style={{
               color: 'gray',
               fontSize: 25,
-              // backgroundColor: 'pink',
               fontWeight: 'bold',
               height: '100%',
-              alignSelf: 'center',
+              left:37,
+              top:15
             }}>
             新しい投稿を作成
           </Text>
         </View>
+       
         {this.state.hasUploadPhoto ? (
           <Image
             source={{uri: this.state.UploadPhoto}}
@@ -275,7 +285,7 @@ class Posttoboard extends Component {
           />
         ) : (
           <Image
-            source={require('../images/image.jpg')}
+            source={require('../icon/userprofile.png')}
             style={{
               left: 0,
               top: 20,
@@ -313,7 +323,7 @@ class Posttoboard extends Component {
               backgroundColor: '#fff',
               left: windowHeight / 86,
               color: 'black',
-              width:"20%",
+              width: '20%',
             }}>
             コメント
           </Text>

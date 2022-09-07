@@ -19,6 +19,7 @@ import {
   PostTime,
   MessageText,
   TextSection,
+  Message1Text
 } from '../styles/MessageStyles';
 import Tabs from '../navigation/tabs';
 import Chat from './Chat';
@@ -252,6 +253,9 @@ class MessagesScrean extends Component {
                       <PostTime>{item.date_time}</PostTime>
                     </UserInfoText>
                     <MessageText>{item.lastmessage}</MessageText>
+                    {/* {item.unread_count <= 0  ? (
+                    <Message1Text>{item.lastmessage}</Message1Text>
+                    ):( <MessageText>{item.lastmessage}</MessageText>)} */}
                   </TextSection>
                 </UserInfo>
               )}

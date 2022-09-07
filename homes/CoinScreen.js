@@ -166,11 +166,11 @@ class CoinScreen extends Component {
 
     RNIap.initConnection().then(() => {
       RNIap.getProducts(self.state.items).then(res => {
+      
         self.setState({
           res: res,
           price: res[0].price,
         });
-
         global.price = self.state.price;
 
         // alert(JSON.stringify(global.price));
@@ -181,8 +181,11 @@ class CoinScreen extends Component {
     // self.getUserCoin();
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.getCoins();
+  }
 
+  
   // getUI() {
   //   let self = this;
 
@@ -237,8 +240,8 @@ class CoinScreen extends Component {
   getCoins() {
     let self = this;
 
-    global.socket.on('emit-points-bundle', function (ret) {
-      global.socket.off('emit-points-bundle');
+    global.socket.on('emit-points-bundle-details', function (ret) {
+      global.socket.off('emit-points-bundle-details');
       // alert(JSON.stringify(ret));
       // console.log('here');
 
@@ -255,7 +258,7 @@ class CoinScreen extends Component {
 
     let params = {bundleid: global.bundleid};
 
-    global.socket.emit('on-points-bundle', params);
+    global.socket.emit('on-points-bundle-details', params);
   }
 
   buy(productId, title, price) {

@@ -161,9 +161,9 @@ const SeachStack = ({navigation}) => (
     <Stack.Screen
       name="Call"
       component={Call}
-      options={{
+      options={({route}) => ({
         headerShown: false,
-      }}
+      })}
     />
     <Stack.Screen
       name="SearchGrid"
@@ -175,10 +175,11 @@ const SeachStack = ({navigation}) => (
     <Stack.Screen
       name="Chat"
       component={Chat}
-      options={({route}) => ({
+      options={{
+        tabBarStyle: {display: 'none'},
         // title: route.params.userName,
         headerShown: false,
-      })}
+      }}
     />
     <Stack.Screen
       name="Messages"
@@ -270,14 +271,28 @@ const Tabs = ({navigation}) => {
 
   const getTabBarCall = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Call';
-    let display = routeName === 'UserCanSearch'  ? 'none' : 'flex'; 
-    return {display};
+    let display = routeName;
+    if ((display = routeName === 'Chat')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'UserCanSearch')) {
+      return {display: 'none'};
+    } else {
+      display = routeName === 'Call';
+      return {display: 'flex'};
+    }
   };
 
   const goTabBarSearch = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Search';
-    let display = routeName === 'UserCanSearch'  ? 'none' : 'flex';
-    return {display};
+    let display = routeName;
+    if ((display = routeName === 'Chat')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'UserCanSearch')) {
+      return {display: 'none'};
+    } else {
+      display = routeName === 'Search';
+      return {display: 'flex'};
+    }
   };
 
   const goTabBarPost = route => {

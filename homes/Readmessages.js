@@ -29,7 +29,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
-class Savemessages extends Component {
+class Readmessages extends Component {
   constructor(props) {
     super(props);
 
@@ -263,4 +263,4 @@ class Savemessages extends Component {
   }
 }
 
-export default Savemessages;
+export default Readmessages;

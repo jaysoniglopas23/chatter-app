@@ -11,6 +11,7 @@ export const Container = styled.View`
 export const Card = styled.TouchableOpacity`
   width: 100%;
   right: 53px;
+  // background-color: black;
   padding-bottom: 35px;
 `;
 
@@ -19,6 +20,7 @@ export const UserInfo = styled.View`
   width: 100%;
   justify-content: space-between;
   top: 50px;
+  
 `;
 
 export const UserImgWrapper = styled.TouchableOpacity`

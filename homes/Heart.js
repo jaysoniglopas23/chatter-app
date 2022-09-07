@@ -238,7 +238,7 @@ class Heart extends Component {
           style={{
             height: windowHeight / 13,
             // backgroundColor: 'black',
-            width: '100%',
+            width: '30%',
             bottom: '27%',
           }}>
           <TouchableOpacity

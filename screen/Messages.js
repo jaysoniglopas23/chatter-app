@@ -22,8 +22,8 @@ import {
 import {CardStyleInterpolators} from '@react-navigation/stack';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import MessagesScrean from '../homes/MessageAll';
-import Savemessages from '../homes/Savemessages';
-import Addmessages from '../homes/Addmessages';
+import Readmessages from '../homes/Readmessages';
+import Addmessages from '../homes/UnReadmessages';
 
 const Stack = createStackNavigator();
 
@@ -49,7 +49,7 @@ class Messages extends Component {
   }
 
   goMessageC() {
-    this.props.navigation.navigate('Savemessages');
+    this.props.navigation.navigate('Readmessages');
   }
 
   render() {
@@ -106,8 +106,8 @@ class Messages extends Component {
                 }}
               />
               <Stack.Screen
-                name="Savemessages"
-                component={Savemessages}
+                name="Readmessages"
+                component={Readmessages}
                 options={{
                   headerShown: false,
                 }}
