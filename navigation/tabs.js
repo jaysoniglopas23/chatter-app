@@ -47,8 +47,8 @@ const MessageStack = ({navigation}) => (
       })}
     />
     <Stack.Screen
-      name="User"
-      component={User}
+      name="UserCanSearch"
+      component={UserCanSearch}
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
@@ -74,15 +74,7 @@ const PostStack = ({navigation}) => (
         headerShown: false,
       }}
     />
-    <Stack.Screen
-      name="User"
-      component={User}
-      options={({route}) => ({
-        // title: route.params.userName,
-        // headerShown: false,
-        headerBackTitleVisible: false,
-      })}
-    />
+
     <Stack.Screen
       name="Posttoboard"
       component={Posttoboard}
@@ -90,6 +82,15 @@ const PostStack = ({navigation}) => (
         // title: route.params.userName,
         headerShown: false,
         headerBackTitleVisible: false,
+      })}
+    />
+    <Stack.Screen
+      name="UserCanSearch"
+      component={UserCanSearch}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
       })}
     />
   </Stack.Navigator>
@@ -297,14 +298,25 @@ const Tabs = ({navigation}) => {
 
   const goTabBarPost = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Post';
-    let display = routeName === 'Posttoboard' ? 'none' : 'flex';
-    return {display};
+    let display = routeName;
+    if ((display = routeName === 'Posttoboard')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'UserCanSearch')) {
+      return {display: 'none'};
+    }
   };
 
   const goTabBarChat = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Messages';
-    let display = routeName === 'Chat' ? 'none' : 'flex';
-    return {display};
+    let display = routeName;
+    if ((display = routeName === 'Chat')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'UserCanSearch')) {
+      return {display: 'none'};
+    } else {
+      display = routeName === 'Messages';
+      return {display: 'flex'};
+    }
   };
 
   return (

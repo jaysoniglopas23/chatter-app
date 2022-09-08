@@ -20,7 +20,6 @@ export const UserInfo = styled.View`
   width: 100%;
   justify-content: space-between;
   top: 50px;
-  
 `;
 
 export const UserImgWrapper = styled.TouchableOpacity`

@@ -331,10 +331,11 @@ class Chat extends Component {
   }
 
   gotoUserProfile(msg_from) {
+    global.prevPageCall = 'Chat';
     // global.previousPage = 'Chats';
     // global.currentPage = 'UserProfile';
 
-    this.props.navigation.navigate('User');
+    this.props.navigation.navigate('UserCanSearch');
 
     let self = this;
 
@@ -595,7 +596,7 @@ class Chat extends Component {
                     // alignSelf:"center",
                     // top: "23%",
                     flexDirection: 'row',
-                    alignItems:"flex-end",
+                    alignItems: 'flex-end',
                     // position: 'absolute',
                   }}>
                   <TextInput

@@ -204,7 +204,7 @@ class Star extends Component {
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
-          style={{backgroundColor: '#fff', height: '90%'}}
+          style={{backgroundColor: '#fff', height: '90%', marginBottom: 220}}
           renderItem={({item}) => (
             <Card onPress={() => this.goChat(item.id)}>
               {item.id == global.myuserid ? (

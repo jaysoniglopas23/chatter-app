@@ -214,7 +214,7 @@ export default class Search extends Component {
   }
 
   goCall(id) {
-    global.prevPageCall = 'UserCanSearch';
+    global.prevPageCall = 'Search';
     this.props.navigation.push('UserCanSearch');
 
     let self = this;

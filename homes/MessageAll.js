@@ -19,7 +19,7 @@ import {
   PostTime,
   MessageText,
   TextSection,
-  Message1Text
+  Message1Text,
 } from '../styles/MessageStyles';
 import Tabs from '../navigation/tabs';
 import Chat from './Chat';

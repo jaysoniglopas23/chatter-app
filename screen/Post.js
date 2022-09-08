@@ -148,7 +148,8 @@ class Post extends Component {
   }
 
   goChat(userid) {
-    this.props.navigation.navigate('User');
+    global.prevPageCall = 'Post';
+    this.props.navigation.navigate('UserCanSearch');
     console.log(userid);
 
     let self = this;
@@ -172,7 +173,7 @@ class Post extends Component {
             users: ret.users,
             userid: ret.userid,
           });
-
+          global.otherid = id;
           // console.log(id);
         });
         let params = {};
@@ -185,6 +186,7 @@ class Post extends Component {
         params['userid'] = this.state.userid;
         params['id'] = id;
 
+        global.otherid = id;
         global.user_id = userid;
 
         global.socket.emit('on-posts', params);
@@ -217,7 +219,7 @@ class Post extends Component {
 
   likeCount(id) {
     // this.initPost();
-     this.getPost(); 
+    this.getPost();
     const newCount = this.state.count_like - 1;
     const prevCount = this.state.count_like + 1;
     let self = this;
@@ -232,8 +234,6 @@ class Post extends Component {
         count: prevCount,
       });
     }
-  
-   
 
     this.setState(
       {

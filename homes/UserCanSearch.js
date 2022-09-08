@@ -50,8 +50,12 @@ class User extends Component {
     if (global.prevPageCall == 'Call') {
       this.props.navigation.push('Call');
       global.otherid;
-    } else {
+    } else if (global.prevPageCall == 'Search') {
       this.props.navigation.push('Search');
+    } else if (global.prevPageCall == 'Chat') {
+      this.props.navigation.push('Chat');
+    } else if (global.prevPageCall == 'Post') {
+      this.props.navigation.push('Post');
     }
   }
 
@@ -112,17 +116,17 @@ class User extends Component {
 
   componentDidMount() {
     this.getUser();
-    // BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
   }
 
-  // componentWillUnmount() {
-  //     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-  // }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
 
-  // handleBackButton() {
-  //     ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
-  //     return true;
-  // }
+  handleBackButton() {
+    ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
+    return true;
+  }
 
   getUser() {
     let self = this;

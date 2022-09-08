@@ -27,12 +27,17 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  ScrollView,
 } from 'react-native';
 import _ from 'lodash';
 import {ListItem, SearchBar, Avatar} from 'react-native-elements';
 // import {getUsers, contains} from './api/index';
 import {getUsers, contains} from '../styles/index';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  // ScrollView,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 import User from './User';
 import Svg, {G, Path} from 'react-native-svg';
 
@@ -142,8 +147,8 @@ class Heart extends Component {
         params['nickname'] = this.state.nickname;
         params['image'] = this.state.image;
         params['path'] = '';
-        params['start'] = 1;
-        params['size'] = 2;
+        params['start'] = 10;
+        params['size'] = 10;
 
         global.socket.emit('on-likes', params);
       },
@@ -204,7 +209,7 @@ class Heart extends Component {
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
-          style={{backgroundColor: '#fff', height: '90%'}}
+          style={{backgroundColor: '#fff', height: '90%', marginBottom: 220}}
           renderItem={({item}) => (
             <Card onPress={() => this.goChat(item.id)}>
               {item.id == global.myuserid ? (
@@ -233,7 +238,6 @@ class Heart extends Component {
 
           ListFooterComponent={this.renderFooter}
         />
-
         <View
           style={{
             height: windowHeight / 13,
