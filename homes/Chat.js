@@ -77,12 +77,12 @@ class Chat extends Component {
   // }
 
   componentDidMount() {
-    // this.getChat();
-    this.interval = setInterval(() => this.getChat({ time: Date.now() }), 1000);
+    this.getChat();
+    // this.interval = setInterval(() => this.getChat({ time: Date.now() }), 1000);
     this.getChatPoint();
   }
   componentWillUnmount() {
-    clearInterval(this.interval);
+    // clearInterval(this.interval);
     this.getChatPoint();
   }
 

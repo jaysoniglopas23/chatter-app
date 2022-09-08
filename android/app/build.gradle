@@ -134,8 +134,8 @@ android {
         applicationId "jp.obs.chatter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 118
-        versionName "118.0"
+        versionCode 119
+        versionName "119.0"
         multiDexEnabled true
         missingDimensionStrategy 'store', 'play'
     }
