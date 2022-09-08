@@ -323,7 +323,7 @@ class Posttoboard extends Component {
               backgroundColor: '#fff',
               left: windowHeight / 86,
               color: 'black',
-              width: '20%',
+              alignSelf:'flex-start',
             }}>
             コメント
           </Text>
