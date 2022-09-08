@@ -51,6 +51,7 @@ class Chat extends Component {
       date: moment(new Date()).format('YYYY-MM-DD  LT'),
       chatsRefreshed: true,
       receivedAdded: false,
+      time: Date.now(),
     };
 
     this.back = this.back.bind(this);
@@ -70,15 +71,25 @@ class Chat extends Component {
     this.bellSound = null;
   }
 
+  // componentDidMount() {
+  //   this.getChat();
+  //   this.getChatPoint();
+  // }
+
   componentDidMount() {
-    this.getChat();
+    // this.getChat();
+    this.interval = setInterval(() => this.getChat({ time: Date.now() }), 1000);
+    this.getChatPoint();
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
     this.getChatPoint();
   }
 
-  componentWillUnmount() {
-    this.getChat();
-    this.getChatPoint();
-  }
+  // componentWillUnmount() {
+  //   this.getChat();
+  //   this.getChatPoint();
+  // }
   getChatPoint() {
     let self = this;
 
@@ -135,7 +146,7 @@ class Chat extends Component {
       () => {
         global.socket.on('emit-messages', function (ret) {
           global.socket.off('emit-messages');
-          alert(JSON.stringify(ret));
+          // alert(JSON.stringify(ret));
           // console.log(ret);
 
           self.setState({
@@ -152,11 +163,12 @@ class Chat extends Component {
             timezone: ret.timezone,
           });
           // console.log(se.data);
+          // global.otherid = ret.id;
 
-          self.flatListRef.scrollToOffset({
-            animated: true,
-            // offset: self.state.data.length,
-          });
+          // self.flatListRef.scrollToOffset({
+          //   animated: true,
+          //   // offset: self.state.data.length,
+          // });
         });
         let params = {};
         params['name'] = global.name;
@@ -197,6 +209,7 @@ class Chat extends Component {
       global.otherid;
     } else {
       this.props.navigation.push('Messages');
+      global.otherid;
     }
   }
 

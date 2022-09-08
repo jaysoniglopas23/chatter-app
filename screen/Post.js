@@ -149,7 +149,7 @@ class Post extends Component {
 
   goChat(userid) {
     global.prevPageCall = 'Post';
-    this.props.navigation.navigate('UserCanSearch');
+    this.props.navigation.push('UserCanSearch');
     console.log(userid);
 
     let self = this;
@@ -160,7 +160,7 @@ class Post extends Component {
       () => {
         global.socket.on('emit-posts', function (ret) {
           global.socket.off('emit-posts');
-          // JSON.stringify(ret);
+          // alert(JSON.stringify(ret));
           // console.log(ret);
 
           self.setState({
@@ -173,8 +173,6 @@ class Post extends Component {
             users: ret.users,
             userid: ret.userid,
           });
-          global.otherid = id;
-          // console.log(id);
         });
         let params = {};
 
@@ -186,11 +184,11 @@ class Post extends Component {
         params['userid'] = this.state.userid;
         params['id'] = id;
 
-        global.otherid = id;
-        global.user_id = userid;
-
+        global.otherid = userid;
+        // global.user_id = userid;
+        alert(global.otherid);
         global.socket.emit('on-posts', params);
-        console.log(params);
+        // console.log(params);s
       },
     );
   }
@@ -217,39 +215,47 @@ class Post extends Component {
   //   });
   // };
 
-  likeCount(id) {
+  likeCount(id)  {
     // this.initPost();
-    this.getPost();
+    // this.getPost();
+   
     const newCount = this.state.count_like - 1;
     const prevCount = this.state.count_like + 1;
+   
+
+    // this.setState({
+    //   count: postlike,
+    // });
+
     let self = this;
     // global.likes = global.likes + 1;
 
-    if (global.count_like == 0) {
-      this.setState({
-        count: newCount,
-      });
-    } else {
-      this.setState({
-        count: prevCount,
-      });
-    }
+    // if (global.count_like == 0) {
+    //   this.setState({
+    //     count: newCount,
+    //   });
+    // } else {
+    //   this.setState({
+    //     count: prevCount,
+    //   });
+    // }
 
     this.setState(
       {
         refresh: 1,
+        
       },
       () => {
         global.socket.on('emit-like-post', function (ret) {
           global.socket.off('emit-like-post');
           // console.log(ret);
-
+         
           self.setState({
             count_like: ret.count_like,
             count_unlike: ret.count_unlike,
             post_id: ret.post_id,
           });
-          global.likes = ret.count_like;
+          global.countlikes = ret.count_like;
           // alert(global.likes);
           // if (ret.count_like == 0) {
           //   item => item.post_likes_count + 1;
@@ -275,6 +281,7 @@ class Post extends Component {
         params['socket'] = this.state.socketid;
         // global.likes = this.state.post_likes_count;
         // alert(global.likes);
+       
         global.socket.emit('on-like-post', params);
       },
     );
@@ -312,7 +319,9 @@ class Post extends Component {
             profilephotofile: ret.profilephotofile,
           });
 
-          global.likes = self.state.post_likes_count;
+          global.likes = ret.post_likes_count;
+
+          // alert(ret);
           if (self.state.path) {
             self.setState({
               hasUploadPhoto: true,
@@ -828,7 +837,7 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' + this.state.count + ')'}
+                          {'  お気に入り' + '(' +  item.post_likes_count + ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}
@@ -926,7 +935,7 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                          {'  お気に入り' + '(' +  item.post_likes_count+ ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}

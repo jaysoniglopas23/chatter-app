@@ -72,6 +72,8 @@ class MessagesScrean extends Component {
             unread_count: ret[0].unread_count,
             ret: ret,
           });
+
+          // global.otherid = ret.id;
         });
         let params = {};
         params['id'] = id;
@@ -104,8 +106,18 @@ class MessagesScrean extends Component {
   //   this.getChats();
   // }
 
+  // componentDidMount() {
+  //   this.getChats();
+  // }
+
   componentDidMount() {
-    this.getChats();
+    this.getChat();
+    // this.interval = setInterval(() => this.getChats({ time: Date.now() }), 1000);
+    
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    
   }
 
   getChats(id, name) {

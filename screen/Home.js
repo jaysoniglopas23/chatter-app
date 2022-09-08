@@ -52,6 +52,10 @@ const navigationRef = React.createRef();
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
 class DisplayAnImage extends Component {
+  refresh = () => {
+    // re-renders the component
+    this.setState({});
+  };
   constructor(props) {
     super(props);
 
@@ -67,6 +71,8 @@ class DisplayAnImage extends Component {
       points: points,
 
       moment: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
+
+      time: Date.now(),
 
       hasProfilePhoto: false,
 
@@ -169,9 +175,16 @@ class DisplayAnImage extends Component {
     this.getProfile();
   }
 
-  // componentWillUnmount() {
-  //   this.getProfile();
+  // componentDidMount() {
+  //   this.interval = setInterval(() => this.getProfile({ time: Date.now() }), 1000);
   // }
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
+
+  componentWillUnmount() {
+    this.getProfile();
+  }
 
   getProfile() {
     let self = this;
