@@ -111,12 +111,13 @@ class MessagesScrean extends Component {
   // }
 
   componentDidMount() {
-    this.getChat();
+    this.getChats();
     // this.interval = setInterval(() => this.getChats({ time: Date.now() }), 1000);
     
   }
   componentWillUnmount() {
-    clearInterval(this.interval);
+    // clearInterval(this.interval);
+    this.getChat();
     
   }
 
