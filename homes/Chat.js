@@ -77,12 +77,12 @@ class Chat extends Component {
   // }
 
   componentDidMount() {
-    this.getChat();
-    // this.interval = setInterval(() => this.getChat({ time: Date.now() }), 1000);
+    // this.getChat();
+    this.interval = setInterval(() => this.getChat({ time: Date.now() }), 1000);
     this.getChatPoint();
   }
   componentWillUnmount() {
-    // clearInterval(this.interval);
+    clearInterval(this.interval);
     this.getChatPoint();
   }
 
@@ -152,24 +152,29 @@ class Chat extends Component {
           self.setState({
             showLoading: false,
             loadingChats: false,
-            id: ret.otherid,
+            // id: ret.otherid,
             ret: ret,
-            data: ret.data,
-            profile_image: ret.profile_image,
-            profile_image_dir: ret.profile_image_dir,
-            datetime: ret.datetime,
-            msg_to: ret.msg_to,
-            msg_from: ret.msg_from,
-            timezone: ret.timezone,
+            // data: ret.data,
+            // profile_image: ret.profile_image,
+            // profile_image_dir: ret.profile_image_dir,
+            // datetime: ret.datetime,
+            // msg_to: ret.msg_to,
+            // msg_from: ret.msg_from,
+            // timezone: ret.timezone,
           });
           // console.log(se.data);
           // global.otherid = ret.id;
 
           // self.flatListRef.scrollToOffset({
           //   animated: true,
-          //   // offset: self.state.data.length,
+          //   offset: self.state.data.length,
           // });
         });
+        if (global.otherid == undefined) {
+          global.otherid = 0;
+        } else {
+          global.otherid = global.otherid;
+        }
         let params = {};
         params['name'] = global.name;
         params['otherid'] = global.otherid;
@@ -186,7 +191,7 @@ class Chat extends Component {
         // alert(global.otherid);
 
         global.socket.emit('on-messages', params);
-        console.log(params);
+        // console.log(params);
       },
     );
 
@@ -225,11 +230,11 @@ class Chat extends Component {
           global.socket.on('emit-messages', function (ret) {
             global.socket.off('emit-messages');
 
-            for (var i = ret.length - 1; i >= 0; i--) {
-              self.setState(prevState => ({
-                data: [...prevState.data, ret[i]],
-              }));
-            }
+            // for (var i = ret.length - 1; i >= 0; i--) {
+            //   self.setState(prevState => ({
+            //     data: [...prevState.data, ret[i]],
+            //   }));
+            // }
 
             self.setState(
               {
@@ -315,7 +320,7 @@ class Chat extends Component {
     self.setState(
       prevState => ({
         message: '',
-        // data: [message, ...prevState.data],
+        //  data: [message, ...prevState.data],
       }),
       // () => {
       //   self.setState(
@@ -335,18 +340,17 @@ class Chat extends Component {
 
   renderCell(msg) {
     if (msg.item.msg_from == global.otherid) {
-      // alert(2);
+     
       return <Left msg={msg} self={this} />;
     } else {
-      // alert(1);
+    
       return <Right msg={msg} self={this} />;
     }
   }
 
   gotoUserProfile(msg_from) {
     global.prevPageCall = 'Chat';
-    // global.previousPage = 'Chats';
-    // global.currentPage = 'UserProfile';
+   
 
     this.props.navigation.navigate('UserCanSearch');
 

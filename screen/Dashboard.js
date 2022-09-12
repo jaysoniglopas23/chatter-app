@@ -30,12 +30,14 @@ import DisplayAnImage from './Home';
 import Storage from '../utils/storage';
 import Launcher from './launcher';
 import Modal from 'react-native-modal';
+import { CommonActions } from "@react-navigation/native";
 
 const DeviceWidth = Dimensions.get('window').width;
 const Stack = createStackNavigator();
 const navigationRef = React.createRef();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -71,6 +73,8 @@ class Dashboard extends Component {
 
     // this.goCoin = this.goCoin.bind(this);
   }
+
+  
 
   // goSettings() {
   //   this.props.navigationRef.current?.navigate('Settings');

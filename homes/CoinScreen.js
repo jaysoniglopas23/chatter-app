@@ -240,8 +240,8 @@ class CoinScreen extends Component {
   getCoins() {
     let self = this;
 
-    global.socket.on('emit-points-bundle-details', function (ret) {
-      global.socket.off('emit-points-bundle-details');
+    global.socket.on('emit-points-bundle', function (ret) {
+      global.socket.off('emit-points-bundle');
       // alert(JSON.stringify(ret));
       // console.log('here');
 
@@ -258,7 +258,7 @@ class CoinScreen extends Component {
 
     let params = {bundleid: global.bundleid};
 
-    global.socket.emit('on-points-bundle-details', params);
+    global.socket.emit('on-points-bundle', params);
   }
 
   buy(productId, title, price) {

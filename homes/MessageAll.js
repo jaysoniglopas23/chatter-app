@@ -24,6 +24,7 @@ import {
 import Tabs from '../navigation/tabs';
 import Chat from './Chat';
 import {Message} from 'react-native-gifted-chat';
+import { cos } from 'react-native-reanimated';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -106,13 +107,10 @@ class MessagesScrean extends Component {
   //   this.getChats();
   // }
 
-  // componentDidMount() {
-  //   this.getChats();
-  // }
-
   componentDidMount() {
+  
     this.getChats();
-    // this.interval = setInterval(() => this.getChats({ time: Date.now() }), 1000);
+    // this.interval = setInterval(() => this.state.lastmessage({ time: Date.now() }), 1000);
     
   }
   componentWillUnmount() {
