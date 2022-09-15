@@ -22,6 +22,13 @@ import Socket from '../utils/socket';
 import Storage from '../utils/storage';
 import {getVersion} from 'react-native-device-info';
 import Dashboard from './Dashboard';
+import notifee from '@notifee/react-native';
+import messaging from '@react-native-firebase/messaging';
+import analytics from '@react-native-firebase/analytics';
+import PushNotification from 'react-native-push-notification';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { onDisplayRemoteNotification } from '../utils/pushNotification';
+
 // import {
 //   VoipPushNotification,
 //   RNVoipPushRemoteNotifications,
@@ -81,69 +88,89 @@ class Launcher extends Component {
     global.passcodeCorrect = true;
   }
 
-  // componentDidMount() {
-  //   // ===== Step 1: subscribe `register` event =====
-  //   // --- this.onVoipPushNotificationRegistered
-  //   VoipPushNotification.addEventListener('register', token => {
-  //     console.log(token);
-  //     // --- send token to your apn provider server
-  //   });
+  onDisplayRemoteNotification = async () => {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-  //   // ===== Step 2: subscribe `notification` event =====
-  //   // --- this.onVoipPushNotificationiReceived
-  //   VoipPushNotification.addEventListener('notification', notification => {
-  //     // --- when receive remote voip push, register your VoIP client, show local notification ... etc
-  //     //this.doSomething();
-  //     // --- optionally, if you `addCompletionHandler` from the native side, once you have done the js jobs to initiate a call, call `completion()`
-  //     VoipPushNotification.onVoipNotificationCompleted(notification.id);
-  //   });
+    if (enabled) {
+        await messaging()
+          .getToken()
+          .then((fcmToken) => {
+            console.log('FCM Token ->', fcmToken);
+          });
+      } else {
+      console.log('Not Authorization status', authStatus);
+      // this.getFcmToken();
+    }
+  };
 
-  //   // ===== Step 3: subscribe `didLoadWithEvents` event =====
-  //   VoipPushNotification.addEventListener('didLoadWithEvents', events => {
-  //     // --- this will fire when there are events occured before js bridge initialized
-  //     // --- use this event to execute your event handler manually by event type
+  // getFcmToken = async () => {
+  //   let fcmToken = await AsyncStorage.getItem('fcmToken');
 
-  //     if (!events || !Array.isArray(events) || events.length < 1) {
-  //       return;
-  //     }
-  //     for (let voipPushEvent of events) {
-  //       let {name, data} = voipPushEvent;
-  //       if (
-  //         name ===
-  //         VoipPushNotification.RNVoipPushRemoteNotificationsRegisteredEvent
-  //       ) {
-  //         //this.onVoipPushNotificationRegistered(data);
-  //       } else if (
-  //         name ===
-  //         VoipPushNotification.RNVoipPushRemoteNotificationReceivedEvent
-  //       ) {
-  //         //this.onVoipPushNotificationiReceived(data);
+  //   console.log('old Fcm Token:', fcmToken);
+  //   if (!fcmToken) {
+  //     try {
+  //       const fcmToken = await messaging().getToken();
+  //       if (fcmToken) {
+  //         console.log('new Generated Fcm Token', fcmToken);
+  //         await AsyncStorage.setItem('fcmToken', fcmToken);
   //       }
+  //     } catch (error) {
+  //       console.log(error);
   //     }
-  //   });
+  //   }
+  // };
 
-  //   // ===== Step 4: register =====
-  //   // --- it will be no-op if you have subscribed before (like in native side)
-  //   // --- but will fire `register` event if we have latest cahced voip token ( it may be empty if no token at all )
-  //   VoipPushNotification.registerVoipToken(); // --- register token
-  // }
+  // RemotePushController = () => {}
 
-  // addGlobalListeners() {
-  //   let self = this;
+  onDisplayNotification = async () => {
+    // Request permissions (required for iOS)
+    await notifee.requestPermission();
 
-  //   global.socket.off('offer');
-  //   global.socket.on('offer', function (ret) {
-  //     console.log(ret);
-  //     global.callerData = ret;
+    // Create a channel (required for Android)
+    const channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
+    });
 
-  //     self.props.navigationRef.current?.navigate('Callee');
-
-  //     //global.socket.emit('gotoffer', ret);
-  //   });
-  // }
+    // Display a notification
+    await notifee.displayNotification({
+      title: 'Notification chatter',
+      body: 'First try',
+      android: {
+        channelId,
+        // smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
+        // pressAction is needed if you want the notification to open the app when pressed
+        pressAction: {
+          id: 'default',
+        },
+      },
+    });
+  };
 
   componentDidMount() {
     this.init();
+    this.onDisplayRemoteNotification();
+    // onDisplayRemoteNotification();
+    // this.onDisplayNotification();
+    // this.onDisplayRemoteNotification();
+    // this.getFcmToken();
+    // PushNotification.configure({
+    //   onRegister: function (token) {
+    //     console.log('Token'.token);
+    //   },
+
+    //   onNotification: function (notification) {
+    //     console.log('Remote Controller =>', notification);
+    //   },
+
+    //   senderID: global.otherid,
+    //   popInitialNotification: true,
+    //   requestPermissions: true,
+    // });
+    // return null;
   }
 
   init() {
@@ -282,7 +309,7 @@ class Launcher extends Component {
         password: ret.password,
       });
       // alert(JSON.stringify(ret.id));
-     
+
       if (self.state.id == 0) {
         global.searchFields = data.searchSettings;
         self.props.navigationRef.current?.navigate('Login');
