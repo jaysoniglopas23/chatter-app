@@ -349,7 +349,7 @@ class Chat extends Component {
   }
 
   gotoUserProfile(msg_from) {
-    global.prevPageCall = 'Chat';
+    // global.prevPageCall = 'Chat';
    
 
     this.props.navigation.navigate('UserCanSearch');
@@ -410,8 +410,10 @@ class Chat extends Component {
     );
   }
 
-  Callme() {
-    alert(' IS A CALL??');
+  startCall() {
+    global.prevPageCall = 'Chat';
+
+    this.props.navigation.navigate('caller');
   }
 
   render() {
@@ -520,7 +522,7 @@ class Chat extends Component {
               if (global.call_minutes != 0) {
                 if (this.state.msg_from == 3) {
                   return (
-                    <TouchableOpacity onPress={() => this.Callme()}>
+                    <TouchableOpacity onPress={() => this.startCall()}>
                       <Image
                         style={{
                           resizeMode: 'contain',
@@ -536,7 +538,7 @@ class Chat extends Component {
                   );
                 } else {
                   return (
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.startCall()}>
                       <Image
                         style={{
                           resizeMode: 'contain',

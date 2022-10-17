@@ -95,12 +95,12 @@ class Launcher extends Component {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-        await messaging()
-          .getToken()
-          .then((fcmToken) => {
-            console.log('FCM Token ->', fcmToken);
-          });
-      } else {
+      await messaging()
+        .getToken()
+        .then(fcmToken => {
+          console.log('FCM Token ->', fcmToken);
+        });
+    } else {
       console.log('Not Authorization status', authStatus);
       // this.getFcmToken();
     }

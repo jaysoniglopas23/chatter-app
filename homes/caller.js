@@ -32,9 +32,9 @@ import firestore from '@react-native-firebase/firestore';
 
 import InCallManager from 'react-native-incall-manager';
 
-import StringUtils from '../utils/stringutils';
+// import StringUtils from '../utils/stringutils';
 
-import Utils from './utils';
+// import Utils from './utils';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -50,7 +50,7 @@ class Caller extends Component {
       trackSid: null,
       trackIdentifier: null,
       messageText: global.locale == 'en' ? ' Connecting...' : '接続する...',
-      usernameText: global.userProfile[0].nickname,
+      usernameText: global.name,
       callStatus: 0,
       videoOn: false,
       calleeVideoOn: false,
@@ -115,9 +115,9 @@ class Caller extends Component {
     });
 
     let params = {
-      uuid: global.deviceid,
-      userid: global.userProfile[0].user_id,
-      requestor: global.user_id,
+      uuid: '123',
+      userid: global.myid,
+      requestor: global.otherid,
     };
 
     global.socket.emit('twiliocreateroom', params);
@@ -143,8 +143,8 @@ class Caller extends Component {
         },
         () => {
           let params = {
-            uuid: global.deviceid,
-            callee: global.userProfile[0].user_id,
+            uuid: '123',
+            callee: global.otherid,
             caller: global.user_id,
           };
 
@@ -158,8 +158,8 @@ class Caller extends Component {
         },
         () => {
           let params = {
-            uuid: global.deviceid,
-            callee: global.userProfile[0].user_id,
+            uuid: '123',
+            callee: global.otherid,
             caller: global.user_id,
           };
 
@@ -215,8 +215,8 @@ class Caller extends Component {
     this.props.navigationRef.current?.navigate('UserProfile');
 
     let params = {
-      uuid: global.deviceid,
-      callee: global.userProfile[0].user_id,
+      uuid: '123',
+      callee: global.otherid,
       caller: global.user_id,
     };
 
@@ -303,7 +303,7 @@ class Caller extends Component {
 
           <View style={{position: 'absolute', top: 150, width: windowWidth}}>
             <Image
-              source={require('../img/coin.png')}
+              source={require('../icon/Asset5.png')}
               style={{width: 50, height: 50, alignSelf: 'center'}}
             />
 

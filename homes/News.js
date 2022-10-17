@@ -166,11 +166,11 @@ class News extends Component {
         </View>
         <View
           style={{
-            top: windowWidth - 22,
+            top: windowWidth - 50,
             backgroundColor: '#ffff',
             // flex: 1,
             width: windowWidth - 25,
-            height: windowHeight / 2 - 550,
+            // height: windowHeight / 2 - 450,
             // backgroundColor: 'black',
             alignSelf:'center'
           }}>

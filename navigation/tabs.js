@@ -25,6 +25,7 @@ import UserCanSearch from '../homes/UserCanSearch';
 import Heart from '../homes/Heart';
 import Login from '../screen/Login';
 import SearchGrid from '../homes/SearchGrid';
+import caller from './../homes/caller';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -132,6 +133,15 @@ const CallStack = ({navigation}) => (
     <Stack.Screen
       name="UserCanSearch"
       component={UserCanSearch}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
+      })}
+    />
+    <Stack.Screen
+      name="caller"
+      component={caller}
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,

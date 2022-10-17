@@ -37,6 +37,7 @@ import {StackActions} from '@react-navigation/native';
 const navigationRef = React.createRef();
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 class Login extends Component {
   constructor(props) {
@@ -287,7 +288,7 @@ class Login extends Component {
             alignItems: 'center',
             marginHorizontal: 60,
             borderWidth: 0,
-            marginTop: -580,
+            marginTop: windowHeight - 1400,
             width: '100%',
             paddingHorizontal: 10,
             // backgroundColor: '#fff',
@@ -441,7 +442,7 @@ class Login extends Component {
             marginHorizontal: 60,
             alignItems: 'center',
             justifyContent: 'center',
-            marginTop: 250,
+            marginTop: windowHeight - 450,
             paddingVertical: 3,
             borderRadius: 0,
             opacity: 0.9,
@@ -449,7 +450,7 @@ class Login extends Component {
           }}>
           <Icon.Button
             backgroundColor="#3b5998"
-            style={{marginHorizontal: 60, borderRadius: 0}}>
+            style={{marginHorizontal: 10, borderRadius: 0}}>
             <Image source={require('../images/facebook.png')} />
             <Text style={{fontFamily: 'Arial', fontSize: 15}}>
               Login with Facebook

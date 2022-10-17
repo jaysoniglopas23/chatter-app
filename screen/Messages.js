@@ -22,8 +22,8 @@ import {
 import {CardStyleInterpolators} from '@react-navigation/stack';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import MessagesScrean from '../homes/MessageAll';
-import Readmessages from '../homes/Readmessages';
-import Addmessages from '../homes/UnReadmessages';
+import ReadMessages from '../homes/Readmessages';
+import AddMessages from '../homes/UnReadmessages';
 
 const Stack = createStackNavigator();
 
@@ -33,23 +33,23 @@ class Messages extends Component {
 
     this.state = {};
 
-    this.goMessageA = this.goMessageA.bind(this);
+    this.goMessageScreen = this.goMessageScreen.bind(this);
 
-    this.goMessageB = this.goMessageB.bind(this);
+    this.goAddMessage = this.goAddMessage.bind(this);
 
-    this.goMessageC = this.goMessageC.bind(this);
+    this.goReadMessages = this.goReadMessages.bind(this);
   }
 
-  goMessageA() {
+  goMessageScreen() {
     this.props.navigation.navigate('MessagesScrean');
   }
 
-  goMessageB() {
-    this.props.navigation.navigate('Addmessages');
+  goAddMessage() {
+    this.props.navigation.navigate('AddMessages');
   }
 
-  goMessageC() {
-    this.props.navigation.navigate('Readmessages');
+  goReadMessages() {
+    this.props.navigation.navigate('ReadMessages');
   }
 
   render() {
@@ -64,15 +64,15 @@ class Messages extends Component {
             borderBottomWidth: 0,
           }}>
           <View style={{flexDirection: 'row', left: 139}}>
-            <TouchableOpacity onPress={() => this.goMessageA()}>
+            <TouchableOpacity onPress={() => this.goMessageScreen()}>
               <Text style={{paddingTop: 10, right: 95, color: 'black'}}>
                 全て
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.goMessageB()}>
+            <TouchableOpacity onPress={() => this.goAddMessage()}>
               <Text style={{paddingTop: 10, color: 'black'}}>既読</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.goMessageC()}>
+            <TouchableOpacity onPress={() => this.goReadMessages()}>
               <Text style={{paddingTop: 10, left: 95, color: 'black'}}>
                 未読
               </Text>
@@ -99,15 +99,15 @@ class Messages extends Component {
               />
 
               <Stack.Screen
-                name="Addmessages"
-                component={Addmessages}
+                name="AddMessages"
+                component={AddMessages}
                 options={{
                   headerShown: false,
                 }}
               />
               <Stack.Screen
-                name="Readmessages"
-                component={Readmessages}
+                name="ReadMessages"
+                component={ReadMessages}
                 options={{
                   headerShown: false,
                 }}

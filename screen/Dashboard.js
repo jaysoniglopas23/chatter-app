@@ -61,7 +61,7 @@ class Dashboard extends Component {
 
     this.goNews = this.goNews.bind(this);
 
-    this.goPacman = this.goPacman.bind(this);
+    this.goToTermsAndConditions = this.goToTermsAndConditions.bind(this);
 
     this.goPicture = this.goPicture.bind(this);
 
@@ -104,7 +104,7 @@ class Dashboard extends Component {
     this.props.navigationRef.current?.navigate('News');
   }
 
-  goPacman() {
+  goToTermsAndConditions() {
     this.props.navigationRef.current?.navigate('Pacman');
   }
 
@@ -277,7 +277,7 @@ class Dashboard extends Component {
                 borderBottomWidth: 1,
                 borderLeftWidth: 1,
               }}
-              onPress={() => this.goPacman('Pacman')}>
+              onPress={() => this.goToTermsAndConditions('Pacman')}>
               <Image
                 style={styles.iconRight}
                 source={require('../icon/Asset66.png')}
