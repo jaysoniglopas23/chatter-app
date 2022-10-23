@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Image, View, Text} from 'react-native';
+import {Image, View, Text, Alert} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import {
@@ -25,11 +25,10 @@ import UserCanSearch from '../homes/UserCanSearch';
 import Heart from '../homes/Heart';
 import Login from '../screen/Login';
 import SearchGrid from '../homes/SearchGrid';
-<<<<<<< HEAD
+
 import caller from './../homes/caller';
-=======
+
 import Comment from '../homes/comment';
->>>>>>> 67a4140 (Logout and Coinscreen)
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -98,7 +97,7 @@ const PostStack = ({navigation}) => (
         headerShown: false,
       })}
     />
-     <Stack.Screen
+    <Stack.Screen
       name="Comment"
       component={Comment}
       options={({route}) => ({
@@ -216,6 +215,12 @@ const SeachStack = ({navigation}) => (
 );
 
 const Homestack = ({navigation}) => (
+  React.useEffect(() => {
+    const focusHandler = navigation.addListener('focus', () => {
+      // Alert.alert('Refreshed');
+    });
+    return focusHandler;
+  }, [navigation]),
   <Stack.Navigator>
     <Stack.Screen
       name="home"
@@ -263,6 +268,14 @@ const Homestack = ({navigation}) => (
 );
 
 const Tabs = ({navigation}) => {
+  
+  // React.useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     Alert.alert('Refreshed');
+  //   });
+  //   return unsubscribe;
+  // }, [navigation]);
+
   // const goTabBarVisibility = () => {
   //   const routeName = getFocusedRouteNameFromRoute(route);
   //   if (routeName === 'User') {

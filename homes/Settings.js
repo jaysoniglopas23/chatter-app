@@ -197,53 +197,53 @@ class Settings extends Component {
     );
   }
 
-  goLogout() {
-    let self = this;
+  // goLogout() {
+  //   let self = this;
 
-    this.setState({
-      modalConfirmLogout: true,
-    });
-  }
+  //   this.setState({
+  //     modalConfirmLogout: true,
+  //   });
+  // }
 
-  closeLogutConfirm() {
-    this.setState({
-      modalConfirmLogout: false,
-    });
-  }
+  // closeLogutConfirm() {
+  //   this.setState({
+  //     modalConfirmLogout: false,
+  //   });
+  // }
 
-  continueLogoutConfirm() {
-    let self = this;
+  // continueLogoutConfirm() {
+  //   let self = this;
 
-    this.setState(
-      {
-        loadingLogoutConfrimReport: true,
-      },
-      () => {
-        let jsonData = {
-          id: '',
-          profile_image: '',
-          nickname: '',
-          username: '',
-          password: '',
-          searchSettings: global.searchFields,
-          likes: 0,
-        };
+  //   this.setState(
+  //     {
+  //       loadingLogoutConfrimReport: true,
+  //     },
+  //     () => {
+  //       let jsonData = {
+  //         id: '',
+  //         profile_image: '',
+  //         nickname: '',
+  //         username: '',
+  //         password: '',
+  //         searchSettings: global.searchFields,
+  //         likes: 0,
+  //       };
 
-        Storage.storeData(jsonData).then(() => {
-          self.setState(
-            {
-              modalConfirmLogout: false,
-            },
-            () => {
-              // self.props.launcher.init();
+  //       Storage.storeData(jsonData).then(() => {
+  //         self.setState(
+  //           {
+  //             modalConfirmLogout: false,
+  //           },
+  //           () => {
+  //             // self.props.launcher.init();
 
-              self.props.navigation.push('Launcher');
-            },
-          );
-        });
-      },
-    );
-  }
+  //             self.props.navigation.push('Launcher');
+  //           },
+  //         );
+  //       });
+  //     },
+  //   );
+  // }
 
   render() {
     return (
@@ -335,7 +335,7 @@ class Settings extends Component {
               Version {version}
             </Text>
           </View>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => this.goLogout()}
             style={{
               backgroundColor: '#ECECEC',
@@ -349,7 +349,7 @@ class Settings extends Component {
               bottom: windowHeight / 2 - 555,
             }}>
             <Text style={{left: 15, top: 5, color: 'black'}}>ログアウト</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={() => this.Save()}
             style={{
@@ -370,7 +370,7 @@ class Settings extends Component {
             <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
-        <Modal
+        {/* <Modal
           animationType="slide"
           // transparent={true}
           isVisible={this.state.modalConfirmLogout}
@@ -482,7 +482,7 @@ class Settings extends Component {
               </View>
             </View>
           </View>
-        </Modal>
+        </Modal> */}
       </View>
     );
   }
