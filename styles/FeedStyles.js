@@ -160,3 +160,6 @@ export const UserInfo3 = styled.TouchableOpacity`
 export const Card1 = styled.TouchableOpacity`
   width: 100%;
 `;
+  
+
+// comment
