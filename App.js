@@ -8,7 +8,7 @@
 
 import React from 'react';
 import Login from './screen/Login';
-import type {Node} from 'react';
+// import type {Node} from 'react';
 import {Text} from 'react-native';
 import AppStacks from './navigation/Appstacks';
 

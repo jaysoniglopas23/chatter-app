@@ -25,7 +25,11 @@ import UserCanSearch from '../homes/UserCanSearch';
 import Heart from '../homes/Heart';
 import Login from '../screen/Login';
 import SearchGrid from '../homes/SearchGrid';
+<<<<<<< HEAD
 import caller from './../homes/caller';
+=======
+import Comment from '../homes/comment';
+>>>>>>> 67a4140 (Logout and Coinscreen)
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -88,6 +92,15 @@ const PostStack = ({navigation}) => (
     <Stack.Screen
       name="UserCanSearch"
       component={UserCanSearch}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
+      })}
+    />
+     <Stack.Screen
+      name="Comment"
+      component={Comment}
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,

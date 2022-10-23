@@ -7,6 +7,8 @@ import {
   UserInfo1,
   UserInfo2,
   UserInfo3,
+  UserInfo4,
+  UserInfo5,
   UserImgWrapper,
   UserImg,
   UserImg1,
@@ -215,13 +217,12 @@ class Post extends Component {
   //   });
   // };
 
-  likeCount(id)  {
+  likeCount(id) {
     // this.initPost();
     // this.getPost();
-   
+
     const newCount = this.state.count_like - 1;
     const prevCount = this.state.count_like + 1;
-   
 
     // this.setState({
     //   count: postlike,
@@ -243,13 +244,12 @@ class Post extends Component {
     this.setState(
       {
         refresh: 1,
-        
       },
       () => {
         global.socket.on('emit-like-post', function (ret) {
           global.socket.off('emit-like-post');
           // console.log(ret);
-         
+
           self.setState({
             count_like: ret.count_like,
             count_unlike: ret.count_unlike,
@@ -281,7 +281,7 @@ class Post extends Component {
         params['socket'] = this.state.socketid;
         // global.likes = this.state.post_likes_count;
         // alert(global.likes);
-       
+
         global.socket.emit('on-like-post', params);
       },
     );
@@ -702,6 +702,10 @@ class Post extends Component {
     // alert(JSON.stringify(data));
   };
 
+  goComment() {
+    this.props.navigation.push('Comment');
+  }
+
   render() {
     return (
       <View
@@ -837,10 +841,13 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' +  item.post_likes_count + ')'}
+                          {'  お気に入り' + '(' + item.post_likes_count + ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}
+                    <UserInfo4 onPress={() => this.goComment()}>
+                      <MessageText1>{'コメント'}</MessageText1>
+                    </UserInfo4>
                     {item.userid == global.myid ? (
                       <UserInfo2 onPress={() => this.deletePost(item.id)}>
                         <MessageText2>削除</MessageText2>
@@ -926,6 +933,9 @@ class Post extends Component {
                         )}
                       </TextSection>
                     </UserInfo>
+                    <UserInfo5 onPress={() => this.goComment()}>
+                      <MessageText1>{'コメント'}</MessageText1>
+                    </UserInfo5>
                     {item.userid == global.myid ? (
                       <UserInfo1>
                         <MessageText1>
@@ -935,7 +945,7 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' +  item.post_likes_count+ ')'}
+                          {'  お気に入り' + '(' + item.post_likes_count + ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}

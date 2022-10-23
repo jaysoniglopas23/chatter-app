@@ -22,6 +22,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
+const URL_UPLOAD_PROFILE = 'http://18.181.88.243:8081/Profile/Upload';
 const URL_UPLOAD_LIC_VERIFY = 'http://18.181.88.243:8081/LicenseVerification';
 
 class Card extends Component {
@@ -57,7 +58,7 @@ class Card extends Component {
     this.setState({}, () => {
       global.socket.on('emit-posts', function (ret) {
         global.socket.off('emit-posts');
-        console.log(ret);
+       // alert(JSON.stringify(ret));
 
         self.setState({
           licver_image: ret.licver_image,
@@ -117,6 +118,8 @@ class Card extends Component {
       params['description'] = '';
       params['start'] = 1;
       params['size'] = 1;
+      // params['licver_image_dir'] = this.state.licver_image_dir;
+      // params['licver_image'] = this.state.licver_image;
 
       // params['licver_image_dir'] = this.state.licver_image_dir;
       // params['licver_image'] = this.state.licver_image;
@@ -147,8 +150,8 @@ class Card extends Component {
           licver_image_dir: ret.licver_image_dir,
           socketid: global.socketid,
         });
-        global.licver_image = self.state.licver_image;
-        global.licver_image_dir = self.state.licver_image_dir;
+        // this.state.licver_image = self.state.licver_image;
+        // this.state.licver_image_dir = self.state.licver_image_dir;
 
         // alert(JSON.stringify(global.licver_image));
       });
@@ -159,11 +162,11 @@ class Card extends Component {
       params['licver_image'] = this.state.licver_image;
 
       params['socketid'] = global.socketid;
-      alert(    URL_TEMP +
-        '/' +
-        global.licver_image_dir +
-        '/' +
-        global.licver_image,);
+      // alert(    URL_TEMP +
+      //   '/' +
+      //   self.state.licver_image_dir +
+      //   '/' +
+      //   self.state.licver_image,);
 
       global.socket.emit('on-license_verification', params);
     });
@@ -234,9 +237,9 @@ class Card extends Component {
                 uri:
                   URL_TEMP +
                   '/' +
-                  global.licver_image_dir +
+                  this.state.licver_image_dir +
                   '/' +
-                  global.licver_image,
+                  this.state.licver_image,
               }}
               style={{
                 top: 0,

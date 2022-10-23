@@ -8,7 +8,10 @@ import {
   Button,
   TouchableOpacity,
   Alert,
+  TouchableWithoutFeedback,
+  ActivityIndicator
 } from 'react-native';
+import Modal from 'react-native-modal';
 // import {TouchableOpacity} from 'react-native-gesture-handler';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {Avatar} from 'react-native-elements';
@@ -83,6 +86,8 @@ class DisplayAnImage extends Component {
       profile_image: '',
 
       profile_image_dir: '',
+
+      modalConfirmLogout: false,
     };
 
     // this.goProfile = this.goProfile.bind(this);
@@ -219,44 +224,60 @@ class DisplayAnImage extends Component {
         // global.socket.emit('on-profile-photo', params);
       });
 
-      // let params = {};
-      // params['account_id'] = global.account_id;
-      // params['id'] = global.account_id;
-      // params['firstname'] = '';
-      // params['lastname'] = '';
-      // params['age'] = this.state.age;
-      // params['about'] = '';
-      // params['job'] = '';
-      // params['company'] = '';
-      // params['school'] = '';
-      // params['gender'] = 1;
-      // params['gender_pref'] = 1;
-      // params['distance_threshold'] = 0;
-      // params['nickname'] = this.state.nickname;
-      // params['smoking'] = 0;
-      // params['drinking'] = 0;
-      // params['marrried'] = 0;
-      // params['presence_of_children'] = 0;
-      // params['like_children_or_not'] = 0;
-      // params['marriage_desire'] = 0;
-      // params['presence_of_pet'] = 0;
-      // params['holiday'] = 0;
-      // params['hobbie'] = '';
-      // params['bloodtype'] = '';
-      // params['email'] = this.state.email;
-      // params['name'] = '';
-      // params['introduction'] = '';
-      // params['character'] = '';
-      // params['location'] = '';
-      // params['points'] = this.state.points;
-      // params['mail_count'] = this.state.mail_count;
-      // params['call_minutes'] = this.state.call_minutes;
-      // params['profile_image_dir'] = this.state.profile_image_dir;
-      // params['profile_image'] = this.state.profile_image;
+     
 
       // console.log(params);
       global.socket.emit('on-details');
     });
+  }
+
+  goLogout() {
+    let self = this;
+
+    this.setState({
+      modalConfirmLogout: true,
+    });
+  }
+
+  closeLogutConfirm() {
+    this.setState({
+      modalConfirmLogout: false,
+    });
+  }
+
+  continueLogoutConfirm() {
+    let self = this;
+
+    this.setState(
+      {
+        loadingLogoutConfrimReport: true,
+      },
+      () => {
+        let jsonData = {
+          user_id: '',
+          profile_image: '',
+          nickname: '',
+          coin: '',
+          username: '',
+          password: '',
+          searchSettings: global.searchFields,
+          shared: 0,
+        };
+
+        Storage.storeData(jsonData).then(() => {
+          self.setState(
+            {
+              modalConfirmLogout: false,
+            },
+            () => {
+              // self.props.launcher.init();
+
+              self.props.navigation.push('Launcher');
+            },
+          );
+        });
+      },
+    );
   }
 
   render() {
@@ -442,7 +463,135 @@ class DisplayAnImage extends Component {
               </Stack.Screen> */}
             </Stack.Navigator>
           </NavigationContainer>
+          <TouchableOpacity
+            onPress={() => this.goLogout()}
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              marginTop: 265,
+              height:'10%',
+              width:'23%',
+              left:290,
+              position: 'absolute',
+              backgroundColor:'transparent',
+             
+            }}>
+          </TouchableOpacity>
         </View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          isVisible={this.state.modalConfirmLogout}
+          style={{bottom: 400, alignSelf: 'center'}}>
+          <View
+            style={{
+              width: windowWidth,
+              backgroundColorL: 'black',
+              height: windowHeight - 100,
+              borderRadius: 30,
+              flexDirection: 'column',
+            }}>
+            <TouchableWithoutFeedback
+              style={{width: windowWidth, height: windowHeight - 290}}
+              onPress={() => this.closeLogutConfirm()}>
+              <View style={{width: '100%', height: windowHeight - 180}}></View>
+            </TouchableWithoutFeedback>
+
+            <View
+              style={{
+                width: windowWidth,
+                height: windowHeight,
+              }}>
+              <View
+                style={{
+                  height: 180,
+                  width: windowWidth,
+                  backgroundColor: '#f2f2f2',
+                  borderRadius: 15,
+                }}>
+                <Text
+                  style={{
+                    width: '100%',
+                    height: 30,
+                    lineHeight: 30,
+                    marginTop: 30,
+                    textAlign: 'center',
+                    fontSize: 13,
+                    color: global.textColor,
+                  }}>
+                  {this.state.logoutText}
+                </Text>
+
+                {this.state.loadingLogoutConfrimReport ? (
+                  <View
+                    style={{
+                      width: 20,
+                      height: 50,
+                      flexDirection: 'row',
+                      marginLeft: windowWidth / 2 - 10,
+                    }}>
+                    <ActivityIndicator size="small" color="#69747f" />
+                  </View>
+                ) : (
+                  <View
+                    style={{
+                      width: 210,
+                      height: 50,
+                      flexDirection: 'row',
+                      marginLeft: windowWidth / 2 - 105,
+                    }}>
+                    <TouchableOpacity
+                      style={{
+                        width: 100,
+                        height: 30,
+                        backgroundColor: '#fff',
+                        marginTop: 10,
+                        marginRight: 5,
+                        borderRadius: 3,
+                      }}
+                      onPress={() => this.closeLogutConfirm()}>
+                      <Text
+                        style={{
+                          width: '100%',
+                          height: 30,
+                          textAlign: 'center',
+                          lineHeight: 30,
+                          fontSize: 12,
+                          color: 'black',
+                        }}>
+                        キャンセル
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={{
+                        width: 100,
+                        height: 30,
+                        backgroundColor: '#fff',
+                        marginTop: 10,
+                        marginLeft: 5,
+                        borderRadius: 3,
+                      }}
+                      onPress={() => this.continueLogoutConfirm()}>
+                      <Text
+                        style={{
+                          width: '100%',
+                          height: 30,
+                          textAlign: 'center',
+                          lineHeight: 30,
+                          fontSize: 12,
+                          color: 'black',
+                        }}>
+                        はい
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
+            </View>
+          </View>
+        </Modal>
 
         {global.age_verified != 1 ? (
           <View>

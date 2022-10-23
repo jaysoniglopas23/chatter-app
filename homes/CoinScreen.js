@@ -111,8 +111,8 @@ class CoinScreen extends Component {
           'android.test.canceled',
           'android.test.refunded',
           'android.test.item_unavailable',
-          'point_1000',
-          '5000_point', // dooboolab
+          // 'point_1000',
+          // '5000_point', // dooboolab
         ],
       }),
     };
@@ -161,12 +161,16 @@ class CoinScreen extends Component {
   }
 
   componentDidMount() {
+    this.init();
+  }
+
+  init() {
     // this.getCoins();
     let self = this;
 
     RNIap.initConnection().then(() => {
       RNIap.getProducts(self.state.items).then(res => {
-      
+        //  alert(JSON.stringify(res));
         self.setState({
           res: res,
           price: res[0].price,
@@ -185,7 +189,6 @@ class CoinScreen extends Component {
     this.getCoins();
   }
 
-  
   // getUI() {
   //   let self = this;
 
@@ -239,26 +242,36 @@ class CoinScreen extends Component {
 
   getCoins() {
     let self = this;
+    this.setState(
+      {},
 
-    global.socket.on('emit-points-bundle', function (ret) {
-      global.socket.off('emit-points-bundle');
-      // alert(JSON.stringify(ret));
-      // console.log('here');
+      () => {
+        global.socket.on('emit-points-bundle', function (ret) {
+          global.socket.off('emit-points-bundle');
+          // alert(JSON.stringify(ret));
+          // console.log('here');
+          // alert(2);
+          self.setState({
+            bundle: ret,
+            amount: ret[0].amount,
+            // showLoading: false,
+            bundleid: ret[0].bundleid,
+            description: ret[0].description,
+          });
 
-      self.setState({
-        bundle: ret,
-        amount: ret[0].amount,
-        // showLoading: false,
-        bundleid: ret[0].bundleid,
-        description: ret[0].description,
-      });
+          global.amount = self.state.amount;
+        });
 
-      global.amount = self.state.amount;
-    });
+        let params = {
+          bundleid: global.bundleid,
+          bundle: this.state.bundle,
+          amount: this.state.amount,
+          description: this.state.description,
+        };
 
-    let params = {bundleid: global.bundleid};
-
-    global.socket.emit('on-points-bundle', params);
+        global.socket.emit('on-points-bundle', params);
+      },
+    );
   }
 
   buy(productId, title, price) {
@@ -412,7 +425,7 @@ class CoinScreen extends Component {
               alignSelf: 'center',
             }}
             viewabilityConfig={this.viewabilityConfig}
-            data={this.state.res}
+            data={this.state.bundle}
             renderItem={this.renderCell}
             keyExtractor={item => item.name}
             refreshing={this.state.refreshing}

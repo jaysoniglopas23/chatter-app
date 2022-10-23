@@ -292,7 +292,7 @@ export default class Call extends Component {
                 useNativeDriver: true,
               }).start();
 
-              console.log('Refresh timeline done');
+              console.log('Refresh Contact done');
             },
           );
         });
@@ -395,7 +395,7 @@ export default class Call extends Component {
       direction == 'down' &&
       !this.state.goingToTop
     ) {
-      console.log('Refresh timeline');
+      console.log('Refresh Contact');
 
       this.setState(
         {

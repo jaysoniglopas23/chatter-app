@@ -157,6 +157,28 @@ export const UserInfo3 = styled.TouchableOpacity`
   border-radius: 4px;
 `;
 
+export const UserInfo4 = styled.TouchableOpacity`
+  bottom: 22px;
+  left: 140px;
+  // background-color: #dddddd;
+  margin-horizontal: 117px;
+  height: 30px;
+  width: 60px;
+  border-radius: 4px;
+  font-weight: bold;
+`;
+
+export const UserInfo5 = styled.TouchableOpacity`
+  top: 5px;
+  left: 140px;
+  // background-color: #dddddd;
+  margin-horizontal: 117px;
+  height: 30px;
+  width: 60px;
+  border-radius: 4px;
+  font-weight: bold;
+`;
+
 export const Card1 = styled.TouchableOpacity`
   width: 100%;
 `;
