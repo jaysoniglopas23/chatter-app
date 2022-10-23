@@ -58,7 +58,7 @@ class Card extends Component {
     this.setState({}, () => {
       global.socket.on('emit-posts', function (ret) {
         global.socket.off('emit-posts');
-       // alert(JSON.stringify(ret));
+        // alert(JSON.stringify(ret));
 
         self.setState({
           licver_image: ret.licver_image,
@@ -143,7 +143,6 @@ class Card extends Component {
       global.socket.on('emit-license_verification', function (ret) {
         global.socket.off('emit-license_verification');
         console.log(ret);
-       
 
         self.setState({
           licver_image: ret.licver_image,
