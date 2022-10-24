@@ -135,8 +135,8 @@ android {
         applicationId "com.chatter1"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 119
-        versionName "119.0"
+        versionCode 121
+        versionName "121.0"
         multiDexEnabled true
         missingDimensionStrategy 'store', 'play'
     }

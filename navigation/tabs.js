@@ -339,6 +339,11 @@ const Tabs = ({navigation}) => {
       return {display: 'none'};
     } else if ((display = routeName === 'UserCanSearch')) {
       return {display: 'none'};
+    } else  if ((display = routeName === 'Comment')) {
+      return {display: 'none'};
+    } else {  display = routeName === 'Post';
+    return {display: 'flex'};
+
     }
   };
 

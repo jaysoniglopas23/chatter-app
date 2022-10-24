@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
   Dimensions,
+  Alert,
 } from 'react-native';
 import {
   Container,
@@ -110,12 +111,17 @@ class MessagesScrean extends Component {
   componentDidMount() {
   
     this.getChats();
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      // Alert.alert('Refreshed');
+      this.getChats();
+    });
     // this.interval = setInterval(() => this.state.lastmessage({ time: Date.now() }), 1000);
     
   }
   componentWillUnmount() {
     // clearInterval(this.interval);
     this.getChats();
+    this._unsubscribe();
     
   }
 

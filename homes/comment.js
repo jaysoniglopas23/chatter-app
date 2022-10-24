@@ -21,10 +21,13 @@ import StringUtils from '../utils/stringutils';
 
 import Svg, {G, Path} from 'react-native-svg';
 
+import moment from 'moment';
+
 const emojiUnicode = require('emoji-unicode');
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
 class Comment extends Component {
   constructor(props) {
@@ -48,7 +51,7 @@ class Comment extends Component {
       commentEdit: '',
     };
 
-    this.getUI = this.getUI.bind(this);
+    // this.getUI = this.getUI.bind(this);
 
     this.goBack = this.goBack.bind(this);
 
@@ -76,7 +79,7 @@ class Comment extends Component {
   }
 
   componentDidMount() {
-    // this.getUI();
+    this.getPostComments();
   }
 
   like(commentId) {
@@ -255,37 +258,46 @@ class Comment extends Component {
     }
   }
 
-  getUI() {
-    let self = this;
+  //   getUI() {
+  //     let self = this;
 
-    global.socket.on('ui', function (ret) {
-      global.socket.off('ui');
+  //     global.socket.on('ui', function (ret) {
+  //       global.socket.off('ui');
 
-      self.setState(
-        {
-          ui: ret,
-          title: ret[0].ui,
-        },
-        () => {
-          self.getPostComments();
-        },
-      );
-    });
+  //       self.setState(
+  //         {
+  //           ui: ret,
+  //           title: ret[0].ui,
+  //         },
+  //         () => {
+  //           self.getPostComments();
+  //         },
+  //       );
+  //     });
 
-    let params = {locale: global.locale, type: '32'};
+  //     let params = {locale: global.locale, type: '32'};
 
-    global.socket.emit('ui', params);
-  }
+  //     global.socket.emit('ui', params);
+  //   }
 
   getPostComments() {
     let self = this;
 
-    global.socket.on('post_comments', function (ret) {
-      global.socket.off('post_comments');
+    global.socket.on('emit-post-comments', function (ret) {
+      global.socket.off('emit-post-comments');
+    //   alert(JSON.stringify(ret));
+    //   console.log(ret);
 
       self.setState(
         {
-          comments: ret,
+          ret: ret,
+          comment: ret.comment,
+          commentid: ret.commentid,
+          datetime: ret.datetime,
+          nickname: ret.nickname,
+          userid: ret.userid,
+          path:ret.path,
+          file:ret.file,
         },
         () => {
           self.setState({
@@ -295,13 +307,17 @@ class Comment extends Component {
       );
     });
 
-    let params = {
-      uuid: global.deviceid,
-      userid: global.user_id,
-      postid: global.commentPostId,
-    };
+    let params = {}
 
-    global.socket.emit('post_comments', params);
+    params['nickname'] = global.nickname;
+    params['postid'] = global.postid;
+    params['comment'] = this.state.comment;
+    params['commentid'] = this.state.commentid;
+    params['datetime'] = this.state.datetime;
+    params['file'] = this.state.file;
+    params['path'] = this.state.path;
+
+    global.socket.emit('on-post-comments', params);
   }
 
   saveComment() {
@@ -310,10 +326,14 @@ class Comment extends Component {
     global.socket.on('emit-comment-save', function (ret) {
       global.socket.off('emit-comment-save');
 
-      global.GLComponent.savePostsComments(ret, self.state.comment);
+      //   global.GLComponent.savePostsComments(ret, self.state.comment);
 
       self.setState({
-        commentId: '',
+        commentid: '',
+        comment: ret.comment,
+        postid: ret.postid,
+        // datetime:datetime,
+        socketid: ret.socketid,
       });
 
       self.getPostComments();
@@ -322,27 +342,28 @@ class Comment extends Component {
     //["uuid" : GlobalVariables.UUID, "userid" : GlobalVariables.USER_ID, "user_id" : GlobalVariables.USER_ID,"ischild" : String(intIsChild), "comment_id" : strCommentId, "post_id" : strPostId, "created" : "", "comment" : strComment, "profile_image" : "", "name" : "Mark", "istemp" : "1", "parent_id" : "", "expanded" : "1"]
 
     let params = {
-      locale: global.locale,
-      uuid: global.deviceid,
-      userid: global.user_id,
-      user_id: global.user_id,
-      ischild: this.state.isChild,
-      comment_id: this.state.commentId,
-      post_id: global.commentPostId,
-      created: '',
+      //   locale: global.locale,
+      //   uuid: global.deviceid,
+      //   userid: global.user_id,
+      //   user_id: global.user_id,
+      //   ischild: this.state.isChild,
+      commentid: this.state.commentid,
+      postid: global.postid,
+      // socketid:this.state.socketid,
       comment: StringUtils.convertEmoji(this.state.comment),
       profile_image: '',
       name: global.nickname,
-      istemp: 1,
-      parent_id: '',
-      expanded: 1,
+      datetime: moment(new Date()).format('YYYY-MM-DD  LT'),
+      //   istemp: 1,
+      //   parent_id: '',
+      //   expanded: 1,
     };
 
     global.socket.emit('on-comment-save', params);
   }
 
   goBack() {
-    this.props.navigation.push("Post")
+    this.props.navigation.push('Post');
   }
 
   onEndReached() {}
@@ -355,7 +376,7 @@ class Comment extends Component {
     let bottomBarHeight = windowHeight - 80;
 
     return (
-      <View style={{flex: 1 , backgroundColor:'#fff'}}>
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
         <View
           style={{
             width: '100%',
@@ -420,23 +441,24 @@ class Comment extends Component {
           </View>
         ) : (
           <KeyboardAvoidingView
-            style={{width: windowWidth, height: windowHeight - 130}}
+            style={{width: windowWidth, height: windowHeight - 10}}
             behavior="padding">
             <FlatList
               onEndReached={() => this.onEndReached()}
               initialNumToRender={10}
               removeClippedSubviews={true}
               extraData={this.state.refresh}
-              style={{width: '100%', height: windowHeight - 200}}
-              data={this.state.comments}
+              style={{width: '100%', height: windowHeight - 200,paddingTop:10}}
+              data={this.state.ret}
               renderItem={this.renderCell}
-              keyExtractor={item => item.post_id}
+              keyExtractor={item => item.postid}
             />
 
             <View
               style={{
                 width: '100%',
                 padding: 10,
+                paddingBottom: 30,
                 flexDirection: 'row',
                 alignItems: 'flex-end',
               }}>
@@ -448,8 +470,8 @@ class Comment extends Component {
                 autoCapitalize={false}
                 multiline={true}
                 style={{
-                  backgroundColor: '#FFF',
-                  width: windowWidth - 62,
+                  backgroundColor: '#f8f8f9',
+                  width: windowWidth - 72,
                   lineHeight: 20,
                   borderRadius: 5,
                   padding: 5,
@@ -461,23 +483,32 @@ class Comment extends Component {
 
               <TouchableOpacity
                 style={{
-                  width: 40,
-                  height: 30,
+                  width: 50,
+                  height: 37,
                   marginLeft: 5,
                   backgroundColor: global.buttonColor,
                   borderRadius: 3,
                 }}
                 onPress={() => this.saveComment()}>
-                <Text
+                <Svg
                   style={{
-                    width: 40,
-                    height: 30,
-                    lineHeight: 30,
-                    textAlign: 'center',
-                    color: global.glTextColor,
-                  }}>
-                  {this.state.ui[1].ui}
-                </Text>
+                    marginTop: 6,
+                    marginLeft: 14,
+                    width: 22,
+                    height: 22,
+                  }}
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fal"
+                  data-icon="paper-plane"
+                  class="svg-inline--fa fa-paper-plane fa-w-16"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512">
+                  <Path
+                    fill="black"
+                    d="M464 4.3L16 262.7C-7 276-4.7 309.9 19.8 320L160 378v102c0 30.2 37.8 43.3 56.7 20.3l60.7-73.8 126.4 52.2c19.1 7.9 40.7-4.2 43.8-24.7l64-417.1C515.7 10.2 487-9 464 4.3zM192 480v-88.8l54.5 22.5L192 480zm224-30.9l-206.2-85.2 199.5-235.8c4.8-5.6-2.9-13.2-8.5-8.4L145.5 337.3 32 290.5 480 32l-64 417.1z"></Path>
+                </Svg>
               </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
@@ -490,181 +521,67 @@ class Comment extends Component {
 const CommentCell = ({item, self}) => (
   <View
     style={{
-      width: item.ischild == '0' ? windowWidth - 10 : windowWidth - 35,
+      width:  windowWidth ,
       flexDirection: 'column',
       margin: 5,
-      marginLeft: item.ischild == '0' ? 5 : 30,
+      marginLeft:15,
       borderRadius: 3,
       backgroundColor: '#FFF',
     }}>
     <View
       style={{
-        width: item.ischild == '0' ? windowWidth - 10 : windowWidth - 35,
-        flexDirection: 'row',
-        padding: 10,
+        width: "100%",
+        flexDirection: 'column',
+        padding: 1,
       }}>
       <Image
-        source={{
-          uri: '' + item.profile_image,
+        source={{uri:
+            URL_TEMP +
+            '/' +
+            item.path +
+            '/' +
+            item.file,
         }}
-        style={{width: 40, height: 40, borderRadius: 20}}
+        style={{width: 60, height: 60, borderRadius: 30}}
         defaultSource={require('../icon/userprofile.png')}
       />
+         <Text
+          style={{
+            marginLeft: 70,
+            marginTop: 10,
+            bottom:68,
+            lineHeight: 15,
+            fontSize: 14,
+            fontWeight:'bold',
+            color: 'black',
+          }}>
+          {item.nickname}
+        </Text>
 
-      {item.isediting == '0' ? (
         <Text
           style={{
-            marginLeft: 10,
+            marginLeft: 73,
             marginTop: 10,
+            bottom:70,
             lineHeight: 15,
             fontSize: 12,
-            color: global.textColor,
+            color: 'black',
           }}>
           {StringUtils.convertUnicode(item.comment)}
         </Text>
-      ) : (
-        <View style={{flexDirection: 'column', alignItems: 'flex-end'}}>
-          <TextInput
-            autoFocus={true}
-            autoCapitalize={false}
-            multiline={true}
-            style={{
-              width: windowWidth - 80,
-              padding: 5,
-              borderRadius: 3,
-              marginLeft: 10,
-              marginTop: 4,
-              borderWidth: 1,
-              borderColor: global.buttonColor,
-              lineHeight: 15,
-              fontSize: 12,
-              color: global.textColor,
-            }}
-            onChangeText={commentEdit => self.setState({commentEdit})}
-            value={StringUtils.convertUnicode(
-              self.state.commentEdit,
-            )}></TextInput>
-
-          <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity
-              style={{height: 30}}
-              onPress={() => self.continueSaveComment(item.comment_id)}>
-              <Text
-                style={{
-                  lineHeight: 30,
-                  height: 30,
-                  fontSize: 11,
-                  color: global.textColor,
-                  fontWeight: 'bold',
-                }}>
-                {self.state.saveComment}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{height: 30, marginLeft: 10}}
-              onPress={() => self.cancelSaveComment()}>
-              <Text
-                style={{
-                  lineHeight: 30,
-                  height: 30,
-                  fontSize: 11,
-                  color: global.textColor,
-                  fontWeight: 'bold',
-                }}>
-                {self.state.cancelSaveComment}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
-    </View>
-
-    <View
-      style={{
-        width: item.ischild == '0' ? windowWidth - 10 : windowWidth - 35,
-        height: 50,
-        padding: 10,
-        borderTopWidth: 1,
-        borderTopColor: global.buttonColor,
-        flexDirection: 'row',
-      }}>
+     
+   
       <Text
         style={{
           height: 30,
+          paddingLeft: 245,
+          bottom : 118,
           lineHeight: 30,
           fontSize: 11,
           color: global.textColor,
         }}>
-        {item.fromdate}
+        {item.datetime}
       </Text>
-
-      <Text
-        style={{
-          marginLeft: 10,
-          height: 30,
-          lineHeight: 30,
-          fontSize: 11,
-          color: global.textColor,
-        }}>
-        {item.likes} {self.state.likeText}
-      </Text>
-
-      {item.ischild == '0' ? (
-        <Text
-          style={{
-            lineHeight: 30,
-            height: 30,
-            fontSize: 11,
-            color: global.textColor,
-            marginLeft: 10,
-          }}>
-          {item.comment_count}
-          {' comment(s)'}
-        </Text>
-      ) : (
-        <></>
-      )}
-
-      {item.ischild == '0' ? (
-        <TouchableOpacity
-          style={{height: 30, marginLeft: 10}}
-          onPress={() => self.replyToComment(item.comment_id)}>
-          <Text
-            style={{
-              lineHeight: 30,
-              height: 30,
-              fontSize: 11,
-              color: global.textColor,
-              fontWeight: 'bold',
-            }}>
-            {self.state.replyText}
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <></>
-      )}
-
-      <TouchableOpacity
-        style={{height: 30, marginLeft: 10}}
-        onPress={() => self.like(item.comment_id)}>
-        <Svg
-          style={{width: 15, height: 15, marginTop: 7}}
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fas"
-          data-icon="star"
-          class="svg-inline--fa fa-star fa-w-18"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 576 512">
-          <Path
-            fill={
-              item.user_liked == '0' ? global.textColor : global.glTextColor
-            }
-            d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></Path>
-        </Svg>
-      </TouchableOpacity>
 
       {item.user_id == global.user_id ? (
         <View
@@ -674,7 +591,7 @@ const CommentCell = ({item, self}) => (
             height: 30,
             width: 60,
             left: item.ischild == '0' ? windowWidth - 75 : windowWidth - 100,
-            top: 10,
+            top: 40,
           }}>
           <TouchableOpacity
             style={{height: 30, marginLeft: 10}}

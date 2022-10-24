@@ -188,7 +188,55 @@ class Post extends Component {
 
         global.otherid = userid;
         // global.user_id = userid;
-        alert(global.otherid);
+        // alert(global.otherid);
+        global.socket.emit('on-posts', params);
+        // console.log(params);s
+      },
+    );
+  }
+
+
+  goComment(id,userid) {
+    // global.prevPageCall = 'Post';
+    this.props.navigation.push('Comment');
+    // console.log(userid);
+
+    let self = this;
+
+    this.setState(
+      {},
+
+      () => {
+        global.socket.on('emit-posts', function (ret) {
+          global.socket.off('emit-posts');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            callRefreshed: true,
+            refresh: 1,
+            id:ret.id,
+            name: ret.name,
+            image: ret.image,
+            path: ret.path,
+            users: ret.users,
+            userid: ret.userid,
+          });
+        });
+        let params = {};
+
+        params['start'] = 0;
+        params['size'] = 15;
+        params['filter_type'] = '0';
+        params['order'] = '0';
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+        params['id'] = id;
+
+        // global.otherid = userid;
+        global.postid = id;
+        // alert( global.postid = id);
+        // alert(global.otherid);
         global.socket.emit('on-posts', params);
         // console.log(params);s
       },
@@ -390,6 +438,8 @@ class Post extends Component {
             profilephotopath: ret.profilephotopath,
             profilephotofile: ret.profilephotofile,
           });
+
+    
 
           // alert(global.socketid);
           // if (self.state.hasUploadPhoto != "") {
@@ -702,9 +752,7 @@ class Post extends Component {
     // alert(JSON.stringify(data));
   };
 
-  goComment() {
-    this.props.navigation.push('Comment');
-  }
+  
 
   render() {
     return (
@@ -845,7 +893,7 @@ class Post extends Component {
                         </MessageText1>
                       </UserInfo1>
                     )}
-                    <UserInfo4 onPress={() => this.goComment()}>
+                    <UserInfo4 onPress={() => this.goComment(item.id)}>
                       <MessageText1>{'コメント'}</MessageText1>
                     </UserInfo4>
                     {item.userid == global.myid ? (
@@ -933,7 +981,7 @@ class Post extends Component {
                         )}
                       </TextSection>
                     </UserInfo>
-                    <UserInfo5 onPress={() => this.goComment()}>
+                    <UserInfo5 onPress={() => this.goComment(item.id)}>
                       <MessageText1>{'コメント'}</MessageText1>
                     </UserInfo5>
                     {item.userid == global.myid ? (

@@ -179,7 +179,8 @@ class DisplayAnImage extends Component {
   componentDidMount() {
     this.getProfile();
     this._unsubscribe = this.props.navigation.addListener('focus', () => {
-      Alert.alert('Refreshed');
+      // Alert.alert('Refreshed');
+      this.getProfile();
     });
   }
 
