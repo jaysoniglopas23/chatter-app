@@ -946,7 +946,7 @@ class Post extends Component {
                   <View
                     style={{
                       width: '100%',
-                      height: windowHeight / 5.4,
+                      height: windowHeight / 4.5,
                       alignSelf: 'center',
                       // backgroundColor: 'red',
                     }}>

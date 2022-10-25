@@ -195,7 +195,7 @@ class Happy extends Component {
         params['presence_of_pet'] = this.state.presence_of_pet;
         params['holiday'] = this.state.holiday;
         params['hobbie'] = this.state.hobbie;
-        params['bloodtype'] = '';
+        params['bloodtype'] = this.state.bloodtype;
         params['email'] = this.state.email;
         params['name'] = '';
         params['introduction'] = this.state.introduction;
@@ -322,11 +322,12 @@ class Happy extends Component {
           presence_of_children: ret.presence_of_children,
           presence_of_pet: ret.presence_of_pet,
           school: ret.school,
+          bloodtype:ret.bloodtype,
           smoker: ret.smoker,
         });
 
         // self.state.intgender = ret.gender;
-
+        global.bloodtype = self.state.bloodtype;
         global.gender = self.state.gender;
         global.smoker = self.state.smoker;
         global.drink = self.state.drink;
@@ -555,6 +556,13 @@ class Happy extends Component {
     );
   }
 
+getBloodtype(bloodtype){
+   alert(bloodtype);
+  this.setState({
+    bloodtype: bloodtype,
+  });
+
+}
   // getSchool(gender) {
   //   let self = this;
 
@@ -578,7 +586,7 @@ class Happy extends Component {
   // }
 
   getGender(gender) {
-    // alert(value);
+    alert(value);
     this.setState({
       gender: gender,
     });
@@ -1105,7 +1113,7 @@ class Happy extends Component {
               </View>
             </View>
             <Dropdown
-              style={{
+                style={{
                 top: 10,
                 backgroundColor: 'white',
                 borderWidth: 1,
@@ -1117,8 +1125,10 @@ class Happy extends Component {
                 borderRadius: 4,
                 color: 'black',
               }}
-              label=""
-              Blood={Bloodtype}
+              // label={this.state.bloodtype}
+              data={Bloodtype}
+              onChangeText={value => this.getBloodtype(value)}
+              value={this.state.bloodtype}
             />
             <Text
               style={{

@@ -323,7 +323,7 @@ class Settings extends Component {
               backgroundColor: '#ECECEC',
               paddingHorizontal: 130,
               height: 31,
-              left: windowWidth /2-190,
+              left: windowWidth /2-206,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
@@ -361,7 +361,7 @@ class Settings extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 -789,
+              bottom: windowHeight / 2 -847,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}
