@@ -106,13 +106,13 @@ class CoinScreen extends Component {
           'lightpack',
           'chatplan_01',
         ],
-        android: [
+        ios: [
           'android.test.purchased',
           'android.test.canceled',
           'android.test.refunded',
           'android.test.item_unavailable',
-          // 'point_1000',
-          // '5000_point', // dooboolab
+          'point_1000',
+          '5000_point', // dooboolab
         ],
       }),
     };
@@ -257,6 +257,7 @@ class CoinScreen extends Component {
             // showLoading: false,
             bundleid: ret[0].bundleid,
             description: ret[0].description,
+            price: ret[0].price,
           });
 
           global.amount = self.state.amount;
@@ -266,6 +267,7 @@ class CoinScreen extends Component {
           bundleid: global.bundleid,
           bundle: this.state.bundle,
           amount: this.state.amount,
+          price: this.state.price,
           description: this.state.description,
         };
 
@@ -274,7 +276,7 @@ class CoinScreen extends Component {
     );
   }
 
-  buy(productId, title, price) {
+  buy(productId, description, price) {
     let self = this;
     console.log(productId);
 
@@ -283,14 +285,15 @@ class CoinScreen extends Component {
         .then(success => {
           let product = success[0];
 
-          RNIap.requestPurchase(productId).then(ok => {
-            self.setState({
-              buying: true,
+          RNIap.requestPurchase(productId)
+            .then(ok => {
+              self.setState({
+                buying: true,
+              });
+            })
+            .catch(error => {
+              alert(error);
             });
-          });
-          alert(self.state.buying).catch(error => {
-            alert(error);
-          });
         })
 
         .catch(error => {
@@ -425,9 +428,9 @@ class CoinScreen extends Component {
               alignSelf: 'center',
             }}
             viewabilityConfig={this.viewabilityConfig}
-            data={this.state.bundle}
+            data={this.state.res}
             renderItem={this.renderCell}
-            keyExtractor={item => item.name}
+            keyExtractor={item => item.productId}
             refreshing={this.state.refreshing}
             // onRefresh={this.handleRefresh}
           />
