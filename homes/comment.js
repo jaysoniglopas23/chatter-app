@@ -475,7 +475,7 @@ class Comment extends Component {
                   lineHeight: 20,
                   borderRadius: 5,
                   padding: 5,
-                  textColor: global.textColor,
+                  textColor: 'black',
                   fontSize: 13,
                 }}
                 onChangeText={comment => this.setState({comment})}

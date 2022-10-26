@@ -27,6 +27,8 @@ class PhotoLibrary extends Component {
     this.state = {
       saving: false,
 
+      loadingOpacity: 0,
+
       profile_image: '',
 
       profile_image_dir: '',
@@ -50,7 +52,15 @@ class PhotoLibrary extends Component {
   }
 
   componentDidMount() {
-    this.getImage();
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      // Alert.alert('Refreshed');
+      this.getImage();
+    });
+  }
+
+  componentWillUnmount() {
+  
+    this._unsubscribe();
   }
 
   getImage() {
@@ -63,11 +73,20 @@ class PhotoLibrary extends Component {
       () => {
         launchImageLibrary(options, function (assets) {
           // alert(JSON.stringify(assets));
-          self.setState({
-            // filename: assets.assets[0].fileName,
-            UploadPhoto: assets.assets[0].uri,
-            hasUploadPhoto: true,
-          });
+          if (assets.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (assets.error) {
+            console.log('ImagePicker Error: ', assets.error);
+          } else if (assets.customButton) {
+            console.log('User tapped custom button: ', assets.customButton);
+            alert(assets.customButton);
+          } else {
+            self.setState({
+              // filename: assets.assets[0].fileName,
+              UploadPhoto: assets.assets[0].uri,
+              hasUploadPhoto: true,
+            });
+          }
         });
         let options = {mediaType: 'photo'};
       },
@@ -80,6 +99,7 @@ class PhotoLibrary extends Component {
     this.setState(
       {
         saving: true,
+        loadingOpacity: 1,
       },
 
       () => {
@@ -89,6 +109,7 @@ class PhotoLibrary extends Component {
           // alert(JSON.stringify(ret));
 
           self.setState({
+            loadingOpacity: 1,
             // loginginOpacity: 3,
             // profile_image: ret.profile_image,
             // profile_image_dir: ret.profile_image_dir,
@@ -148,6 +169,7 @@ class PhotoLibrary extends Component {
     return (
       <View style={{right: 17}}>
         {this.state.hasUploadPhoto ? (
+           <TouchableOpacity onPress={() => this.getImage()}>
           <Image
             source={{uri: this.state.UploadPhoto}}
             // defaultSource={require('../images/image.jpg')}
@@ -160,8 +182,10 @@ class PhotoLibrary extends Component {
               left: 15,
             }}
           />
+          </TouchableOpacity>
         ) : (
           <View>
+            <TouchableOpacity onPress={() => this.getImage()}>
             <Image
               source={require('../icon/userprofile.png')}
               style={{
@@ -173,6 +197,7 @@ class PhotoLibrary extends Component {
                 alignSelf: 'center',
               }}
             />
+            </TouchableOpacity>
             <Text style={{alignSelf: 'center', color: 'gray', top: 100}}>
               プロフィール画像はこちら
             </Text>
@@ -191,7 +216,7 @@ class PhotoLibrary extends Component {
           size="small"
           color="#69747f"
         />
-
+         {this.state.loadingOpacity == 0 ? (
         <View style={{right: 140, top: 180, alignSelf: 'center'}}>
           <TouchableOpacity
             style={{
@@ -213,6 +238,21 @@ class PhotoLibrary extends Component {
             <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
+         ) : (
+          <ActivityIndicator
+          style={{
+            marginLeft: windowWidth / 3 - 105,
+            width: 30,
+            height: 30,
+            marginTop: 160,
+            fontSize: 13,
+            alignSelf: 'center',
+            opacity: this.state.loadingOpacity,
+          }}
+          size="small"
+          color="#69747f"
+        />
+      )}
       </View>
     );
   }

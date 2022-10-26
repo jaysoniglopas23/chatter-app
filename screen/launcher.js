@@ -11,6 +11,8 @@ import {
   Platform,
   Dimensions,
   PermissionsAndroid,
+  BackHandler,
+  ToastAndroid
 } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNavigationContainerRef} from '@react-navigation/native';
@@ -153,24 +155,16 @@ class Launcher extends Component {
   componentDidMount() {
     this.init();
     this.onDisplayRemoteNotification();
-    // onDisplayRemoteNotification();
-    // this.onDisplayNotification();
-    // this.onDisplayRemoteNotification();
-    // this.getFcmToken();
-    // PushNotification.configure({
-    //   onRegister: function (token) {
-    //     console.log('Token'.token);
-    //   },
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+  }
 
-    //   onNotification: function (notification) {
-    //     console.log('Remote Controller =>', notification);
-    //   },
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
 
-    //   senderID: global.otherid,
-    //   popInitialNotification: true,
-    //   requestPermissions: true,
-    // });
-    // return null;
+  handleBackButton() {
+    ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
+    return true;
   }
 
   init() {

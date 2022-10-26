@@ -221,7 +221,7 @@ class Card extends Component {
           }}>
           {this.state.hasProfilePhoto ? (
             <Image
-              source={{uri: this.state.profilePhoto}}
+            source={require('../icon/userprofile.png')}
               style={{
                 alignSelf: 'center',
                 top: 0,

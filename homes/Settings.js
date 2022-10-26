@@ -28,6 +28,7 @@ class Settings extends Component {
 
     this.state = {
       toggled: false,
+      toggled2: false,
       // toggled2: true,
       sliderValue: '0',
       modalConfirmLogout: false,
@@ -42,7 +43,7 @@ class Settings extends Component {
   }
 
   componentDidMount() {
-    this.toggleSwitch2();
+    // this.toggleSwitch2();
     this.toggleSwitch();
   }
 
@@ -50,24 +51,79 @@ class Settings extends Component {
   //   this.setState({toggled2: value2});
   // };
 
-  toggleSwitch2 = value2 => {
+  // toggleSwitch2 = toggled2 => {
+  //   let self = this;
+
+  //   let notify_likes = 0;
+
+  //   this.setState(
+  //     {
+       
+  //     },
+
+  //     () => {
+  //       global.socket.on('emit-settings', function (ret) {
+  //         global.socket.off('emit-settings');
+  //         // console.log(ret);
+  //         self.setState({
+  //           notify_likes: ret.notify_likes,
+  //         });
+  //         // alert(self.state.notify_likes);
+
+  //         if (self.state.notify_likes == 0) {
+  //           self.setState({
+  //             toggled2: false,
+  //           });
+  //         } else {
+  //           self.setState({
+  //             toggled2: true,
+  //           });
+  //         }
+
+  //         // self.Save();
+  //       });
+  //       let params = {};
+
+  //       params['notify_likes'] = this.state.notify_likes;
+  //       params['notify_updates'] = this.state.notify_updates;
+      
+  //       // console.log();
+  //       global.socket.emit('on-settings', params);
+  //     },
+  //   );
+  // };
+
+  
+
+  toggleSwitch = toggled => {
     let self = this;
 
-    let notify_likes = 0;
+    // let notify_updates = 0;
 
     this.setState(
       {
-        toggled2: value2,
+      
       },
 
       () => {
         global.socket.on('emit-settings', function (ret) {
           global.socket.off('emit-settings');
-          // console.log(ret);
+          console.log(ret);
           self.setState({
+            notify_updates: ret.notify_updates,
             notify_likes: ret.notify_likes,
           });
-          // alert(self.state.notify_likes);
+          // alert('sssssss');
+
+          if (self.state.notify_updates == 0) {
+            self.setState({
+              toggled:false,
+            });
+          } else {
+            self.setState({
+              toggled: true,
+            });
+          }
 
           if (self.state.notify_likes == 0) {
             self.setState({
@@ -83,51 +139,9 @@ class Settings extends Component {
         });
         let params = {};
 
-        params['notify_likes'] = notify_likes;
         params['notify_updates'] = this.state.notify_updates;
-        global.value2 = value2;
-        console.log(value2);
-        global.socket.emit('on-settings', params);
-      },
-    );
-  };
-
-  toggleSwitch = value => {
-    let self = this;
-
-    let notify_updates = 0;
-
-    this.setState(
-      {
-        toggled: value,
-      },
-
-      () => {
-        global.socket.on('emit-settings', function (ret) {
-          global.socket.off('emit-settings');
-          console.log(ret);
-          self.setState({
-            notify_updates: ret.notify_updates,
-          });
-          // alert('sssssss');
-
-          if (self.state.notify_updates == 0) {
-            self.setState({
-              toggled: false,
-            });
-          } else {
-            self.setState({
-              toggled: true,
-            });
-          }
-
-          // self.Save();
-        });
-        let params = {};
-
-        params['notify_updates'] = notify_updates;
         params['notify_likes'] = this.state.notify_likes;
-        global.value = value;
+        
 
         console.log(params);
         global.socket.emit('on-settings', params);
@@ -135,54 +149,57 @@ class Settings extends Component {
     );
   };
 
+  getToggleSwitch = toggled => {
+    this.setState({
+      toggled: toggled,
+    });
+
+    if (toggled == false) {
+      this.setState({
+        notify_updates: 0,
+      });
+    } else {
+      this.setState({
+        notify_updates: 1,
+      });
+    }
+  };
+
+  getToggleSwitch2 = toggled2 => {
+    this.setState({
+      toggled2: toggled2,
+    });
+
+    if (toggled2 == false) {
+      this.setState({
+        notify_likes: 0,
+      });
+    } else {
+      this.setState({
+        notify_likes: 1,
+      });
+    }
+  };
+
+
+
   Save() {
     let self = this;
 
-    let notify_likes = 0;
-
-    let notify_updates = 0;
-
-    let value = global.value;
-
-    let value2 = global.value2;
-
+   
     this.setState(
       {
-        toggled: value,
-        toggled2: value2,
-        saving: true,
       },
 
       () => {
         global.socket.on('emit-settings-save', function (ret) {
           global.socket.off('emit-settings-save');
 
-          // self.setState({
-          //  notify_likes: ret.notify_likes,
-          //  notify_updates:ret.notify_updates,
-          // });
+          self.setState({
+           notify_likes: ret.notify_likes,
+           notify_updates:ret.notify_updates,
+          });
 
-          if (global.value == true) {
-            self.setState({
-              notify_updates: 1,
-            });
-            // alert('1111111');
-          } else {
-            self.setState({
-              notify_updates: 0,
-            });
-          }
-
-          if (global.value2 == true) {
-            self.setState({
-              notify_likes: 1,
-            });
-            // alert('wweqweqwe11');
-          } else {
-            self.setState({
-              notify_likes: 0,
-            });
-          }
         });
 
         let params = {};
@@ -249,8 +266,8 @@ class Settings extends Component {
     return (
       <View
         style={{
-          height: windowHeight,
-          width: '100%',
+          height: windowHeight - 74,
+          width: windowWidth,
         }}>
         <View
           style={{
@@ -267,7 +284,7 @@ class Settings extends Component {
           </Text>
           <Switch
             style={{left: 100}}
-            onValueChange={this.toggleSwitch}
+            onValueChange={value => this.getToggleSwitch(value)}
             value={this.state.toggled}></Switch>
         </View>
         <View
@@ -283,18 +300,18 @@ class Settings extends Component {
           <Text style={{left: 85, top: 13, color: 'black'}}>いいねの通知</Text>
           <Switch
             style={{left: 100}}
-            onValueChange={this.toggleSwitch2}
+            onValueChange={value => this.getToggleSwitch2(value)}
             value={this.state.toggled2}></Switch>
         </View>
 
-        <View style={{width:'100%' ,height:windowWidth ,alignItems:'center'}}>
+        <View style={{width:windowWidth - 40  ,height:"86%" ,alignSelf:'center'}}>
           <TouchableOpacity
             onPress={() => this.goHome()}
             style={{
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
               height: 31,
-              right: 150,
+              right: 170,
               marginBottom: 30,
               flexDirection: 'row',
               width: 50,
@@ -319,11 +336,10 @@ class Settings extends Component {
           </TouchableOpacity>
           <View
             style={{
-              alignItems: 'center',
+              alignSelf: 'center',
               backgroundColor: '#ECECEC',
               paddingHorizontal: 130,
               height: 31,
-              left: windowWidth /2-206,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
@@ -331,32 +347,17 @@ class Settings extends Component {
               borderRadius: 2,
               bottom: windowWidth/2 -270,
             }}>
-            <Text style={{left: 85, position: 'absolute', color: 'black'}}>
+            <Text style={{left: 85, position: 'absolute', color: 'black',alignSelf:'center'}}>
               Version {version}
             </Text>
           </View>
-          {/* <TouchableOpacity
-            onPress={() => this.goLogout()}
-            style={{
-              backgroundColor: '#ECECEC',
-              height: 31,
-
-              marginBottom: 30,
-              flexDirection: 'row',
-              width: windowWidth / 3.8,
-              borderRadius: 2,
-              alignSelf: 'center',
-              bottom: windowHeight / 2 - 555,
-            }}>
-            <Text style={{left: 15, top: 5, color: 'black'}}>ログアウト</Text>
-          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={() => this.Save()}
             style={{
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
               height: 31,
-              left: 130,
+              left: 113,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
@@ -370,119 +371,6 @@ class Settings extends Component {
             <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
           </TouchableOpacity>
         </View>
-        {/* <Modal
-          animationType="slide"
-          // transparent={true}
-          isVisible={this.state.modalConfirmLogout}
-          style={{bottom: 400, alignSelf: 'center'}}>
-          <View
-            style={{
-              width: windowWidth,
-              backgroundColorL: 'black',
-              height: windowHeight - 100,
-              borderRadius: 30,
-              flexDirection: 'column',
-            }}>
-            <TouchableWithoutFeedback
-              style={{width: windowWidth, height: windowHeight - 290}}
-              onPress={() => this.closeLogutConfirm()}>
-              <View style={{width: '100%', height: windowHeight - 180}}></View>
-            </TouchableWithoutFeedback>
-
-            <View
-              style={{
-                width: windowWidth,
-                height: windowHeight,
-              }}>
-              <View
-                style={{
-                  height: 180,
-                  width: windowWidth,
-                  backgroundColor: '#f2f2f2',
-                  borderRadius: 15,
-                }}>
-                <Text
-                  style={{
-                    width: '100%',
-                    height: 30,
-                    lineHeight: 30,
-                    marginTop: 30,
-                    textAlign: 'center',
-                    fontSize: 13,
-                    color: global.textColor,
-                  }}>
-                  {this.state.logoutText}
-                </Text>
-
-                {this.state.loadingLogoutConfrimReport ? (
-                  <View
-                    style={{
-                      width: 20,
-                      height: 50,
-                      flexDirection: 'row',
-                      marginLeft: windowWidth / 2 - 10,
-                    }}>
-                    <ActivityIndicator size="small" color="#69747f" />
-                  </View>
-                ) : (
-                  <View
-                    style={{
-                      width: 210,
-                      height: 50,
-                      flexDirection: 'row',
-                      marginLeft: windowWidth / 2 - 105,
-                    }}>
-                    <TouchableOpacity
-                      style={{
-                        width: 100,
-                        height: 30,
-                        backgroundColor: '#fff',
-                        marginTop: 10,
-                        marginRight: 5,
-                        borderRadius: 3,
-                      }}
-                      onPress={() => this.closeLogutConfirm()}>
-                      <Text
-                        style={{
-                          width: '100%',
-                          height: 30,
-                          textAlign: 'center',
-                          lineHeight: 30,
-                          fontSize: 12,
-                          color: 'black',
-                        }}>
-                        キャンセル
-                      </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={{
-                        width: 100,
-                        height: 30,
-                        backgroundColor: '#fff',
-                        marginTop: 10,
-                        marginLeft: 5,
-                        borderRadius: 3,
-                      }}
-                      onPress={() => this.continueLogoutConfirm()}>
-                      <Text
-                        style={{
-                          width: '100%',
-                          height: 30,
-                          textAlign: 'center',
-                          lineHeight: 30,
-                          fontSize: 12,
-                          color: 'black',
-                        }}>
-                        はい
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
-              </View>
-            </View>
-          </View>
-        </Modal> */}
       </View>
     );
   }

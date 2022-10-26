@@ -108,12 +108,20 @@ class Posttoboard extends Component {
       },
       () => {
         launchImageLibrary(options, function (assets) {
-          // alert(JSON.stringify(assets));
-          self.setState({
-            // filename: assets.assets[0].fileName,
-            UploadPhoto: assets.assets[0].uri,
-            hasUploadPhoto: true,
-          });
+          if (assets.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (assets.error) {
+            console.log('ImagePicker Error: ', assets.error);
+          } else if (assets.customButton) {
+            console.log('User tapped custom button: ', assets.customButton);
+            alert(assets.customButton);
+          } else {
+            self.setState({
+              // filename: assets.assets[0].fileName,
+              UploadPhoto: assets.assets[0].uri,
+              hasUploadPhoto: true,
+            });
+          }
         });
         let options = {mediaType: 'photo'};
       },
@@ -263,13 +271,13 @@ class Posttoboard extends Component {
               fontSize: 25,
               fontWeight: 'bold',
               height: '100%',
-              left:37,
-              top:15
+              left: 37,
+              top: 15,
             }}>
             新しい投稿を作成
           </Text>
         </View>
-       
+
         {this.state.hasUploadPhoto ? (
           <Image
             source={{uri: this.state.UploadPhoto}}
@@ -323,7 +331,7 @@ class Posttoboard extends Component {
               backgroundColor: '#fff',
               left: windowHeight / 86,
               color: 'black',
-              alignSelf:'flex-start',
+              alignSelf: 'flex-start',
             }}>
             コメント
           </Text>
