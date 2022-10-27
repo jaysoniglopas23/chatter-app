@@ -25,12 +25,13 @@ import {
   SafeAreaView,
   StatusBar,
   Dimensions,
+  TextInput,
 } from 'react-native';
 import _ from 'lodash';
 import {ListItem, SearchBar, Avatar} from 'react-native-elements';
 // import {getUsers, contains} from './api/index';
 import {getUsers, contains} from '../styles/index';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import User from '../homes/User';
 import Tabs from '../navigation/tabs';
 import moment from 'moment';
@@ -58,6 +59,7 @@ class Posttoboard extends Component {
       UploadPhoto: '',
       datetime: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
       postid: '',
+      Description:'',
       description: '',
       boardid: '',
       fkboard: 1,
@@ -74,7 +76,64 @@ class Posttoboard extends Component {
   }
 
   back() {
-    this.props.navigation.navigate('Post');
+    this.props.navigation.push('Post');
+    global.postid = '';
+    global.description ='';
+  }
+
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      // Alert.alert('Refreshed');
+      this.getEditPost();
+    });
+    this.getEditPost();
+  }
+
+  componentWillUnmount() {
+    this.getEditPost();
+    this._unsubscribe();
+  }
+
+  getEditPost() {
+    let self = this;
+
+    this.setState(
+      {},
+
+      () => {
+        global.socket.on('emit-your-posts', function (ret) {
+          global.socket.off('emit-your-posts');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            callRefreshed: true,
+            refresh: 1,
+
+            path: ret.path,
+            id: ret.id,
+            description: ret.description,
+            file: ret.file,
+          });
+        });
+        let params = {};
+
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+        params['description'] = global.description;
+        params['id'] = global.postid;
+        params['datetime'] = this.state.datetime;
+        params['file'] = global.path;
+        params['path'] = global.file;
+
+        this.state.forDescription = global.description;
+
+        // global.user_id = userid;
+        // alert(global.postid);
+        global.socket.emit('on-your-posts', params);
+        // console.log(params);s
+      },
+    );
   }
 
   getDescription(description) {
@@ -196,7 +255,7 @@ class Posttoboard extends Component {
         let params = {};
 
         params['boardid'] = 1;
-        params['postid'] = this.state.postid;
+        params['postid'] = global.postid;
         params['description'] = this.state.description;
         params['datetime'] = this.state.datetime;
         params['fkboard'] = this.state.fkboard;
@@ -293,7 +352,10 @@ class Posttoboard extends Component {
           />
         ) : (
           <Image
-            source={require('../icon/userprofile.png')}
+            source={{
+              uri: URL_TEMP + '/' + global.path + '/' + global.file,
+            }}
+            // defaultSource={require('../icon/userprofile.png')}
             style={{
               left: 0,
               top: 20,
@@ -314,8 +376,10 @@ class Posttoboard extends Component {
             borderColor: '#cdd5d5',
           }}>
           <TextInput
+            placeholder={this.state.forDescription}
             value={this.state.description}
             onChangeText={value => this.getDescription(value)}
+            placeholderTextColor="black"
             style={{
               top: 10,
               paddingHorizontal: 10,

@@ -184,10 +184,19 @@ class Card extends Component {
         let options = {mediaType: 'photo'};
 
         launchImageLibrary(options, function (assets) {
-          self.setState({
-            profilePhoto: assets.assets[0].uri,
-            hasProfilePhoto: true,
-          });
+          if (assets.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (assets.error) {
+            console.log('ImagePicker Error: ', assets.error);
+          } else if (assets.customButton) {
+            console.log('User tapped custom button: ', assets.customButton);
+            alert(assets.customButton);
+          } else {
+            self.setState({
+              profilePhoto: assets.assets[0].uri,
+              hasProfilePhoto: true,
+            });
+          }
         });
       },
     );

@@ -145,8 +145,53 @@ class Post extends Component {
     this.props.navigation.push('Posttoboard');
   }
 
-  goEdit() {
-    this.props.navigation.navigate('Posttoboard');
+  goEdit(id,description,path,file) {
+    this.props.navigation.push('Posttoboard');
+    //  alert(id);
+    let self = this;
+
+    this.setState(
+      {},
+
+      () => {
+        global.socket.on('emit-posts', function (ret) {
+          global.socket.off('emit-posts');
+          // alert(JSON.stringify(ret));
+          // console.log(ret);
+
+          self.setState({
+            callRefreshed: true,
+            refresh: 1,
+
+            name: ret.name,
+            image: ret.image,
+            path: ret.path,
+            users: ret.users,
+            userid: ret.userid,
+            postid:ret.postid
+          });
+        });
+        let params = {};
+
+        params['start'] = 0;
+        params['size'] = 15;
+        params['filter_type'] = '0';
+        params['order'] = '0';
+        params['name'] = this.state.name;
+        params['userid'] = this.state.userid;
+        params['id'] = id;
+       
+
+        global.postid = id;
+        global.description = description;
+        global.path = path;
+        global.file = file;
+        // global.user_id = userid;
+        // alert(global.postid);
+        global.socket.emit('on-posts', params);
+        // console.log(params);s
+      },
+    );
   }
 
   goChat(userid) {
@@ -390,6 +435,7 @@ class Post extends Component {
         params['boardid'] = 1;
         params['posts_description'] = this.state.posts_description;
         params['nickname'] = this.state.nickname;
+        params['postid'] = this.state.postid;
         params['name'] = this.state.name;
         params['userid'] = this.state.userid;
         params['path'] = this.state.path;
@@ -466,6 +512,7 @@ class Post extends Component {
         params['boardid'] = 1;
         params['posts_description'] = this.state.posts_description;
         params['nickname'] = this.state.nickname;
+        params['postid'] = this.state.postid;
         params['name'] = this.state.name;
         params['userid'] = this.state.userid;
         params['path'] = this.state.path;
@@ -920,7 +967,7 @@ class Post extends Component {
                     )}
 
                     {item.userid == global.myid ? (
-                      <UserInfo3 onPress={() => this.goEdit()}>
+                      <UserInfo3 onPress={() => this.goEdit(item.id,item.description,item.path,item.file)}>
                         <MessageText3>編集</MessageText3>
                         <Svg
                           style={{width: 15, height: 15, bottom: 10, left: 8}}
@@ -1021,7 +1068,7 @@ class Post extends Component {
                     )}
 
                     {item.userid == global.myid ? (
-                      <UserInfo3 onPress={() => this.goEdit()}>
+                      <UserInfo3 onPress={() => this.goEdit(item.id,item.description,item.path,item.file)}>
                         <MessageText3>編集</MessageText3>
                         <Svg
                           style={{width: 15, height: 15, bottom: 10, left: 8}}
