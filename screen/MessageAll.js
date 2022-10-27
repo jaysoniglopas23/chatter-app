@@ -22,7 +22,7 @@ import {
   TextSection,
   Message1Text,
 } from '../styles/MessageStyles';
-import Tabs from '../navigation/tabs';
+import Tabs from './tabs';
 import Chat from './Chat';
 import {Message} from 'react-native-gifted-chat';
 import { cos } from 'react-native-reanimated';

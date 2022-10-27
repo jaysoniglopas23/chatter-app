@@ -1,7 +1,7 @@
 import React, {useEffect, Component} from 'react';
 import {Image, View, Text, Easing, StyleSheet, Dimensions} from 'react-native';
-import Login from '../screen/Login';
-import Register from '../screen/Register';
+import Login from './Login';
+import Register from './Register';
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -12,20 +12,20 @@ import {
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
 import {createAppContainer} from 'react-navigation';
-import Tabs from '../navigation/tabs';
-import DisplayAnImage from '../screen/Home';
+import Tabs from './tabs';
+import DisplayAnImage from './Home';
 import {renderNode} from 'react-native-elements/dist/helpers';
 import io from 'socket.io-client';
 import {configureFonts} from 'react-native-paper';
-import CoinScreen from '../homes/CoinScreen';
-import Settings from '../homes/Settings';
-import Call from '../screen/Call';
-import User from '../homes/User';
-import Launcher from '../screen/launcher';
-import PhotoLibrary from '../screen/Photolibrary';
+import CoinScreen from './CoinScreen';
+import Settings from './Settings';
+import Call from './Call';
+import User from './User';
+import Launcher from './launcher';
+import PhotoLibrary from './Photolibrary';
 
-import InputPasscode from '../screen/inputpasscode';
-import Dashboard from '../screen/Dashboard';
+import InputPasscode from './inputpasscode';
+import Dashboard from './Dashboard';
 // import Launcher from '../screen/Launcher';
 
 const Stack = createStackNavigator();

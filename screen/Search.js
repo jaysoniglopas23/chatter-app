@@ -17,7 +17,7 @@ import {ListItem, Avatar} from 'react-native-elements';
 import {getUsers, contains} from '../styles/index';
 import UserPost from '../styles/UserPost';
 import {width} from 'cli';
-import SearchGrid from '../homes/SearchGrid';
+import SearchGrid from './SearchGrid';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import {CardStyleInterpolators} from '@react-navigation/stack';

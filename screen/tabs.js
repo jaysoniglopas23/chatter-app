@@ -8,27 +8,27 @@ import {
 } from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 
-import Call from './../screen/Call';
-import Post from './../screen/Post';
-import Search from './../screen/Search';
-import Chat from '../homes/Chat';
-import Home from '../screen/Home';
-import Messages from '../screen/Messages';
-import PhotoLibrary from '../screen/Photolibrary';
-import User from '../homes/User';
-import Settings from '../homes/Settings';
-import Posttoboard from '../screen/Posttoboard';
-import CoinScreen from '../homes/CoinScreen';
-import Launcher from '../screen/launcher';
-import Dashboard from '../screen/Dashboard';
-import UserCanSearch from '../homes/UserCanSearch';
-import Heart from '../homes/Heart';
-import Login from '../screen/Login';
-import SearchGrid from '../homes/SearchGrid';
+import Call from './Call';
+import Post from './Post';
+import Search from './Search';
+import Chat from './Chat';
+import Home from './Home';
+import Messages from './Messages';
+import PhotoLibrary from './Photolibrary';
+import User from './User';
+import Settings from './Settings';
+import Posttoboard from './Posttoboard';
+import CoinScreen from './CoinScreen';
+import Launcher from './launcher';
+import Dashboard from './Dashboard';
+import UserCanSearch from './UserCanSearch';
+import Heart from './Heart';
+import Login from './Login';
+import SearchGrid from './SearchGrid';
 
-import caller from './../homes/caller';
+import caller from './caller';
 
-import Comment from '../homes/comment';
+import Comment from './comment';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

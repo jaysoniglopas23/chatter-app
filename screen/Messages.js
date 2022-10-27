@@ -21,9 +21,9 @@ import {
 } from '../styles/MessageStyles';
 import {CardStyleInterpolators} from '@react-navigation/stack';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
-import MessagesScrean from '../homes/MessageAll';
-import ReadMessages from '../homes/Readmessages';
-import AddMessages from '../homes/UnReadmessages';
+import MessagesScrean from './MessageAll';
+import ReadMessages from './Readmessages';
+import AddMessages from './UnReadmessages';
 
 const Stack = createStackNavigator();
 

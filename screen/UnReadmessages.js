@@ -20,7 +20,7 @@ import {
   MessageText,
   TextSection,
 } from '../styles/MessageStyles';
-import Tabs from '../navigation/tabs';
+import Tabs from './tabs';
 import Chat from './Chat';
 import {Message} from 'react-native-gifted-chat';
 
@@ -29,7 +29,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
-class Readmessages extends Component {
+class Addmessages extends Component {
   constructor(props) {
     super(props);
 
@@ -263,4 +263,13 @@ class Readmessages extends Component {
   }
 }
 
-export default Readmessages;
+export default Addmessages;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '140%',
+  },
+});
