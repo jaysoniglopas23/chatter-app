@@ -80,6 +80,7 @@ class Caller extends Component {
   }
 
   componentDidMount() {
+    this.initCall();
     let self = this;
 
     global.socket.on('twilio_callee_drop', function (ret) {
@@ -133,6 +134,21 @@ class Caller extends Component {
         calleeVideoOn: false,
       });
     });
+  }
+
+
+  initCall(){
+    global.socket.on('emit-someone-is-calling', function (ret) {
+      global.socket.off('emit-someone-is-calling');
+    });
+
+    let params = {};
+    params['nickname'] =this.state.nickname;
+    params['from'] = this.state.from;
+    params['to'] =this.state.to;
+
+    global.socket.emit('on-audio-call', params);
+
   }
 
   videoOn() {
@@ -275,7 +291,7 @@ class Caller extends Component {
             backgroundColor: 'black',
             flexDirection: 'column',
           }}>
-          <TwilioVideo
+          {/* <TwilioVideo
             style={{width: 300, height: 300}}
             ref={twilioVideo}
             onRoomDidConnect={this.onRoomDidConnect}
@@ -283,7 +299,7 @@ class Caller extends Component {
             onRoomDidFailToConnect={this.onRoomDidFailToConnect}
             onParticipantAddedVideoTrack={this.onParticipantAddedVideoTrack}
             onParticipantRemovedVideoTrack={this.onParticipantRemovedVideoTrack}
-          />
+          /> */}
 
           {this.state.calleeVideoOn ? (
             <TwilioVideoParticipantView

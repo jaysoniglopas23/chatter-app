@@ -356,13 +356,13 @@ class Settings extends Component {
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 -887,
+              bottom: windowHeight / 2 -827,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}
               style={{left: 9, top: 5, height: 20, width: 20}}
             />
-            <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
+            <Text style={{left: 15, top: 5, color: '#5B5B5B'}}>保存</Text>
           </TouchableOpacity>
         </View>
       </View>

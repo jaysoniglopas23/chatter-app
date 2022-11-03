@@ -66,6 +66,15 @@ const MessageStack = ({navigation}) => (
         headerShown: false,
       }}
     />
+    <Stack.Screen
+      name="caller"
+      component={caller}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
+      })}
+    />
   </Stack.Navigator>
 );
 
