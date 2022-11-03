@@ -177,13 +177,15 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#fff', height: '100%'}}>
+      <View style={{backgroundColor: '#fff', height:windowHeight - 40, width:windowWidth - 10,alignSelf:'center'}}>
         <View
           style={{
+            top:70,
             flex: 0.6,
             justifyContent: 'center',
             flexDirection: 'row',
-            backgroundColor: 'trasparent',
+            backgroundColor: 'transparent',
+            paddingBottom:"30%",
           }}>
           <View>
             <TouchableOpacity

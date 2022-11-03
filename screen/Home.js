@@ -332,7 +332,7 @@ class DisplayAnImage extends Component {
                 top: 26,
                 left: windowWidth / 10 - 121,
                 fontWeight: 'bold',
-                color: 'black',
+                color: '#5B5B5B',
                 fontSize: 17,
                 position: 'absolute',
                 width: windowWidth / 3,
@@ -345,7 +345,7 @@ class DisplayAnImage extends Component {
                 top: 46,
                 left: windowWidth / 10 - 121,
                 fontWeight: 'bold',
-                color: 'black',
+                color: '#5B5B5B',
                 position: 'absolute',
                 fontSize: 17,
                 width: windowWidth / 3,
@@ -367,8 +367,8 @@ class DisplayAnImage extends Component {
             <Image
               onPress={() => this.goSettings()}
               style={{
-                width: windowWidth / 7,
-                height: windowWidth / 9,
+                width: windowWidth / 10,
+                height: windowWidth / 12,
                 marginRight: windowWidth / 11,
                 right: windowWidth / 2.9,
                 resizeMode: 'contain',
@@ -392,8 +392,8 @@ class DisplayAnImage extends Component {
             <Image
               onPress={() => this.goCoin()}
               style={{
-                width: windowWidth / 9,
-                height: windowWidth / 9,
+                width: windowWidth / 12,
+                height: windowWidth / 12,
                 marginRight: 1,
                 right: 30,
                 resizeMode: 'contain',
@@ -474,7 +474,7 @@ class DisplayAnImage extends Component {
               flex: 1,
               flexDirection: 'row',
               justifyContent: 'flex-end',
-              marginTop: 265,
+              marginTop: 335,
               height:'10%',
               width:'23%',
               left:290,
@@ -496,6 +496,7 @@ class DisplayAnImage extends Component {
               height: windowHeight - 100,
               borderRadius: 30,
               flexDirection: 'column',
+              
             }}>
             <TouchableWithoutFeedback
               style={{width: windowWidth, height: windowHeight - 290}}
@@ -664,7 +665,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     // borderWidth: 1,
-    color: 'black',
+    color: '#5B5B5B',
     position: 'absolute',
     width: windowWidth / 2,
   },

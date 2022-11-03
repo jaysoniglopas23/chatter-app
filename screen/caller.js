@@ -20,17 +20,17 @@ import {
   findNodeHandle,
 } from 'react-native';
 
-import {
-  TwilioVideo,
-  TwilioVideoLocalView,
-  TwilioVideoParticipantView,
-} from 'react-native-twilio-video-webrtc';
+// import {
+//   TwilioVideo,
+//   TwilioVideoLocalView,
+//   TwilioVideoParticipantView,
+// } from 'react-native-twilio-video-webrtc';
 
 import Svg, {G, Path} from 'react-native-svg';
 
-import firestore from '@react-native-firebase/firestore';
+// import firestore from '@react-native-firebase/firestore';
 
-import InCallManager from 'react-native-incall-manager';
+// import InCallManager from 'react-native-incall-manager';
 
 // import StringUtils from '../utils/stringutils';
 
