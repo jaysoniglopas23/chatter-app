@@ -221,54 +221,55 @@ const Homestack = ({navigation}) => (
     });
     return focusHandler;
   }, [navigation]),
-  <Stack.Navigator>
-    <Stack.Screen
-      name="home"
-      component={Home}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <Stack.Screen
-      name="photoLibrary"
-      component={PhotoLibrary}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <Stack.Screen
-      name="Settings"
-      component={Settings}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <Stack.Screen
-      name="Coin"
-      component={CoinScreen}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <Stack.Screen
-      name="Heart"
-      component={Heart}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <Stack.Screen
-      name="User"
-      component={User}
-      options={{
-        headerShown: false,
-      }}
-    />
-  </Stack.Navigator>
+  (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="home"
+        component={Home}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="photoLibrary"
+        component={PhotoLibrary}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Coin"
+        component={CoinScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Heart"
+        component={Heart}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="User"
+        component={User}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  )
 );
 
 const Tabs = ({navigation}) => {
-  
   // React.useEffect(() => {
   //   const unsubscribe = navigation.addListener('focus', () => {
   //     Alert.alert('Refreshed');
@@ -339,11 +340,11 @@ const Tabs = ({navigation}) => {
       return {display: 'none'};
     } else if ((display = routeName === 'UserCanSearch')) {
       return {display: 'none'};
-    } else  if ((display = routeName === 'Comment')) {
+    } else if ((display = routeName === 'Comment')) {
       return {display: 'none'};
-    } else {  display = routeName === 'Post';
-    return {display: 'flex'};
-
+    } else {
+      display = routeName === 'Post';
+      return {display: 'flex'};
     }
   };
 
@@ -390,6 +391,28 @@ const Tabs = ({navigation}) => {
         }}
       />
       <Tab.Screen
+        name="Search"
+        component={SeachStack}
+        options={({route}) => ({
+          headerShown: false,
+          tabBarStyle: goTabBarSearch(route),
+          tabBarIcon: ({focused}) => (
+            <View
+              style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
+              <Image
+                source={require('../icon/Asset6.png')}
+                resizeMode="contain"
+                style={{
+                  width: 25,
+                  height: 25,
+                  tintColor: focused ? '#3EEE91' : '#000000',
+                }}
+              />
+            </View>
+          ),
+        })}
+      />
+      <Tab.Screen
         name="Messages"
         component={MessageStack}
         options={({route}) => ({
@@ -422,28 +445,6 @@ const Tabs = ({navigation}) => {
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
               <Image
                 source={require('../icon/Asset5.png')}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#3EEE91' : '#000000',
-                }}
-              />
-            </View>
-          ),
-        })}
-      />
-      <Tab.Screen
-        name="Search"
-        component={SeachStack}
-        options={({route}) => ({
-          headerShown: false,
-          tabBarStyle: goTabBarSearch(route),
-          tabBarIcon: ({focused}) => (
-            <View
-              style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
-              <Image
-                source={require('../icon/Asset6.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,

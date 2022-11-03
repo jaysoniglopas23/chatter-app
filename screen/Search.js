@@ -427,8 +427,8 @@ export default class Search extends Component {
               top: 15,
               borderWidth: 1,
               borderColor: 'black',
-              width: 120,
-              left: 160,
+              width: 200,
+              left: 70,
               color: 'black',
             }}
             onChangeText={this.searchItems}
@@ -445,10 +445,10 @@ export default class Search extends Component {
             }}
             source={require('../icon/Asset6.png')}
           />
-          <Text
+          {/* <Text
             style={{fontWeight: 'bold', color: 'black', bottom: 40, left: 40}}>
             プロフィール検索
-          </Text>
+          </Text> */}
           <Text
             style={{
               fontSize: 9,
