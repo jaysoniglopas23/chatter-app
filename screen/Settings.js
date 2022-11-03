@@ -268,7 +268,32 @@ class Settings extends Component {
         style={{
           height: windowHeight - 74,
           width: windowWidth,
+          
         }}>
+              <TouchableOpacity
+            style={{
+              marginLeft: 10,
+              marginTop: windowHeight / 10 - 65,
+              width: 50,
+              height: 30,
+            }}
+            onPress={() => this.goHome()}>
+            <Svg
+              style={{width: 20, height: 30}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512">
+              <Path
+                fill="black"
+                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+            </Svg>
+          </TouchableOpacity>
+          <View style={{alignSelf:'center',top:120,height:windowHeight -180,width:windowWidth-50}}>
         <View
           style={{
             alignSelf: 'center',
@@ -279,7 +304,7 @@ class Settings extends Component {
             width: 350,
             borderRadius: 4,
           }}>
-          <Text style={{left: 85, top: 13, color: 'black'}}>
+          <Text style={{left: 85, top: 13, color: '#5B5B5B'}}>
             最新情報を通知
           </Text>
           <Switch
@@ -297,59 +322,28 @@ class Settings extends Component {
             width: 350,
             borderRadius: 4,
           }}>
-          <Text style={{left: 85, top: 13, color: 'black'}}>いいねの通知</Text>
+          <Text style={{left: 85, top: 13, color:'#5B5B5B'}}>いいねの通知</Text>
           <Switch
             style={{left: 100}}
             onValueChange={value => this.getToggleSwitch2(value)}
             value={this.state.toggled2}></Switch>
         </View>
-
-        <View style={{width:windowWidth - 40  ,height:"86%" ,alignSelf:'center'}}>
-          <TouchableOpacity
-            onPress={() => this.goHome()}
-            style={{
-              backgroundColor: '#ECECEC',
-              marginHorizontal: 170,
-              height: 31,
-              right: 170,
-              marginBottom: 30,
-              flexDirection: 'row',
-              width: 50,
-              borderRadius: 2,
-              bottom: windowHeight / 2 - 970,
-            }}>
-            <Svg
-              style={{width: 20, height: 30}}
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fal"
-              data-icon="angle-left"
-              class="svg-inline--fa fa-angle-left fa-w-6"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 192 512">
-              <Path
-                fill="black"
-                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
-            </Svg>
-            <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
-          </TouchableOpacity>
-          <View
+        <View
             style={{
               alignSelf: 'center',
               backgroundColor: '#ECECEC',
               paddingHorizontal: 130,
               height: 31,
-              marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderWidth: 1,
               borderRadius: 2,
-              bottom: windowWidth/2 -270,
+              bottom: windowWidth/2 -360,
             }}>
-            <Text style={{left: 85, position: 'absolute', color: 'black',alignSelf:'center'}}>
+            <Text style={{left: 85, position: 'absolute', color:'#5B5B5B',alignSelf:'center'}}>
               Version {version}
             </Text>
+  
           </View>
           <TouchableOpacity
             onPress={() => this.Save()}
@@ -357,12 +351,12 @@ class Settings extends Component {
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
               height: 31,
-              left: 113,
+              left: 119,
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 -847,
+              bottom: windowHeight / 2 -887,
             }}>
             <Image
               source={require('../icon/icons8-save-50.png')}
