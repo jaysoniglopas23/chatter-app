@@ -383,11 +383,11 @@ export default class SearchGrid extends Component {
 
     return (
       <TouchableOpacity style={itemStyle} onPress={() => this.goCall(item.id)}>
-        <Text style={textStyle}>{item.name}</Text>
         <Image
           style={styles.iconRight}
           source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
         />
+        <Text style={textStyle}>{item.name}</Text>
       </TouchableOpacity>
     );
   };
@@ -416,34 +416,36 @@ export default class SearchGrid extends Component {
         <View
           style={{
             flexDirection: 'column',
+            marginTop: 30,
             bottom: 70,
             width: windowWidth - 10,
             alignSelf: 'center',
           }}>
           <TouchableOpacity
+            onPress={() => this.goToSearchGrid()}
             style={{
               width: windowWidth / 2 - 200,
-              top: 88,
+              top: 63,
               alignSelf: 'center',
-              marginLeft: 330,
+              marginLeft: 315,
             }}>
             <Image
               style={{
                 resizeMode: 'contain',
                 width: 25,
-                height: 22,
+                height: 20,
                 color: 'black',
               }}
               source={require('../icon/filter.png')}
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.goToSearch()}
+            onPress={() => this.goToSearchGrid()}
             style={{
               width: windowWidth / 2 - 200,
-              top: 65,
+              top: 43,
               alignSelf: 'center',
-              left: 137,
+              left: 120,
             }}>
             <Image
               style={{
@@ -456,13 +458,14 @@ export default class SearchGrid extends Component {
             />
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => this.goToSearchGrid()}
             style={{
               width: windowWidth / 2 - 200,
               top: 45,
               alignSelf: 'center',
               left: 110,
             }}>
-            <Image
+            {/* <Image
               style={{
                 resizeMode: 'contain',
                 width: 25,
@@ -470,7 +473,7 @@ export default class SearchGrid extends Component {
                 color: 'black',
               }}
               source={require('../icon/Asset45.png')}
-            />
+            /> */}
           </TouchableOpacity>
           <TextInput
             style={{
@@ -480,34 +483,35 @@ export default class SearchGrid extends Component {
               top: 15,
               borderWidth: 1,
               borderColor: 'black',
-              width: 120,
-              left: 160,
+              width: 200,
+              left: 70,
               color: 'black',
             }}
-            onChangeText={this.handleSearch}
-            value={this.state.query}
+            onChangeText={this.searchItems}
+            value={this.state.value}
           />
           <Image
             style={{
               resizeMode: 'contain',
               width: 25,
-              height: 25,
-              left: 10,
+              height: 30,
+              left: 15,
               bottom: 17,
               color: 'black',
             }}
             source={require('../icon/Asset6.png')}
           />
-          <Text
+          {/* <Text
             style={{fontWeight: 'bold', color: 'black', bottom: 40, left: 40}}>
             プロフィール検索
-          </Text>
+          </Text> */}
           <Text
             style={{
               fontSize: 9,
-              width: windowWidth / 2 - 120,
-              bottom: 68,
-              left: windowWidth / 2.4,
+              // width: '21%',
+              alignSelf: 'flex-start',
+              bottom: 56,
+              left: 78,
               backgroundColor: '#fff',
               color: 'black',
             }}>
@@ -573,9 +577,11 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     width: 100,
     height: 100,
-    marginBottom: 40,
-    marginRight: 180,
+    margin: 40,
+    // marginRight: 180,
+    // alignItems: 'center',
     top: 20,
+    left: windowWidth / 3.7
   },
   button: {
     backgroundColor: 'blue',
@@ -595,14 +601,17 @@ const styles = StyleSheet.create({
   },
   itemStyle: {
     backgroundColor: '#F7F7F7',
-    alignItems: 'center',
+    flexDirection: 'column',
+    // alignItems: 'center',
     justifyContent: 'center',
-    height: windowHeight / 4,
+    height: windowHeight / 3.2,
     flex: 1,
     width: '100%',
-    marginHorizontal: 2,
+    // marginTop: 10,
+    // marginHorizontal: 3,
     marginVertical: 2,
-    borderWidth: 18,
+    borderBottomWidth: 10,
+    borderTopWidth: 10,
     borderColor: '#fff',
   },
   itemInvisible: {
@@ -610,13 +619,14 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: 'gray',
-    position: 'absolute',
-    right: windowWidth / 8,
-    bottom: 60,
+    // position: 'absolute',
+    // right: windowWidth / 8,
+    // bottom: 60,
     // backgroundColor: 'white',
     padding: 1,
-    fontSize: 30,
-    marginLeft: 200,
+    fontSize: 20,
+    // marginLeft: 200,
     textAlign: 'center',
+    marginBottom: 50
   },
 });

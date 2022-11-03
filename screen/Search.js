@@ -361,6 +361,7 @@ export default class Search extends Component {
         <View
           style={{
             flexDirection: 'column',
+            marginTop: 30,
             bottom: 70,
             width: windowWidth - 10,
             alignSelf: 'center',
@@ -369,15 +370,15 @@ export default class Search extends Component {
             onPress={() => this.goToSearchGrid()}
             style={{
               width: windowWidth / 2 - 200,
-              top: 88,
+              top: 63,
               alignSelf: 'center',
-              marginLeft: 330,
+              marginLeft: 315,
             }}>
             <Image
               style={{
                 resizeMode: 'contain',
                 width: 25,
-                height: 22,
+                height: 20,
                 color: 'black',
               }}
               source={require('../icon/filter.png')}
@@ -387,9 +388,9 @@ export default class Search extends Component {
             onPress={() => this.goToSearchGrid()}
             style={{
               width: windowWidth / 2 - 200,
-              top: 65,
+              top: 43,
               alignSelf: 'center',
-              left: 137,
+              left: 120,
             }}>
             <Image
               style={{
@@ -409,7 +410,7 @@ export default class Search extends Component {
               alignSelf: 'center',
               left: 110,
             }}>
-            <Image
+            {/* <Image
               style={{
                 resizeMode: 'contain',
                 width: 25,
@@ -417,7 +418,7 @@ export default class Search extends Component {
                 color: 'black',
               }}
               source={require('../icon/Asset45.png')}
-            />
+            /> */}
           </TouchableOpacity>
           <TextInput
             style={{
@@ -438,8 +439,8 @@ export default class Search extends Component {
             style={{
               resizeMode: 'contain',
               width: 25,
-              height: 25,
-              left: 10,
+              height: 30,
+              left: 15,
               bottom: 17,
               color: 'black',
             }}
@@ -454,8 +455,8 @@ export default class Search extends Component {
               fontSize: 9,
               // width: '21%',
               alignSelf: 'flex-start',
-              bottom: 71,
-              left: 165,
+              bottom: 56,
+              left: 78,
               backgroundColor: '#fff',
               color: 'black',
             }}>
