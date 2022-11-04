@@ -33,7 +33,7 @@ import Svg, {G, Path} from 'react-native-svg';
 
 // import InCallManager from 'react-native-incall-manager';
 
-import Utils from './utils';
+// import Utils from './utils';
 
 const twilioVideo = React.createRef();
 
@@ -231,7 +231,7 @@ class Callee extends Component {
             backgroundColor: 'black',
             flexDirection: 'column',
           }}>
-          <TwilioVideo
+          {/* <TwilioVideo
             style={{width: 300, height: 300}}
             ref={twilioVideo}
             onRoomDidConnect={this.onRoomDidConnect}
@@ -239,7 +239,7 @@ class Callee extends Component {
             onRoomDidFailToConnect={this.onRoomDidFailToConnect}
             onParticipantAddedVideoTrack={this.onParticipantAddedVideoTrack}
             onParticipantRemovedVideoTrack={this.onParticipantRemovedVideoTrack}
-          />
+          /> */}
 
           {this.state.calleeVideoOn ? (
             <TwilioVideoParticipantView
@@ -258,7 +258,7 @@ class Callee extends Component {
           )}
 
           <View style={{position: 'absolute', top: 150, width: windowWidth}}>
-            <Image
+            {/* <Image
               source={{
                 uri:
                   'https://goodlookin.live:8002/temp/' +
@@ -270,7 +270,7 @@ class Callee extends Component {
                 alignSelf: 'center',
                 borderRadius: 25,
               }}
-            />
+            /> */}
 
             <Text
               style={{
@@ -282,7 +282,7 @@ class Callee extends Component {
                 color: '#FFF',
                 fontWeight: 'bold',
               }}>
-              {global.callerData.callerNickname}
+              {/* {global.callerData.callerNickname} */}
             </Text>
 
             <Text

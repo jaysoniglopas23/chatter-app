@@ -140,12 +140,14 @@ class Caller extends Component {
   initCall(){
     global.socket.on('emit-someone-is-calling', function (ret) {
       global.socket.off('emit-someone-is-calling');
+
+      // alert(222);
     });
 
     let params = {};
-    params['nickname'] =this.state.nickname;
-    params['from'] = this.state.from;
-    params['to'] =this.state.to;
+    params['nickname'] = global.nickname;
+    params['from'] = global.myid;
+    params['to'] =global.otherid;
 
     global.socket.emit('on-audio-call', params);
 

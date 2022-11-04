@@ -85,7 +85,7 @@ class Launcher extends Component {
       maintenance: false,
     };
 
-    // this.addGlobalListeners = this.addGlobalListeners.bind(this);
+    this.addGlobalListeners = this.addGlobalListeners.bind(this);
 
     global.passcodeCorrect = true;
   }
@@ -107,6 +107,37 @@ class Launcher extends Component {
       // this.getFcmToken();
     }
   };
+
+  addGlobalListeners(){
+    let self = this;
+
+    global.inCall = false;
+
+    // global.socket.off('');
+    // globalsocket.on('', function (ret) {
+
+    //   if(!global.inCall){
+    //     global.inCall = true;
+    //     self.props.navigationRef.current?.navigate('Callee');
+    //   }
+    // });
+
+    global.socket.on('emit-someone-is-calling', function (ret) {
+      global.socket.off('emit-someone-is-calling');
+      console.log(ret);
+
+      self.props.navigationRef.current?.navigate('Callee');
+    });
+
+
+    // let params = {};
+    // params['nickname'] =this.state.nickname;
+    // params['from'] = this.state.from;
+    // params['to'] =this.state.to;
+
+    // global.socket.emit('on-audio-call', params);
+
+  }
 
   // getFcmToken = async () => {
   //   let fcmToken = await AsyncStorage.getItem('fcmToken');
@@ -331,9 +362,13 @@ class Launcher extends Component {
 
               global.searchFields = data.searchSettings;
               // alert(global.age_verified);
-              // self.addGlobalListeners();
+              self.addGlobalListeners();
 
               self.props.navigationRef.current?.navigate('Tabs');
+
+              //  self.addGlobalListeners();
+
+              //  alert(1)
             });
           }
         });

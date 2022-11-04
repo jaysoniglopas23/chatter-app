@@ -23,9 +23,11 @@ import Call from './Call';
 import User from './User';
 import Launcher from './launcher';
 import PhotoLibrary from './Photolibrary';
+import Caller from './caller';
 
 import InputPasscode from './inputpasscode';
 import Dashboard from './Dashboard';
+import Callee from './callee';
 // import Launcher from '../screen/Launcher';
 
 const Stack = createStackNavigator();
@@ -87,6 +89,9 @@ class Appstacks extends Component {
 
           <Stack.Screen name="Dashboard">
             {props => <Dashboard navigationRef={navigationRef} />}
+          </Stack.Screen>
+          <Stack.Screen name="Callee">
+            {props => <Callee navigationRef={navigationRef} />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
