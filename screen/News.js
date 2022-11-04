@@ -45,10 +45,10 @@ class News extends Component {
   render() {
     return (
       <View style={{backgroundColor: '#ffff', height: '100%', flex: 1}}>
-        <View style={{flexDirection: 'column', left: 139, top: 30}}>
+        <View style={{flexDirection: 'column', left: 139, top: 100}}>
           <TouchableOpacity
             style={{
-              borderColor: 'black',
+              borderColor: '#cdd5d5',
               borderWidth: 1,
               right: 135,
               width: '98%',
@@ -59,7 +59,7 @@ class News extends Component {
                 paddingTop: 5,
                 paddingBottom: 5,
                 left: 10,
-                color: 'black',
+                color: '#5B5B5B',
                 top: 8,
               }}>
               利用規約
@@ -87,7 +87,7 @@ class News extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              borderColor: 'black',
+              borderColor: '#cdd5d5',
               borderWidth: 1,
               right: 135,
               width: '98%',
@@ -126,7 +126,7 @@ class News extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              borderColor: 'black',
+              borderColor: '#cdd5d5',
               borderWidth: 1,
               right: 135,
               width: '98%',

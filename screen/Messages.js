@@ -65,15 +65,15 @@ class Messages extends Component {
           }}>
           <View style={{flexDirection: 'row', left: 139}}>
             <TouchableOpacity onPress={() => this.goMessageScreen()}>
-              <Text style={{paddingTop: 10, right: 95, color: 'black'}}>
+              <Text style={{paddingTop: 10, right: 95, color: '#5B5B5B'}}>
                 全て
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.goAddMessage()}>
-              <Text style={{paddingTop: 10, color: 'black'}}>既読</Text>
+              <Text style={{paddingTop: 10, color: '#5B5B5B'}}>既読</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.goReadMessages()}>
-              <Text style={{paddingTop: 10, left: 95, color: 'black'}}>
+              <Text style={{paddingTop: 10, left: 95, color: '#5B5B5B'}}>
                 未読
               </Text>
             </TouchableOpacity>

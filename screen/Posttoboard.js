@@ -326,7 +326,7 @@ class Posttoboard extends Component {
           </TouchableOpacity>
           <Text
             style={{
-              color: 'gray',
+              color: '#5B5B5B',
               fontSize: 25,
               fontWeight: 'bold',
               height: '100%',
@@ -394,7 +394,7 @@ class Posttoboard extends Component {
               marginTop: windowHeight / 12 - 125,
               backgroundColor: '#fff',
               left: windowHeight / 86,
-              color: 'black',
+              color: '#5B5B5B',
               alignSelf: 'flex-start',
             }}>
             コメント
@@ -409,7 +409,7 @@ class Posttoboard extends Component {
             height: 20,
           }}>
           <TouchableOpacity onPress={() => this.postPhoto()}>
-            <Text style={{color: 'black', alignSelf: 'center', top: 1}}>
+            <Text style={{color: '#5B5B5B', alignSelf: 'center', top: 1}}>
               アルバム選択
             </Text>
           </TouchableOpacity>
@@ -422,19 +422,19 @@ class Posttoboard extends Component {
             alignSelf: 'center',
             height: windowHeight / 2 - 150,
           }}>
-          <Text style={{color: 'black', fontSize: 16}}>※掲示板注意事項</Text>
-          <Text style={{color: 'black', fontSize: 16, top: 15}}>
+          <Text style={{color: '#5B5B5B', fontSize: 16}}>※掲示板注意事項</Text>
+          <Text style={{color: '#5B5B5B', fontSize: 16, top: 15}}>
             掲示板は不特定多数の方が見れる場所になります。
           </Text>
-          <Text style={{color: 'black', fontSize: 16, top: 30}}>
+          <Text style={{color: '#5B5B5B', fontSize: 16, top: 30}}>
             電話番号、ラインID、メールアドレス、
           </Text>
-          <Text style={{color: 'black', fontSize: 16, top: 45}}>
+          <Text style={{color: '#5B5B5B', fontSize: 16, top: 45}}>
             SNSアカウント等の古竿はお控えください。
           </Text>
           <Text
             style={{
-              color: 'black',
+              color: '#5B5B5B',
               fontSize: 16,
               top: 60,
               width: windowWidth - 40,
@@ -443,7 +443,7 @@ class Posttoboard extends Component {
           </Text>
           <Text
             style={{
-              color: 'black',
+              color: '#5B5B5B',
               fontSize: 16,
               top: 75,
               width: windowWidth - 40,
@@ -464,7 +464,7 @@ class Posttoboard extends Component {
             <TouchableOpacity onPress={() => this.goSave()}>
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   alignSelf: 'center',
                   top: 1,
                   fontSize: 16,

@@ -520,9 +520,9 @@ class Chat extends Component {
             }}>
             {(() => {
               if (global.call_minutes != 0) {
-                if (this.state.msg_from == 3) {
+                if (this.state.msg_from <= 3) {
                   return (
-                    <TouchableOpacity onPress={() => this.startCall()}>
+                    <TouchableOpacity>
                      <Svg
               style={{width: 20, height: 30}}
               aria-hidden="true"

@@ -474,10 +474,10 @@ class DisplayAnImage extends Component {
               flex: 1,
               flexDirection: 'row',
               justifyContent: 'flex-end',
-              marginTop: 335,
+              marginTop: 325,
               height:'10%',
               width:'23%',
-              left:290,
+              left:280,
               position: 'absolute',
               backgroundColor:'transparent',
              

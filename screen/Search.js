@@ -427,7 +427,7 @@ export default class Search extends Component {
               height: 36,
               top: 15,
               borderWidth: 1,
-              borderColor: 'black',
+              borderColor: '#cdd5d5',
               width: 200,
               left: 70,
               color: 'black',
@@ -458,7 +458,7 @@ export default class Search extends Component {
               bottom: 56,
               left: 78,
               backgroundColor: '#fff',
-              color: 'black',
+              color: '#5B5B5B',
             }}>
             プロフィール検索
           </Text>

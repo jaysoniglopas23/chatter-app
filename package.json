@@ -34,7 +34,7 @@
     "react-native-base": "^1.1.0",
     "react-native-blur": "^3.2.2",
     "react-native-cli": "^2.0.1",
-    "react-native-date-picker": "^4.2.0",
+    "react-native-date-picker": "^4.2.6",
     "react-native-device-info": "^9.0.2",
     "react-native-document-picker": "^8.1.0",
     "react-native-elements": "^3.4.2",

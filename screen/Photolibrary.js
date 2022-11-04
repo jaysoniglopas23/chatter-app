@@ -11,7 +11,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {launchImageLibrary} from 'react-native-image-picker';
 import Storage from '../utils/storage';
 import axios from 'axios';
+import Svg, {G, Path} from 'react-native-svg';
 
+
+const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const DeviceWidth = Dimensions.get('window').width;
 const Stack = createStackNavigator();
@@ -44,7 +47,7 @@ class PhotoLibrary extends Component {
       boardid: '',
     };
 
-    this.goBack = this.goBack.bind(this);
+    this.goHome = this.goHome.bind(this);
 
     this.goSave = this.goSave.bind(this);
 
@@ -161,13 +164,37 @@ class PhotoLibrary extends Component {
     // this.props.navigationRef.current?.navigate('Dashboard');
   }
 
-  goBack() {
-    this.props.navigation.navigate('home');
+  goHome() {
+    this.props.navigation.push('home');
   }
 
   render() {
     return (
-      <View style={{right: 17}}>
+      <View style={{right: 17 ,width:windowWidth  ,height:windowHeight}}>
+      <View style={{width:windowWidth - 50,alignSelf:'center',height:windowHeight - 50}}>
+         <TouchableOpacity
+            style={{
+              marginLeft: 10,
+              marginTop: windowHeight / 10 - 65,
+              width: 50,
+              height: 30,
+            }}
+            onPress={() => this.goHome()}>
+            <Svg
+              style={{width: 20, height: 30}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512">
+              <Path
+                fill="black"
+                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+            </Svg>
+          </TouchableOpacity>
         {this.state.hasUploadPhoto ? (
            <TouchableOpacity onPress={() => this.getImage()}>
           <Image
@@ -253,6 +280,7 @@ class PhotoLibrary extends Component {
           color="#69747f"
         />
       )}
+      </View>
       </View>
     );
   }

@@ -17,6 +17,7 @@ import {
 import {Avatar} from 'react-native-elements';
 import {Dropdown} from 'react-native-material-dropdown-v2';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-date-picker'
 import moment from 'moment';
 import Storage from '../utils/storage';
 import Svg, {G, Path} from 'react-native-svg';
@@ -215,6 +216,10 @@ class Happy extends Component {
   componentDidMount() {
     this.getProfile();
     // this.initProfile();
+  }
+
+  componentWillUnmount(){
+    this.getProfile();
   }
 
   // initProfile() {
@@ -746,7 +751,7 @@ getBloodtype(bloodtype){
                       left: 10,
                       backgroundColor: '#fff',
                       // marginHorizontal: 145,
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
                       bottom: 42,
                       alignSelf: 'flex-start',
@@ -792,7 +797,7 @@ getBloodtype(bloodtype){
                       backgroundColor: '#fff',
                       left: 10,
                       alignSelf: 'flex-start',
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
 
                       // this is email*********************
@@ -838,7 +843,7 @@ getBloodtype(bloodtype){
                       fontSize: 12,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is self introduction*********************
@@ -883,7 +888,7 @@ getBloodtype(bloodtype){
                       backgroundColor: '#fff',
                       left: 10,
                       alignSelf: 'flex-start',
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
                       // this is  area live in*********************
                     }}>
@@ -926,7 +931,7 @@ getBloodtype(bloodtype){
                       bottom: 103,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is character*********
@@ -970,7 +975,7 @@ getBloodtype(bloodtype){
                       bottom: 42,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is hobbie*********
@@ -1014,7 +1019,7 @@ getBloodtype(bloodtype){
                       bottom: 42,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is job*********
@@ -1058,7 +1063,7 @@ getBloodtype(bloodtype){
                       bottom: 42,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
                       alignSelf: 'flex-start',
                       // this is company*********
@@ -1102,7 +1107,7 @@ getBloodtype(bloodtype){
                       bottom: 42,
                       backgroundColor: '#fff',
                       left: 10,
-                      color: 'gray',
+                      color: '#5B5B5B',
                       fontSize: 10,
                       alignSelf: 'flex-start',
                       // Graduating school*************
@@ -1135,14 +1140,14 @@ getBloodtype(bloodtype){
                 bottom: 38,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
               }}>
               血液型
             </Text>
-            <View>
+            <View style={{paddingBottom:30}}>
               <TouchableOpacity
                 style={{
                   borderWidth: 1,
@@ -1153,20 +1158,22 @@ getBloodtype(bloodtype){
                   left: 25,
                   borderColor: '#cdd5d5',
                   alignItems: 'center',
+                  // backgroundColor:'red',
                 }}
-                onPress={() => this.openDateModal()}></TouchableOpacity>
-              <TouchableWithoutFeedback
-                style={{width: windowWidth, height: 40}}
-                onPress={() => this.closeDateModal()}>
-                <View style={{width: '100%', height: 40}}>
+                onPress={() => this.openDateModal()}>
+
+              {/* <TouchableWithoutFeedback
+                style={{width:0, height: 0 ,color:'black'}}
+                onPress={() => this.closeDateModal()}> */}
+                <View style={{width: '100%', height: 40,alignSelf:'center' ,top:25}}>
                   <Text
                     style={{bottom: 10, alignSelf: 'center', color: 'black'}}
                     value={this.state.dob}
                     onChangeText={value => this.handleDate(value)}
-                    placeholder={this.state.dob}></Text>
+                    >{this.state.dob}</Text>
                 </View>
-              </TouchableWithoutFeedback>
-
+              {/* </TouchableWithoutFeedback> */}
+              </TouchableOpacity>
               <Modal
                 animationType="slide"
                 transparent={true}
@@ -1175,7 +1182,8 @@ getBloodtype(bloodtype){
                   modalDatePicker={this.state.modalDatePicker}
                   textColor={global.textColor}
                   testID="dateTimePicker"
-                  value={new Date()}
+                  value={new Date(this.state.dob)}
+                  // value = {}
                   mode={'date'}
                   // is24Hour={true}
                   display="spinner"
@@ -1184,10 +1192,10 @@ getBloodtype(bloodtype){
               </Modal>
               <Text
                 style={{
-                  bottom: 76,
+                  bottom: 36,
                   backgroundColor: '#fff',
                   left: 30,
-                  color: 'gray',
+                  color: '#5B5B5B',
                   fontSize: 10,
                   alignSelf: 'flex-start',
 
@@ -1233,7 +1241,7 @@ getBloodtype(bloodtype){
                 fontSize: 12,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1283,7 +1291,7 @@ getBloodtype(bloodtype){
                 bottom: 76,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate prefGender*********
@@ -1330,7 +1338,7 @@ getBloodtype(bloodtype){
                 bottom: 76,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1371,7 +1379,7 @@ getBloodtype(bloodtype){
                 fontSize: 12,
                 backgroundColor: '#fff',
                 left: 30,
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1413,7 +1421,7 @@ getBloodtype(bloodtype){
 
                 backgroundColor: '#fff',
 
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1454,7 +1462,7 @@ getBloodtype(bloodtype){
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1495,7 +1503,7 @@ getBloodtype(bloodtype){
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1536,7 +1544,7 @@ getBloodtype(bloodtype){
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate bloodtype*********
@@ -1577,7 +1585,7 @@ getBloodtype(bloodtype){
                 left: 30,
                 fontSize: 12,
                 backgroundColor: '#fff',
-                color: 'gray',
+                color: '#5B5B5B',
                 fontSize: 10,
                 alignSelf: 'flex-start',
                 // this is graduate holiday*********

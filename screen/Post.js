@@ -816,7 +816,7 @@ class Post extends Component {
             height: 41,
             top: 12,
             left: 17,
-            borderColor: 'black',
+            borderColor: '#cdd5d5',
           }}>
           <TextInput
             style={{backgroundColor: '#fff', color: 'black'}}
@@ -844,7 +844,7 @@ class Post extends Component {
                 textAlign: 'center',
                 top: 7,
                 fontSize: 11,
-                color: 'black',
+                color: '#5B5B5B',
               }}>
               新しく投稿
             </Text>
@@ -857,7 +857,7 @@ class Post extends Component {
             bottom: 68,
             left: windowWidth / 15,
             backgroundColor: '#fff',
-            color: 'black',
+            color: '#5B5B5B',
           }}>
           投稿を検索する
         </Text>

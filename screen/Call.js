@@ -545,7 +545,7 @@ export default class Call extends Component {
               fontSize: 10,
               color: 'black',
               borderWidth: 1,
-              borderColor: 'black',
+              borderColor: '#cdd5d5',
               width: windowWidth / 1.3,
               alignSelf: 'center',
             }}

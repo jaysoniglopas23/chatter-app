@@ -185,7 +185,7 @@ class Dashboard extends Component {
             justifyContent: 'center',
             flexDirection: 'row',
             backgroundColor: 'transparent',
-            paddingBottom:"30%",
+            paddingBottom:"40%",
           }}>
           <View>
             <TouchableOpacity
