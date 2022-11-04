@@ -147,7 +147,7 @@ class Caller extends Component {
     let params = {};
     params['nickname'] = global.nickname;
     params['from'] = global.myid;
-    params['to'] =global.otherid;
+    params['to_id'] =global.otherid;
 
     global.socket.emit('on-audio-call', params);
 
