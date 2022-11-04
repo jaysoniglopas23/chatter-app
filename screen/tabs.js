@@ -422,28 +422,6 @@ const Tabs = ({navigation}) => {
         })}
       />
       <Tab.Screen
-        name="Messages"
-        component={MessageStack}
-        options={({route}) => ({
-          headerShown: false,
-          tabBarStyle: goTabBarChat(route),
-          tabBarIcon: ({focused}) => (
-            <View
-              style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
-              <Image
-                source={require('../icon/Asset4.png')}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#3EEE91' : '#000000',
-                }}
-              />
-            </View>
-          ),
-        })}
-      />
-      <Tab.Screen
         name="Call"
         component={CallStack}
         options={({route}) => ({
@@ -465,6 +443,29 @@ const Tabs = ({navigation}) => {
           ),
         })}
       />
+      <Tab.Screen
+        name="Messages"
+        component={MessageStack}
+        options={({route}) => ({
+          headerShown: false,
+          tabBarStyle: goTabBarChat(route),
+          tabBarIcon: ({focused}) => (
+            <View
+              style={{alignItems: 'center', justifyContent: 'center', top: 1}}>
+              <Image
+                source={require('../icon/Asset4.png')}
+                resizeMode="contain"
+                style={{
+                  width: 25,
+                  height: 25,
+                  tintColor: focused ? '#3EEE91' : '#000000',
+                }}
+              />
+            </View>
+          ),
+        })}
+      />
+
       <Tab.Screen
         name="Post"
         component={PostStack}
