@@ -138,7 +138,7 @@ class Calls extends Component {
           <Text
             style={{
               fontWeight: 'bold',
-              color: 'black',
+              color: '#5B5B5B',
               justifyContent: 'center',
               fontSize: 20,
             }}>

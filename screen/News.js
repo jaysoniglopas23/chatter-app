@@ -89,6 +89,8 @@ class News extends Component {
             style={{
               borderColor: '#cdd5d5',
               borderWidth: 1,
+              borderBottomWidth:0,
+              borderTopWidth:0,
               right: 135,
               width: '98%',
             }}

@@ -124,7 +124,9 @@ class Launcher extends Component {
 
     global.socket.on('emit-someone-is-calling', function (ret) {
       global.socket.off('emit-someone-is-calling');
-      console.log(ret);
+
+
+      // global.callerData = ret;
 
       self.props.navigationRef.current?.navigate('Callee');
     });

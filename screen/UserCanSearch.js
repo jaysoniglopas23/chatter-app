@@ -536,7 +536,7 @@ const styles = StyleSheet.create({
   Mtxt: {
     bottom: 1,
     left: 11,
-    color: 'black',
+    color: '#5B5B5B',
   },
 
   button: {
@@ -582,7 +582,8 @@ const styles = StyleSheet.create({
   view: {
     top: 10,
     borderWidth: 1,
-    borderColor: '#cdd5d5',
+    borderColor: 'transparent',
+    backgroundColor:'#F7F7F7',
     height: 50,
     width: windowWidth - 40,
     alignSelf: 'center',
@@ -595,7 +596,8 @@ const styles = StyleSheet.create({
   view1: {
     top: 10,
     borderWidth: 1,
-    borderColor: '#cdd5d5',
+    borderColor: 'transparent',
+    backgroundColor:'#F7F7F7',
     height: 100,
     width: windowWidth - 40,
     alignSelf: 'center',
@@ -687,7 +689,7 @@ const styles = StyleSheet.create({
   text: {
     bottom: 5,
     left: 11,
-    color: 'black',
+    color: '#5B5B5B',
   },
 
   Image: {
@@ -695,7 +697,8 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 1,
-    left: 15,
+    // left: 15,
     borderWidth: 1,
+    alignSelf:"center"
   },
 });

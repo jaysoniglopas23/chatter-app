@@ -37,7 +37,7 @@ class Pacman extends Component {
               top: 10,
             }}
           />
-          <Text style={{top: 18, left: 5, color: 'black', fontWeight: 'bold'}}>
+          <Text style={{top: 18, left: 5, color: '#5B5B5B', fontWeight: 'bold'}}>
             おしゃべりさん使い方
           </Text>
         </View>
@@ -48,11 +48,11 @@ class Pacman extends Component {
             alignSelf: 'center',
             fontWeight: 'bold',
           }}>
-          <Text style={{fontSize: 11, color: 'black'}}>
+          <Text style={{fontSize: 11, color: '#5B5B5B'}}>
             おしゃべりさんをインストールしていただきありがとうございます。
           </Text>
           <Text
-            style={{fontSize: 11, color: 'black', top: 10, fontWeight: 'bold'}}>
+            style={{fontSize: 11, color: '#5B5B5B', top: 10, fontWeight: 'bold'}}>
             おしゃべりさんは、誰もが楽しく色々な形でお話を楽しめる場所です。メッセージのやり取り、通話、掲示板、様々な形で全国の人と繋がり、おしゃべりを楽しめます。
           </Text>
         </View>
@@ -60,7 +60,7 @@ class Pacman extends Component {
           style={{
             marginHorizontal: 1,
             borderWidth: 1,
-            borderColor: 'black',
+            borderColor: '#cdd5d5',
             marginBottom: 265,
             top: 40,
             width:windowWidth-10,
@@ -81,7 +81,7 @@ class Pacman extends Component {
               />
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -102,7 +102,7 @@ class Pacman extends Component {
               />
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -111,7 +111,7 @@ class Pacman extends Component {
               </Text>
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -132,7 +132,7 @@ class Pacman extends Component {
               />
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -141,7 +141,7 @@ class Pacman extends Component {
               </Text>
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -164,7 +164,7 @@ class Pacman extends Component {
               />
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -185,7 +185,7 @@ class Pacman extends Component {
               />
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -194,7 +194,7 @@ class Pacman extends Component {
               </Text>
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -215,7 +215,7 @@ class Pacman extends Component {
               />
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -224,7 +224,7 @@ class Pacman extends Component {
               </Text>
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -245,7 +245,7 @@ class Pacman extends Component {
               />
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -256,7 +256,7 @@ class Pacman extends Component {
               </Text>
               <Text
                 style={{
-                  color: 'black',
+                  color: '#5B5B5B',
                   left: 55,
                   bottom: 23,
                   fontWeight: 'bold',
@@ -296,7 +296,7 @@ class Pacman extends Component {
               fill="black"
               d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
           </Svg>
-          <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
+          <Text style={{right: 0, top: 6, color: '#5B5B5B'}}>戻る</Text>
         </TouchableOpacity>
         </View>
       </View>

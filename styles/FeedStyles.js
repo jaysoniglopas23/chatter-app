@@ -88,7 +88,7 @@ export const UserName = styled.Text`
   font-size: 14px;
   font-weight: bold;
   font-family: 'Lato-Regular';
-  color: #100c08;
+  color: #5B5B5B;
 `;
 
 export const PostTime = styled.Text`
@@ -101,27 +101,27 @@ export const PostTime = styled.Text`
 
 export const MessageText = styled.Text`
   font-size: 14px;
-  color: #333333;
+  color: #5B5B5B;
 `;
 
 export const MessageText1 = styled.Text`
   font-size: 12px;
   left: 10px;
   top: 6px;
-  color: #333333;
+  color: #5B5B5B;
 `;
 
 export const MessageText2 = styled.Text`
   font-size: 12px;
   top: 6px;
-  color: #333333;
+  color: #5B5B5B;
   left: 27px;
 `;
 
 export const MessageText3 = styled.Text`
   font-size: 12px;
   top: 6px;
-  color: #333333;
+  color: #5B5B5B;
   left: 27px;
 `;
 
@@ -137,7 +137,7 @@ export const UserInfo1 = styled.TouchableOpacity`
 `;
 
 export const UserInfo2 = styled.TouchableOpacity`
-  bottom: 20px;
+  bottom: 28px;
   left: 150px;
   background-color: #dddddd;
   margin-horizontal: 117px;
@@ -148,7 +148,7 @@ export const UserInfo2 = styled.TouchableOpacity`
 `;
 
 export const UserInfo3 = styled.TouchableOpacity`
-  bottom: 49px;
+  bottom: 58px;
   left: 80px;
   background-color: #dddddd;
   margin-horizontal: 117px;
@@ -158,7 +158,7 @@ export const UserInfo3 = styled.TouchableOpacity`
 `;
 
 export const UserInfo4 = styled.TouchableOpacity`
-  bottom: 22px;
+  bottom: 29px;
   left: 140px;
   // background-color: #dddddd;
   margin-horizontal: 117px;

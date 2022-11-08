@@ -740,7 +740,7 @@ getBloodtype(bloodtype){
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.nickname}
                     value={this.state.nickname}
@@ -785,7 +785,7 @@ getBloodtype(bloodtype){
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
                       height: 80,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.email}
                     value={this.state.email}
@@ -831,7 +831,7 @@ getBloodtype(bloodtype){
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.introduction}
                     value={this.state.introduction}
@@ -876,7 +876,7 @@ getBloodtype(bloodtype){
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.about}
                     value={this.state.about}
@@ -920,7 +920,7 @@ getBloodtype(bloodtype){
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.character}
                     value={this.state.character}
@@ -964,7 +964,7 @@ getBloodtype(bloodtype){
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.hobbie}
                     value={this.state.hobbie}
@@ -1008,7 +1008,7 @@ getBloodtype(bloodtype){
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.job_title}
                     value={this.state.job_title}
@@ -1052,7 +1052,7 @@ getBloodtype(bloodtype){
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.company}
                     value={this.state.company}
@@ -1096,7 +1096,7 @@ getBloodtype(bloodtype){
                       left: 5,
                       borderColor: '#cdd5d5',
                       borderRadius: 4,
-                      color: 'black',
+                      color: '#5B5B5B',
                     }}
                     placeholder={this.state.school}
                     value={this.state.school}
@@ -1128,7 +1128,7 @@ getBloodtype(bloodtype){
                 borderRadius: 1,
                 borderColor: '#cdd5d5',
                 borderRadius: 4,
-                color: 'black',
+                color: '#5B5B5B',
               }}
               // label={this.state.bloodtype}
               data={Bloodtype}
@@ -1170,6 +1170,8 @@ getBloodtype(bloodtype){
                     style={{bottom: 10, alignSelf: 'center', color: 'black'}}
                     value={this.state.dob}
                     onChangeText={value => this.handleDate(value)}
+                    // placeholder={this.state.dob}
+                    // placeholderTextColor="black"
                     >{this.state.dob}</Text>
                 </View>
               {/* </TouchableWithoutFeedback> */}
@@ -1180,9 +1182,11 @@ getBloodtype(bloodtype){
                 visible={this.state.modalDatePicker}>
                 <DateTimePicker
                   modalDatePicker={this.state.modalDatePicker}
+                  onCancel={() => this.closeDateModal()}
+                  onOk={() => this.closeDateModal()}
                   textColor={global.textColor}
                   testID="dateTimePicker"
-                  value={new Date(this.state.dob)}
+                  value={new Date()}
                   // value = {}
                   mode={'date'}
                   // is24Hour={true}
@@ -1228,7 +1232,7 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1275,7 +1279,7 @@ getBloodtype(bloodtype){
                 labelStyle={{
                   fontSize: 9,
                   paddingHorizontal: 0,
-                  width: windowWidth / 6.5,
+                  width: windowWidth / 6.5,color:'#5B5B5B'
                 }}
                 disabled={false}
                 formHorizontal={true}
@@ -1322,7 +1326,7 @@ getBloodtype(bloodtype){
                 labelStyle={{
                   fontSize: 9,
                   paddingHorizontal: 0,
-                  width: windowWidth / 6.5,
+                  width: windowWidth / 6.5,color:'#5B5B5B'
                 }}
                 disabled={false}
                 formHorizontal={true}
@@ -1366,7 +1370,7 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1407,7 +1411,7 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1449,7 +1453,7 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1490,7 +1494,7 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1531,7 +1535,7 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1572,7 +1576,7 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30}}
+                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1623,10 +1627,10 @@ getBloodtype(bloodtype){
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 192 512">
               <Path
-                fill="black"
+                fill="#5B5B5B"
                 d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
             </Svg>
-            <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
+            <Text style={{right: 0, top: 6, color: '#5B5B5B'}}>戻る</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -1643,7 +1647,7 @@ getBloodtype(bloodtype){
               source={require('../icon/icons8-save-50.png')}
               style={{left: 9, top: 5, height: 20, width: 20}}
             />
-            <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
+            <Text style={{left: 15, top: 5, color: '#5B5B5B'}}>保存</Text>
           </TouchableOpacity>
         </View>
       </View>

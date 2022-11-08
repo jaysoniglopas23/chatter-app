@@ -9,8 +9,9 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.List;
-//import com.twiliorn.library.TwilioPackage;
+import com.twiliorn.library.TwilioPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -30,10 +31,13 @@ public class MainApplication extends Application implements ReactApplication {
       // return Arrays.<ReactPackage>asList(
       // new TwilioPackage()
       // );
+
+
+      packages.add(new TwilioPackage());
+
        return packages;
-//      return Arrays.<ReactPackage>asList(
-//          new TwilioPackage()
-//      );
+
+
     }
 
     @Override

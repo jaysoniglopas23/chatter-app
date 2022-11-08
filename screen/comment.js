@@ -458,7 +458,7 @@ class Comment extends Component {
               style={{
                 width: '100%',
                 padding: 10,
-                paddingBottom: 30,
+                paddingBottom:windowHeight/ 18,
                 flexDirection: 'row',
                 alignItems: 'flex-end',
               }}>
@@ -475,7 +475,8 @@ class Comment extends Component {
                   lineHeight: 20,
                   borderRadius: 5,
                   padding: 5,
-                  textColor: 'black',
+                  // textColor: 'black',
+                  color:'#5B5B5B',
                   fontSize: 13,
                 }}
                 onChangeText={comment => this.setState({comment})}

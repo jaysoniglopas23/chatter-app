@@ -26,7 +26,7 @@ import Heart from './Heart';
 import Login from './Login';
 import SearchGrid from './SearchGrid';
 
-import caller from './caller';
+import Caller from './caller';
 
 import Comment from './comment';
 
@@ -68,7 +68,7 @@ const MessageStack = ({navigation}) => (
     />
     <Stack.Screen
       name="caller"
-      component={caller}
+      component={Caller}
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
@@ -162,7 +162,7 @@ const CallStack = ({navigation}) => (
     />
     <Stack.Screen
       name="caller"
-      component={caller}
+      component={Caller}
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
@@ -392,7 +392,7 @@ const Tabs = ({navigation}) => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#3EEE91' : '#000000',
+                  tintColor: focused ? '#3EEE91' : '#5B5B5B',
                 }}
               />
             </View>
@@ -414,7 +414,7 @@ const Tabs = ({navigation}) => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#3EEE91' : '#000000',
+                  tintColor: focused ? '#3EEE91' : '#5B5B5B',
                 }}
               />
             </View>
@@ -436,7 +436,7 @@ const Tabs = ({navigation}) => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#3EEE91' : '#000000',
+                  tintColor: focused ? '#3EEE91' :'#5B5B5B',
                 }}
               />
             </View>
@@ -458,7 +458,7 @@ const Tabs = ({navigation}) => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#3EEE91' : '#000000',
+                  tintColor: focused ? '#3EEE91' : '#5B5B5B',
                 }}
               />
             </View>
@@ -481,7 +481,7 @@ const Tabs = ({navigation}) => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#3EEE91' : '#000000',
+                  tintColor: focused ? '#3EEE91' : '#5B5B5B',
                 }}
               />
             </View>

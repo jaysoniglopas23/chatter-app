@@ -498,10 +498,17 @@ export default class Call extends Component {
             />
           )}
           <Text style={textStyle}>{item.name}</Text>
+          {item.path == '' ? (
           <Image
+            style={styles.iconRight}
+            source={require('../icon/userprofile.png')}
+          />
+          ) : (
+            <Image
             style={styles.iconRight}
             source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
           />
+          )}
         </TouchableOpacity>
       );
     } else {
@@ -555,14 +562,14 @@ export default class Call extends Component {
           />
           <Text
             style={{
-              fontSize: 10,
+              fontSize: 12,
               alignSelf: 'flex-start',
-              bottom: 45,
+              bottom: 49,
               left: windowWidth / 7,
               backgroundColor: '#fff',
-              color: 'black',
+              color: '#5B5B5B',
             }}>
-            名前を検索する
+            キーワード
           </Text>
         </View>
         <View style={{top: 40}}>
@@ -604,12 +611,15 @@ const styles = StyleSheet.create({
   },
   iconCanCall: {
     marginTop: 40,
+    bottom:100,
     resizeMode: 'contain',
-    width: 15,
-    height: 15,
+    width: 30,
+    height: 30,
     marginBottom: 0,
-    marginRight: 300,
+    marginLeft: 80,
+    left:windowWidth / 1.7,
     tintColor: '#3EEE91',
+    position: 'absolute',
   },
   iconCantCall: {
     marginTop: 20,
@@ -625,7 +635,10 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 50,
-    marginRight: 180,
+    // marginRight: 180,
+    right:220,
+    position: 'absolute',
+    
   },
   button: {
     backgroundColor: 'blue',
@@ -654,6 +667,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     borderWidth: 18,
     borderColor: '#fff',
+    // flexDirection:'column',
   },
   itemInvisible: {
     backgroundColor: 'transparent',
@@ -661,10 +675,12 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'gray',
     position: 'absolute',
-    right: windowWidth / 6,
-    bottom: 50,
-    // backgroundColor: 'white',
-    padding: 1,
-    fontSize: 30,
+    right: windowWidth / 9 -30,
+    bottom: 25,
+    // backgroundColor: 'red',
+    // padding: 1,
+    fontSize: 25,
+    width:windowWidth/2,
+    // alignSelf:'flex-end'
   },
 });

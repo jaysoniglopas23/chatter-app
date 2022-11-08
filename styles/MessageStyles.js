@@ -49,7 +49,7 @@ export const UserName = styled.Text`
   font-size: 14px;
   font-weight: bold;
   font-family: 'Lato-Regular';
-  color: #100c08;
+  color: #5B5B5B;
   position: absolute;
 `;
 
@@ -64,7 +64,7 @@ export const PostTime = styled.Text`
 
 export const MessageText = styled.Text`
   font-size: 14px;
-  color: #333333;
+  color: #5B5B5B;
 `;
 
 export const Message1Text = styled.Text`

@@ -49,6 +49,7 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 import Svg, {G, Path} from 'react-native-svg';
 import Modal from 'react-native-modal';
+import { set } from 'react-native-reanimated';
 // import SearchEngine from 'react-native-search-engine';
 
 const Stack = createStackNavigator();
@@ -82,6 +83,8 @@ class Post extends Component {
       posts_description: '',
 
       ret: '',
+
+      clicks:0,
 
       boardid: '',
 
@@ -310,16 +313,32 @@ class Post extends Component {
   //   });
   // };
 
-  likeCount(id) {
+  // IncrementItem = (id) => {
+  //   this.setState({ clicks: this.state.clicks + 1 });
+  
+  //   this.likeCount(id);
+
+  //   let params = {};
+
+  //   params['count_like'] = this.state.count_like;
+  //   params['count_unlike'] = this.state.count_unlike;
+  //   params['postid'] = id;
+  //   params['socket'] = this.state.socketid;
+  // }
+
+
+  likeCount = (id) => {
     // this.initPost();
     // this.getPost();
 
-    const newCount = this.state.count_like - 1;
-    const prevCount = this.state.count_like + 1;
+    // this.setState({like:this.state.like + 1});
+    // this.setState({ clicks: this.state.clicks + 1 });
 
-    // this.setState({
-    //   count: postlike,
-    // });
+    if (this.state.clicks <= 0 ){
+      this.setState({ clicks: this.state.clicks + 1 });
+    } else{
+      this.setState({ clicks: this.state.clicks - 1 });
+    }
 
     let self = this;
     // global.likes = global.likes + 1;
@@ -341,7 +360,7 @@ class Post extends Component {
       () => {
         global.socket.on('emit-like-post', function (ret) {
           global.socket.off('emit-like-post');
-          // console.log(ret);
+          console.log(ret);
 
           self.setState({
             count_like: ret.count_like,
@@ -349,21 +368,6 @@ class Post extends Component {
             post_id: ret.post_id,
           });
           global.countlikes = ret.count_like;
-          // alert(global.likes);
-          // if (ret.count_like == 0) {
-          //   item => item.post_likes_count + 1;
-          // } else {
-          //   item => item.post_likes_count - 1;
-          // }
-          // if (global.likes >= 0) {
-          //   self.setState({
-          //     post_likes_count: global.likes,
-          //   });
-          // } else {
-          //   self.setState({
-          //     post_likes_count: self.state.post_likes_count,
-          //   });
-          // }
         });
 
         let params = {};
@@ -374,6 +378,7 @@ class Post extends Component {
         params['socket'] = this.state.socketid;
         // global.likes = this.state.post_likes_count;
         // alert(global.likes);
+
 
         global.socket.emit('on-like-post', params);
       },
@@ -485,7 +490,7 @@ class Post extends Component {
             profilephotofile: ret.profilephotofile,
           });
 
-    
+         
 
           // alert(global.socketid);
           // if (self.state.hasUploadPhoto != "") {
@@ -852,14 +857,14 @@ class Post extends Component {
         </View>
         <Text
           style={{
-            fontSize: 10,
+            fontSize: 12,
             alignSelf: 'flex-start',
-            bottom: 68,
+            bottom: 70,
             left: windowWidth / 15,
             backgroundColor: '#fff',
             color: '#5B5B5B',
           }}>
-          投稿を検索する
+         キーワード
         </Text>
 
         <StatusBar style="light-content" />
@@ -936,7 +941,7 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                          {'  お気に入り' + '(' +  this.state.clicks + ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}
@@ -993,7 +998,7 @@ class Post extends Component {
                   <View
                     style={{
                       width: '100%',
-                      height: windowHeight / 4.5,
+                      height: windowHeight / 4.2,
                       alignSelf: 'center',
                       // backgroundColor: 'red',
                     }}>
@@ -1040,7 +1045,7 @@ class Post extends Component {
                     ) : (
                       <UserInfo1 onPress={() => this.likeCount(item.id)}>
                         <MessageText1>
-                          {'  お気に入り' + '(' + item.post_likes_count + ')'}
+                          {'  お気に入り' + '(' + this.state.clicks + ')'}
                         </MessageText1>
                       </UserInfo1>
                     )}

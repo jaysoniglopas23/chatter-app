@@ -385,7 +385,7 @@ class Userlikes extends Component {
                 fill="black"
                 d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
             </Svg>
-            <Text style={{right: 0, top: 6, color: 'black'}}>戻る</Text>
+            <Text style={{right: 0, top: 6, color: '#5B5B5B'}}>戻る</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -416,7 +416,7 @@ const styles = StyleSheet.create({
   Mtxt: {
     bottom: 1,
     left: 9,
-    color: 'black',
+    color: '#5B5B5B',
   },
 
   button: {
@@ -465,7 +465,8 @@ const styles = StyleSheet.create({
   view: {
     top: 10,
     borderWidth: 1,
-    borderColor: '#cdd5d5',
+    borderColor: 'transparent',
+    backgroundColor:'#F7F7F7',
     height: 50,
     marginHorizontal: 22,
     right: 20,
@@ -476,7 +477,8 @@ const styles = StyleSheet.create({
   view1: {
     top: 10,
     borderWidth: 1,
-    borderColor: '#cdd5d5',
+    borderColor: 'transparent',
+    backgroundColor:'#F7F7F7',
     height: 100,
     marginHorizontal: 22,
     right: 20,
@@ -487,6 +489,7 @@ const styles = StyleSheet.create({
   label: {
     bottom: 9,
     left: 7,
+    fontSize:10,
     backgroundColor: '#fff',
     color: 'gray',
     alignSelf:'flex-start',
@@ -495,6 +498,7 @@ const styles = StyleSheet.create({
   email: {
     bottom: 9,
     left: 5,
+    fontSize:10,
     backgroundColor: '#fff',
     alignSelf:'flex-start',
     color: 'gray',
@@ -503,6 +507,7 @@ const styles = StyleSheet.create({
   introduction: {
     bottom: 9,
     left:7,
+    fontSize:10,
     backgroundColor: '#fff',
     alignSelf:'flex-start',
     color: 'gray',
@@ -512,13 +517,13 @@ const styles = StyleSheet.create({
     bottom: 5,
     left: 11,
     fontSize:17,
-    color: 'black',
+    color: '#5B5B5B',
   },
 
   Image: {
     top: 10,
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     borderRadius: 1,
     left: 15,
     borderWidth: 1,

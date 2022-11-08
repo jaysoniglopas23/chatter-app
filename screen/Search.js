@@ -452,15 +452,15 @@ export default class Search extends Component {
           </Text> */}
           <Text
             style={{
-              fontSize: 9,
+              fontSize: 12,
               // width: '21%',
               alignSelf: 'flex-start',
-              bottom: 56,
+              bottom: 59,
               left: 78,
               backgroundColor: '#fff',
               color: '#5B5B5B',
             }}>
-            プロフィール検索
+           キーワード
           </Text>
         </View>
         <View style={{bottom: 80}}>
@@ -532,7 +532,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   textStyle: {
-    color: 'black',
+    color: '#5B5B5B',
     position: 'absolute',
     right: 5,
     bottom: 5,
