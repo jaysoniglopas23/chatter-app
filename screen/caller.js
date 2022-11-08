@@ -63,12 +63,28 @@ class Caller extends Component {
       params['nickname'] = global.nickname;
       params['from'] = global.myid;
       params['to_id'] =global.otherid;
+
+      alert(111);
   
       global.socket.emit('on-audio-call', params);
   
   
 
 
+  }
+
+  
+  back() {
+
+    this.props.navigation.navigate('Chat');
+
+    let params = {};
+    // params['nickname'] = global.nickname;
+    params['from'] = global.myid;
+    params['to'] =global.otherid;
+
+
+    global.socket.emit('on-drop-caller-audio-call', params);
   }
 
 
@@ -83,6 +99,13 @@ class Caller extends Component {
           flexDirection: 'column',
           backroundColor:'black'
         }}>
+
+
+          <View style={{alignSelf:'center', backroundColor:'red',width:50,height:50,top:100}}>
+            <TouchableOpacity  onPress={() => this.back()}>
+              <Text>Drop</Text>
+            </TouchableOpacity>
+          </View>
 
       
 

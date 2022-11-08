@@ -51,6 +51,15 @@ class Callee extends Component {
 
   componentDidMount() {
 
+    global.socket.on('emit-drop-callee-audio-call', function (ret) {
+      global.socket.off('emit-drop-callee-audio-call');
+
+
+      // global.callerData = ret;
+
+      self.props.navigationRef.current?.navigate('home');
+    });
+
 
 
 
