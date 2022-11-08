@@ -55,7 +55,7 @@ class Caller extends Component {
       global.socket.on('emit-someone-is-calling', function (ret) {
         global.socket.off('emit-someone-is-calling');
   
-        alert(2222)
+        // alert(2222)
   
       });
   
@@ -64,7 +64,7 @@ class Caller extends Component {
       params['from'] = global.myid;
       params['to_id'] =global.otherid;
 
-      alert(111);
+      // alert(111);
   
       global.socket.emit('on-audio-call', params);
   
@@ -76,13 +76,21 @@ class Caller extends Component {
   
   back() {
 
-    this.props.navigation.navigate('Chat');
+ 
+
+    global.socket.on('emit-drop-callee-audio-call', function (ret) {
+      global.socket.off('emit-drop-callee-audio-call');
+
+      // alert(2222)
+
+    });
 
     let params = {};
-    // params['nickname'] = global.nickname;
+    // params['socketid'] = this.state.socketid;
     params['from'] = global.myid;
     params['to'] =global.otherid;
-
+   
+    this.props.navigation.navigate('Chat');
 
     global.socket.emit('on-drop-caller-audio-call', params);
   }

@@ -178,10 +178,24 @@ class DisplayAnImage extends Component {
 
   componentDidMount() {
     this.getProfile();
-    this._unsubscribe = this.props.navigation.addListener('focus', () => {
-      // Alert.alert('Refreshed');
+
+    if (global.prevPage == 'Register') {
       this.getProfile();
-    });
+    } else if (global.prevPage != 'Register') {
+      this._unsubscribe = this.props.navigation.addListener('focus', () => {
+        // Alert.alert('Refreshed');
+        this.getProfile();
+      });
+    }
+
+
+
+
+
+    // this._unsubscribe = this.props.navigation.addListener('focus', () => {
+    //   // Alert.alert('Refreshed');
+    //   this.getProfile();
+    // });
   }
 
   // componentDidMount() {
@@ -602,11 +616,11 @@ class DisplayAnImage extends Component {
         {global.age_verified != 1 ? (
           <View>
             {global.age_verified == 2 ? (
-              <View style={{bottom: windowWidth / 2 - 50, width: '100%'}}>
+              <View style={{bottom: windowWidth / 1 - 135, width: '100%', backgroundColor:'red'}}>
                 <Text style={{alignSelf: 'center'}}>確認中</Text>
               </View>
             ) : (
-              <View style={{bottom: windowWidth / 2 - 50, width: '100%'}}>
+              <View style={{bottom: windowWidth / 1 - 135, width: '100%'}}>
                 <Text style={{alignSelf: 'center'}}>
                   本人確認登録後に利用可能
                 </Text>

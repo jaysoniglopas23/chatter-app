@@ -20,6 +20,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Avatar} from 'react-native-elements';
 import Svg, {G, Path} from 'react-native-svg';
 import Modal from 'react-native-modal';
+import {BlurView, VibrancyView} from 'react-native-blur';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -409,6 +410,24 @@ class User extends Component {
           </View>
         </Modal>
         <Image
+              style={{top:60,width: windowWidth -10 , height: windowWidth / 2.6,position:'absolute',alignSelf:'center'}}
+              source={{
+                uri:
+                  URL_TEMP +
+                  '/' +
+                  this.state.profile_image_dir +
+                  '/' +
+                  this.state.profile_image,
+              }}
+            />
+              <BlurView
+          style={styles.absolute2}
+          // viewRef={this.state.viewRef}
+          blurType="light"
+          blurAmount={3}
+          blurRadius={5}
+        />
+        <Image
           source={{
             uri:
               URL_TEMP +
@@ -419,12 +438,13 @@ class User extends Component {
           }}
           style={styles.Image}
         />
-        <View style={{width: '100%', height: windowHeight / 1.7}}>
+          <Text style={styles.textname}>{this.state.nickname}</Text>
+        <View style={{width: '100%', height: windowHeight / 1.7,top:60}}>
           <ScrollView style={styles.scrollview}>
-            <View style={styles.view}>
+            {/* <View style={styles.view}>
               <Text style={styles.label}> ニックネーム</Text>
               <Text style={styles.text}>{this.state.nickname}</Text>
-            </View>
+            </View> */}
             {/* <View style={styles.view}>
               <Text style={styles.email}> メールアドレス</Text>
               <Text style={styles.text}>{this.state.email}</Text>
@@ -692,13 +712,33 @@ const styles = StyleSheet.create({
     color: '#5B5B5B',
   },
 
+  textname: {
+    top: 30,
+    // left: 50,
+    fontSize:20,
+   fontWeight:'bold',
+    alignSelf:'center',
+    // width:windowWidth / 2.6,
+    color: 'white',
+  },
+
   Image: {
-    top: 10,
+    top: 25,
     width: 100,
     height: 100,
-    borderRadius: 1,
+    borderRadius: 100,
     // left: 15,
     borderWidth: 1,
     alignSelf:"center"
+  },
+  absolute2: {
+    backgroundColor: 'grey',
+    opacity: 0.6,
+    position: 'absolute',
+    // top: 0,
+    // left: 0,
+    // bottom: 0,
+    // right: 0,
+    top:60,width: windowWidth -10 , height: windowWidth / 2.6,position:'absolute',alignSelf:'center'
   },
 });

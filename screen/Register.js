@@ -286,7 +286,7 @@ class Register extends Component {
 
   goRegister() {
     let self = this;
-
+    global.prevPage = 'Register';
     this.setState(
       {
         registeringOpacity: 1,

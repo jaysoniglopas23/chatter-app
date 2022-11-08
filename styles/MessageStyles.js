@@ -15,6 +15,8 @@ export const Card = styled.TouchableOpacity`
 export const UserInfo = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  background-color: #F7F7F7;
+  border-radius: 25px;
 `;
 
 export const UserImgWrapper = styled.View`
@@ -35,7 +37,7 @@ export const TextSection = styled.View`
   padding-left: 0;
   margin-left: 10px;
   width: 300px;
-  border-bottom-width: 1px;
+  // border-bottom-width: 1px;
   border-bottom-color: #cccccc;
 `;
 

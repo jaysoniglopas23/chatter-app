@@ -168,13 +168,11 @@ class News extends Component {
         </View>
         <View
           style={{
-            top: windowWidth - 50,
-            backgroundColor: '#ffff',
-            // flex: 1,
-            width: windowWidth - 25,
-            // height: windowHeight / 2 - 450,
+            height: windowHeight / 13,
             // backgroundColor: 'black',
-            alignSelf:'center'
+            width: '30%',
+            top: '47%',
+            left:'5%'
           }}>
           <TouchableOpacity
             onPress={() => this.goBack()}
