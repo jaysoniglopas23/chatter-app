@@ -16,12 +16,13 @@ export const UserInfo = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background-color: #F7F7F7;
-  border-radius: 25px;
+  border-radius: 55px;
 `;
 
 export const UserImgWrapper = styled.View`
   padding-top: 15px;
   padding-bottom: 15px;
+  left:15px;
 `;
 
 export const UserImg = styled.Image`
@@ -37,6 +38,7 @@ export const TextSection = styled.View`
   padding-left: 0;
   margin-left: 10px;
   width: 300px;
+  left:15px;
   // border-bottom-width: 1px;
   border-bottom-color: #cccccc;
 `;
@@ -60,7 +62,7 @@ export const PostTime = styled.Text`
   color: #666;
   height: 20px;
   width: 100%;
-  margin-left: 170px;
+  margin-left: 160px;
   font-family: 'Lato-Regular';
 `;
 

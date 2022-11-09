@@ -148,6 +148,7 @@ class Register extends Component {
             self.setState({
               emailErrorOpacity: 1,
               emailError: 'valid',
+              fillinText: '無効な電子メールアドレス'
             });
           } else {
             global.socket.on('emit-check-email', function (ret) {
@@ -159,6 +160,7 @@ class Register extends Component {
                 self.setState({
                   emailError: 'invalid',
                   emailErrorOpacity: 1,
+                  fillinText: '電子メールアドレスはすでに存在しています'
                 });
               } else {
                 self.valid1 = true;
@@ -166,6 +168,7 @@ class Register extends Component {
                 self.setState({
                   emailError: 'Valid',
                   emailErrorOpacity: 0,
+                  fillinText: '各項目にご記入ください'
                 });
               }
 
@@ -681,9 +684,9 @@ class Register extends Component {
               marginTop: 25,
               marginBottom: 15,
               lineHeight: 15,
-              color: global.textColor,
+              color: 'red',
               fontSize: 13,
-              color: global.textColor,
+              color:'red',
               fontWeight: 'bold',
               textAlign: 'center',
               opacity: this.state.fillinOpacity,

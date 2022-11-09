@@ -6,7 +6,7 @@ import {
   View,
   Image,
   StyleSheet,
-  Button,
+  // Button,
   TouchableOpacity,
   FlatList,
   ScrollView,
@@ -21,6 +21,8 @@ import SearchGrid from './SearchGrid';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import {CardStyleInterpolators} from '@react-navigation/stack';
+import {Menu, Provider, Divider, Button} from 'react-native-paper';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 const numColumns = 3;
 const DeviceWidth = Dimensions.get('window').width;
@@ -56,12 +58,26 @@ export default class Search extends Component {
       path: '',
 
       image: '',
+
+      visible: false,
     };
 
     this.goCall = this.goCall.bind(this);
     this.getUsers = this.getUsers.bind(this);
     this.goToSearchGrid = this.goToSearchGrid.bind(this);
   }
+
+  // openMenu = () => {
+  //   this.setState({
+  //     visible: true,
+  //   });
+  // };
+
+  // closeMenu = () => {
+  //   this.setState({
+  //     visible: false,
+  //   });
+  // };
 
   componentDidMount() {
     this.getUsers();
@@ -367,14 +383,18 @@ export default class Search extends Component {
             alignSelf: 'center',
           }}>
           <TouchableOpacity
-            onPress={() => this.goToSearchGrid()}
+            // onPress={() => this.openMenu()}
             style={{
               width: windowWidth / 2 - 200,
               top: 63,
               alignSelf: 'center',
               marginLeft: 315,
             }}>
-            <Image
+            <ModalDropdown options={['男', '女性','古いユーザー','新しいユーザー']}
+            onSelect={(value) => this.sadasd()}
+            style={{}}
+            dropdownStyle={{height:150}}>
+             <Image
               style={{
                 resizeMode: 'contain',
                 width: 25,
@@ -383,6 +403,16 @@ export default class Search extends Component {
               }}
               source={require('../icon/filter.png')}
             />
+            </ModalDropdown>
+            {/* <Image
+              style={{
+                resizeMode: 'contain',
+                width: 25,
+                height: 20,
+                color: 'black',
+              }}
+              source={require('../icon/filter.png')}
+            /> */}
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.goToSearchGrid()}
@@ -460,7 +490,7 @@ export default class Search extends Component {
               backgroundColor: '#fff',
               color: '#5B5B5B',
             }}>
-           キーワード
+            キーワード
           </Text>
         </View>
         <View style={{bottom: 80}}>

@@ -422,7 +422,7 @@ export default class SearchGrid extends Component {
             alignSelf: 'center',
           }}>
           <TouchableOpacity
-            onPress={() => this.goToSearchGrid()}
+            onPress={() => this.goToSearch()}
             style={{
               width: windowWidth / 2 - 200,
               top: 63,
@@ -440,7 +440,7 @@ export default class SearchGrid extends Component {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.goToSearchGrid()}
+            onPress={() => this.goToSearch()}
             style={{
               width: windowWidth / 2 - 200,
               top: 43,
@@ -458,7 +458,7 @@ export default class SearchGrid extends Component {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.goToSearchGrid()}
+            onPress={() => this.goToSearch()}
             style={{
               width: windowWidth / 2 - 200,
               top: 45,

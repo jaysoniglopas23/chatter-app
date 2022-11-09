@@ -17,7 +17,7 @@ import {
 import {Avatar} from 'react-native-elements';
 import {Dropdown} from 'react-native-material-dropdown-v2';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import DatePicker from 'react-native-date-picker'
+import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 import Storage from '../utils/storage';
 import Svg, {G, Path} from 'react-native-svg';
@@ -50,7 +50,7 @@ class Happy extends Component {
 
       chosenDate: '',
 
-      nicknameErrorOpacity: 1,
+      nicknameErrorOpacity: 0,
     };
 
     this.goBack = this.goBack.bind(this);
@@ -103,10 +103,15 @@ class Happy extends Component {
         nickname: nickname,
       },
       () => {
-        global.socket.on('on-check-nickname', function (ret) {
-          global.socket.off('on-check-nickname');
+        global.socket.on('emit-check-nickname', function (ret) {
+          global.socket.off('emit-check-nickname');
           console.log(ret);
-          if (nickname == '') {
+          if (ret.exists == 1) {
+            self.valid1 = true;
+     
+            self.setState({
+              nicknameErrorOpacity: 1,
+            });
           } else {
             self.valid1 = true;
 
@@ -115,7 +120,9 @@ class Happy extends Component {
             });
           }
 
-          self.save();
+  
+
+          // self.save();
         });
 
         let params = {nickname: this.state.nickname};
@@ -215,10 +222,11 @@ class Happy extends Component {
 
   componentDidMount() {
     this.getProfile();
+    this.setNickname();
     // this.initProfile();
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.getProfile();
   }
 
@@ -327,7 +335,7 @@ class Happy extends Component {
           presence_of_children: ret.presence_of_children,
           presence_of_pet: ret.presence_of_pet,
           school: ret.school,
-          bloodtype:ret.bloodtype,
+          bloodtype: ret.bloodtype,
           smoker: ret.smoker,
         });
 
@@ -561,13 +569,12 @@ class Happy extends Component {
     );
   }
 
-getBloodtype(bloodtype){
-   alert(bloodtype);
-  this.setState({
-    bloodtype: bloodtype,
-  });
-
-}
+  getBloodtype(bloodtype) {
+    alert(bloodtype);
+    this.setState({
+      bloodtype: bloodtype,
+    });
+  }
   // getSchool(gender) {
   //   let self = this;
 
@@ -748,12 +755,26 @@ getBloodtype(bloodtype){
                   />
                   <Text
                     style={{
+                      left: 168,
+                      backgroundColor: '#fff',
+                      // marginHorizontal: 145,
+                      color: 'red',
+                      fontSize: 10,
+                      bottom: 42,
+                      alignSelf: 'flex-start',
+                      opacity: this.state.nicknameErrorOpacity,
+                      // this is nickname*********************
+                    }}>
+                   ニックネームはすでに存在します
+                  </Text>
+                  <Text
+                    style={{
                       left: 10,
                       backgroundColor: '#fff',
                       // marginHorizontal: 145,
                       color: '#5B5B5B',
                       fontSize: 10,
-                      bottom: 42,
+                      bottom: 56,
                       alignSelf: 'flex-start',
                       // this is nickname*********************
                     }}>
@@ -1118,7 +1139,7 @@ getBloodtype(bloodtype){
               </View>
             </View>
             <Dropdown
-                style={{
+              style={{
                 top: 10,
                 backgroundColor: 'white',
                 borderWidth: 1,
@@ -1147,7 +1168,7 @@ getBloodtype(bloodtype){
               }}>
               血液型
             </Text>
-            <View style={{paddingBottom:30}}>
+            <View style={{paddingBottom: 30}}>
               <TouchableOpacity
                 style={{
                   borderWidth: 1,
@@ -1161,20 +1182,27 @@ getBloodtype(bloodtype){
                   // backgroundColor:'red',
                 }}
                 onPress={() => this.openDateModal()}>
-
-              {/* <TouchableWithoutFeedback
+                {/* <TouchableWithoutFeedback
                 style={{width:0, height: 0 ,color:'black'}}
                 onPress={() => this.closeDateModal()}> */}
-                <View style={{width: '100%', height: 40,alignSelf:'center' ,top:25}}>
+                <View
+                  style={{
+                    width: '100%',
+                    height: 40,
+                    alignSelf: 'center',
+                    top: 25,
+                  }}>
                   <Text
                     style={{bottom: 10, alignSelf: 'center', color: 'black'}}
                     value={this.state.dob}
                     onChangeText={value => this.handleDate(value)}
                     // placeholder={this.state.dob}
                     // placeholderTextColor="black"
-                    >{this.state.dob}</Text>
+                  >
+                    {this.state.dob}
+                  </Text>
                 </View>
-              {/* </TouchableWithoutFeedback> */}
+                {/* </TouchableWithoutFeedback> */}
               </TouchableOpacity>
               <Modal
                 animationType="slide"
@@ -1232,7 +1260,11 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
+                labelStyle={{
+                  fontSize: 15,
+                  paddingHorizontal: 30,
+                  color: '#5B5B5B',
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1279,7 +1311,8 @@ getBloodtype(bloodtype){
                 labelStyle={{
                   fontSize: 9,
                   paddingHorizontal: 0,
-                  width: windowWidth / 6.5,color:'#5B5B5B'
+                  width: windowWidth / 6.5,
+                  color: '#5B5B5B',
                 }}
                 disabled={false}
                 formHorizontal={true}
@@ -1326,7 +1359,8 @@ getBloodtype(bloodtype){
                 labelStyle={{
                   fontSize: 9,
                   paddingHorizontal: 0,
-                  width: windowWidth / 6.5,color:'#5B5B5B'
+                  width: windowWidth / 6.5,
+                  color: '#5B5B5B',
                 }}
                 disabled={false}
                 formHorizontal={true}
@@ -1370,7 +1404,11 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
+                labelStyle={{
+                  fontSize: 15,
+                  paddingHorizontal: 30,
+                  color: '#5B5B5B',
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1411,7 +1449,11 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
+                labelStyle={{
+                  fontSize: 15,
+                  paddingHorizontal: 30,
+                  color: '#5B5B5B',
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1453,7 +1495,11 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
+                labelStyle={{
+                  fontSize: 15,
+                  paddingHorizontal: 30,
+                  color: '#5B5B5B',
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1494,7 +1540,11 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
+                labelStyle={{
+                  fontSize: 15,
+                  paddingHorizontal: 30,
+                  color: '#5B5B5B',
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1535,7 +1585,11 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
+                labelStyle={{
+                  fontSize: 15,
+                  paddingHorizontal: 30,
+                  color: '#5B5B5B',
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1576,7 +1630,11 @@ getBloodtype(bloodtype){
                 buttonColor={'grey'}
                 selectedButtonColor={'grey'}
                 selectedLabelColor={'black'}
-                labelStyle={{fontSize: 15, paddingHorizontal: 30,color:'#5B5B5B'}}
+                labelStyle={{
+                  fontSize: 15,
+                  paddingHorizontal: 30,
+                  color: '#5B5B5B',
+                }}
                 disabled={false}
                 formHorizontal={true}
                 labelHorizontal={true}
@@ -1606,35 +1664,35 @@ getBloodtype(bloodtype){
             bottom: 90,
             backgroundColor: '#fff',
           }}>
-           <TouchableOpacity
-          onPress={() => this.goBack()}
-          style={{
-            backgroundColor: '#ECECEC',
-            marginHorizontal: 170,
-            height: 31,
-            right: 150,
-            marginBottom: 30,
-            flexDirection: 'row',
-            width: 50,
-            borderRadius: 2,
-            // top:windowWidth /2 -170
-          }}>
-          <Svg
-            style={{width: 20, height: 30}}
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fal"
-            data-icon="angle-left"
-            class="svg-inline--fa fa-angle-left fa-w-6"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 192 512">
-            <Path
-              fill="black"
-              d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
-          </Svg>
-          <Text style={{right: 0, top: 6, color: '#5B5B5B'}}>戻る</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.goBack()}
+            style={{
+              backgroundColor: '#ECECEC',
+              marginHorizontal: 170,
+              height: 31,
+              right: 150,
+              marginBottom: 30,
+              flexDirection: 'row',
+              width: 50,
+              borderRadius: 2,
+              // top:windowWidth /2 -170
+            }}>
+            <Svg
+              style={{width: 20, height: 30}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192 512">
+              <Path
+                fill="black"
+                d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"></Path>
+            </Svg>
+            <Text style={{right: 0, top: 6, color: '#5B5B5B'}}>戻る</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             style={{
               backgroundColor: '#ECECEC',

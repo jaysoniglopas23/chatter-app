@@ -198,6 +198,8 @@ class DisplayAnImage extends Component {
     // });
   }
 
+  
+
   // componentDidMount() {
   //   this.interval = setInterval(() => this.getProfile({ time: Date.now() }), 1000);
   // }
@@ -216,7 +218,7 @@ class DisplayAnImage extends Component {
     this.setState({}, () => {
       global.socket.on('emit-details', function (ret) {
         global.socket.off('emit-details');
-        // alert(JSON.stringify(ret));
+        console.log(JSON.stringify(ret));
 
         self.setState({
           nickname: ret.nickname,
@@ -226,9 +228,11 @@ class DisplayAnImage extends Component {
           id: ret.id,
           profile_image: ret.profile_image,
           profile_image_dir: ret.profile_image_dir,
+          age_verified:ret.age_verified,
         });
 
         global.myuserid = ret.id;
+        global.age_verified = ret.age_verified
 
         // global.socket.on('emit-profile-photo', function (ret1) {
         //   global.socket.off('emit-profile-photo');

@@ -209,7 +209,7 @@ class Heart extends Component {
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
-          style={{backgroundColor: '#fff', height: '90%', marginBottom: 220}}
+          style={{backgroundColor: '#fff', height: '90%', marginBottom: 220,alignSelf: 'center'}}
           renderItem={({item}) => (
             <Card onPress={() => this.goChat(item.id)}>
               {item.id == global.myuserid ? (

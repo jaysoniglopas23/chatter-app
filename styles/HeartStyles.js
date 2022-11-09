@@ -17,14 +17,18 @@ export const Card = styled.TouchableOpacity`
 
 export const UserInfo = styled.View`
   flex-direction: row;
-  width: 100%;
+  width: 93%;
   justify-content: space-between;
   top: 50px;
+  background-color: #F7F7F7;
+  border-radius: 50px;
+  left:70px
 `;
 
 export const UserImgWrapper = styled.TouchableOpacity`
-  padding-top: 15px;
+  top: 25px;
   padding-bottom: 15px;
+  right:50px;
 `;
 
 export const UserImg = styled.Image`
@@ -61,12 +65,14 @@ export const TextSection = styled.View`
   flex-direction: column;
   justify-content: center;
   padding: 15px;
+  top:10px;
   padding-left: 0;
+  right:50;
   margin-left: 30px;
   width: 85%;
-  border-bottom-width: 1px;
+  // border-bottom-width: 1px;
   border-bottom-color: #cccccc;
-  padding-bottom: 35px;
+  padding-bottom: 30px;
 `;
 
 export const UserInfoText = styled.View`
@@ -79,7 +85,7 @@ export const UserName = styled.Text`
   font-size: 16px;
   font-weight: bold;
   font-family: 'Lato-Regular';
-  color: #100c08;
+  color: #5B5B5B;
   left: 60px;
 `;
 
