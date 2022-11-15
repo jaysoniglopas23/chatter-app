@@ -54,11 +54,35 @@ class PhotoLibrary extends Component {
     this.getImage = this.getImage.bind(this);
   }
 
+  goHome() {
+    if (global.prevPage == 'RegistertoHome') {
+      this.props.navigationRef.current?.navigate('home');
+      global.prevPage = 'RegistertoHometoPhotoLibrary'
+    } else if (global.prevPage != 'RegistertoHome') {
+     this.props.navigation.push('home');
+     global.prevPage = 'LaunchertoHometoLibrary'
+    }
+  }
+
   componentDidMount() {
-    this._unsubscribe = this.props.navigation.addListener('focus', () => {
-      // Alert.alert('Refreshed');
+    // this._unsubscribe = this.props.navigation.addListener('focus', () => {
+    //   // Alert.alert('Refreshed');
+    //   this.getImage();
+    // });
+    // alert('now');
+
+    if (global.prevPage == 'RegistertoHome') {
       this.getImage();
-    });
+    } else if (global.prevPage !=  'RegistertoHome') {
+      this._unsubscribe = this.props.navigation.addListener('focus', () => {
+        // Alert.alert('Refreshed');
+        this.getImage();
+      });
+    }
+  }
+
+  _unsubscribe() {
+   
   }
 
   componentWillUnmount() {
@@ -164,9 +188,7 @@ class PhotoLibrary extends Component {
     // this.props.navigationRef.current?.navigate('Dashboard');
   }
 
-  goHome() {
-    this.props.navigation.push('home');
-  }
+ 
 
   render() {
     return (

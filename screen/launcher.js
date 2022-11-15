@@ -323,7 +323,7 @@ class Launcher extends Component {
 
   autoLogin(data) {
     let self = this;
-
+    global.prevPage ="Launcher"
     global.socket.on('emit-login', function (ret) {
       global.socket.off('emit-login');
       // alert(JSON.stringify(ret));
@@ -365,9 +365,9 @@ class Launcher extends Component {
               global.searchFields = data.searchSettings;
               // alert(global.age_verified);
               self.addGlobalListeners();
-
+              global.prevPage ="Launcher"
               self.props.navigationRef.current?.navigate('Tabs');
-
+              
               //  self.addGlobalListeners();
 
               //  alert(1)

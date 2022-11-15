@@ -126,7 +126,7 @@ export const MessageText3 = styled.Text`
 `;
 
 export const UserInfo1 = styled.TouchableOpacity`
-  top: 10px;
+  top: 32px;
   right: 85px;
   background-color: #dddddd;
   margin-horizontal: 117px;
@@ -177,6 +177,27 @@ export const UserInfo5 = styled.TouchableOpacity`
   width: 60px;
   border-radius: 4px;
   font-weight: bold;
+`;
+
+export const UserInfo6 = styled.TouchableOpacity`
+  bottom: 0px;
+  left: 150px;
+  background-color: #dddddd;
+  margin-horizontal: 117px;
+  height: 30px;
+  width: 60px;
+
+  border-radius: 4px;
+`;
+
+export const UserInfo7 = styled.TouchableOpacity`
+bottom: 29px;
+left: 80px;
+background-color: #dddddd;
+margin-horizontal: 117px;
+height: 30px;
+width: 60px;
+border-radius: 4px;
 `;
 
 export const Card1 = styled.TouchableOpacity`

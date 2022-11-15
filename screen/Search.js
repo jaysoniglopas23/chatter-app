@@ -59,6 +59,8 @@ export default class Search extends Component {
 
       image: '',
 
+      list: [],
+
       visible: false,
     };
 
@@ -118,6 +120,7 @@ export default class Search extends Component {
             path: ret.path,
             data: ret.users,
             id: ret.id,
+            gender: ret.gender,
             drop_calls: ret.drop_calls,
           });
 
@@ -344,6 +347,21 @@ export default class Search extends Component {
     }
   };
 
+  goFilter = value => {
+    // const myusers = global.users;
+    // const male = global.users;
+    // const female = global.users;
+
+    const mygender = global.users;
+    const newFilter = _.filter(this.state.users, item => {
+      const itemData = `${item.name.toUpperCase()}`;
+      const textData = value.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+
+    this.setState({list: filteredGender}, () => console.log(this.state.list));
+  };
+
   _renderItem = ({item, index}) => {
     let {itemStyle, itemInvisible, textStyle, numColumns} = styles;
 
@@ -354,10 +372,17 @@ export default class Search extends Component {
     return (
       <TouchableOpacity style={itemStyle} onPress={() => this.goCall(item.id)}>
         <Text style={textStyle}>{item.name}</Text>
-        <Image
-          style={styles.iconRight}
-          source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
-        />
+        {item.path == '' ? (
+          <Image
+            style={styles.iconRight}
+            source={require('../icon/userprofile.png')}
+          />
+        ) : (
+          <Image
+            style={styles.iconRight}
+            source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
+          />
+        )}
       </TouchableOpacity>
     );
   };
@@ -390,19 +415,20 @@ export default class Search extends Component {
               alignSelf: 'center',
               marginLeft: 315,
             }}>
-            <ModalDropdown options={['男', '女性','古いユーザー','新しいユーザー']}
-            onSelect={(value) => this.sadasd()}
-            style={{}}
-            dropdownStyle={{height:150}}>
-             <Image
-              style={{
-                resizeMode: 'contain',
-                width: 25,
-                height: 20,
-                color: 'black',
-              }}
-              source={require('../icon/filter.png')}
-            />
+            <ModalDropdown
+              options={['男', '女性', '古いユーザー', '新しいユーザー']}
+              onSelect={value => this.goFilter(value)}
+              style={{}}
+              dropdownStyle={{height: 150}}>
+              <Image
+                style={{
+                  resizeMode: 'contain',
+                  width: 25,
+                  height: 20,
+                  color: 'black',
+                }}
+                source={require('../icon/filter.png')}
+              />
             </ModalDropdown>
             {/* <Image
               style={{
@@ -499,6 +525,7 @@ export default class Search extends Component {
             renderItem={this._renderItem}
             keyExtractor={(item, index) => index.toString()}
             numColumns={numColumns}
+            // style={{shadowColor: '#52006A', elevation: 90}}
           />
         </View>
       </View>
@@ -525,9 +552,9 @@ const styles = StyleSheet.create({
     height: 58,
   },
   iconRight: {
-    paddingTop: 10,
+    paddingTop: 0,
     width: 65,
-    height: 66,
+    height: 65,
     marginBottom: 30,
     marginLeft: 0,
   },
@@ -557,6 +584,8 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     borderWidth: 18,
     borderColor: '#fff',
+    // shadowColor: '#52006A',
+    // elevation: 90,
   },
   itemInvisible: {
     backgroundColor: 'transparent',

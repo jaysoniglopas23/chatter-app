@@ -117,7 +117,7 @@ class Login extends Component {
 
   goLogin(id) {
     let self = this;
-
+    global.prevPage ="Login";
     this.setState(
       {
         invalidCredentialsOpacity: 0,
@@ -148,7 +148,7 @@ class Login extends Component {
                 global.age = ret.age;
                 global.points = ret.points;
                 global.profile_image = ret.profile_image;
-
+                global.prevPage ="Login"
                 self.props.navigationRef.current?.navigate('Tabs');
               });
             });

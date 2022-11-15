@@ -93,6 +93,9 @@ class Appstacks extends Component {
           <Stack.Screen name="Callee">
             {props => <Callee navigationRef={navigationRef} />}
           </Stack.Screen>
+          <Stack.Screen name="photoLibrary">
+            {props => <PhotoLibrary navigationRef={navigationRef} />}
+          </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );

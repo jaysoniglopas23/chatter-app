@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Alert,
   TouchableWithoutFeedback,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
 import Modal from 'react-native-modal';
 // import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -115,19 +115,61 @@ class DisplayAnImage extends Component {
     this.goSettings = this.goSettings.bind(this);
 
     this.goPhoto = this.goPhoto.bind(this);
+
+    this._unsubscribe = this._unsubscribe.bind(this);
   }
 
   goPhoto() {
-    this.props.navigation.navigate('photoLibrary');
+    // if (global.prevPage == 'Register') {
+    //   global.prevPage = 'RegistertoHome'
+    // } else if (global.prevPage != 'Register') {
+    //   global.prevPage = 'LauncertoHome'
+    // }
+    if (global.prevPage != 'Register') {
+      global.prevPage = 'LaunchertoHome';
+      return this.props.navigation.navigate('photoLibrary');
+    }
+    if (global.prevPage == 'Register') {
+      global.prevPage = 'RegistertoHome';
+      return this.props.navigationRef.current?.navigate('photoLibrary');
+    }
+    if (global.prevPage == 'RegistertoHometoPhotoLibrary') {
+      global.prevPage = 'RegistertoHome';
+      return this.props.navigationRef.current?.navigate('photoLibrary');
+    }
+    if (global.prevPage == 'LaunchertoHometoPhotoLibrary') {
+      global.prevPage = 'LaunchertoHome';
+      return this.props.navigation.navigate('photoLibrary');
+    }
+    if (global.prevPage == 'Launcher') {
+      global.prevPage = 'LaunchertoHome';
+      return this.props.navigation.navigate('photoLibrary');
+    }
+    if (global.prevPage == 'Login') {
+      global.prevPage = 'LaunchertoHome';
+      return zthis.props.navigation.navigate('photoLibrary');
+    }
+    // } else if (global.prevPage != 'Register') {
+    //   this.props.navigation.navigate('photoLibrary');
+    //   global.prevPage = 'LaunchertoHome';
+    // } else if (global.prevPage == 'RegistertoHometoPhotoLibrary') {
+    //   this.props.navigationRef.current?.navigate('photoLibrary');
+    //   global.prevPage = 'RegistertoHome';
+    // } else if (global.prevPage != 'RegistertoHometoPhotoLibrary') {
+    //   this.props.navigation.navigate('photoLibrary');
+    //   global.prevPage = 'LaunchertoHome';
+    // }
   }
 
   goSettings() {
-    this.props.navigation.navigate('Settings');
+    this.props.navigation.push('Settings');
   }
 
   goCoin() {
     this.props.navigation.navigate('Coin');
   }
+
+  _unsubscribe() {}
 
   // goCard() {
   //   this.props.navigationRef.current?.navigate('Card');
@@ -188,17 +230,11 @@ class DisplayAnImage extends Component {
       });
     }
 
-
-
-
-
     // this._unsubscribe = this.props.navigation.addListener('focus', () => {
     //   // Alert.alert('Refreshed');
     //   this.getProfile();
     // });
   }
-
-  
 
   // componentDidMount() {
   //   this.interval = setInterval(() => this.getProfile({ time: Date.now() }), 1000);
@@ -228,11 +264,11 @@ class DisplayAnImage extends Component {
           id: ret.id,
           profile_image: ret.profile_image,
           profile_image_dir: ret.profile_image_dir,
-          age_verified:ret.age_verified,
+          age_verified: ret.age_verified,
         });
 
         global.myuserid = ret.id;
-        global.age_verified = ret.age_verified
+        global.age_verified = ret.age_verified;
 
         // global.socket.on('emit-profile-photo', function (ret1) {
         //   global.socket.off('emit-profile-photo');
@@ -246,8 +282,6 @@ class DisplayAnImage extends Component {
 
         // global.socket.emit('on-profile-photo', params);
       });
-
-     
 
       // console.log(params);
       global.socket.emit('on-details');
@@ -493,14 +527,12 @@ class DisplayAnImage extends Component {
               flexDirection: 'row',
               justifyContent: 'flex-end',
               marginTop: 325,
-              height:'10%',
-              width:'23%',
-              left:280,
+              height: '10%',
+              width: '23%',
+              left: 280,
               position: 'absolute',
-              backgroundColor:'transparent',
-             
-            }}>
-          </TouchableOpacity>
+              backgroundColor: 'transparent',
+            }}></TouchableOpacity>
         </View>
         <Modal
           animationType="slide"
@@ -514,7 +546,6 @@ class DisplayAnImage extends Component {
               height: windowHeight - 100,
               borderRadius: 30,
               flexDirection: 'column',
-              
             }}>
             <TouchableWithoutFeedback
               style={{width: windowWidth, height: windowHeight - 290}}
@@ -620,7 +651,12 @@ class DisplayAnImage extends Component {
         {global.age_verified != 1 ? (
           <View>
             {global.age_verified == 2 ? (
-              <View style={{bottom: windowWidth / 1 - 135, width: '100%', backgroundColor:'red'}}>
+              <View
+                style={{
+                  bottom: windowWidth / 1 - 135,
+                  width: '100%',
+                  backgroundColor: 'red',
+                }}>
                 <Text style={{alignSelf: 'center'}}>確認中</Text>
               </View>
             ) : (

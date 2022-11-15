@@ -13,13 +13,14 @@ import {
   Alert,
   BackHandler,
   ToastAndroid,
+  Modal,
 } from 'react-native';
 import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Avatar} from 'react-native-elements';
 import Svg, {G, Path} from 'react-native-svg';
-import Modal from 'react-native-modal';
+// import Modal from 'react-native-modal';
 import {BlurView, VibrancyView} from 'react-native-blur';
 
 const windowWidth = Dimensions.get('window').width;
@@ -36,6 +37,7 @@ class User extends Component {
       details: '',
 
       modalReportVisible: false,
+      modalProfile: false,
     };
 
     this.getUser = this.getUser.bind(this);
@@ -265,6 +267,18 @@ class User extends Component {
     );
   }
 
+  modalProfile() {
+    this.setState({
+      modalProfile: true,
+    });
+  }
+
+  closeModalProfile() {
+    this.setState({
+      modalProfile: false,
+    });
+  }
+
   render() {
     return (
       <View
@@ -277,7 +291,7 @@ class User extends Component {
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{
-            left: 30,
+            left: 20,
             marginTop: windowHeight / 10 - 60,
             width: 50,
             height: 30,
@@ -323,111 +337,14 @@ class User extends Component {
             />
           </Svg>
         </TouchableOpacity>
-        <Modal
-          animationType="slide"
-          // transparent={true}
-          isVisible={this.state.modalReportVisible}
-          style={{bottom: 400, alignSelf: 'center'}}>
-          <View
-            style={{
-              width: windowWidth,
-              height: windowHeight - 180,
-              borderRadius: 30,
-              flexDirection: 'column',
-            }}>
-            <TouchableWithoutFeedback
-              style={{
-                width: windowWidth,
-                height: windowHeight - 290,
-              }}
-              onPress={() => this.closeReportModal()}>
-              <View
-                style={{
-                  width: '100%',
-                  height: windowHeight - 180,
-                }}></View>
-            </TouchableWithoutFeedback>
-
-            <View
-              style={{
-                width: windowWidth,
-                height: windowHeight,
-              }}>
-              <View
-                style={{
-                  height: 180,
-                  width: windowWidth,
-                  backgroundColor: '#f2f2f2',
-                  borderRadius: 15,
-                }}>
-                <TouchableOpacity
-                  style={{
-                    width: windowWidth - 20,
-                    height: 30,
-                    backgroundColor: '#fff',
-                    marginTop: 10,
-                    marginLeft: 10,
-                    borderRadius: 3,
-                  }}
-                  onPress={() => this.spam()}>
-                  <Text
-                    style={{
-                      width: '100%',
-                      height: 30,
-                      textAlign: 'center',
-                      lineHeight: 30,
-                      fontSize: 12,
-                      color: global.glTextColor,
-                    }}>
-                    {this.state.spamText}
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={{
-                    width: windowWidth - 20,
-                    height: 30,
-                    backgroundColor: '#fff',
-                    marginTop: 10,
-                    marginLeft: 10,
-                    borderRadius: 3,
-                  }}
-                  onPress={() => this.inap()}>
-                  <Text
-                    style={{
-                      width: '100%',
-                      height: 30,
-                      textAlign: 'center',
-                      lineHeight: 30,
-                      fontSize: 12,
-                      color: global.glTextColor,
-                    }}>
-                    {this.state.inapText}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </Modal>
         <Image
-              style={{top:60,width: windowWidth -10 , height: windowWidth / 2.6,position:'absolute',alignSelf:'center'}}
-              source={{
-                uri:
-                  URL_TEMP +
-                  '/' +
-                  this.state.profile_image_dir +
-                  '/' +
-                  this.state.profile_image,
-              }}
-            />
-              <BlurView
-          style={styles.absolute2}
-          // viewRef={this.state.viewRef}
-          blurType="light"
-          blurAmount={3}
-          blurRadius={5}
-        />
-        <Image
+          style={{
+            top: 60,
+            width: windowWidth - 10,
+            height: windowWidth / 2.6,
+            position: 'absolute',
+            alignSelf: 'center',
+          }}
           source={{
             uri:
               URL_TEMP +
@@ -436,10 +353,67 @@ class User extends Component {
               '/' +
               this.state.profile_image,
           }}
-          style={styles.Image}
         />
+        <BlurView
+          style={styles.absolute2}
+          // viewRef={this.state.viewRef}
+          blurType="light"
+          blurAmount={3}
+          blurRadius={5}
+        />
+        <TouchableOpacity onPress={() => this.modalProfile()}>
+          <Image
+            source={{
+              uri:
+                URL_TEMP +
+                '/' +
+                this.state.profile_image_dir +
+                '/' +
+                this.state.profile_image,
+            }}
+            style={styles.Image}
+          />
           <Text style={styles.textname}>{this.state.nickname}</Text>
-        <View style={{width: '100%', height: windowHeight / 1.7,top:60}}>
+        </TouchableOpacity>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.modalProfile}
+          style={{blurRadius: 10}}>
+          <TouchableWithoutFeedback
+            style={{width: windowWidth, height: windowHeight - 220}}
+            onPress={() => this.closeModalProfile()}>
+            <View style={{width: '100%', height: windowHeight - 220}}></View>
+          </TouchableWithoutFeedback>
+          <View
+            style={{
+              width: windowWidth,
+              height: windowHeight,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
+              bottom: windowHeight / 1.4,
+              alignSelf: 'center',
+            }}>
+                 <TouchableWithoutFeedback
+            style={{width: windowWidth, height: windowHeight - 220}}
+            onPress={() => this.closeModalProfile()}>
+            <View style={{width: '100%', height: windowHeight - 220}}></View>
+          </TouchableWithoutFeedback>
+            <Image
+              onPress={() => this.closeModalProfile()}
+              source={{
+                uri:
+                  URL_TEMP +
+                  '/' +
+                  this.state.profile_image_dir +
+                  '/' +
+                  this.state.profile_image,
+              }}
+              style={styles.modalImage}
+            />
+          </View>
+        </Modal>
+        <View style={{width: '100%', height: windowHeight / 1.7, top: 60}}>
           <ScrollView style={styles.scrollview}>
             {/* <View style={styles.view}>
               <Text style={styles.label}> ニックネーム</Text>
@@ -603,7 +577,7 @@ const styles = StyleSheet.create({
     top: 10,
     borderWidth: 1,
     borderColor: 'transparent',
-    backgroundColor:'#F7F7F7',
+    backgroundColor: '#F7F7F7',
     height: 50,
     width: windowWidth - 40,
     alignSelf: 'center',
@@ -617,7 +591,7 @@ const styles = StyleSheet.create({
     top: 10,
     borderWidth: 1,
     borderColor: 'transparent',
-    backgroundColor:'#F7F7F7',
+    backgroundColor: '#F7F7F7',
     height: 100,
     width: windowWidth - 40,
     alignSelf: 'center',
@@ -713,11 +687,11 @@ const styles = StyleSheet.create({
   },
 
   textname: {
-    top: 30,
+    top: '18%',
     // left: 50,
-    fontSize:20,
-   fontWeight:'bold',
-    alignSelf:'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
     // width:windowWidth / 2.6,
     color: 'white',
   },
@@ -729,7 +703,18 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     // left: 15,
     borderWidth: 1,
-    alignSelf:"center"
+    alignSelf: 'center',
+  },
+
+  modalImage: {
+    // top: 25,
+    width: '95%',
+    height: windowHeight - 400,
+    // borderRadius: 100,
+    // left: 15,
+    borderWidth: 1,
+    alignSelf: 'center',
+    bottom: windowHeight /1.5
   },
   absolute2: {
     backgroundColor: 'grey',
@@ -739,6 +724,10 @@ const styles = StyleSheet.create({
     // left: 0,
     // bottom: 0,
     // right: 0,
-    top:60,width: windowWidth -10 , height: windowWidth / 2.6,position:'absolute',alignSelf:'center'
+    top: 60,
+    width: windowWidth - 10,
+    height: windowWidth / 2.6,
+    position: 'absolute',
+    alignSelf: 'center',
   },
 });

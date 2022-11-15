@@ -41,7 +41,7 @@ class Privacy extends Component {
       <View style={{backgroundColor: '#ffff', height: '100%', flex: 1}}>
         <View
           style={{
-            top: windowWidth - 22,
+            top: "65%",
             backgroundColor: '#ffff',
             // flex: 1,
             width: windowWidth - 25,

@@ -197,7 +197,7 @@ class Settings extends Component {
         params['notify_updates'] = this.state.notify_updates;
         params['notify_likes'] = this.state.notify_likes;
         params['distanceThreshold'] = 4;
-
+        this.props.navigation.push('home');
         console.log(params);
         global.socket.emit('on-settings-save', params);
       },
@@ -258,6 +258,7 @@ class Settings extends Component {
         style={{
           height: windowHeight - 74,
           width: windowWidth,
+          // backgroundColor:'black',
         }}>
         <TouchableOpacity
           style={{
@@ -285,7 +286,7 @@ class Settings extends Component {
         <View
           style={{
             alignSelf: 'center',
-            height: windowHeight - 180,
+            height:'82%',
             width: windowWidth - 50,
             alignSelf:'center',
             // justifyContent:'center',
@@ -355,12 +356,13 @@ class Settings extends Component {
               backgroundColor: '#ECECEC',
               marginHorizontal: 170,
               height: 31,
-              left: windowWidth/3.8,
+              // left: windowWidth/3.8,
+              alignSelf:'center',
               marginBottom: 30,
               flexDirection: 'row',
               width: 70,
               borderRadius: 2,
-              bottom: windowHeight / 2 - 827,
+              bottom: windowHeight / 2 - 600,
               
             }}>
             <Image
@@ -369,6 +371,7 @@ class Settings extends Component {
             />
             <Text style={{left: 15, top: 5, color: '#5B5B5B'}}>保存</Text>
           </TouchableOpacity>
+          
         </View>
       </View>
     );

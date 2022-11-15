@@ -51,6 +51,8 @@ class Happy extends Component {
       chosenDate: '',
 
       nicknameErrorOpacity: 0,
+
+      searchValues: {},
     };
 
     this.goBack = this.goBack.bind(this);
@@ -85,6 +87,31 @@ class Happy extends Component {
     });
   }
 
+  onDateChange(event, selectedDate) {
+    let self = this;
+
+    let formattedDate = moment(selectedDate).format('YYYY-MM-DD');
+    let completeFormatDate = moment(selectedDate).format('YYYY-MM-DD');
+
+    let searchValues = this.state.searchValues;
+
+    for (var i = 0; i < this.arrSearch.length; i++) {
+      if (this.arrSearch[i].db_dob == 'dob') {
+        global.birthday = formattedDate;
+
+        searchValues[this.arrSearch[i].dob] = completeFormatDate;
+
+        break;
+      }
+    }
+
+    console.log(searchValues);
+
+    this.setState({
+      searchValues: searchValues,
+    });
+  }
+
   closeModal() {
     this.setState({
       modalSingleVisible: false,
@@ -108,7 +135,7 @@ class Happy extends Component {
           console.log(ret);
           if (ret.exists == 1) {
             self.valid1 = true;
-     
+
             self.setState({
               nicknameErrorOpacity: 1,
             });
@@ -119,8 +146,6 @@ class Happy extends Component {
               nicknameErrorOpacity: 0,
             });
           }
-
-  
 
           // self.save();
         });
@@ -185,7 +210,7 @@ class Happy extends Component {
 
         params['firstname'] = '';
         params['lastname'] = '';
-        params['dob'] = moment(new Date()).format('YYYY-MM-DD');
+        params['dob'] =  global.birthday ;
         params['about'] = this.state.about;
         params['job'] = this.state.job_title;
         params['company'] = this.state.company;
@@ -230,83 +255,7 @@ class Happy extends Component {
     this.getProfile();
   }
 
-  // initProfile() {
-  //   let self = this;
-
-  //   this.setState({}, () => {
-  //     global.socket.on('emit-details', function (ret) {
-  //       global.socket.off('emit-details');
-  //       // alert(JSON.stringify(ret));
-  //       self.setState({
-  //         nickname: ret.nickname,
-  //         email: ret.email,
-  //         introduction: ret.introduction,
-  //         character: ret.character,
-  //         company: ret.company,
-  //         dob: ret.dob,
-  //         drink: ret.drink,
-  //         gender: ret.gender,
-  //         gender_pref: ret.gender_pref,
-  //         hobbie: ret.hobbie,
-  //         about: ret.about,
-  //         holiday: ret.holiday,
-  //         job_title: ret.job_title,
-  //         like_children_or_not: ret.like_children_or_not,
-  //         location: ret.location,
-  //         marriage_desire: ret.marriage_desire,
-  //         married: ret.marital_status,
-  //         presence_of_children: ret.presence_of_children,
-  //         presence_of_pet: ret.presence_of_pet,
-  //         school: ret.school,
-  //         smoker: ret.smoker,
-  //       });
-
-  //       // self.state.intgender = ret.gender;
-
-  //       // global.gender = self.state.gender ;
-  //     });
-
-  //     // global.gender = this.state.gender;
-  //     // let params = {};
-
-  //     // params['firstname'] = '';
-  //     // params['lastname'] = '';
-  //     // params['dob'] = moment(new Date()).format('YYYY-MM-DD');
-  //     // params['about'] = this.state.about;
-  //     // params['job'] = this.state.job_title;
-  //     // params['company'] = this.state.company;
-  //     // params['school'] = this.state.school;
-  //     // params['gender'] = this.state.intgender;
-  //     // params['gender_pref'] = 1;
-  //     // params['distance_threshold'] = 0;
-  //     // params['nickname'] = this.state.nickname;
-  //     // params['smoking'] = 0;
-  //     // params['drinking'] = 0;
-  //     // params['marrried'] = 0;
-  //     // params['presence_of_children'] = 0;
-  //     // params['like_children_or_not'] = 0;
-  //     // params['marriage_desire'] = 0;
-  //     // params['presence_of_pet'] = 0;
-  //     // params['holiday'] = 0;
-  //     // params['hobbie'] = this.state.hobbie;
-  //     // params['bloodtype'] = '';
-  //     // params['email'] = this.state.email;
-  //     // params['name'] = '';
-  //     // params['introduction'] = this.state.introduction;
-  //     // params['character'] = this.state.character;
-  //     // params['location'] = '';
-
-  //     //  alert(this.state.job_title);
-  //     // global.job_title = this.state.job_title;
-  //     //  alert(global.about);
-
-  //     // if (gender_rb == '0') {
-  //     // }
-
-  //     global.socket.emit('on-details');
-  //   });
-  // }
-
+ 
   getProfile() {
     let self = this;
 
@@ -765,7 +714,7 @@ class Happy extends Component {
                       opacity: this.state.nicknameErrorOpacity,
                       // this is nickname*********************
                     }}>
-                   ニックネームはすでに存在します
+                    ニックネームはすでに存在します
                   </Text>
                   <Text
                     style={{
@@ -1169,7 +1118,7 @@ class Happy extends Component {
               血液型
             </Text>
             <View style={{paddingBottom: 30}}>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{
                   borderWidth: 1,
                   height: 50,
@@ -1181,45 +1130,51 @@ class Happy extends Component {
                   alignItems: 'center',
                   // backgroundColor:'red',
                 }}
-                onPress={() => this.openDateModal()}>
-                {/* <TouchableWithoutFeedback
-                style={{width:0, height: 0 ,color:'black'}}
-                onPress={() => this.closeDateModal()}> */}
-                <View
+                onPress={() => this.openDateModal()}></TouchableOpacity> */}
+              <TouchableOpacity
+                onPress={() => this.openDateModal(this.state.nickname)}>
+                <Text
                   style={{
-                    width: '100%',
-                    height: 40,
-                    alignSelf: 'center',
-                    top: 25,
+                    borderWidth: 1,
+                    height: 50,
+                    borderRadius: 4,
+                    top: 20,
+                    width: windowWidth / 1.2,
+                    left: 25,
+                    borderColor: '#cdd5d5',
+                    alignItems: 'center',
+                    textAlign:'center'
+                    // backgroundColor:'red',
                   }}>
-                  <Text
-                    style={{bottom: 10, alignSelf: 'center', color: 'black'}}
-                    value={this.state.dob}
-                    onChangeText={value => this.handleDate(value)}
-                    // placeholder={this.state.dob}
-                    // placeholderTextColor="black"
-                  >
-                    {this.state.dob}
-                  </Text>
-                </View>
-                {/* </TouchableWithoutFeedback> */}
+                  {parseInt(this.state.searchValues[this.state.dob]) != 0
+                    ? moment(
+                        this.state.searchValues[this.state.dob],
+                      ).format('YYYY-MM-DD')
+                    : '01-01-1970'}
+                </Text>
               </TouchableOpacity>
               <Modal
                 animationType="slide"
                 transparent={true}
                 visible={this.state.modalDatePicker}>
+                <TouchableWithoutFeedback
+                  style={{width: windowWidth, height: windowHeight - 220}}
+                  onPress={() => this.closeDateModal()}>
+                  <View
+                    style={{width: '100%', height: windowHeight - 220}}></View>
+                </TouchableWithoutFeedback>
                 <DateTimePicker
                   modalDatePicker={this.state.modalDatePicker}
-                  onCancel={() => this.closeDateModal()}
-                  onOk={() => this.closeDateModal()}
+                  // onCancel={() => this.closeDateModal()}
+                  // onOk={() => this.closeDateModal()}
                   textColor={global.textColor}
                   testID="dateTimePicker"
-                  value={new Date()}
+                  value={new Date(global.birthday)}
                   // value = {}
                   mode={'date'}
-                  // is24Hour={true}
+                  is24Hour={true}
                   display="spinner"
-                  onChange={this.handleDate}
+                  onChange={this.onDateChange}
                 />
               </Modal>
               <Text

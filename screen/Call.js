@@ -675,7 +675,7 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'gray',
     position: 'absolute',
-    right: windowWidth / 9 -30,
+    right: windowWidth / 9 -40,
     bottom: 25,
     // backgroundColor: 'red',
     // padding: 1,
