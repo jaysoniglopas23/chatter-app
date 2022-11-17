@@ -364,9 +364,11 @@ const Tabs = ({navigation}) => {
       return {display: 'none'};
     } else if ((display = routeName === 'UserCanSearch')) {
       return {display: 'none'};
-    } else {
-      display = routeName === 'Messages';
+    } else if (( display = routeName === 'Messages')) {
       return {display: 'flex'};
+    }  else {
+      display = routeName === 'caller';
+      return {display: 'none'};
     }
   };
 
