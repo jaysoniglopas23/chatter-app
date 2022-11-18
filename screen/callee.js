@@ -162,8 +162,8 @@ class Callee extends Component {
   }
 
   onCancel(){
-    global.socket.on("emit-audio-calling", function (ret) {
-      global.socket.off("emit-audio-calling");
+    global.socket.on("emit-audio-is-calling", function (ret) {
+      global.socket.off("emit-audio-is-calling");
 
       alert(2222)
     });
@@ -175,7 +175,7 @@ class Callee extends Component {
 
     alert(111);
 
-    global.socket.emit('on-test-call'), params);
+    global.socket.emit('on-test-call', params);
   }
 
   render() {
