@@ -252,6 +252,8 @@ class Callee extends Component {
                     showMyViewWithVideoOnly: false,
                     isSmallViewDraggable: true,
                     switchLargeOrSmallViewByClick: true,
+                    turnOnCameraWhenJoining: false,
+                  
                   },
                 },
                 ///\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\

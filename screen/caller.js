@@ -128,15 +128,15 @@ class Callee extends Component {
   }
 
   componentDidMount() {
-   
+   let self = this;
 
     global.socket.on('emit-drop-caller', function (ret) {
       global.socket.off('emit-drop-caller');
       
-      alert(2222)
+      // alert(2222)
 
 
-      this.props.navigationRef.current?.navigate('chat');
+      self.props.navigation.navigate('Chat');
     });
 
     // global.socket.on('emit-someone-is-calling', function (ret) {
@@ -195,8 +195,7 @@ class Callee extends Component {
             ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
             onOnlySelfInRoom: () => {
               this.props.navigation.navigate('Chat');
-              {text : 'Conecting...'}
-              <Text>Connecting</Text>
+      
             },
             onHangUp: () => {
               this.props.navigation.navigate('Chat');
@@ -208,7 +207,11 @@ class Callee extends Component {
               config: {
                 showMyViewWithVideoOnly: false,
                 isSmallViewDraggable: true,
-                switchLargeOrSmallViewByClick: true,
+                // switchLargeOrSmallViewByClick: true,
+                turnOnCameraWhenJoining: false,
+                // turnOnMicrophoneWhenJoining: false,
+                // useSpeakerWhenJoining: true,
+               
               },
             },
             ///\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
