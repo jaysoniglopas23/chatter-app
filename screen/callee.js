@@ -162,20 +162,20 @@ class Callee extends Component {
   }
 
   onCancel(){
-    // global.socket.on('emit-drop-caller-audio-call', function (ret) {
-    //   global.socket.off('emit-drop-caller-audio-call');
+    global.socket.on("emit-audio-calling", function (ret) {
+      global.socket.off("emit-audio-calling");
 
-    //   // alert(2222)
-    // });
+      alert(2222)
+    });
 
     let params = {};
    
     params['from'] = global.myid;
-    params['to'] = global.otherid;
+    params['to_id'] = global.otherid;
 
     alert(111);
 
-    global.socket.emit('on-drop-callee-audio-call', params);
+    global.socket.emit('on-test-call'), params);
   }
 
   render() {
