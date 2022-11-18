@@ -221,14 +221,14 @@ class DisplayAnImage extends Component {
   componentDidMount() {
     this.getProfile();
 
-    if (global.prevPage == 'Register') {
-      this.getProfile();
-    } else if (global.prevPage != 'Register') {
-      this._unsubscribe = this.props.navigation.addListener('focus', () => {
-        // Alert.alert('Refreshed');
-        this.getProfile();
-      });
-    }
+    // if (global.prevPage == 'Register') {
+    //   this.getProfile();
+    // } else if (global.prevPage != 'Register') {
+    //   this._unsubscribe = this.props.navigation.addListener('focus', () => {
+    //     // Alert.alert('Refreshed');
+    //     this.getProfile();
+    //   });
+    // }
 
     // this._unsubscribe = this.props.navigation.addListener('focus', () => {
     //   // Alert.alert('Refreshed');
