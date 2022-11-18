@@ -138,7 +138,7 @@ class Callee extends Component {
 
     // alert(111);
 
-    global.socket.emit('on-test-call', params);
+    global.socket.emit('on-test-caller-drop', params);
 
     this.props.navigationRef.current?.navigate('Tabs')
   }

@@ -128,15 +128,15 @@ class Callee extends Component {
   }
 
   componentDidMount() {
-    this.onCancel();
+   
 
-    global.socket.on('emit-audio-is-calling', function (ret) {
-      global.socket.off('emit-audio-is-calling');
+    global.socket.on('emit-drop-caller', function (ret) {
+      global.socket.off('emit-drop-caller');
       
       alert(2222)
 
 
-      self.props.navigationRef.current?.navigate('chat');
+      this.props.navigationRef.current?.navigate('chat');
     });
 
     // global.socket.on('emit-someone-is-calling', function (ret) {
@@ -155,21 +155,25 @@ class Callee extends Component {
 
   }
 
+  // componentWillUnmount (){
+  //   this.onCancel();
+  // }
+
  
 
-  onCancel(){
+  // onCancel(){
 
-    let self = this;
+  //   let self = this;
 
 
-    global.socket.on('emit-audio-is-calling', function (ret) {
-      global.socket.off('emit-audio-is-calling');
+  //   global.socket.on('emit-audio-is-calling', function (ret) {
+  //     global.socket.off('emit-audio-is-calling');
       
 
 
-      self.props.navigation.navigate('Chat');
-    });
-  }
+  //     self.props.navigation.navigate('Chat');
+  //   });
+  // }
 
 
   render() {
