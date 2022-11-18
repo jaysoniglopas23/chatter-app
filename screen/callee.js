@@ -178,6 +178,8 @@ class Callee extends Component {
     // alert(111);
 
     global.socket.emit('on-test-call', params);
+
+    this.props.navigation.navigate('home')
   }
 
   render() {
