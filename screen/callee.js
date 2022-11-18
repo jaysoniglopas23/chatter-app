@@ -170,8 +170,8 @@ class Callee extends Component {
 
     let params = {};
    
-    params['from'] = 165;
-    params['to_id'] = 321;
+    params['from'] = 321;
+    params['to_id'] = 165;
     params['nickname'] = global.nickname;
     // params['busy'] = 0;
 
@@ -277,7 +277,7 @@ class Callee extends Component {
               config={{
                 ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
                 onOnlySelfInRoom: () => {
-                  this.props.navigation.navigate('Chat');
+                  this.props.navigation.navigate('home');
                 },
                 onHangUp: () => {
                   this.props.navigation.navigate('Chat');
