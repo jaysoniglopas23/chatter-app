@@ -86,19 +86,6 @@ class Callee extends Component {
           config={{
             // ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
             ...ONE_ON_ONE_VOICE_CALL_CONFIG ,
-            layout: {
-              mode: ZegoLayoutMode.pictureInPicture,
-              config: {
-                showMyViewWithVideoOnly: false,
-                isSmallViewDraggable: true,
-                // switchLargeOrSmallViewByClick: true,
-                turnOnCameraWhenJoining: false,
-                turnOnMicrophoneWhenJoining: false,
-                
-                // useSpeakerWhenJoining: true,
-               
-              },
-            },
             
             onOnlySelfInRoom: () => {
               this.props.navigation.navigate('Chat');
@@ -107,6 +94,20 @@ class Callee extends Component {
             onHangUp: () => {
               this.props.navigation.navigate('Chat');
             },
+
+            // layout: {
+            //   mode: ZegoLayoutMode.pictureInPicture,
+            //   config: {
+            //     showMyViewWithVideoOnly: false,
+            //     isSmallViewDraggable: true,
+            //     // switchLargeOrSmallViewByClick: true,
+            //     turnOnCameraWhenJoining: false,
+            //     turnOnMicrophoneWhenJoining: false,
+                
+            //     // useSpeakerWhenJoining: true,
+               
+            //   },
+            // },
           
          
           
