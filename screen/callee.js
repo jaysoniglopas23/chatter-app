@@ -99,11 +99,11 @@ class Callee extends Component {
   }
 
   componentDidMount() {
-    global.socket.on('emit-someone-is-calling', function (ret) {
-      global.socket.off('emit-someone-is-calling');
+    // global.socket.on('emit-someone-is-calling', function (ret) {
+    //   global.socket.off('emit-someone-is-calling');
 
-      // alert(2222)
-    });
+    //   // alert(2222)
+    // });
 
     let params = {};
     params['nickname'] = global.nickname;
@@ -161,11 +161,11 @@ class Callee extends Component {
   }
 
   onCancel(){
-    global.socket.on('emit-drop-caller-audio-call', function (ret) {
-      global.socket.off('emit-drop-caller-audio-call');
+    // global.socket.on('emit-drop-caller-audio-call', function (ret) {
+    //   global.socket.off('emit-drop-caller-audio-call');
 
-      // alert(2222)
-    });
+    //   // alert(2222)
+    // });
 
     let params = {};
    

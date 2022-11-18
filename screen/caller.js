@@ -130,9 +130,9 @@ class Callee extends Component {
   componentDidMount() {
     this.onCancel();
 
-    global.socket.on('emit-someone-is-calling', function (ret) {
-      global.socket.off('emit-someone-is-calling');
-    });
+    // global.socket.on('emit-someone-is-calling', function (ret) {
+    //   global.socket.off('emit-someone-is-calling');
+    // });
 
     let params = {};
     params['nickname'] = global.nickname;
@@ -149,18 +149,17 @@ class Callee extends Component {
   onCancel(){
     global.socket.on('emit-drop-caller-audio-call', function (ret) {
       global.socket.off('emit-drop-caller-audio-call');
-
-      // alert(2222)
+      this.props.navigation.navigate('Chat');
     });
 
-    let params = {};
+    // let params = {};
    
-    params['from'] = global.myid;
-    params['to'] = global.otherid;
-    
-    this.props.navigation.navigate('Chat');
+    // params['from'] = global.myid;
+    // params['to'] = global.otherid;
 
-    global.socket.emit('on-drop-callee-audio-call', params);
+    // this.props.navigation.navigate('Chat');
+
+    // global.socket.emit('on-drop-callee-audio-call', params);
   }
 
 
