@@ -22,8 +22,6 @@
 
 // import Svg, {G, Path} from 'react-native-svg';
 
-
-
 // const windowWidth = Dimensions.get('window').width;
 // const windowHeight = Dimensions.get('window').height;
 
@@ -46,37 +44,29 @@
 //       speakerOn: false,
 //     };
 
-
 //   }
 
 //   componentDidMount() {
 
-  
 //       global.socket.on('emit-someone-is-calling', function (ret) {
 //         global.socket.off('emit-someone-is-calling');
-  
+
 //         // alert(2222)
-  
+
 //       });
-  
+
 //       let params = {};
 //       params['nickname'] = global.nickname;
 //       params['from'] = global.myid;
 //       params['to_id'] =global.otherid;
 
 //       // alert(111);
-  
-//       global.socket.emit('on-audio-call', params);
-  
-  
 
+//       global.socket.emit('on-audio-call', params);
 
 //   }
 
-  
 //   back() {
-
- 
 
 //     global.socket.on('emit-drop-callee-audio-call', function (ret) {
 //       global.socket.off('emit-drop-callee-audio-call');
@@ -89,14 +79,11 @@
 //     // params['socketid'] = this.state.socketid;
 //     params['from'] = global.myid;
 //     params['to'] =global.otherid;
-   
+
 //     this.props.navigation.navigate('Chat');
 
 //     global.socket.emit('on-drop-caller-audio-call', params);
 //   }
-
-
-
 
 //   render() {
 //     return (
@@ -108,14 +95,11 @@
 //           backroundColor:'black'
 //         }}>
 
-
 //           <View style={{alignSelf:'center', backroundColor:'red',width:50,height:50,top:100}}>
 //             <TouchableOpacity  onPress={() => this.back()}>
 //               <Text>Drop</Text>
 //             </TouchableOpacity>
 //           </View>
-
-      
 
 //       </View>
 //     );
@@ -124,18 +108,14 @@
 
 // export default Caller;
 
-
-
-
 import React, {useRef, Component} from 'react';
-import ZegoUIKitPreBuildCall,{ONE_ON_ONE_VIDEO_CALL_CONFIG } from '@zegocloud/zego-uikit-prebuilt-call-rn'
-import { ZegoLayoutMode } from '@zegocloud/zego-uikit-rn'
-import {
-  View
-} from 'react-native';
+import ZegoUIKitPreBuildCall, {
+  ONE_ON_ONE_VIDEO_CALL_CONFIG,
+} from '@zegocloud/zego-uikit-prebuilt-call-rn';
+import {ZegoLayoutMode} from '@zegocloud/zego-uikit-rn';
+import {View} from 'react-native';
 
 import Svg, {G, Path} from 'react-native-svg';
-
 
 class Callee extends Component {
   constructor(props) {
@@ -145,77 +125,63 @@ class Callee extends Component {
       username: global.nickname,
       userid: global.otherid,
     };
-}
+  }
 
-componentDidMount() {
+  componentDidMount() {
+    global.socket.on('emit-someone-is-calling', function (ret) {
+      global.socket.off('emit-someone-is-calling');
 
-  
-        global.socket.on('emit-someone-is-calling', function (ret) {
-          global.socket.off('emit-someone-is-calling');
-    
-          // alert(2222)
-    
-        });
-    
-        let params = {};
-        params['nickname'] = global.nickname;
-        params['from'] = global.myid;
-        params['to_id'] =global.otherid;
-  
-        // alert(111);
-    
-        global.socket.emit('on-audio-call', params);
-    
-    
-  
-  
-    }
-  
+      // alert(2222)
+    });
 
+    let params = {};
+    params['nickname'] = global.nickname;
+    params['from'] = global.myid;
+    params['to_id'] = global.otherid;
 
+    // alert(111);
 
+    global.socket.emit('on-audio-call', params);
+  }
 
   render() {
-  
     return (
-     
       <View
         style={{
-          flex:1,
-          backgroundColor:'black'
+          flex: 1,
+          backgroundColor: 'black',
         }}>
-<ZegoUIKitPreBuildCall
-  appID={1297989214}
-  appSign={"53fd764d62cbb035bdd970cb7b82d72e65883fc49b7a8fd60fcfa0c875ae001a"}
-  userID={'from'}
-  userName={this.state.username}
-  callID="testidcall"
-  
-  config={{
-    ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
-    onOnlySelfInRoom: () => {this.props.navigation.navigate('Chat')},
-    onHangUp: () => {this.props.navigation.navigate('Chat')},
-    //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
-    layout:{
-        mode: ZegoLayoutMode.pictureInPicture,
-        config: {
-            showMyViewWithVideoOnly: false,
-            isSmallViewDraggable: true,
-            switchLargeOrSmallViewByClick: true,
-        }
-    }
-    ///\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-  }}
-  />
+        <ZegoUIKitPreBuildCall
+          appID={1297989214}
+          appSign={
+            '53fd764d62cbb035bdd970cb7b82d72e65883fc49b7a8fd60fcfa0c875ae001a'
+          }
+          userID={'from'}
+          userName={this.state.username}
+          callID="testidcall"
+          config={{
+            ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
+            onOnlySelfInRoom: () => {
+              this.props.navigation.navigate('Chat');
+            },
+            onHangUp: () => {
+              this.props.navigation.navigate('Chat');
+            },
+            //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+            layout: {
+              mode: ZegoLayoutMode.pictureInPicture,
+              config: {
+                showMyViewWithVideoOnly: false,
+                isSmallViewDraggable: true,
+                switchLargeOrSmallViewByClick: true,
+              },
+            },
+            ///\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+          }}
+        />
       </View>
-     
     );
   }
 }
 
 export default Callee;
-
-
-
-
-
