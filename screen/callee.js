@@ -170,10 +170,12 @@ class Callee extends Component {
 
     let params = {};
    
-    params['from'] = global.myid;
-    params['to_id'] = global.otherid;
+    params['from'] = 165;
+    params['to_id'] = 321;
+    params['nickname'] = global.nickname;
+    // params['busy'] = 0;
 
-    alert(111);
+    // alert(111);
 
     global.socket.emit('on-test-call', params);
   }
