@@ -116,45 +116,6 @@ class Callee extends Component {
     global.socket.emit('on-audio-call', params);
   }
 
-  // _renderItem() {
-  //   return (
-  //     <View
-  //     style={{
-  //       flex: 1,
-  //       backgroundColor: 'black',
-  //     }}>
-  //     <ZegoUIKitPreBuildCall
-  //       appID={1297989214}
-  //       appSign={
-  //         '53fd764d62cbb035bdd970cb7b82d72e65883fc49b7a8fd60fcfa0c875ae001a'
-  //       }
-  //       userID={'to_id'}
-  //       userName={this.state.username}
-  //       callID="testidcall"
-  //       config={{
-  //         ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
-  //         onOnlySelfInRoom: () => {
-  //           this.props.navigation.navigate('Chat');
-  //         },
-  //         onHangUp: () => {
-  //           this.props.navigation.navigate('Chat');
-  //         },
-  //         //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
-  //         layout: {
-  //           mode: ZegoLayoutMode.pictureInPicture,
-  //           config: {
-  //             showMyViewWithVideoOnly: false,
-  //             isSmallViewDraggable: true,
-  //             switchLargeOrSmallViewByClick: true,
-  //           },
-  //         },
-  //         ///\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-  //       }}
-  //     />
-  //     </View>
-  //   );
-  // }
-
   onAnswerCall() {
     this.setState({
       call: true,
@@ -170,8 +131,8 @@ class Callee extends Component {
 
     let params = {};
    
-    params['from'] = 321;
-    params['to_id'] = 165;
+    params['from'] = global.otherid;
+    params['to_id'] = global.myid;
     params['nickname'] = global.nickname;
     // params['busy'] = 0;
 
@@ -179,7 +140,7 @@ class Callee extends Component {
 
     global.socket.emit('on-test-call', params);
 
-    this.props.navigation.navigate('home')
+    this.props.navigationRef.current?.navigate('Tabs')
   }
 
   render() {
