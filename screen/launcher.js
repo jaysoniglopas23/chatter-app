@@ -115,6 +115,10 @@ class Launcher extends Component {
 
     global.socket.on('emit-drop-caller-audio-call', function (ret) {
       global.socket.off('emit-drop-caller-audio-call');
+      
+      alert(2222)
+
+
       this.props.navigation.navigate('Chat');
     });
 

@@ -99,6 +99,7 @@ class Callee extends Component {
   }
 
   componentDidMount() {
+  
     // global.socket.on('emit-someone-is-calling', function (ret) {
     //   global.socket.off('emit-someone-is-calling');
 
@@ -172,7 +173,7 @@ class Callee extends Component {
     params['from'] = global.myid;
     params['to'] = global.otherid;
 
-    // alert(111);
+    alert(111);
 
     global.socket.emit('on-drop-callee-audio-call', params);
   }
