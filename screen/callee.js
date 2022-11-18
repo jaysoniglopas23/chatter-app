@@ -131,8 +131,8 @@ class Callee extends Component {
 
     let params = {};
    
-    params['from'] = global.otherid;
-    params['to_id'] = global.myid;
+    params['from'] = 321;
+    params['to_id'] = 165;
     params['nickname'] = global.nickname;
     // params['busy'] = 0;
 
