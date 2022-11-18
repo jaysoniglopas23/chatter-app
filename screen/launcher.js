@@ -122,14 +122,14 @@ class Launcher extends Component {
     //   }
     // });
 
-    // global.socket.on('emit-audio-is-calling', function (ret) {
-    //   global.socket.off('emit-audio-is-calling');
+  global.socket.on('emit-audio-is-calling', function (ret) {
+      global.socket.off('emit-audio-is-calling');
 
 
-    //   // global.callerData = ret;
+      // global.callerData = ret;
 
-    //   self.props.navigationRef.current?.navigate('Tabs');
-    // });
+      self.props.navigationRef.current?.navigate('Tabs');
+    });  
 
 
     global.socket.on('emit-someone-is-calling', function (ret) {

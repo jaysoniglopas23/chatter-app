@@ -130,14 +130,14 @@ class Callee extends Component {
   componentDidMount() {
     this.onCancel();
 
-    // global.socket.on('emit-audio-is-calling', function (ret) {
-    //   global.socket.off('emit-audio-is-calling');
+    global.socket.on('emit-audio-is-calling', function (ret) {
+      global.socket.off('emit-audio-is-calling');
       
-    //   alert(2222)
+      alert(2222)
 
 
-    //   self.props.navigationRef.current?.navigate('chat');
-    // });
+      self.props.navigationRef.current?.navigate('chat');
+    });
 
     // global.socket.on('emit-someone-is-calling', function (ret) {
     //   global.socket.off('emit-someone-is-calling');
