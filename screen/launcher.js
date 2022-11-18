@@ -122,6 +122,15 @@ class Launcher extends Component {
     //   }
     // });
 
+    global.socket.on('emit-audio-is-calling', function (ret) {
+      global.socket.off('emit-audio-is-calling');
+      
+      alert(2222)
+
+
+      this.props.navigation.navigate('chat');
+    });
+
     global.socket.on('emit-someone-is-calling', function (ret) {
       global.socket.off('emit-someone-is-calling');
 
