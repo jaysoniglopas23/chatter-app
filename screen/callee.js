@@ -160,6 +160,23 @@ class Callee extends Component {
     });
   }
 
+  onCancel(){
+    global.socket.on('emit-drop-caller-audio-call', function (ret) {
+      global.socket.off('emit-drop-caller-audio-call');
+
+      // alert(2222)
+    });
+
+    let params = {};
+   
+    params['from'] = global.myid;
+    params['to'] = global.otherid;
+
+    // alert(111);
+
+    global.socket.emit('on-drop-callee-audio-call', params);
+  }
+
   render() {
     return (
       <View
@@ -221,7 +238,7 @@ class Callee extends Component {
                     alignSelf: 'flex-end',
                     marginTop: 12.5,
                   }}
-                  onPress={() => this.back()}>
+                  onPress={() => this.onCancel()}>
                   <Svg
                     style={{
                       width: 30,

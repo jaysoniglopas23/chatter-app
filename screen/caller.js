@@ -113,7 +113,7 @@ import ZegoUIKitPreBuildCall, {
   ONE_ON_ONE_VIDEO_CALL_CONFIG,
 } from '@zegocloud/zego-uikit-prebuilt-call-rn';
 import {ZegoLayoutMode} from '@zegocloud/zego-uikit-rn';
-import {View} from 'react-native';
+import {View,Text,Dimensions,TouchableOpacity} from 'react-native';
 
 import Svg, {G, Path} from 'react-native-svg';
 
@@ -128,10 +128,10 @@ class Callee extends Component {
   }
 
   componentDidMount() {
+    this.onCancel();
+
     global.socket.on('emit-someone-is-calling', function (ret) {
       global.socket.off('emit-someone-is-calling');
-
-      // alert(2222)
     });
 
     let params = {};
@@ -142,7 +142,27 @@ class Callee extends Component {
     // alert(111);
 
     global.socket.emit('on-audio-call', params);
+
+
   }
+
+  onCancel(){
+    global.socket.on('emit-drop-caller-audio-call', function (ret) {
+      global.socket.off('emit-drop-caller-audio-call');
+
+      // alert(2222)
+    });
+
+    let params = {};
+   
+    params['from'] = global.myid;
+    params['to'] = global.otherid;
+    
+    this.props.navigation.navigate('Chat');
+
+    global.socket.emit('on-drop-callee-audio-call', params);
+  }
+
 
   render() {
     return (
@@ -163,11 +183,14 @@ class Callee extends Component {
             ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
             onOnlySelfInRoom: () => {
               this.props.navigation.navigate('Chat');
+              {text : 'Conecting...'}
+              <Text>Connecting</Text>
             },
             onHangUp: () => {
               this.props.navigation.navigate('Chat');
             },
-            //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+            //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/'bo
+    
             layout: {
               mode: ZegoLayoutMode.pictureInPicture,
               config: {
