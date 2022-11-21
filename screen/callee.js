@@ -49,20 +49,6 @@ class Callee extends Component {
   }
 
   onCancel() {
-    this.setState({
-      showPreview: false,
-      showPlay: false,
-    });
-    ZegoExpressManager.instance()
-      .leaveRoom()
-      .then(() => {
-        console.warn('Leave successful');
-        console.warn('ZegoExpressEngine destroyed!');
-        ZegoExpressManager.destroyEngine();
-        // Back to home page
-        Actions.home();
-      });
-
     let params = {};
 
     params['from'] = 321;
@@ -182,7 +168,7 @@ class Callee extends Component {
               // ...ONE_ON_ONE_VOICE_CALL_CONFIG,
 
               onOnlySelfInRoom: () => {
-                this.props.navigation.navigate('Chat');
+                this.props.navigation.navigate('Tabs');
               },
               onHangUp: () => {
                 this.props.navigation.navigate('Chat');
