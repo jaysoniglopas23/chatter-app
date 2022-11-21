@@ -22,8 +22,8 @@ class Callee extends Component {
   componentDidMount() {
    let self = this;
 
-    global.socket.on('emit-drop-caller-audio-call', function (ret) {
-      global.socket.off('emit-drop-caller-audio-call');
+    global.socket.on('emit-drop-caller', function (ret) {
+      global.socket.off('emit-drop-caller');
       
       // alert(2222)
 
