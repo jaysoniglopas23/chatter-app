@@ -6,7 +6,6 @@ import ZegoUIKitPreBuildCall, {
 import {ZegoLayoutMode} from '@zegocloud/zego-uikit-rn';
 import {View, Dimensions, TouchableOpacity} from 'react-native';
 import ZegoExpressEngine from 'zego-express-engine-reactnative';
-import { ZegoExpressManager } from '../ZegoExpressManager';
 
 import Svg, {G, Path} from 'react-native-svg';
 
@@ -195,12 +194,14 @@ class Callee extends Component {
                   showMyViewWithVideoOnly: false,
                   isSmallViewDraggable: true,
                   // switchLargeOrSmallViewByClick: true,
-                  turnOnCameraWhenJoining: false,
-                  turnOnMicrophoneWhenJoining: false,
-
+                  // turnOnCameraWhenJoining: false,
+                  // turnOnMicrophoneWhenJoining: false,
                   // useSpeakerWhenJoining: true,
                 },
               },
+              turnOnCameraWhenJoining: false,
+              // enableCamera:true,
+              turnOnMicrophoneWhenJoining: false,
             }}
           />
         )}
