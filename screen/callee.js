@@ -171,7 +171,7 @@ class Callee extends Component {
                 this.props.navigation.navigate('Tabs');
               },
               onHangUp: () => {
-                this.props.navigation.navigate('Chat');
+                this.props.navigation.navigate('Tabs');
               },
 
               layout: {
