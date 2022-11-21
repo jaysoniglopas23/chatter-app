@@ -1,11 +1,12 @@
-
-
 import React, {useRef, Component} from 'react';
 import ZegoUIKitPreBuildCall, {
-  ONE_ON_ONE_VIDEO_CALL_CONFIG,ONE_ON_ONE_VOICE_CALL_CONFIG
+  ONE_ON_ONE_VIDEO_CALL_CONFIG,
+  ONE_ON_ONE_VOICE_CALL_CONFIG,
 } from '@zegocloud/zego-uikit-prebuilt-call-rn';
 import {ZegoLayoutMode} from '@zegocloud/zego-uikit-rn';
 import {View, Dimensions, TouchableOpacity} from 'react-native';
+import ZegoExpressEngine from 'zego-express-engine-reactnative';
+import { ZegoExpressManager } from '../ZegoExpressManager';
 
 import Svg, {G, Path} from 'react-native-svg';
 
@@ -40,6 +41,8 @@ class Callee extends Component {
     global.socket.emit('on-audio-call', params);
   }
 
+  componentWillUnmount() {}
+
   onAnswerCall() {
     this.setState({
       call: true,
@@ -47,11 +50,19 @@ class Callee extends Component {
   }
 
   onCancel() {
-    // global.socket.on("emit-audio-is-calling", function (ret) {
-    //   global.socket.off("emit-audio-is-calling");
-
-    //   alert(2222)
-    // });
+    this.setState({
+      showPreview: false,
+      showPlay: false,
+    });
+    ZegoExpressManager.instance()
+      .leaveRoom()
+      .then(() => {
+        console.warn('Leave successful');
+        console.warn('ZegoExpressEngine destroyed!');
+        ZegoExpressManager.destroyEngine();
+        // Back to home page
+        Actions.home();
+      });
 
     let params = {};
 
@@ -65,6 +76,13 @@ class Callee extends Component {
     global.socket.emit('on-test-caller-drop', params);
 
     this.props.navigationRef.current?.navigate('Tabs');
+  }
+
+  unRegisterCallback() {
+    // If the parameter is null, the previously registered callback is cleared
+    ZegoExpressManager.instance().onRoomUserUpdate();
+    ZegoExpressManager.instance().onRoomUserDeviceUpdate();
+    ZegoExpressManager.instance().onRoomStateUpdate();
   }
 
   render() {
@@ -181,7 +199,6 @@ class Callee extends Component {
                   turnOnMicrophoneWhenJoining: false,
 
                   // useSpeakerWhenJoining: true,
-
                 },
               },
             }}
