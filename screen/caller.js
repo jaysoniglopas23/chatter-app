@@ -84,8 +84,8 @@ class Callee extends Component {
           userName={this.state.username}
           callID="testidcall"
           config={{
-            // ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
-            ...ONE_ON_ONE_VOICE_CALL_CONFIG ,
+            ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
+            // ...ONE_ON_ONE_VOICE_CALL_CONFIG ,
             
             onOnlySelfInRoom: () => {
               this.props.navigation.navigate('Chat');
@@ -95,19 +95,21 @@ class Callee extends Component {
               this.props.navigation.navigate('Chat');
             },
 
-            // layout: {
-            //   mode: ZegoLayoutMode.pictureInPicture,
-            //   config: {
-            //     showMyViewWithVideoOnly: false,
-            //     isSmallViewDraggable: true,
-            //     // switchLargeOrSmallViewByClick: true,
-            //     turnOnCameraWhenJoining: false,
-            //     turnOnMicrophoneWhenJoining: false,
+            layout: {
+              mode: ZegoLayoutMode.pictureInPicture,
+              config: {
+                showMyViewWithVideoOnly: false,
+                isSmallViewDraggable: true,
+                // switchLargeOrSmallViewByClick: true,
+                turnOnCameraWhenJoining: false,
+                // enablCamera:true,
                 
-            //     // useSpeakerWhenJoining: true,
+                turnOnMicrophoneWhenJoining: false,
+                
+                // useSpeakerWhenJoining: true,
                
-            //   },
-            // },
+              },
+            },
           
          
           

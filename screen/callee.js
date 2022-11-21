@@ -1,83 +1,8 @@
-// import React, {useRef, Component} from 'react';
 
-// import {
-//   Easing,
-//   ActivityIndicator,
-//   Image,
-//   StyleSheet,
-//   Text,
-//   View,
-//   Animated,
-//   NativeModules,
-//   Platform,
-//   Dimensions,
-//   TouchableOpacity,
-//   TouchableWithoutFeedback,
-//   FlatList,
-//   Modal,
-//   TextInput,
-//   KeyboardAvoidingView,
-//   findNodeHandle,
-// } from 'react-native';
-
-// import Svg, {G, Path} from 'react-native-svg';
-
-// const windowWidth = Dimensions.get('window').width;
-// const windowHeight = Dimensions.get('window').height;
-
-// const twilioVideo = React.createRef();
-
-// class Callee extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       accessToken: null,
-//       trackSid: null,
-//       trackIdentifier: null,
-//       messageText: global.locale == 'en' ? ' Connecting...' : '接続する...',
-//       usernameText: global.name,
-//       callStatus: 0,
-//       videoOn: false,
-//       calleeVideoOn: false,
-//       mute: false,
-//       speakerOn: false,
-//     };
-
-//   }
-
-//   componentDidMount() {
-
-//     global.socket.on('emit-drop-callee-audio-call', function (ret) {
-//       global.socket.off('emit-drop-callee-audio-call');
-
-//       // global.callerData = ret;
-
-//       self.props.navigationRef.current?.navigate('home');
-//     });
-
-//   }
-
-//   render() {
-//     return (
-//       <View
-//         styles={{
-//           width: windowWidth,
-//           height: windowHeight,
-//           flexDirection: 'column',
-//           backroundColor:'#000'
-//         }}>
-
-//       </View>
-//     );
-//   }
-// }
-
-// export default Callee;
 
 import React, {useRef, Component} from 'react';
 import ZegoUIKitPreBuildCall, {
-  ONE_ON_ONE_VIDEO_CALL_CONFIG,
+  ONE_ON_ONE_VIDEO_CALL_CONFIG,ONE_ON_ONE_VOICE_CALL_CONFIG
 } from '@zegocloud/zego-uikit-prebuilt-call-rn';
 import {ZegoLayoutMode} from '@zegocloud/zego-uikit-rn';
 import {View, Dimensions, TouchableOpacity} from 'react-native';
@@ -131,7 +56,7 @@ class Callee extends Component {
     let params = {};
 
     params['from'] = 321;
-    params['to_id'] = 165;
+    params['to'] = 165;
     params['nickname'] = global.nickname;
     // params['busy'] = 0;
 
@@ -236,8 +161,8 @@ class Callee extends Component {
             userName={this.state.username}
             callID="testidcall"
             config={{
-              // ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
-              ...ONE_ON_ONE_VOICE_CALL_CONFIG,
+              ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
+              // ...ONE_ON_ONE_VOICE_CALL_CONFIG,
 
               onOnlySelfInRoom: () => {
                 this.props.navigation.navigate('Chat');
@@ -246,19 +171,19 @@ class Callee extends Component {
                 this.props.navigation.navigate('Chat');
               },
 
-              // layout: {
-              //   mode: ZegoLayoutMode.pictureInPicture,
-              //   config: {
-              //     showMyViewWithVideoOnly: false,
-              //     isSmallViewDraggable: true,
-              //     // switchLargeOrSmallViewByClick: true,
-              //     turnOnCameraWhenJoining: false,
-              //     turnOnMicrophoneWhenJoining: false,
+              layout: {
+                mode: ZegoLayoutMode.pictureInPicture,
+                config: {
+                  showMyViewWithVideoOnly: false,
+                  isSmallViewDraggable: true,
+                  // switchLargeOrSmallViewByClick: true,
+                  turnOnCameraWhenJoining: false,
+                  turnOnMicrophoneWhenJoining: false,
 
-              //     // useSpeakerWhenJoining: true,
+                  // useSpeakerWhenJoining: true,
 
-              //   },
-              // },
+                },
+              },
             }}
           />
         )}
