@@ -49,10 +49,11 @@ class Callee extends Component {
   }
 
   onCancel() {
+    
     let params = {};
 
-    params['from'] = 321;
-    params['to'] = 165;
+    params['from'] = global.myid;
+    params['to'] = global.otherid;
     params['nickname'] = global.nickname;
     // params['busy'] = 0;
 
@@ -67,7 +68,7 @@ class Callee extends Component {
     // If the parameter is null, the previously registered callback is cleared
     ZegoExpressManager.instance().onRoomUserUpdate();
     ZegoExpressManager.instance().onRoomUserDeviceUpdate();
-    ZegoExpressManager.instance().onRoomStateUpdate();
+    ZegoExpressManager.instance().onRoomStateUpdate();  
   }
 
   render() {

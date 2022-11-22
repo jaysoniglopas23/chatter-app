@@ -122,21 +122,28 @@ class Launcher extends Component {
     //   }
     // });
 
-  global.socket.on('emit-drop-caller', function (ret) {
-      global.socket.off('emit-drop-caller');
+  // global.socket.on('emit-drop-caller', function (ret) {
+  //     global.socket.off('emit-drop-caller');
+  //       alert(ret);
 
+     
 
-      // global.callerData = ret;
-
-      self.props.navigationRef.current?.navigate('Tabs');
-    });  
+  //     self.props.navigationRef.current?.navigate('Tabs');
+  //   });  
 
 
     global.socket.on('emit-someone-is-calling', function (ret) {
       global.socket.off('emit-someone-is-calling');
 
-
-      // global.callerData = ret;
+      // alert(JSON.stringify(ret));
+      self.setState({
+        from: ret.from,
+        nickname: ret.nickname,
+        to_id: ret.to_id,
+      });
+      global.nickname = ret.nickname;
+      global.otherid = ret.from;
+      global.myid = ret.to_id;
 
       self.props.navigationRef.current?.navigate('Callee');
     });

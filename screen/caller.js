@@ -21,14 +21,14 @@ class Callee extends Component {
 
   componentDidMount() {
     let self = this;
+    this.onCancel();
+    // global.socket.on('emit-drop-caller', function (ret) {
+    //   global.socket.off('emit-drop-caller');
 
-    global.socket.on('emit-drop-caller', function (ret) {
-      global.socket.off('emit-drop-caller');
+    //   // alert(2222)
 
-      // alert(2222)
-
-      self.props.navigation.navigate('Chat');
-    });
+    //   self.props.navigation.navigate('Chat');
+    // });
 
     // global.socket.on('emit-someone-is-calling', function (ret) {
     //   global.socket.off('emit-someone-is-calling');
@@ -46,16 +46,19 @@ class Callee extends Component {
 
   componentWillUnmount() {}
 
-  // onCancel(){
+  onCancel(){
 
-  //   let self = this;
+    let self = this;
 
-  //   global.socket.on('emit-audio-is-calling', function (ret) {
-  //     global.socket.off('emit-audio-is-calling');
+   
+    global.socket.on('emit-drop-caller', function (ret) {
+      global.socket.off('emit-drop-caller');
 
-  //     self.props.navigation.navigate('Chat');
-  //   });
-  // }
+      // alert(2222)
+
+      self.props.navigation.navigate('Chat');
+    });
+  }
 
   unRegisterCallback() {
     // If the parameter is null, the previously registered callback is cleared
