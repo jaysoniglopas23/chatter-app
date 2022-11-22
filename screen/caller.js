@@ -82,11 +82,13 @@ class Callee extends Component {
           userID={'from'}
           userName={this.state.username}
           callID="testidcall"
-          serverUrl='https://chatter-call.herokuapp.com/'
+         
           config={{
+            
             ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
             // ...ONE_ON_ONE_VOICE_CALL_CONFIG ,
-
+            serverUrl:'https://chatter-call.herokuapp.com/',
+            
             onOnlySelfInRoom: () => {
               this.props.navigation.navigate('Chat');
             },
