@@ -12,7 +12,7 @@ import {
   Dimensions,
   PermissionsAndroid,
   BackHandler,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNavigationContainerRef} from '@react-navigation/native';
@@ -24,7 +24,7 @@ import Socket from '../utils/socket';
 import Storage from '../utils/storage';
 import {getVersion} from 'react-native-device-info';
 import Dashboard from './Dashboard';
-import notifee from '@notifee/react-native';
+// import notifee from '@notifee/react-native';
 import messaging from '@react-native-firebase/messaging';
 import analytics from '@react-native-firebase/analytics';
 import PushNotification from 'react-native-push-notification';
@@ -100,15 +100,32 @@ class Launcher extends Component {
       await messaging()
         .getToken()
         .then(fcmToken => {
-          console.log('FCM Token ->', fcmToken);
+          console.log('MyFCM Token ->', fcmToken);
         });
     } else {
       console.log('Not Authorization status', authStatus);
       // this.getFcmToken();
     }
+    // messaging().onMessage(async remoteMessage => {
+    //   console.log('New FCM', JSON.stringify(remoteMessage));
+    // });
+    // messaging().onNotificationOpenedApp(remoteMessage => {
+    //   console.log('onNotificatation', JSON.stringify(remoteMessage));
+    // });
+
+    // messaging()
+    //   .getInitialNotification()
+    //   .then(remoteMessage => {
+    //     if (remoteMessage) {
+    //       console.log(
+    //         'Notification caused app to open from quit state',
+    //         JSON.stringify(remoteMessage),
+    //       );
+    //     }
+    //   });
   };
 
-  addGlobalListeners(){
+  addGlobalListeners() {
     let self = this;
 
     global.inCall = false;
@@ -122,15 +139,12 @@ class Launcher extends Component {
     //   }
     // });
 
-  // global.socket.on('emit-drop-caller', function (ret) {
-  //     global.socket.off('emit-drop-caller');
-  //       alert(ret);
+    // global.socket.on('emit-drop-caller', function (ret) {
+    //     global.socket.off('emit-drop-caller');
+    //       alert(ret);
 
-     
-
-  //     self.props.navigationRef.current?.navigate('Tabs');
-  //   });  
-
+    //     self.props.navigationRef.current?.navigate('Tabs');
+    //   });
 
     global.socket.on('emit-someone-is-calling', function (ret) {
       global.socket.off('emit-someone-is-calling');
@@ -148,14 +162,12 @@ class Launcher extends Component {
       self.props.navigationRef.current?.navigate('Callee');
     });
 
-
     // let params = {};
     // params['nickname'] =this.state.nickname;
     // params['from'] = this.state.from;
     // params['to'] =this.state.to;
 
     // global.socket.emit('on-audio-call', params);
-
   }
 
   // getFcmToken = async () => {
@@ -340,7 +352,7 @@ class Launcher extends Component {
 
   autoLogin(data) {
     let self = this;
-    global.prevPage ="Launcher"
+    global.prevPage = 'Launcher';
     global.socket.on('emit-login', function (ret) {
       global.socket.off('emit-login');
       // alert(JSON.stringify(ret));
@@ -382,9 +394,9 @@ class Launcher extends Component {
               global.searchFields = data.searchSettings;
               // alert(global.age_verified);
               self.addGlobalListeners();
-              global.prevPage ="Launcher"
+              global.prevPage = 'Launcher';
               self.props.navigationRef.current?.navigate('Tabs');
-              
+
               //  self.addGlobalListeners();
 
               //  alert(1)
