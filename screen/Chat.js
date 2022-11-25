@@ -164,13 +164,11 @@ class Chat extends Component {
             msg_from: ret.msg_from,
             timezone: ret.timezone,
             type:ret.type,
-            token:ret.token,
+            token:ret[0].token,
           });
           // console.log(se.data);
-          global.othertoken = ret.token;
+          global.othertoken = ret[0].token;
 
-
-          // alert(JSON.stringify(global.type));
 
           // self.flatListRef.scrollToOffset({
           //   animated: true,
@@ -194,11 +192,11 @@ class Chat extends Component {
         params['lastmessage'] = global.lastmessage;
         params['read'] = 1;
         params['type'] = this.state.type;
-        params['token'] =global.token;
+        params['token'] =global.othertoken;
         // params[''] = ;
-//  this.state.type = global.type;
+ this.state.token = global.othertoken;
         
-        // alert(this.state.type);
+        // alert(this.state.token);
 
         global.socket.emit('on-messages', params);
         // console.log(params);
@@ -312,7 +310,7 @@ class Chat extends Component {
     params['data'] = this.state.message;
     params['points'] = this.state.points;
     params['type'] = 'string';
-    params['token'] = global.token;
+    params['token'] = this.state.token;
 
     console.log(params);
 
