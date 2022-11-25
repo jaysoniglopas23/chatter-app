@@ -141,7 +141,7 @@ class MessagesScrean extends Component {
       () => {
         global.socket.on('emit-matched', function (ret) {
           global.socket.off('emit-mathed');
-          // alert(JSON.stringify(ret));
+          alert(JSON.stringify(ret));
           // console.log(ret);
 
           self.setState({

@@ -149,7 +149,7 @@ class Chat extends Component {
         global.socket.on('emit-messages', function (ret) {
           global.socket.off('emit-messages');
           // alert(JSON.stringify(ret));
-          console.log(ret);
+          // console.log(ret);
 
           self.setState({
             showLoading: false,
@@ -194,6 +194,7 @@ class Chat extends Component {
         params['lastmessage'] = global.lastmessage;
         params['read'] = 1;
         params['type'] = this.state.type;
+        params['token'] =global.token;
         // params[''] = ;
 //  this.state.type = global.type;
         
@@ -311,7 +312,7 @@ class Chat extends Component {
     params['data'] = this.state.message;
     params['points'] = this.state.points;
     params['type'] = 'string';
-    params['token'] = 'f1crZZe2QPuv_dqkFDpbFF:APA91bFvGCQiIdQmkbqdqp7Kdb3nK_nyWRB3IxrU7QSR9aTvqQFY3sX5-yeR2gMLflYMgNZnmbw_aqkQDJ9ev8PLey-TREQuQWaYWe3UV9EIIJ5y4LCvEgvsQIqmxFsgEDgtBIlE3GOQ';
+    params['token'] = global.othertoken;
 
     console.log(params);
 
