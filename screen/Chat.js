@@ -312,7 +312,7 @@ class Chat extends Component {
     params['data'] = this.state.message;
     params['points'] = this.state.points;
     params['type'] = 'string';
-    params['token'] = global.othertoken;
+    params['token'] = global.token;
 
     console.log(params);
 
