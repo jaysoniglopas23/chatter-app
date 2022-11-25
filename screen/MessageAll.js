@@ -40,7 +40,7 @@ class MessagesScrean extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat(id, name, lastmessage, profile_image, profile_image_dir,token) {
+  goChat(id, name, lastmessage, profile_image, profile_image_dir) {
     global.prevPage = 'Messages';
     this.props.navigation.push('Chat');
 
@@ -90,14 +90,14 @@ class MessagesScrean extends Component {
         params['save'] = this.state.save;
         params['timezone'] = this.state.timezone;
         params['unread_count'] = this.state.unread_count;
-        params['token'] = token;
+        // params['token'] = token;
 
         global.otherid = id;
         global.name = name;
         global.lastmessage = lastmessage;
         global.profile_image_dir = profile_image_dir;
         global.profile_image = profile_image;
-        global.token = token;
+       
 
         // alert(global.otherid);
 
@@ -249,7 +249,7 @@ class MessagesScrean extends Component {
                   item.lastmessage,
                   item.profile_image,
                   item.profile_image_dir,
-                  item.token,
+              
                 )
               }>
               {item.id == global.myuserid ? (

@@ -64,6 +64,7 @@ class User extends Component {
 
   goChat(id, name, lastmessage) {
     global.prevPage = 'UserCanSearch';
+    global.othertoken;
     this.props.navigation.push('Chat');
     let self = this;
 
@@ -91,7 +92,10 @@ class User extends Component {
             school: ret.school,
             bloodtype: ret.bloodtype,
             nickname: ret.nickname,
+            token:ret.token
           });
+
+          global.othertoken = ret.token;
         });
 
         let params = {};
@@ -137,7 +141,7 @@ class User extends Component {
     self.setState({}, () => {
       global.socket.on('emit-user-details', function (ret) {
         global.socket.off('emit-user-details');
-        // console.log(ret);
+        console.log(ret);
         self.setState({
           id: ret.id,
           details: ret,

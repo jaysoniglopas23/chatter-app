@@ -151,6 +151,8 @@ class Chat extends Component {
           // alert(JSON.stringify(ret));
           // console.log(ret);
 
+          if (global.prevPage == 'Messages') {
+
           self.setState({
             showLoading: false,
             loadingChats: false,
@@ -167,9 +169,27 @@ class Chat extends Component {
             token:ret[0].token,
           });
           // console.log(se.data);
-          global.othertoken = ret[0].token;
+          global.token = ret[0].token;
 
+          } else {
+            self.setState({
+              showLoading: false,
+              loadingChats: false,
+              // id: ret.otherid,
+              ret: ret,
+              data: ret.data,
+              profile_image: ret.profile_image,
+              profile_image_dir: ret.profile_image_dir,
+              datetime: ret.datetime,
+              msg_to: ret.msg_to,
+              msg_from: ret.msg_from,
+              timezone: ret.timezone,
+              type:ret.type,
+              token:ret.token,
+            });
 
+            global.token = global.othertoken;
+          }
           // self.flatListRef.scrollToOffset({
           //   animated: true,
           //   offset: self.state.data.length,
@@ -192,9 +212,9 @@ class Chat extends Component {
         params['lastmessage'] = global.lastmessage;
         params['read'] = 1;
         params['type'] = this.state.type;
-        params['token'] =global.othertoken;
+        params['token'] =global.token;
         // params[''] = ;
- this.state.token = global.othertoken;
+ this.state.token = global.token;
         
         // alert(this.state.token);
 
