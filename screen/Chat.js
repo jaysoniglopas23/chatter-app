@@ -164,9 +164,10 @@ class Chat extends Component {
             msg_from: ret.msg_from,
             timezone: ret.timezone,
             type:ret.type,
+            token:ret.token,
           });
           // console.log(se.data);
-          // global.type = self.state.type;
+          global.othertoken = ret.token;
 
 
           // alert(JSON.stringify(global.type));
@@ -310,6 +311,7 @@ class Chat extends Component {
     params['data'] = this.state.message;
     params['points'] = this.state.points;
     params['type'] = 'string';
+    params['token'] = 'f1crZZe2QPuv_dqkFDpbFF:APA91bFvGCQiIdQmkbqdqp7Kdb3nK_nyWRB3IxrU7QSR9aTvqQFY3sX5-yeR2gMLflYMgNZnmbw_aqkQDJ9ev8PLey-TREQuQWaYWe3UV9EIIJ5y4LCvEgvsQIqmxFsgEDgtBIlE3GOQ';
 
     console.log(params);
 

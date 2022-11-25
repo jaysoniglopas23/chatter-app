@@ -101,6 +101,7 @@ class Launcher extends Component {
         .getToken()
         .then(fcmToken => {
           console.log('MyFCM Token ->', fcmToken);
+          global.fcmToken = fcmToken;
         });
     } else {
       console.log('Not Authorization status', authStatus);
@@ -368,13 +369,14 @@ class Launcher extends Component {
 
       if (self.state.id == 0) {
         global.searchFields = data.searchSettings;
+        global.fcmToken;
         self.props.navigationRef.current?.navigate('Login');
       } else {
         Storage.retrieveData().then(d => {
           // alert(2);
           if (parseInt(d.password) == 0 && !global.passwordCorrect) {
             global.passcodeValue = d.PasscodeValue;
-
+            global.fcmToken;
             self.props.navigationRef.current?.navigate('Login');
           } else {
             d.username = data.username;
@@ -395,6 +397,8 @@ class Launcher extends Component {
               // alert(global.age_verified);
               self.addGlobalListeners();
               global.prevPage = 'Launcher';
+              global.fcmToken;
+        
               self.props.navigationRef.current?.navigate('Tabs');
 
               //  self.addGlobalListeners();

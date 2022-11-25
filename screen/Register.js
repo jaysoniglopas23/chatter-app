@@ -357,9 +357,10 @@ class Register extends Component {
           confirm_password: this.state.confirm_password,
           gender: this.state.gender,
           age_verified: 0,
+          token:  global.fcmToken,
           datetime: moment(new Date()).format('YYYY-MM-DD  HH:mm:ss '),
         };
-
+        // alert(global.fcmToken),
         // alert(global.account_id);
         console.log(params);
 

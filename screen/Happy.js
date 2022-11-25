@@ -210,7 +210,7 @@ class Happy extends Component {
 
         params['firstname'] = '';
         params['lastname'] = '';
-        params['dob'] =  global.birthday ;
+        params['dob'] =  this.state.dob ;
         params['about'] = this.state.about;
         params['job'] = this.state.job_title;
         params['company'] = this.state.company;
@@ -1169,7 +1169,7 @@ class Happy extends Component {
                   // onOk={() => this.closeDateModal()}
                   textColor={global.textColor}
                   testID="dateTimePicker"
-                  value={new Date(global.birthday)}
+                  value={new Date()}
                   // value = {}
                   mode={'date'}
                   is24Hour={true}
