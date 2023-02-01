@@ -6,11 +6,7 @@ import ZegoUIKitPreBuildCall, {
 import {ZegoLayoutMode, ZegoCameraStateIcon} from '@zegocloud/zego-uikit-rn';
 import {View, Dimensions, TouchableOpacity} from 'react-native';
 import ZegoExpressEngine from 'zego-express-engine-reactnative';
-<<<<<<< Updated upstream
-
-=======
 import moment from 'moment';
->>>>>>> Stashed changes
 import Svg, {G, Path} from 'react-native-svg';
 
 const windowWidth = Dimensions.get('window').width;
@@ -30,20 +26,6 @@ class Callee extends Component {
   componentDidMount() {
     // global.socket.on('emit-someone-is-calling', function (ret) {
     //   global.socket.off('emit-someone-is-calling');
-<<<<<<< Updated upstream
-
-    //   // alert(2222)
-    // });
-
-    let params = {};
-    params['nickname'] = global.nickname;
-    params['from'] = global.myid;
-    params['to_id'] = global.otherid;
-
-    // alert(111);
-
-    global.socket.emit('on-audio-call', params);
-=======
     //   // alert(2222)
     // });
     // let params = {};
@@ -52,23 +34,11 @@ class Callee extends Component {
     // params['to_id'] = global.otherid;
     // // alert(111);
     // global.socket.emit('on-audio-call', params);
->>>>>>> Stashed changes
   }
 
   componentWillUnmount() {}
 
   onAnswerCall() {
-<<<<<<< Updated upstream
-    this.setState({
-      call: true,
-    });
-  }
-
-  onCancel() {
-    
-    let params = {};
-
-=======
     // this.setState({
     //   call: true,
     // });
@@ -129,7 +99,6 @@ class Callee extends Component {
 
   onCancel() {
     let params = {};
->>>>>>> Stashed changes
     params['from'] = global.myid;
     params['to'] = global.otherid;
     // params['nickname'] = global.nickname;
@@ -139,16 +108,12 @@ class Callee extends Component {
 
     global.socket.emit('on-test-caller-drop', params);
 
-<<<<<<< Updated upstream
-    this.props.navigationRef.current?.navigate('Tabs');
-=======
     // this.props.navigation.reset({
     //   index:1,
     //   routes:  [{ name: "Tabs"}],
     // });
 
     this.props.navigation.navigate('Tabs');
->>>>>>> Stashed changes
   }
 
   unRegisterCallback() {
@@ -251,9 +216,6 @@ class Callee extends Component {
             userID={'to_id'}
             userName={this.state.username}
             callID="testidcall"
-<<<<<<< Updated upstream
-          
-=======
             ringtoneConfig={{
               incomingCallFileName:
                 //  'ringtone.mp3',
@@ -262,7 +224,6 @@ class Callee extends Component {
                 // 'ringtone.mp3',
                 'zego_outgoing.mp3',
             }}
->>>>>>> Stashed changes
             config={{
               ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
               // ...ONE_ON_ONE_VOICE_CALL_CONFIG,
