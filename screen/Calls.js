@@ -37,12 +37,12 @@ class Calls extends Component {
     this.getToggleSwitch();
   }
 
-  getToggleSwitch = value => {
+  getToggleSwitch = toggled => {
     let self = this;
 
     this.setState(
       {
-        toggled: value,
+        // toggled: value,
       },
 
       () => {
@@ -67,7 +67,7 @@ class Calls extends Component {
 
         params['drop_calls'] = this.state.drop_calls;
         params['userid'] = this.state.userid;
-        console.log(params);
+        // console.log(params);
         global.socket.emit('on-callsettings', params);
       },
     );
@@ -109,8 +109,8 @@ class Calls extends Component {
       let params = {};
 
       params['drop_calls'] = this.state.drop_calls;
-      this.props.navigationRef.current?.navigate('Dashboard');
-      // console.log(params);
+      this.props.navigation.navigate('home');
+      console.log(params);
       global.socket.emit('on-callsettings-save', params);
     });
   }
@@ -179,6 +179,7 @@ class Calls extends Component {
             </Svg>
             <Text style={{right: 0, top: 6, color: '#5B5B5B'}}>戻る</Text>
           </TouchableOpacity>
+<<<<<<< Updated upstream
           <TouchableOpacity
             onPress={() => this.Save()}
             style={{
@@ -195,6 +196,76 @@ class Calls extends Component {
             />
             <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
           </TouchableOpacity>
+=======
+
+          <View style={styles.view}>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                color: '#000000',
+                justifyContent: 'center',
+                fontSize: 20,
+                left: 60,
+              }}>
+              現在の通話設定 
+            </Text>
+            <ToggleSwitch
+              style={{left: windowWidth / 3 - 20, height: 26, borderRadius: 15,bottom:18}}
+              isOn={this.state.toggled}
+              onColor="#FFF5F8"
+              offColor="#FFF5F8"
+              thumbOffStyle={{backgroundColor: '#EA337E'}}
+              thumbOnStyle={{backgroundColor: '#68B984'}}
+              trackOffStyle={{borderColor: '#EA337E', borderWidth: 1}}
+              trackOnStyle={{borderColor: '#68B984', borderWidth: 1}}
+              size="medium"
+              label={this.state.toggled ? "オフ" : "オン"}
+              
+              labelStyle ={{color:'red',alignSelf:'center', left:40,top:20}}
+              onToggle={value => this.toggleSwitch(value)}
+            />
+          </View>
+
+          <View
+            style={{
+              height: windowHeight / 1 - 1000,
+              width: windowWidth - 25,
+              bottom: windowWidth / 2 - 630,
+              // flexDirection: 'row',
+              alignSelf: 'center',
+              // backgroundColor:'black',
+            }}>
+          <TouchableOpacity
+              style={{
+                backgroundColor: '#FFF5F8',
+                height: windowHeight / 25,
+                // left: windowWidth / 1.4,
+                flexDirection: 'row',
+                width: windowWidth / 5 - 5,
+                borderRadius: 10,
+                // bottom: 34,
+                alignSelf: 'center',
+              }}
+              onPress={() => this.Save()}>
+                <Svg
+                style={{alignSelf: 'center', left: 9, height: 20, width: 20}}
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fal"
+                data-icon="angle-left"
+                class="svg-inline--fa fa-angle-left fa-w-6"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512">
+                <Path
+                  d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 416c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"
+                  fill="#EA337E"
+                />
+              </Svg>
+              <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
+            </TouchableOpacity>
+          </View>
+>>>>>>> Stashed changes
         </View>
       </View>
     );

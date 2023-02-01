@@ -214,7 +214,7 @@ class Readmessages extends Component {
   render() {
     return (
       <Container>
-        <FlatList
+        {/* <FlatList
           data={this.state.ret}
           style={{width: windowWidth - 40, height: '100%', alignSelf: 'center'}}
           keyExtractor={item => item.id}
@@ -257,7 +257,7 @@ class Readmessages extends Component {
               )}
             </Card>
           )}
-        />
+        /> */}
       </Container>
     );
   }

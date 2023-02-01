@@ -1,32 +1,32 @@
 import React, {Component} from 'react';
 import {
-  Container,
-  Card,
-  Card1,
-  UserInfo,
-  UserInfo1,
-  UserImgWrapper,
-  UserImg,
-  UserImg1,
-  UserInfoText,
-  UserName,
-  PostTime,
-  MessageText,
-  MessageText1,
-  TextSection,
-  PostsImg,
-  UserIcon,
+ Container,
+ Card,
+ Card1,
+ UserInfo,
+ UserInfo1,
+ UserImgWrapper,
+ UserImg,
+ UserImg1,
+ UserInfoText,
+ UserName,
+ PostTime,
+ MessageText,
+ MessageText1,
+ TextSection,
+ PostsImg,
+ UserIcon,
 } from '../styles/HeartStyles';
 import {
-  View,
-  Text,
-  FlatList,
-  ActivityIndicator,
-  SafeAreaView,
-  StatusBar,
-  Image,
-  StyleSheet,
-  Dimensions,
+ View,
+ Text,
+ FlatList,
+ ActivityIndicator,
+ SafeAreaView,
+ StatusBar,
+ Image,
+ StyleSheet,
+ Dimensions,
 } from 'react-native';
 import _ from 'lodash';
 import {ListItem, SearchBar, Avatar} from 'react-native-elements';
@@ -34,13 +34,25 @@ import {ListItem, SearchBar, Avatar} from 'react-native-elements';
 import {getUsers, contains} from '../styles/index';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import User from './User';
+<<<<<<< Updated upstream
 import Svg, {G, Path} from 'react-native-svg';
 
+=======
+import Svg, {
+ G,
+ Path,
+ Stop,
+ Defs,
+ LinearGradient,
+ Circle,
+} from 'react-native-svg';
+ 
+>>>>>>> Stashed changes
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
+ 
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
-
+ 
 class Star extends Component {
   constructor(props) {
     super(props);
@@ -56,6 +68,10 @@ class Star extends Component {
       users: '',
       isLoading: true,
       dataSource: [],
+<<<<<<< Updated upstream
+=======
+      click: true,
+>>>>>>> Stashed changes
     };
 
     this.goBack = this.goBack.bind(this);
@@ -68,7 +84,8 @@ class Star extends Component {
   }
 
   goChat(id) {
-    this.props.navigationRef.current?.navigate('Userlikes');
+    this.props.navigation.push('UserCanSearch');
+    global.prevPage = "Star"
 
     let self = this;
 
@@ -101,7 +118,7 @@ class Star extends Component {
         params['start'] = 1;
         params['size'] = 2;
 
-        global.user_id = id;
+        global.otherid = id;
 
         global.socket.emit('on-likes', params);
       },
@@ -113,7 +130,7 @@ class Star extends Component {
     this.makeRemoteRequest();
   }
 
-  getUser() {
+  getUser(id) {
     let self = this;
 
     this.setState(
@@ -124,7 +141,8 @@ class Star extends Component {
       () => {
         global.socket.on('emit-likes', function (ret) {
           global.socket.off('emit-likes');
-          // alert(JSON.stringify(ret));
+          // alert(JSON.stringify(ret)); 
+          
 
           self.setState({
             image: ret.image,
@@ -138,13 +156,16 @@ class Star extends Component {
         params['boardid'] = this.state.boardid;
         params['lastname'] = '';
         params['pages'] = '';
-        params['id'] = this.state.id;
+        params['id'] = id;
         params['nickname'] = this.state.nickname;
         params['image'] = this.state.image;
         params['path'] = '';
         params['start'] = 1;
         params['size'] = 2;
 
+    
+ 
+        
         global.socket.emit('on-likes', params);
       },
     );
@@ -198,6 +219,7 @@ class Star extends Component {
     );
   };
 
+<<<<<<< Updated upstream
   render() {
     return (
       <View style={{backgroundColor: '#fff', height: '100%'}}>
@@ -205,6 +227,125 @@ class Star extends Component {
           data={this.state.users}
           keyExtractor={item => item.id}
           style={{backgroundColor: '#fff', height: '90%', marginBottom: 220}}
+=======
+  likedMe() {
+    this.setState({click: true});
+  }
+
+  youLike() {
+    this.setState({click: false});
+  }
+
+  render() {
+    return (
+      <View
+        style={{backgroundColor: '#fff', height: '100%', width: windowWidth}}>
+        <View
+          style={{
+            // backgroundColor: 'red',
+            height: '17%',
+            width: windowWidth - 30,
+            alignSelf: 'center',
+          }}>
+          <TouchableOpacity
+            style={{
+              marginLeft: 0,
+              marginTop: windowHeight / 10 - 60,
+              width: 40,
+              height: 40,
+              backgroundColor: '#FFF5F8',
+              borderRadius: 10,
+            }}
+            onPress={() => this.goBack()}>
+            <Svg
+              style={{alignSelf: 'center', top: 10, right: 2}}
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              width="16"
+              height="21"
+              viewBox="0 0 6 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <Path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M5.65863 10.0143C5.39578 10.2771 4.96961 10.2771 4.70676 10.0143L0.668298 5.97582C0.405446 5.71297 0.405446 5.2868 0.668298 5.02395L4.70676 0.985489C4.96961 0.722635 5.39578 0.722635 5.65863 0.985489C5.92149 1.24834 5.92149 1.67451 5.65863 1.93736C3.69111 3.90489 3.69111 7.09488 5.65863 9.06241C5.92149 9.32526 5.92149 9.75143 5.65863 10.0143Z"
+                fill="#EA337E"
+              />
+              <Defs>
+                <LinearGradient
+                  id="paint0_linear_50_2341"
+                  x1="3.16347"
+                  y1="10.2114"
+                  x2="3.16347"
+                  y2="0.788349"
+                  gradientUnits="userSpaceOnUse">
+                  <Stop stop-color="#ED70B0" />
+                  <Stop offset="1" stop-color="#EA337E" />
+                </LinearGradient>
+              </Defs>
+            </Svg>
+          </TouchableOpacity>
+          <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+            {/* <TouchableOpacity
+              onPress={() => this.likedMe()}
+              style={{
+                height: 35,
+                width: 140,
+                backgroundColor: this.state.click ? '#EA337E' : '#FFF',
+                borderRadius: 10,
+                top: 15,
+                marginRight: 25,
+              }}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  top: 8,
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                  color: this.state.click ? '#FFF':'#9C9DA7' ,
+                }}>
+                自分から
+              </Text>
+            </TouchableOpacity> */}
+
+            <TouchableOpacity
+              onPress={() => this.youLike()}
+              style={{
+                height: 35,
+                width: 140,
+                backgroundColor: '#EA337E',
+                borderRadius: 10,
+                top: 15,
+                alignSelf: 'center',
+              }}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  top: 8,
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                  color: '#FFF',
+                }}>
+                相手から 
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <FlatList
+          data={this.state.users}
+          keyExtractor={item => item.id}
+          style={{
+            backgroundColor: '#FFF',
+            height: '100%',
+            width: windowWidth - 30,
+            alignSelf: 'center',
+          }}
+>>>>>>> Stashed changes
           renderItem={({item}) => (
             <Card onPress={() => this.goChat(item.id)}>
               {item.id == global.myuserid ? (
@@ -240,6 +381,7 @@ class Star extends Component {
             // backgroundColor: 'black',
             width: '30%',
             bottom: '27%',
+<<<<<<< Updated upstream
           }}>
           <TouchableOpacity
           onPress={() => this.goBack()}
@@ -288,22 +430,29 @@ class Star extends Component {
             <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
           </TouchableOpacity> */}
         </View>
+=======
+          }}></View>
+>>>>>>> Stashed changes
       </View>
     );
   }
 }
-
+ 
 export default Star;
-
+ 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  item: {
-    padding: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
+ container: {
+   flex: 1,
+   alignItems: 'center',
+   justifyContent: 'center',
+ },
+ item: {
+   padding: 5,
+   borderBottomWidth: 1,
+   borderBottomColor: '#eee',
+ },
 });
+ 
+ 
+ 
+

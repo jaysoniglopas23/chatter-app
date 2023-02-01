@@ -197,9 +197,8 @@ export default class Call extends Component {
   }
 
   goCall(id) {
-    global.prevPageCall = 'Call';
-    this.props.navigation.push('UserCanSearch');
-
+    global.prevPage = 'Call';
+   
     let self = this;
 
     this.setState(
@@ -221,6 +220,7 @@ export default class Call extends Component {
             users: ret.users,
             id: ret.id,
           });
+          self.props.navigation.push('UserCanSearch');
 
           // console.log(id);
         });

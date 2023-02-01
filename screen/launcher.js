@@ -13,6 +13,7 @@ import {
   PermissionsAndroid,
   BackHandler,
   ToastAndroid,
+  AppState,
 } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNavigationContainerRef} from '@react-navigation/native';
@@ -29,6 +30,15 @@ import messaging from '@react-native-firebase/messaging';
 import analytics from '@react-native-firebase/analytics';
 import PushNotification from 'react-native-push-notification';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  ZegoUIKitPrebuiltCallWithInvitation,
+  ZegoInvitationType,
+  ONE_ON_ONE_VIDEO_CALL_CONFIG,
+  ONE_ON_ONE_VOICE_CALL_CONFIG,
+  GROUP_VIDEO_CALL_CONFIG,
+  GROUP_VOICE_CALL_CONFIG,
+} from '@zegocloud/zego-uikit-prebuilt-call-rn';
+import ZegoUIKitSignalingPlugin from '@zegocloud/zego-uikit-signaling-plugin-rn';
 // import { onDisplayRemoteNotification } from '../utils/pushNotification';
 
 // import {
@@ -74,7 +84,8 @@ class Launcher extends Component {
     this.state = {
       email: '',
       nickname: '',
-
+      appState: AppState.currentState,
+      time: Date.now(),
       fadeOut: new Animated.Value(1),
       fadeIn: new Animated.Value(0),
       locale: '',
@@ -86,6 +97,7 @@ class Launcher extends Component {
     };
 
     this.addGlobalListeners = this.addGlobalListeners.bind(this);
+    this.init = this.init.bind(this);
 
     global.passcodeCorrect = true;
   }
@@ -146,22 +158,43 @@ class Launcher extends Component {
 
     //     self.props.navigationRef.current?.navigate('Tabs');
     //   });
+    // global.socket.on('emit-answer', function (ret) {
+    //   global.socket.off('emit-answer');
+    //   // alert(JSON.stringify(ret));
+    //   alert(2222);
+    //   self.setState({
+    //     from: ret.from,
+    //     to: ret.to,
+    //     nickname:ret.nickname
+    //   });
+    // });
+
+    // global.socket.on('emit-drop-caller-audio-call', function (ret) {
+    //   global.socket.off('emit-drop-caller-audio-call');
+
+    //   alert(2222)
+    // });
 
     global.socket.on('emit-someone-is-calling', function (ret) {
       global.socket.off('emit-someone-is-calling');
-
+      // alert(global.id)
       // alert(JSON.stringify(ret));
       self.setState({
-        from: ret.from,
+        from: ret.to_id,
         nickname: ret.nickname,
-        to_id: ret.to_id,
+        to_id: ret.from,
       });
-      global.nickname = ret.nickname;
+      global.nickname;
       global.otherid = ret.from;
       global.myid = ret.to_id;
 
+      // if (global.otherid == global.id) {
       self.props.navigationRef.current?.navigate('Callee');
+      // } else {
+      //   self.props.navigationRef.current?.navigate('Caller');
+      // }
     });
+
 
     // let params = {};
     // params['nickname'] =this.state.nickname;
@@ -216,13 +249,24 @@ class Launcher extends Component {
   };
 
   componentDidMount() {
-    this.init();
+    // this.init();
+    AppState.addEventListener('change', this.init);
+    // this.interval = setInterval(() => this.init({time: Date.now()}), 1000);
     this.onDisplayRemoteNotification();
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    this._unsubscribe = this.props.navigationRef.current?.addListener(
+      'focus',
+      () => {
+        // alert('Refreshed');
+        this.init();
+      },
+    );
   }
 
   componentWillUnmount() {
+    AppState.removeEventListener('change', this.init);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    // this._unsubscribe;
   }
 
   handleBackButton() {
@@ -232,7 +276,6 @@ class Launcher extends Component {
 
   init() {
     let self = this;
-
     this.setState({
       maintenance: false,
     });
@@ -377,6 +420,8 @@ class Launcher extends Component {
           if (parseInt(d.password) == 0 && !global.passwordCorrect) {
             global.passcodeValue = d.PasscodeValue;
             global.fcmToken;
+            global.email = '';
+            global.password = '';
             self.props.navigationRef.current?.navigate('Login');
           } else {
             d.username = data.username;
@@ -398,7 +443,7 @@ class Launcher extends Component {
               self.addGlobalListeners();
               global.prevPage = 'Launcher';
               global.fcmToken;
-        
+
               self.props.navigationRef.current?.navigate('Tabs');
 
               //  self.addGlobalListeners();
@@ -475,6 +520,7 @@ class Launcher extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+       
         <View style={styles.bgImageWrapper}>
           <Image
             source={require('../images/wp7632672.jpg')}
@@ -519,6 +565,7 @@ class Launcher extends Component {
 
         {/* <Text style={styles.ltd}>Chatter....</Text> */}
         <Text style={styles.locale}>Version {version}</Text>
+        
       </View>
     );
   }

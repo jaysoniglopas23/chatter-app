@@ -40,7 +40,7 @@ class MessagesScrean extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat(id, name, lastmessage, profile_image, profile_image_dir) {
+  goChat(id, name, lastmessage, profile_image, profile_image_dir, token) {
     global.prevPage = 'Messages';
     this.props.navigation.push('Chat');
 
@@ -73,7 +73,11 @@ class MessagesScrean extends Component {
             timezone: ret[0].timezone,
             unread_count: ret[0].unread_count,
             ret: ret,
+<<<<<<< Updated upstream
             token:ret.token
+=======
+            token: ret[0].token,
+>>>>>>> Stashed changes
           });
 
           // global.otherid = ret.id;
@@ -90,15 +94,19 @@ class MessagesScrean extends Component {
         params['save'] = this.state.save;
         params['timezone'] = this.state.timezone;
         params['unread_count'] = this.state.unread_count;
-        // params['token'] = token;
+        params['token'] = token;
 
         global.otherid = id;
         global.name = name;
         global.lastmessage = lastmessage;
         global.profile_image_dir = profile_image_dir;
         global.profile_image = profile_image;
+<<<<<<< Updated upstream
        
 
+=======
+        global.token = token;
+>>>>>>> Stashed changes
         // alert(global.otherid);
 
         global.socket.emit('on-matched', params);
@@ -160,6 +168,7 @@ class MessagesScrean extends Component {
             timezone: ret[0].timezone,
             unread_count: ret[0].unread_count,
             ret: ret,
+            token: ret[0].token,
           });
         });
         let params = {};
@@ -174,6 +183,8 @@ class MessagesScrean extends Component {
         params['save'] = this.state.save;
         params['timezone'] = this.state.timezone;
         params['unread_count'] = this.state.unread_count;
+        params['token'] = this.state.token;
+        // params['token'] = this.state.token;
 
         global.otherid = id;
         global.name = name;
@@ -240,6 +251,7 @@ class MessagesScrean extends Component {
           style={{width: windowWidth - 40, height: '100%', alignSelf: 'center'}}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
+<<<<<<< Updated upstream
             <Card
               style={{paddingTop: 10}}
               onPress={() =>
@@ -275,12 +287,103 @@ class MessagesScrean extends Component {
                     </UserInfoText>
                     <MessageText>{item.lastmessage}</MessageText>
                     {/* {item.unread_count <= 0  ? (
+=======
+            <View
+              style={{
+                // width: '100%',
+                // height: "100%",
+                alignSelf: 'center',
+                // backgroundColor: '#FFF',
+              }}>
+              {item.unread_count == 0 ? (
+                <></>
+              ) : (
+                <Card
+                  style={{paddingTop:10,paddingBottom:1}}
+                  onPress={() =>
+                    this.goChat(
+                      item.id,
+                      item.name,
+                      item.lastmessage,
+                      item.profile_image,
+                      item.profile_image_dir,
+                      item.token,
+                    )
+                  }>
+                  {item.id == global.myuserid ? (
+                    <></>
+                  ) : (
+                    <UserInfo>
+                      <UserImgWrapper>
+                        {item.online == 1 ? (
+                          <Svg
+                            style={{
+                              alignSelf: 'center',
+                              top: 10,
+                              position: 'absolute',
+                            }}
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fal"
+                            data-icon="angle-left"
+                            class="svg-inline--fa fa-angle-left fa-w-6"
+                            role="img"
+                            width="60"
+                            height="60"
+                            viewBox="0 0 56 56"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <Circle
+                              cx="28"
+                              cy="28"
+                              r="27"
+                              fill="white"
+                              stroke="#EA337E"
+                              stroke-width="2"
+                            />
+                            <Defs>
+                              <LinearGradient
+                                id="paint0_linear_50_2004"
+                                x1="28"
+                                y1="0"
+                                x2="28"
+                                y2="56"
+                                gradientUnits="userSpaceOnUse">
+                                <Stop stop-color="#ED70B0" />
+                                <Stop offset="1" stop-color="#EA337E" />
+                              </LinearGradient>
+                            </Defs>
+                          </Svg>
+                        ) : (
+                          <></>
+                        )}
+                        <UserImg
+                          source={{
+                            uri:
+                              URL_TEMP +
+                              '/' +
+                              item.profile_image_dir +
+                              '/' +
+                              item.profile_image,
+                          }}
+                        />
+                      </UserImgWrapper>
+                      <TextSection>
+                        <UserInfoText>
+                          <UserName>{item.name}</UserName>
+                          <PostTime>{item.date_time}</PostTime>
+                        </UserInfoText>
+                        <MessageText>{item.lastmessage}</MessageText>
+                        {/* {item.unread_count <= 0  ? (
+>>>>>>> Stashed changes
                     <Message1Text>{item.lastmessage}</Message1Text>
                     ):( <MessageText>{item.lastmessage}</MessageText>)} */}
-                  </TextSection>
-                </UserInfo>
+                      </TextSection>
+                    </UserInfo>
+                  )}
+                </Card>
               )}
-            </Card>
+            </View>
           )}
         />
       </Container>

@@ -24,6 +24,10 @@ import {
   UserIcon,
   UserInfo6,
   UserInfo7,
+<<<<<<< Updated upstream
+=======
+  NoPicPost,
+>>>>>>> Stashed changes
 } from '../styles/FeedStyles';
 import {
   View,
@@ -156,8 +160,9 @@ class Post extends Component {
     let self = this;
 
     this.setState(
-      {},
-
+      {
+        modalOptionConfirmVisible: false,
+      },
       () => {
         global.socket.on('emit-posts', function (ret) {
           global.socket.off('emit-posts');
@@ -200,8 +205,8 @@ class Post extends Component {
   }
 
   goChat(userid) {
-    global.prevPageCall = 'Post';
-    this.props.navigation.push('UserCanSearch');
+    global.prevPage = 'Post';
+    
     console.log(userid);
 
     let self = this;
@@ -241,13 +246,19 @@ class Post extends Component {
         // alert(global.otherid);
         global.socket.emit('on-posts', params);
         // console.log(params);s
+        this.props.navigation.push('UserCanSearch');
       },
     );
   }
 
+<<<<<<< Updated upstream
 
   goComment(id,userid) {
     // global.prevPageCall = 'Post';
+=======
+  goComment(id, userid) {
+    // global.prevPage = 'Post';
+>>>>>>> Stashed changes
     this.props.navigation.push('Comment');
     // console.log(userid);
 
@@ -814,10 +825,11 @@ class Post extends Component {
         style={{
           backgroundColor: '#fff',
           height: '100%',
-          width: '100%',
+          width: windowWidth,
         }}>
         <View
           style={{
+<<<<<<< Updated upstream
             borderWidth: 1,
             width: windowWidth / 1.4,
             height: 41,
@@ -873,6 +885,137 @@ class Post extends Component {
         <View
           style={{
             width: '100%',
+=======
+            width: windowWidth / 1,
+            height: windowHeight / 10 - 85,
+            alignSelf: 'center',
+            borderColor: '#cdd5d5',
+            // backgroundColor: 'red',
+            marginBottom: '2%',
+          }}>
+          <View
+            style={{
+              width: windowWidth / 1,
+              height: 41,
+              top: 15,
+              alignSelf: 'center',
+              borderColor: '#cdd5d5',
+              // backgroundColor: 'gray',
+              // paddingBottom:"2%",
+            }}>
+            <TextInput
+              style={{
+                fontSize: 10,
+                height: 36,
+                borderRadius: 10,
+                width: windowWidth - 90,
+                left: 17,
+                color: 'black',
+                backgroundColor: '#FFF5F8',
+                paddingHorizontal: 30,
+              }}
+              onChangeText={this.searchItems}
+              value={this.state.value}
+            />
+            <Svg
+              style={{
+                right: '41%',
+                // alignSelf: 'center',
+                bottom: '64%',
+              }}
+              alignSelf="center"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fal"
+              data-icon="angle-left"
+              class="svg-inline--fa fa-angle-left fa-w-6"
+              role="img"
+              width="22"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <G clip-path="url(#clip0_145_163)">
+                <Path
+                  d="M13 6.5C13 7.93438 12.5344 9.25938 11.75 10.3344L15.7062 14.2937C16.0969 14.6844 16.0969 15.3188 15.7062 15.7094C15.3156 16.1 14.6812 16.1 14.2906 15.7094L10.3344 11.75C9.25937 12.5375 7.93437 13 6.5 13C2.90937 13 0 10.0906 0 6.5C0 2.90937 2.90937 0 6.5 0C10.0906 0 13 2.90937 13 6.5ZM6.5 11C8.98437 11 11 8.98438 11 6.5C11 4.01562 8.98437 2 6.5 2C4.01562 2 2 4.01562 2 6.5C2 8.98438 4.01562 11 6.5 11Z"
+                  fill="#EA337E"
+                />
+              </G>
+              <Defs>
+                <LinearGradient
+                  id="paint0_linear_145_163"
+                  x1="7.99961"
+                  y1="0"
+                  x2="7.99961"
+                  y2="16.0023"
+                  gradientUnits="userSpaceOnUse">
+                  <Stop stop-color="#ED70B0" />
+                  <Stop offset="1" stop-color="#EA337E" />
+                </LinearGradient>
+                <ClipPath id="clip0_145_163">
+                  <Rect width="16" height="16" fill="white" />
+                </ClipPath>
+              </Defs>
+            </Svg>
+          </View>
+          <View
+            style={{
+              width: '100%',
+            }}>
+            <TouchableOpacity
+              onPress={() => this.goPost()}
+              style={{
+                width: 35,
+                height: 35,
+                left: windowWidth - 55,
+                bottom: 26,
+                backgroundColor: '#FFF5F8',
+                borderRadius: 10,
+              }}>
+              <Svg
+                style={{
+                  // right: windowWidth / 3,
+                  // alignSelf: 'center',
+                  top: '25%',
+                  left: 1,
+                }}
+                alignSelf="center"
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fal"
+                data-icon="angle-left"
+                class="svg-inline--fa fa-angle-left fa-w-6"
+                role="img"
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <Path
+                  d="M11.3334 4.25C12.5375 4.25 13.4584 5.17083 13.4584 6.375V9.41667C13.4584 9.69281 13.6822 9.91667 13.9584 9.91667H14.375C14.6512 9.91667 14.875 9.69281 14.875 9.41667V6.375C14.875 4.79625 13.7754 3.40078 12.3137 2.98281C12.1108 2.92479 11.9503 2.76422 11.8922 2.5613C11.4743 1.0996 10.0788 0 8.50004 0H1.20837C0.932231 0 0.708374 0.223858 0.708374 0.5V16.5C0.708374 16.7761 0.932232 17 1.20837 17H10.125C10.4012 17 10.625 16.7761 10.625 16.5V16.0833C10.625 15.8072 10.4012 15.5833 10.125 15.5833H2.62504C2.3489 15.5833 2.12504 15.3595 2.12504 15.0833V1.91667C2.12504 1.64052 2.3489 1.41667 2.62504 1.41667H8.50004C9.70421 1.41667 10.625 2.3375 10.625 3.54167V3.75C10.625 4.02614 10.8489 4.25 11.125 4.25H11.3334ZM4.75004 4.95833C4.4739 4.95833 4.25004 5.18219 4.25004 5.45833V5.875C4.25004 6.15114 4.4739 6.375 4.75004 6.375H6.58337C6.85952 6.375 7.08337 6.15114 7.08337 5.875V5.45833C7.08337 5.18219 6.85952 4.95833 6.58337 4.95833H4.75004ZM15.375 13.4583C15.0989 13.4583 14.875 13.2345 14.875 12.9583V11.8333C14.875 11.5572 14.6512 11.3333 14.375 11.3333H13.9584C13.6822 11.3333 13.4584 11.5572 13.4584 11.8333V12.9583C13.4584 13.2345 13.2345 13.4583 12.9584 13.4583H11.8334C11.5572 13.4583 11.3334 13.6822 11.3334 13.9583V14.375C11.3334 14.6511 11.5572 14.875 11.8334 14.875H12.9584C13.2345 14.875 13.4584 15.0989 13.4584 15.375V16.5C13.4584 16.7761 13.6822 17 13.9584 17H14.375C14.6512 17 14.875 16.7761 14.875 16.5V15.375C14.875 15.0989 15.0989 14.875 15.375 14.875H16.5C16.7762 14.875 17 14.6511 17 14.375V13.9583C17 13.6822 16.7762 13.4583 16.5 13.4583H15.375ZM4.25004 8.70833C4.25004 8.98448 4.4739 9.20833 4.75004 9.20833H10.125C10.4012 9.20833 10.625 8.98448 10.625 8.70833V8.29167C10.625 8.01552 10.4012 7.79167 10.125 7.79167H4.75004C4.4739 7.79167 4.25004 8.01552 4.25004 8.29167V8.70833Z"
+                  fill="#EA337E"
+                />
+                <Defs>
+                  <LinearGradient
+                    id="paint0_linear_50_2089"
+                    x1="8.85421"
+                    y1="0"
+                    x2="8.85421"
+                    y2="17"
+                    gradientUnits="userSpaceOnUse">
+                    <Stop stop-color="#ED70B0" />
+                    <Stop offset="1" stop-color="#EA337E" />
+                  </LinearGradient>
+                </Defs>
+              </Svg>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <StatusBar style="light-content" />
+        <View
+          style={{
+            width: windowWidth - 20,
+>>>>>>> Stashed changes
             height: windowHeight,
             alignSelf: 'center',
           }}>
@@ -881,9 +1024,9 @@ class Post extends Component {
             extraData={this.state.refresh}
             keyExtractor={item => item.id}
             style={{
-              height: '100%',
+              height: "100%",
               alignSelf: 'center',
-              top: windowHeight / 2 - 380,
+              top: "0%",
             }}
             renderItem={({item}) => (
               <View
@@ -920,6 +1063,100 @@ class Post extends Component {
                       <TextSection>
                         <UserInfoText>
                           <UserName>{item.name}</UserName>
+<<<<<<< Updated upstream
+=======
+                          {item.userid == global.myid ? (
+                            <TouchableOpacity
+                              onPress={() =>
+                                this.Opotions(
+                                  item.id,
+                                  item.description,
+                                  item.path,
+                                  item.file,
+                                )
+                              }
+                              style={{
+                                width: 50,
+                                height: 25,
+                                backgroundColor: '#FFF',
+                              }}>
+                              <Svg
+                                style={{
+                                  // left: '93%',
+                                  alignSelf: 'center',
+                                  position: 'absolute',
+                                  bottom: '9%',
+                                }}
+                                aria-hidden="true"
+                                focusable="false"
+                                data-prefix="fal"
+                                data-icon="angle-left"
+                                class="svg-inline--fa fa-angle-left fa-w-6"
+                                role="img"
+                                width="7"
+                                height="18"
+                                viewBox="0 0 7 28"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <Circle
+                                  cx="3.19647"
+                                  cy="24.6507"
+                                  r="3.19647"
+                                  transform="rotate(-90 3.19647 24.6507)"
+                                  fill="#EA337E"
+                                />
+                                <Circle
+                                  cx="3.19647"
+                                  cy="13.9236"
+                                  r="3.19647"
+                                  transform="rotate(-90 3.19647 13.9236)"
+                                  fill="#EA337E"
+                                />
+                                <Circle
+                                  cx="3.19647"
+                                  cy="3.1966"
+                                  r="3.19647"
+                                  transform="rotate(-90 3.19647 3.1966)"
+                                  fill="#EA337E"
+                                />
+                                <Defs>
+                                  <LinearGradient
+                                    id="paint0_linear_61_2247"
+                                    x1="3.19647"
+                                    y1="21.4542"
+                                    x2="3.19647"
+                                    y2="27.8472"
+                                    gradientUnits="userSpaceOnUse">
+                                    <Stop stop-color="#ED70B0" />
+                                    <Stop offset="1" stop-color="#EA337E" />
+                                  </LinearGradient>
+                                  <LinearGradient
+                                    id="paint1_linear_61_2247"
+                                    x1="3.19647"
+                                    y1="10.7272"
+                                    x2="3.19647"
+                                    y2="17.1201"
+                                    gradientUnits="userSpaceOnUse">
+                                    <Stop stop-color="#ED70B0" />
+                                    <Stop offset="1" stop-color="#EA337E" />
+                                  </LinearGradient>
+                                  <LinearGradient
+                                    id="paint2_linear_61_2247"
+                                    x1="3.19647"
+                                    y1="0.000124454"
+                                    x2="3.19647"
+                                    y2="6.39307"
+                                    gradientUnits="userSpaceOnUse">
+                                    <Stop stop-color="#ED70B0" />
+                                    <Stop offset="1" stop-color="#EA337E" />
+                                  </LinearGradient>
+                                </Defs>
+                              </Svg>
+                            </TouchableOpacity>
+                          ) : (
+                            <></>
+                          )}
+>>>>>>> Stashed changes
                           <PostTime>{item.datetime}</PostTime>
                         </UserInfoText>
                         <MessageText>{item.description}</MessageText>
@@ -1021,6 +1258,99 @@ class Post extends Component {
                       <TextSection>
                         <UserInfoText>
                           <UserName>{item.name}</UserName>
+<<<<<<< Updated upstream
+=======
+                          {item.userid == global.myid ? (
+                            <TouchableOpacity
+                              onPress={() =>
+                                this.Opotions(
+                                  item.id,
+                                  item.description,
+                                  item.path,
+                                  item.file,
+                                )
+                              }
+                              style={{
+                                width: 50,
+                                height: 30,
+                                backgroundColor: '#FFF',
+                              }}>
+                              <Svg
+                                style={{
+                                  alignSelf: 'center',
+                                  position: 'absolute',
+                                  bottom: '4%',
+                                }}
+                                aria-hidden="true"
+                                focusable="false"
+                                data-prefix="fal"
+                                data-icon="angle-left"
+                                class="svg-inline--fa fa-angle-left fa-w-6"
+                                role="img"
+                                width="7"
+                                height="18"
+                                viewBox="0 0 7 28"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <Circle
+                                  cx="3.19647"
+                                  cy="24.6507"
+                                  r="3.19647"
+                                  transform="rotate(-90 3.19647 24.6507)"
+                                  fill="#EA337E"
+                                />
+                                <Circle
+                                  cx="3.19647"
+                                  cy="13.9236"
+                                  r="3.19647"
+                                  transform="rotate(-90 3.19647 13.9236)"
+                                  fill="#EA337E"
+                                />
+                                <Circle
+                                  cx="3.19647"
+                                  cy="3.1966"
+                                  r="3.19647"
+                                  transform="rotate(-90 3.19647 3.1966)"
+                                  fill="#EA337E"
+                                />
+                                <Defs>
+                                  <LinearGradient
+                                    id="paint0_linear_61_2247"
+                                    x1="3.19647"
+                                    y1="21.4542"
+                                    x2="3.19647"
+                                    y2="27.8472"
+                                    gradientUnits="userSpaceOnUse">
+                                    <Stop stop-color="#ED70B0" />
+                                    <Stop offset="1" stop-color="#EA337E" />
+                                  </LinearGradient>
+                                  <LinearGradient
+                                    id="paint1_linear_61_2247"
+                                    x1="3.19647"
+                                    y1="10.7272"
+                                    x2="3.19647"
+                                    y2="17.1201"
+                                    gradientUnits="userSpaceOnUse">
+                                    <Stop stop-color="#ED70B0" />
+                                    <Stop offset="1" stop-color="#EA337E" />
+                                  </LinearGradient>
+                                  <LinearGradient
+                                    id="paint2_linear_61_2247"
+                                    x1="3.19647"
+                                    y1="0.000124454"
+                                    x2="3.19647"
+                                    y2="6.39307"
+                                    gradientUnits="userSpaceOnUse">
+                                    <Stop stop-color="#ED70B0" />
+                                    <Stop offset="1" stop-color="#EA337E" />
+                                  </LinearGradient>
+                                </Defs>
+                              </Svg>
+                            </TouchableOpacity>
+                          ) : (
+                            <></>
+                          )}
+>>>>>>> Stashed changes
                           <PostTime>{item.datetime}</PostTime>
                         </UserInfoText>
                         <MessageText>{item.description}</MessageText>
@@ -1109,6 +1439,133 @@ class Post extends Component {
         <Modal
           animationType="slide"
           // transparent={true}
+<<<<<<< Updated upstream
+=======
+          isVisible={this.state.modalOptionConfirmVisible}
+          style={{bottom: 400, alignSelf: 'center'}}>
+          <View
+            style={{
+              width: windowWidth,
+              height: windowHeight - 180,
+              borderRadius: 30,
+              flexDirection: 'column',
+            }}>
+            <TouchableWithoutFeedback
+              style={{width: windowWidth, height: windowHeight - 290}}
+              onPress={() => this.closeOptionsConfirmModal()}>
+              <View style={{width: '100%', height: "100%"}}></View>
+              </TouchableWithoutFeedback>
+            <View
+              style={{
+                width: windowWidth,
+                height: windowHeight,
+              }}>
+              <View
+                style={{
+                  height: 180,
+                  width: windowWidth,
+                  backgroundColor: '#f2f2f2',
+                  borderRadius: 15,
+                }}>
+                <Text
+                  style={{
+                    width: '100%',
+                    height: 30,
+                    lineHeight: 30,
+                    marginTop: 30,
+                    textAlign: 'center',
+                    fontSize: 13,
+                    color: global.textColor,
+                  }}>
+                  {this.state.deleteText}
+                </Text>
+
+                {this.state.loadingDeleteConfrimReport ? (
+                  <View
+                    style={{
+                      width: 20,
+                      height: 50,
+                      flexDirection: 'row',
+                      marginLeft: windowWidth / 2 - 10,
+                    }}>
+                    <ActivityIndicator size="small" color="#69747f" />
+                  </View>
+                ) : (
+                  <View
+                    style={{
+                      width: 210,
+                      height: 50,
+                      flexDirection: 'row',
+                      marginLeft: windowWidth / 2 - 105,
+                    }}>
+                    <TouchableOpacity
+                      style={{
+                        width: 100,
+                        height: 30,
+                        backgroundColor: '#EA337E',
+                        borderRadius: 10,
+                        marginTop: 10,
+                        marginRight: 5,
+                      }}
+                      onPress={() => this.deletePost(global.mypostid)}>
+                      <Text
+                        style={{
+                          width: '100%',
+                          height: 30,
+                          textAlign: 'center',
+                          lineHeight: 30,
+                          fontSize: 12,
+                          color: '#FFF',
+                        }}>
+                        DELETE
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={{
+                        width: 100,
+                        height: 30,
+                        backgroundColor: '#EA337E',
+                        borderRadius: 10,
+                        marginTop: 10,
+                        marginLeft: 5,
+                      }}
+                      onPress={() =>
+                        this.goEdit(
+                          global.mypostid,
+                          global.description,
+                          global.path,
+                          global.file,
+                        )
+                      }>
+                      <Text
+                        style={{
+                          width: '100%',
+                          height: 30,
+                          textAlign: 'center',
+                          lineHeight: 30,
+                          fontSize: 12,
+                          color: '#FFF',
+                        }}>
+                        EDIT
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+                           
+              </View>
+              <TouchableWithoutFeedback
+              style={{width: windowWidth, height: windowHeight-290}}
+              onPress={() => this.closeOptionsConfirmModal()}>
+              <View style={{width: '100%', height: "100%"}}></View>
+              </TouchableWithoutFeedback>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="slide"
+          // transparent={true}
+>>>>>>> Stashed changes
           isVisible={this.state.modalDeleteConfirmVisible}
           style={{bottom: 400, alignSelf: 'center'}}>
           <View

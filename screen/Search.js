@@ -66,7 +66,7 @@ export default class Search extends Component {
 
     this.goCall = this.goCall.bind(this);
     this.getUsers = this.getUsers.bind(this);
-    this.goToSearchGrid = this.goToSearchGrid.bind(this);
+    // this.goToSearchGrid = this.goToSearchGrid.bind(this);
   }
 
   // openMenu = () => {
@@ -186,10 +186,63 @@ export default class Search extends Component {
       },
     );
   }
+<<<<<<< Updated upstream
 
   goCall(id) {
     this.props.navigation.push('User');
 
+=======
+ 
+  // goCall(id) {
+  //   this.props.navigation.push('User');
+ 
+  //   let self = this;
+ 
+  //   this.setState(
+  //     {},
+ 
+  //     () => {
+  //       global.socket.on('emit-users-for-search', function (ret) {
+  //         global.socket.off('emit-users-for-search');
+  //         // JSON.stringify(ret);
+  //         // console.log(ret);
+ 
+  //         self.setState({
+  //           callRefreshed: true,
+  //           refresh: 1,
+ 
+  //           name: ret.name,
+  //           image: ret.image,
+  //           path: ret.path,
+  //           users: ret.users,
+  //           id: ret.id,
+  //         });
+ 
+  //         // console.log(id);
+  //       });
+  //       let params = {};
+ 
+  //       params['start'] = 20;
+  //       params['size'] = 1000;
+  //       params['filter_type'] = '0';
+  //       params['order'] = '0';
+  //       params['name'] = this.state.name;
+  //       params['userid'] = this.state.userid;
+  //       params['id'] = id;
+ 
+  //       global.otherid = id;
+ 
+  //       global.socket.emit('on-users-for-search', params);
+  //       console.log(params);
+  //     },
+  //   );
+  // }
+ 
+  goCall(id) {
+    global.prevPage = 'Search';
+   
+ 
+>>>>>>> Stashed changes
     let self = this;
 
     this.setState(
@@ -211,7 +264,11 @@ export default class Search extends Component {
             users: ret.users,
             id: ret.id,
           });
+<<<<<<< Updated upstream
 
+=======
+          self.props.navigation.push('UserCanSearch');
+>>>>>>> Stashed changes
           // console.log(id);
         });
         let params = {};
@@ -231,6 +288,7 @@ export default class Search extends Component {
       },
     );
   }
+<<<<<<< Updated upstream
 
   goCall(id) {
     global.prevPageCall = 'Search';
@@ -282,6 +340,13 @@ export default class Search extends Component {
     this.props.navigation.push('SearchGrid');
   }
 
+=======
+ 
+  // goToSearchGrid() {
+  //   this.props.navigation.push('SearchGrid');
+  // }
+ 
+>>>>>>> Stashed changes
   makeRemoteRequest = _.debounce(() => {
     this.setState({loading: true});
     getUsers(20, this.state.query)
@@ -371,7 +436,11 @@ export default class Search extends Component {
 
     return (
       <TouchableOpacity style={itemStyle} onPress={() => this.goCall(item.id)}>
+<<<<<<< Updated upstream
         <Text style={textStyle}>{item.name}</Text>
+=======
+        <View>
+>>>>>>> Stashed changes
         {item.path == '' ? (
           <Image
             style={styles.iconRight}
@@ -383,6 +452,11 @@ export default class Search extends Component {
             source={{uri: URL_TEMP + '/' + item.path + '/' + item.image}}
           />
         )}
+<<<<<<< Updated upstream
+=======
+        <Text style={textStyle}>{item.name}</Text>
+        </View>
+>>>>>>> Stashed changes
       </TouchableOpacity>
     );
   };
@@ -457,24 +531,6 @@ export default class Search extends Component {
               }}
               source={require('../icon/bars.png')}
             />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.goToSearchGrid()}
-            style={{
-              width: windowWidth / 2 - 200,
-              top: 45,
-              alignSelf: 'center',
-              left: 110,
-            }}>
-            {/* <Image
-              style={{
-                resizeMode: 'contain',
-                width: 25,
-                height: 25,
-                color: 'black',
-              }}
-              source={require('../icon/Asset45.png')}
-            /> */}
           </TouchableOpacity>
           <TextInput
             style={{

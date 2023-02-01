@@ -103,8 +103,13 @@ class Card extends Component {
 
               // params['licver_image_dir'] = self.state.licver_image_dir;
               // params['licver_image'] = self.state.licver_image;
+<<<<<<< Updated upstream
 
               self.props.navigationRef.current?.navigate('Dashboard');
+=======
+ 
+              self.props.navigation.push('home');
+>>>>>>> Stashed changes
             })
             .catch(err => {
               console.log(err);
@@ -231,7 +236,10 @@ class Card extends Component {
           {this.state.hasProfilePhoto ? (
             <Image
             source={{uri: this.state.profilePhoto}}
+<<<<<<< Updated upstream
             // source={require('../icon/userprofile.png')}
+=======
+>>>>>>> Stashed changes
               style={{
                 alignSelf: 'center',
                 top: 0,

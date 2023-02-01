@@ -14,6 +14,8 @@ import {
   BackHandler,
   ToastAndroid,
   Modal,
+  AppState,
+  Animated,
 } from 'react-native';
 import {Bubble, GiftedChat, Send} from 'react-native-gifted-chat';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -22,10 +24,25 @@ import {Avatar} from 'react-native-elements';
 import Svg, {G, Path} from 'react-native-svg';
 // import Modal from 'react-native-modal';
 import {BlurView, VibrancyView} from 'react-native-blur';
+<<<<<<< Updated upstream
+=======
+import moment from 'moment';
+import SlidingUpPanel from 'rn-sliding-up-panel';
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel,
+} from 'react-native-simple-radio-button';
+>>>>>>> Stashed changes
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+<<<<<<< Updated upstream
+=======
+const {height} = Dimensions.get('window');
+
+>>>>>>> Stashed changes
 const URL_TEMP = 'http://18.181.88.243:8081/Temp';
 
 class User extends Component {
@@ -35,9 +52,14 @@ class User extends Component {
     this.state = {
       id: '',
       details: '',
+<<<<<<< Updated upstream
 
+=======
+      appState: AppState.currentState,
+>>>>>>> Stashed changes
       modalReportVisible: false,
       modalProfile: false,
+      draggableRange: {top: height + 180 - 64, bottom: 180},
     };
 
     this.getUser = this.getUser.bind(this);
@@ -46,24 +68,60 @@ class User extends Component {
     this.goBack = this.goBack.bind(this);
   }
 
+<<<<<<< Updated upstream
+=======
+  static defaultProps = {
+    draggableRange: {top: height + 180 - 64, bottom: 180},
+  };
+
+  _draggedValue = new Animated.Value(180);
+
+>>>>>>> Stashed changes
   goBack() {
     // this.props.Call.init();
     // this.props.navigation.push('Search');
 
+<<<<<<< Updated upstream
     if (global.prevPageCall == 'Call') {
+=======
+    if (global.prevPage == 'Call') {
+>>>>>>> Stashed changes
       this.props.navigation.push('Call');
       global.otherid;
-    } else if (global.prevPageCall == 'Search') {
+    } else if (global.prevPage == 'Search') {
       this.props.navigation.push('Search');
-    } else if (global.prevPageCall == 'Chat') {
+    } else if (global.prevPage == 'Chat') {
       this.props.navigation.push('Chat');
-    } else if (global.prevPageCall == 'Post') {
+    } else if (global.prevPage == 'Chatsearch') {
+      this.props.navigation.push('Search');
+      // this.props.navigation.push('Call');
+    } else if (global.prevPage == 'Post') {
+      this.props.navigation.push('Post');
+    } else if (global.prevPage == 'UserCanCall') {
+      this.props.navigation.push('Call');
+    } else if (global.prevPage == 'Star') {
+      this.props.navigation.push('Star');
+    } else if (global.prevPage == 'UserCanStar') {
+      this.props.navigation.push('Star');
+    } else if (global.prevPage == 'Heart') {
+      this.props.navigation.push('Heart');
+    } else if (global.prevPage == 'UserCanHeart') {
+      this.props.navigation.push('Heart');
+    } else if (global.prevPage == "Launcher") {
+      this.props.navigation.push('Search');
+    } else if (global.prevPage == "UserCanPost") {
       this.props.navigation.push('Post');
     }
+
+    // alert(prevPage);
   }
 
+<<<<<<< Updated upstream
   goChat(id, name, lastmessage) {
     global.prevPage = 'UserCanSearch';
+=======
+  goChat(id, name, lastmessage, token) {
+>>>>>>> Stashed changes
     global.othertoken;
     this.props.navigation.push('Chat');
     let self = this;
@@ -105,15 +163,34 @@ class User extends Component {
         params['name'] = self.state.nickname;
         params['profile_image'] = this.state.profile_image;
         params['profile_image_dir'] = this.state.profile_image_dir;
+<<<<<<< Updated upstream
+=======
+        params['token'] = global.othertoken;
+>>>>>>> Stashed changes
 
         global.otherid = global.otherid;
         global.name = this.state.nickname;
         global.profile_image_dir = this.state.profile_image_dir;
         global.profile_image = this.state.profile_image;
         global.lastmessage = global.lastmessage;
+        global.token = global.othertoken;
         // global.name = name;
         // global.lastmessage = lastmessage;
         // alert(global.otherid);
+<<<<<<< Updated upstream
+=======
+        if (global.prevPage == 'Call') {
+          global.prevPage == 'UserCanCall';
+        } else if (global.prevPage == 'Search') {
+          global.prevPage == 'UserCanSearch';
+        } else if (global.prevPage == 'Star') {
+          global.prevPage == 'UserCanStar';
+        } else if (global.prevPage == 'Heart') {
+          global.prevPage == 'UserCanHeart';
+        } else if (global.prevPage == 'Post') {
+          global.prevPage == 'UserCanPost';
+        }
+>>>>>>> Stashed changes
 
         global.socket.emit('on-user-details', params);
         console.log(params);
@@ -121,13 +198,139 @@ class User extends Component {
     );
   }
 
+<<<<<<< Updated upstream
+=======
+  viewProfile() {
+    let self = this;
+
+    // alert(this.state.myliked);
+    // if (this.state.myliked == null) {
+    //   this.setState({
+    //     myliked: 0,
+
+    //     // liked: false,
+    //   });
+    // } else {
+    //   this.setState({
+    //     myliked: myliked,
+    //     // liked: true,
+    //   });
+    // }
+
+    let params = {};
+
+    self.setState(
+      {
+        params: params,
+        refresh: 1,
+      },
+      () => {
+        global.socket.on('emit-view-user', function (ret) {
+          global.socket.off('emit-view-user');
+          // alert(JSON.stringify(ret));
+          self.setState({});
+        });
+
+        let params = {};
+
+        params['profile'] = global.otherid;
+        params['datetime'] = moment(new Date()).format('YYYY-MM-DD  HH:mm:ss ');
+        params['nickname'] = global.nickname;
+        params['liked'] = this.state.myliked;
+
+        // alert(this.state.myliked);
+
+        // if (this.state.myliked == 1) {
+        //   this.setState({
+        //     liked: true,
+        //   });
+        // } else {
+        //   this.setState({
+        //     liked: false,
+        //   });
+        // }
+
+        global.socket.emit('on-view-user', params);
+        console.log(params);
+      },
+    );
+  }
+
+  // getViewer(){
+  //     let self = this;
+
+  //     this.setState(
+  //       {
+  //         saving: true,
+  //       },
+
+  //       () => {
+  //         global.socket.on('emit-viewers', function (ret) {
+  //           global.socket.off('emit-viewers');
+  //           alert(JSON.stringify(ret));
+
+  //           self.setState({
+  //             image: ret.image,
+  //             nickname: ret.nickname,
+  //             id: ret.id,
+  //             users: ret.users,
+  //             //  name:ret.name,
+  //             liked:ret.liked,
+  //             path: ret.path,
+  //           });
+
+  //           // alert(JSON.stringify(ret.liked));
+  //         });
+  //         let params = {};
+
+  //         params['boardid'] = this.state.boardid;
+  //         params['name'] = '';
+  //         params['pages'] = '';
+  //         params['liked'] = 0;
+  //         params['id'] = global.otherid;
+  //         params['nickname'] = this.state.nickname;
+  //         params['image'] = this.state.image;
+  //         params['path'] = '';
+  //         params['start'] = 0;
+  //         params['size'] = 2;
+
+  //         global.socket.emit('on-viewers', params);
+  //       },
+  //     );
+  //     // this.props.navigationRef.current?.navigate('Dashboard');
+  // }
+
+  iLike = myliked => {
+    if (this.state.myliked == 1) {
+      this.setState({
+        myliked: 0,
+        liked: false,
+      });
+      this.viewProfile();
+    } else {
+      this.setState({
+        myliked: 1,
+        liked: true,
+      });
+      this.viewProfile();
+    }
+
+    // this.getUser();
+  };
+
+>>>>>>> Stashed changes
   componentDidMount() {
+    // this.viewProfile();
+    // this.getViewer();
     this.getUser();
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    // AppState.addEventListener('change', this.getUser);
+    // BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    // AppState.removeEventListener('change', this.getUser);
+    // this.getUser();
+    // BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
   }
 
   handleBackButton() {
@@ -141,6 +344,7 @@ class User extends Component {
     self.setState({}, () => {
       global.socket.on('emit-user-details', function (ret) {
         global.socket.off('emit-user-details');
+        // alert(JSON.stringify(ret));
         console.log(ret);
         self.setState({
           id: ret.id,
@@ -154,7 +358,39 @@ class User extends Component {
           hobbie: ret.hobbie,
           school: ret.school,
           bloodtype: ret.bloodtype,
+<<<<<<< Updated upstream
+=======
+          age: ret.age,
+          token: ret.token,
+          myliked: ret.myliked,
+>>>>>>> Stashed changes
         });
+        global.myliked = ret.myliked;
+        global.othertoken = ret.token;
+        // alert(global.myliked);
+        if (global.myliked == 1) {
+          self.setState({
+            liked: true,
+          });
+        } else {
+          self.setState({
+            liked: false,
+          });
+        }
+
+        if (global.myliked == null) {
+          self.setState({
+            myliked: 0,
+
+            // liked: false,
+          });
+        } else {
+          self.setState({
+            myliked: global.myliked,
+            // liked: true,
+          });
+        }
+        self.viewProfile();
       });
 
       let params = {};
@@ -191,13 +427,21 @@ class User extends Component {
       params['mail_count'] = this.state.mail_count;
       params['call_minutes'] = this.state.call_minutes;
       params['pkuser'] = this.state.pkuser;
+<<<<<<< Updated upstream
 
+=======
+      params['token'] = this.state.token;
+      params['liked'] = this.state.myliked;
+
+      this.state.myliked = global.myliked;
+>>>>>>> Stashed changes
       global.otherid = global.otherid;
       global.name = self.state.nickname;
       global.lastmessage = global.lastmessage;
-      // console.log(params);
+      console.log(this.state.myliked);
       global.socket.emit('on-user-details', params);
     });
+    return true;
   }
 
   closeReportModal() {
@@ -283,15 +527,94 @@ class User extends Component {
     });
   }
 
+<<<<<<< Updated upstream
+=======
+  Button() {}
+
+>>>>>>> Stashed changes
   render() {
+    const {top, bottom} = this.props.draggableRange;
+
+    const backgoundOpacity = this._draggedValue.interpolate({
+      inputRange: [height - 48, height],
+      outputRange: [1, 0],
+      extrapolate: 'clamp',
+    });
+
+    const iconTranslateY = this._draggedValue.interpolate({
+      inputRange: [height - 56, height, top],
+      outputRange: [0, 56, 180 - 32],
+      extrapolate: 'clamp',
+    });
+
+    const textTranslateY = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [0, 28],
+      extrapolate: 'clamp',
+    });
+
+    const textTranslateX = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [0, 5],
+      extrapolate: 'clamp',
+    });
+
+    const textScale = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [1, 0.7],
+      extrapolate: 'clamp',
+    });
+
+    let genders = [
+      {label: '男性', value: 0},
+      {label: '女性', value: 1},
+    ];
+    let smokings = [
+      {label: '未設定', value: 0},
+      {label: '吸う', value: 1},
+      {label: '時々吸う', value: 2},
+      {label: '吸わない', value: 3},
+    ];
+    let drinkings = [
+      {label: '未設定', value: 0},
+      {label: '飲む', value: 1},
+      {label: '時々飲む', value: 2},
+      {label: '飲まない', value: 3},
+    ];
+    let marrieds = [
+      {label: '未婚', value: 0},
+      {label: '既婚', value: 1},
+      {label: '離婚', value: 2},
+    ];
+    let presence_of_children = [
+      {label: 'いない', value: 0},
+      {label: 'いる', value: 1},
+    ];
+    let marriage_desires = [
+      {label: 'あり', value: 0},
+      {label: 'なし', value: 1},
+    ];
+    let like_children_or_nots = [
+      {label: '好き', value: 0},
+      {label: '嫌い', value: 1},
+    ];
+    let presence_of_pets = [
+      {label: 'いる', value: 0},
+      {label: 'いない', value: 1},
+    ];
+    let holidays = [
+      {label: 'インドア', value: 0},
+      {label: 'アウトドア', value: 1},
+    ];
     return (
       <View
         style={{
-          backgroundColor: '#fff',
+          backgroundColor: 'red',
           height: '100%',
           flex: 1,
-          width: '100%',
+          width: windowWidth,
         }}>
+<<<<<<< Updated upstream
         <TouchableOpacity
           onPress={() => this.goBack()}
           style={{
@@ -367,6 +690,26 @@ class User extends Component {
         />
         <TouchableOpacity onPress={() => this.modalProfile()}>
           <Image
+=======
+        {this.state.profile_image_dir == '' ? (
+          <Image
+            style={{
+              width: windowWidth - 1,
+              height: windowHeight / 1 - 180,
+              position: 'absolute',
+              alignSelf: 'center',
+            }}
+            source={require('../icon/userprofile.png')}
+          />
+        ) : (
+          <Image
+            style={{
+              width: windowWidth - 1,
+              height: windowHeight / 1 - 180,
+              position: 'absolute',
+              alignSelf: 'center',
+            }}
+>>>>>>> Stashed changes
             source={{
               uri:
                 URL_TEMP +
@@ -375,6 +718,7 @@ class User extends Component {
                 '/' +
                 this.state.profile_image,
             }}
+<<<<<<< Updated upstream
             style={styles.Image}
           />
           <Text style={styles.textname}>{this.state.nickname}</Text>
@@ -504,6 +848,631 @@ class User extends Component {
             <Text style={styles.Mtxt}>レポート</Text>
           </TouchableOpacity>
         </View>
+=======
+          />
+        )}
+        <TouchableOpacity
+          style={{
+            marginLeft: 15,
+            marginTop: windowHeight / 10 - 60,
+            width: 40,
+            height: 40,
+            backgroundColor: '#FFF5F8',
+            borderRadius: 10,
+          }}
+          onPress={() => this.goBack()}>
+          <Svg
+            style={{alignSelf: 'center', top: 10, right: 2}}
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fal"
+            data-icon="angle-left"
+            class="svg-inline--fa fa-angle-left fa-w-6"
+            role="img"
+            width="16"
+            height="21"
+            viewBox="0 0 6 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <Path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M5.65863 10.0143C5.39578 10.2771 4.96961 10.2771 4.70676 10.0143L0.668298 5.97582C0.405446 5.71297 0.405446 5.2868 0.668298 5.02395L4.70676 0.985489C4.96961 0.722635 5.39578 0.722635 5.65863 0.985489C5.92149 1.24834 5.92149 1.67451 5.65863 1.93736C3.69111 3.90489 3.69111 7.09488 5.65863 9.06241C5.92149 9.32526 5.92149 9.75143 5.65863 10.0143Z"
+              fill="#EA337E"
+            />
+            <Defs>
+              <LinearGradient
+                id="paint0_linear_50_2341"
+                x1="3.16347"
+                y1="10.2114"
+                x2="3.16347"
+                y2="0.788349"
+                gradientUnits="userSpaceOnUse">
+                <Stop stop-color="#ED70B0" />
+                <Stop offset="1" stop-color="#EA337E" />
+              </LinearGradient>
+            </Defs>
+          </Svg>
+        </TouchableOpacity>
+        <SlidingUpPanel
+          ref={c => (this._panel = c)}
+          draggableRange={this.props.draggableRange}
+          animatedValue={this._draggedValue}
+          snappingPoints={[360]}
+          height={height + 180}
+          friction={0.5}>
+          <View style={styles.panel}>
+            {/* <Animated.View
+             style={[
+               styles.iconBg,
+               {
+                 opacity: backgoundOpacity,
+                 transform: [{translateY: iconTranslateY}],
+               },
+             ]}
+           /> */}
+            <View style={styles.panelHeader}>
+              <Animated.View
+                style={{
+                  transform: [
+                    {translateY: textTranslateY},
+                    {translateX: textTranslateX},
+                    {scale: textScale},
+                  ],
+                }}>
+                <Text style={styles.textHeader}>
+                  {this.state.nickname + ',' + this.state.age}
+                </Text>
+                <Svg
+                  style={{left: '95%', bottom: '130%'}}
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fal"
+                  data-icon="angle-left"
+                  class="svg-inline--fa fa-angle-left fa-w-6"
+                  role="img"
+                  width="7"
+                  height="25"
+                  viewBox="0 0 7 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <Circle
+                    cx="3.19647"
+                    cy="24.6507"
+                    r="3.19647"
+                    transform="rotate(-90 3.19647 24.6507)"
+                    fill="#EA337E"
+                  />
+                  <Circle
+                    cx="3.19647"
+                    cy="13.9236"
+                    r="3.19647"
+                    transform="rotate(-90 3.19647 13.9236)"
+                    fill="#EA337E"
+                  />
+                  <Circle
+                    cx="3.19647"
+                    cy="3.1966"
+                    r="3.19647"
+                    transform="rotate(-90 3.19647 3.1966)"
+                    fill="#EA337E"
+                  />
+                  <Defs>
+                    <LinearGradient
+                      id="paint0_linear_61_2247"
+                      x1="3.19647"
+                      y1="21.4542"
+                      x2="3.19647"
+                      y2="27.8472"
+                      gradientUnits="userSpaceOnUse">
+                      <Stop stop-color="#ED70B0" />
+                      <Stop offset="1" stop-color="#EA337E" />
+                    </LinearGradient>
+                    <LinearGradient
+                      id="paint1_linear_61_2247"
+                      x1="3.19647"
+                      y1="10.7272"
+                      x2="3.19647"
+                      y2="17.1201"
+                      gradientUnits="userSpaceOnUse">
+                      <Stop stop-color="#ED70B0" />
+                      <Stop offset="1" stop-color="#EA337E" />
+                    </LinearGradient>
+                    <LinearGradient
+                      id="paint2_linear_61_2247"
+                      x1="3.19647"
+                      y1="0.000124454"
+                      x2="3.19647"
+                      y2="6.39307"
+                      gradientUnits="userSpaceOnUse">
+                      <Stop stop-color="#ED70B0" />
+                      <Stop offset="1" stop-color="#EA337E" />
+                    </LinearGradient>
+                  </Defs>
+                </Svg>
+
+                <View style={styles.Mview}>
+                  <View
+                    style={{
+                      alignSelf: 'center',
+                      flexDirection: 'row',
+                      height: windowHeight / 10 - 100,
+                    }}>
+                    <TouchableOpacity
+                      onPress={() => this.goChat(global.userid)}
+                      style={styles.button}>
+                      <Text style={styles.Mtxt}>メッセージを送信</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{width: 40, height: 35}}
+                      onPress={value => this.iLike(value)}>
+                      <Svg
+                        style={{}}
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fal"
+                        data-icon="angle-left"
+                        class="svg-inline--fa fa-angle-left fa-w-6"
+                        role="img"
+                        width="35"
+                        height="30"
+                        viewBox="0 0 40 35"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <Path
+                          d="M11.9725 2C6.46482 2 2 6.44768 2 11.9341C2 21.8682 13.7856 30.8992 20.1317 33C26.4779 30.8992 38.2635 21.8682 38.2635 11.9341C38.2635 6.44768 33.7986 2 28.291 2C24.9183 2 21.9365 3.66794 20.1317 6.22091C18.327 3.66794 15.3452 2 11.9725 2Z"
+                          stroke="#EA337E"
+                          fill={this.state.liked ? '#EA337E' : '#FFF'}
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <Defs>
+                          <LinearGradient
+                            id="paint0_linear_61_2058"
+                            x1="20.1317"
+                            y1="2"
+                            x2="20.1317"
+                            y2="33"
+                            gradientUnits="userSpaceOnUse">
+                            <Stop stop-color="#ED70B0" />
+                            <Stop offset="1" stop-color="#EA337E" />
+                          </LinearGradient>
+                        </Defs>
+                      </Svg>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Animated.View>
+            </View>
+            <View
+              style={{
+                flexDirection: 'column',
+                // alignSelf: 'center',
+                width: windowWidth,
+                height: windowHeight - 80,
+                top: '0%',
+                backgroundColor: '#FFF5F8',
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+              }}>
+              {/* <Text style={styles.textname}>
+               {this.state.nickname + ',' + this.state.age}
+             </Text>
+             <Svg
+               style={{left: '90%', bottom: '4%'}}
+               aria-hidden="true"
+               focusable="false"
+               data-prefix="fal"
+               data-icon="angle-left"
+               class="svg-inline--fa fa-angle-left fa-w-6"
+               role="img"
+               width="7"
+               height="28"
+               viewBox="0 0 7 28"
+               fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+               <Circle
+                 cx="3.19647"
+                 cy="24.6507"
+                 r="3.19647"
+                 transform="rotate(-90 3.19647 24.6507)"
+                 fill="#EA337E"
+               />
+               <Circle
+                 cx="3.19647"
+                 cy="13.9236"
+                 r="3.19647"
+                 transform="rotate(-90 3.19647 13.9236)"
+                 fill="#EA337E"
+               />
+               <Circle
+                 cx="3.19647"
+                 cy="3.1966"
+                 r="3.19647"
+                 transform="rotate(-90 3.19647 3.1966)"
+                 fill="#EA337E"
+               />
+               <Defs>
+                 <LinearGradient
+                   id="paint0_linear_61_2247"
+                   x1="3.19647"
+                   y1="21.4542"
+                   x2="3.19647"
+                   y2="27.8472"
+                   gradientUnits="userSpaceOnUse">
+                   <Stop stop-color="#ED70B0" />
+                   <Stop offset="1" stop-color="#EA337E" />
+                 </LinearGradient>
+                 <LinearGradient
+                   id="paint1_linear_61_2247"
+                   x1="3.19647"
+                   y1="10.7272"
+                   x2="3.19647"
+                   y2="17.1201"
+                   gradientUnits="userSpaceOnUse">
+                   <Stop stop-color="#ED70B0" />
+                   <Stop offset="1" stop-color="#EA337E" />
+                 </LinearGradient>
+                 <LinearGradient
+                   id="paint2_linear_61_2247"
+                   x1="3.19647"
+                   y1="0.000124454"
+                   x2="3.19647"
+                   y2="6.39307"
+                   gradientUnits="userSpaceOnUse">
+                   <Stop stop-color="#ED70B0" />
+                   <Stop offset="1" stop-color="#EA337E" />
+                 </LinearGradient>
+               </Defs>
+             </Svg> */}
+
+              <ScrollView style={styles.scrollview}>
+                {/* <View style={styles.view}>
+           <Text style={styles.label}> ニックネーム</Text>
+           <Text style={styles.text}>{this.state.nickname}</Text>
+         </View> */}
+                {/* <View style={styles.view}>
+           <Text style={styles.email}> メールアドレス</Text>
+           <Text style={styles.text}>{this.state.email}</Text>
+         </View> */}
+                <View style={styles.view1}>
+                  <Text style={styles.introduction}>自己紹介</Text>
+                  <Text style={styles.text}>{this.state.introduction}</Text>
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label2}>住んでいる地域</Text>
+                  <Text style={styles.text}></Text>
+                </View>
+                <View style={styles.view1}>
+                  <Text style={styles.label3}>性格</Text>
+                  <Text style={styles.text}>{this.state.character}</Text>
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label4}> 趣味</Text>
+                  <Text style={styles.text}>{this.state.hobbie}</Text>
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.introduction}> 仕事</Text>
+                  <Text style={styles.text}></Text>
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label5}>会社</Text>
+                  <Text style={styles.text}></Text>
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label6}> 出身大学</Text>
+                  <Text style={styles.text}>{this.state.school}</Text>
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}> 血液型</Text>
+                  <Text style={styles.text}>{this.state.bloodtype}</Text>
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}>恋愛対象</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={genders}
+                    initial={this.state.gender}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 150,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      // width: '42%',
+                      bottom: '.7%',
+                      alignSelf: 'center',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}> タバコ</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={smokings}
+                    initial={this.state.smoking}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 170,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      width: '85%',
+                      bottom: '.7%',
+                      // left: windowWidth / 10 - 20,
+                      alignSelf: 'center',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}>飲酒</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={drinkings}
+                    initial={this.state.drinking}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 170,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      // left: 18,
+                      // width: '42%',
+                      alignSelf: 'center',
+                      width: '85%',
+                      bottom: '.7%',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}>結婚歴</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={marrieds}
+                    initial={this.state.marrried}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 170,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      width: '52%',
+                      bottom: '.7%',
+                      alignSelf: 'center',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}>子どもの有無</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={presence_of_children}
+                    initial={this.state.presence_of_children}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 150,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      bottom: '.7%',
+                      width: '42%',
+                      alignSelf: 'center',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}> 結婚願望</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={marriage_desires}
+                    initial={this.state.marriage_desire}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 150,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      bottom: '.7%',
+                      width: '42%',
+                      alignSelf: 'center',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}> 子ども好き</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={like_children_or_nots}
+                    initial={this.state.like_children_or_not}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 150,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      width: '42%',
+                      bottom: '.7%',
+                      alignSelf: 'center',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}>ペットの有無</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={presence_of_pets}
+                    initial={this.state.presence_of_pet}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 150,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      width: '42%',
+                      bottom: '.7%',
+                      alignSelf: 'center',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+                <View style={styles.view}>
+                  <Text style={styles.label7}>休日</Text>
+                  {/* <Text style={styles.text}>{this.state.bloodtype}</Text> */}
+                  <RadioForm
+                    radio_props={holidays}
+                    initial={this.state.holiday}
+                    // onPress={value => {
+                    //   ToastAndroid.show(value.toString(), ToastAndroid.SHORT);
+                    // }}
+                    // onPress={value => this.Button()}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'grey'}
+                    selectedButtonColor={'grey'}
+                    selectedLabelColor={'black'}
+                    labelStyle={{
+                      fontSize: 9,
+                      paddingHorizontal: windowWidth / 2 - 150,
+                      // width: windowWidth / 7.5,
+                      alignSelf: 'center',
+                    }}
+                    disabled={true}
+                    formHorizontal={true}
+                    labelHorizontal={true}
+                    style={{
+                      // top: 30,
+                      width: '42%',
+                      bottom: '.7%',
+                      alignSelf: 'center',
+                      // backgroundColor:'red'
+                    }}
+                  />
+                </View>
+              </ScrollView>
+            </View>
+          </View>
+        </SlidingUpPanel>
+>>>>>>> Stashed changes
       </View>
     );
   }
@@ -513,8 +1482,8 @@ export default User;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
+    // flex: 1,
+    alignSelf: 'center',
     justifyContent: 'center',
   },
 
@@ -524,6 +1493,7 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
     alignSelf: 'center',
     justifyContent: 'center',
+<<<<<<< Updated upstream
     top: windowWidth / 4.5,
     width: windowWidth - 33,
     height: windowHeight / 2 - 370,
@@ -546,6 +1516,38 @@ const styles = StyleSheet.create({
     borderColor: '#cdd5d5',
     left: '26%',
     width: windowWidth / 2.5,
+=======
+    bottom: '10%',
+    width: windowWidth,
+    height: '10%',
+    flexDirection: 'row',
+    borderTopLeftRadius: 26,
+    borderTopRightRadius: 26,
+    // backgroundColor: '#FFF',
+  },
+
+  Mtxt: {
+    // alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    // left: '215%',
+    fontSize: 16,
+    top: '20%',
+    color: '#FFF',
+  },
+
+  button: {
+    // flexDirection: 'row',
+    // justifyContent: 'center',
+    alignSelf: 'center',
+    borderRadius: 5,
+    backgroundColor: '#EA337E',
+    height: windowHeight / 2 - 500,
+    borderColor: '#cdd5d5',
+    height: 35,
+    marginRight: 15,
+    width: windowWidth / 1.6,
+>>>>>>> Stashed changes
   },
 
   button1: {
@@ -559,6 +1561,7 @@ const styles = StyleSheet.create({
     width: windowWidth / 4.2,
   },
 
+<<<<<<< Updated upstream
   button2: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -574,6 +1577,25 @@ const styles = StyleSheet.create({
   scrollview: {
     top: 30,
     left: 15,
+=======
+  // button2: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   borderRadius: 5,
+  //   borderWidth: 1,
+  //   height: 30,
+  //   borderColor: '#cdd5d5',
+  //   // right: windowHeight / 3.4,
+  //   left: '2%',
+  //   width: windowWidth / 4.3,
+  // },
+
+  scrollview: {
+    top: 10,
+    // left: 15,
+    width: windowWidth,
+    alignSelf: 'center',
+>>>>>>> Stashed changes
     height: windowHeight - 10,
   },
 
@@ -585,7 +1607,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: windowWidth - 40,
     alignSelf: 'center',
-    right: 20,
+    // right: 20,
     borderRadius: 5,
     marginBottom: 20,
     flex: 1,
@@ -599,7 +1621,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: windowWidth - 40,
     alignSelf: 'center',
-    right: 20,
+    // right: 20,
     borderRadius: 5,
     marginBottom: 20,
   },
@@ -734,4 +1756,50 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
   },
+<<<<<<< Updated upstream
+=======
+
+  Container: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  panel: {
+    flex: 1,
+    backgroundColor: 'white',
+    position: 'relative',
+  },
+  panelHeader: {
+    height: 180,
+    backgroundColor: '#FFF5F8',
+    justifyContent: 'flex-end',
+    padding: 24,
+  },
+  textHeader: {
+    bottom: 70,
+    fontSize: 28,
+    color: 'black',
+  },
+  icon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: -24,
+    right: 18,
+    width: 48,
+    height: 48,
+    zIndex: 1,
+  },
+  iconBg: {
+    backgroundColor: '#2b8a3e',
+    position: 'absolute',
+    top: -24,
+    right: 18,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    zIndex: 1,
+  },
+>>>>>>> Stashed changes
 });

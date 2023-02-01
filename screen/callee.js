@@ -3,10 +3,14 @@ import ZegoUIKitPreBuildCall, {
   ONE_ON_ONE_VIDEO_CALL_CONFIG,
   ONE_ON_ONE_VOICE_CALL_CONFIG,
 } from '@zegocloud/zego-uikit-prebuilt-call-rn';
-import {ZegoLayoutMode} from '@zegocloud/zego-uikit-rn';
+import {ZegoLayoutMode, ZegoCameraStateIcon} from '@zegocloud/zego-uikit-rn';
 import {View, Dimensions, TouchableOpacity} from 'react-native';
 import ZegoExpressEngine from 'zego-express-engine-reactnative';
+<<<<<<< Updated upstream
 
+=======
+import moment from 'moment';
+>>>>>>> Stashed changes
 import Svg, {G, Path} from 'react-native-svg';
 
 const windowWidth = Dimensions.get('window').width;
@@ -26,6 +30,7 @@ class Callee extends Component {
   componentDidMount() {
     // global.socket.on('emit-someone-is-calling', function (ret) {
     //   global.socket.off('emit-someone-is-calling');
+<<<<<<< Updated upstream
 
     //   // alert(2222)
     // });
@@ -38,11 +43,22 @@ class Callee extends Component {
     // alert(111);
 
     global.socket.emit('on-audio-call', params);
+=======
+    //   // alert(2222)
+    // });
+    // let params = {};
+    // params['nickname'] = global.nickname;
+    // params['from'] = global.myid;
+    // params['to_id'] = global.otherid;
+    // // alert(111);
+    // global.socket.emit('on-audio-call', params);
+>>>>>>> Stashed changes
   }
 
   componentWillUnmount() {}
 
   onAnswerCall() {
+<<<<<<< Updated upstream
     this.setState({
       call: true,
     });
@@ -52,23 +68,94 @@ class Callee extends Component {
     
     let params = {};
 
+=======
+    // this.setState({
+    //   call: true,
+    // });
+
+    let self = this;
+
+    this.setState(
+      {
+        call: true,
+      },
+
+      () => {
+        global.socket.on('emit-answer-iglopes-now', function (ret) {
+          global.socket.off('emit-answer-iglopes-now');
+          alert(JSON.stringify(ret));
+          alert(2222);
+          self.setState({
+            from: ret.from,
+            to: ret.to,
+            nickname: ret.nickname,
+          });
+        });
+      },
+    );
+
+    let params = {};
+    // params['nickname'] = global.nickname;
+    params['from'] = global.otherid;
+    params['to'] = global.myid;
+    // params['tree'] =global.otherid;
+
+    // alert(111);
+
+    global.socket.emit('on-answer-iglopes', params);
+    // alert(JSON.stringify(params));
+  }
+
+  onDropnCall() {
+    // this.setState({
+    //   call: true,
+    // });
+    global.socket.on('emit-drop-caller-audio-call', function (ret) {
+      global.socket.off('emit-drop-caller-audio-call');
+
+      alert(2222);
+    });
+    // alert(1);
+    let params = {};
+    // params['nickname'] = global.nickname;
+    params['from'] = global.otherid;
+    params['to'] = global.myid;
+
+    // alert(111);
+
+    global.socket.emit('on-drop-callee-audio-call', params);
+    //  alert(JSON.stringify(params));
+  }
+
+  onCancel() {
+    let params = {};
+>>>>>>> Stashed changes
     params['from'] = global.myid;
     params['to'] = global.otherid;
-    params['nickname'] = global.nickname;
+    // params['nickname'] = global.nickname;
     // params['busy'] = 0;
 
     // alert(111);
 
     global.socket.emit('on-test-caller-drop', params);
 
+<<<<<<< Updated upstream
     this.props.navigationRef.current?.navigate('Tabs');
+=======
+    // this.props.navigation.reset({
+    //   index:1,
+    //   routes:  [{ name: "Tabs"}],
+    // });
+
+    this.props.navigation.navigate('Tabs');
+>>>>>>> Stashed changes
   }
 
   unRegisterCallback() {
     // If the parameter is null, the previously registered callback is cleared
     ZegoExpressManager.instance().onRoomUserUpdate();
     ZegoExpressManager.instance().onRoomUserDeviceUpdate();
-    ZegoExpressManager.instance().onRoomStateUpdate();  
+    ZegoExpressManager.instance().onRoomStateUpdate();
   }
 
   render() {
@@ -157,23 +244,43 @@ class Callee extends Component {
           </View>
         ) : (
           <ZegoUIKitPreBuildCall
-            appID={1297989214}
+            appID={2121618171}
             appSign={
-              '53fd764d62cbb035bdd970cb7b82d72e65883fc49b7a8fd60fcfa0c875ae001a'
+              '27f803f0403f9ee518839624fe2a75fd7d3ec04dea29fe3ebbf0947235815969'
             }
             userID={'to_id'}
             userName={this.state.username}
             callID="testidcall"
+<<<<<<< Updated upstream
           
+=======
+            ringtoneConfig={{
+              incomingCallFileName:
+                //  'ringtone.mp3',
+                'zego_incoming.mp3',
+              outgoingCallFileName:
+                // 'ringtone.mp3',
+                'zego_outgoing.mp3',
+            }}
+>>>>>>> Stashed changes
             config={{
               ...ONE_ON_ONE_VIDEO_CALL_CONFIG,
               // ...ONE_ON_ONE_VOICE_CALL_CONFIG,
-              serverUrl:'https://chatter-call.herokuapp.com/',
+              serverUrl: 'https://chatter-call.herokuapp.com/',
               onOnlySelfInRoom: () => {
-                this.props.navigationRef.current?.navigate('Tabs');
+                // if (global.prevPage == 'Chat') {
+                  // this.props.navigation.navigate('Chat');
+                // } else if  (global.prevPage == 'Launcher'){
+                  this.props.navigationRef.current?.navigate('Tabs');
+                // }
               },
               onHangUp: () => {
-                this.props.navigationRef.current?.navigate('Tabs');
+                this.onDropnCall();
+                // if (global.prevPage == 'Chat') {
+                  // this.props.navigation.navigate('Chat');
+                // } else if  (global.prevPage == 'Launcher'){
+                  this.props.navigationRef.current?.navigate('Tabs');
+                // }
               },
 
               layout: {
@@ -185,10 +292,13 @@ class Callee extends Component {
                   // turnOnCameraWhenJoining: false,
                   // turnOnMicrophoneWhenJoining: false,
                   // useSpeakerWhenJoining: true,
+
                 },
               },
+              // showCameraStateOnView: false,
               turnOnCameraWhenJoining: false,
               // enableCamera:true,
+              
               turnOnMicrophoneWhenJoining: false,
             }}
           />

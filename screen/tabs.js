@@ -1,12 +1,26 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import {Image, View, Text, Alert} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import {
   getFocusedRouteNameFromRoute,
   NavigationContainer,
+  useIsFocused,
 } from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
+<<<<<<< Updated upstream
+=======
+import Svg, {
+  G,
+  Path,
+  Stop,
+  Defs,
+  LinearGradient,
+  Circle,
+  ClipPath,
+  Rect,
+} from 'react-native-svg';
+>>>>>>> Stashed changes
 
 import Call from './Call';
 import Post from './Post';
@@ -27,8 +41,27 @@ import Login from './Login';
 import SearchGrid from './SearchGrid';
 
 import Caller from './caller';
+<<<<<<< Updated upstream
 
 import Comment from './comment';
+=======
+import Callee from './callee';
+import Comment from './comment';
+import Happy from './Happy';
+import Star from './Star';
+import Pacman from './Pacman';
+import Card from './Card';
+import News from './News';
+import Policy from './Terms';
+import Privacy from './Privacy';
+import SpecialCC from './SpecialCC';
+import Picture from './Picture';
+import Calls from './Calls';
+import Register from './Register';
+import Addmessages from './UnReadmessages';
+import MessagesScrean from './MessageAll';
+// import { Component } from 'react';
+>>>>>>> Stashed changes
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -67,13 +100,51 @@ const MessageStack = ({navigation}) => (
       }}
     />
     <Stack.Screen
+<<<<<<< Updated upstream
       name="caller"
+=======
+      name="Caller"
+>>>>>>> Stashed changes
       component={Caller}
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
         headerShown: false,
       })}
+    />
+    <Stack.Screen
+      name="Callee"
+      component={Callee}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
+      })}
+    />
+    <Stack.Screen
+      name="Search"
+      component={Search}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="unReadMessage"
+      component={Addmessages}
+      options={{
+        tabBarStyle: {display: 'none'},
+        // title: route.params.userName,
+        headerShown: false,
+      }}
+    />
+     <Stack.Screen
+      name="MessagesScrean"
+      component={Messages}
+      options={{
+        tabBarStyle: {display: 'none'},
+        // title: route.params.userName,
+        headerShown: false,
+      }}
     />
   </Stack.Navigator>
 );
@@ -114,6 +185,29 @@ const PostStack = ({navigation}) => (
         headerBackTitleVisible: false,
         headerShown: false,
       })}
+    />
+    <Stack.Screen
+      name="Caller"
+      component={Caller}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="Callee"
+      component={Callee}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="Chat"
+      component={Chat}
+      options={{
+        tabBarStyle: {display: 'none'},
+        // title: route.params.userName,
+        headerShown: false,
+      }}
     />
   </Stack.Navigator>
 );
@@ -161,13 +255,33 @@ const CallStack = ({navigation}) => (
       })}
     />
     <Stack.Screen
+<<<<<<< Updated upstream
       name="caller"
+=======
+      name="Caller"
+>>>>>>> Stashed changes
       component={Caller}
       options={({route}) => ({
         // title: route.params.userName,
         headerBackTitleVisible: false,
         headerShown: false,
       })}
+    />
+    <Stack.Screen
+      name="Callee"
+      component={Callee}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
+      })}
+    />
+      <Stack.Screen
+      name="Search"
+      component={Search}
+      options={{
+        headerShown: false,
+      }}
     />
   </Stack.Navigator>
 );
@@ -220,6 +334,20 @@ const SeachStack = ({navigation}) => (
         headerShown: false,
       }}
     />
+    <Stack.Screen
+      name="Caller"
+      component={Caller}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="Callee"
+      component={Callee}
+      options={{
+        headerShown: false,
+      }}
+    />
   </Stack.Navigator>
 );
 
@@ -227,6 +355,7 @@ const Homestack = ({navigation}) => (
   React.useEffect(() => {
     const focusHandler = navigation.addListener('focus', () => {
       // Alert.alert('Refreshed');
+      //  const Tabs();
     });
     return focusHandler;
   }, [navigation]),
@@ -274,18 +403,147 @@ const Homestack = ({navigation}) => (
           headerShown: false,
         }}
       />
+<<<<<<< Updated upstream
+=======
+      <Stack.Screen
+        name="Happy"
+        component={Happy}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Star"
+        component={Star}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Pacman"
+        component={Pacman}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Card"
+        component={Card}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="News"
+        component={News}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Policy"
+        component={Policy}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Privacy"
+        component={Privacy}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="SpecialCC"
+        component={SpecialCC}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Picture"
+        component={Picture}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Calls"
+        component={Calls}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{
+          headerShown: false,
+        }}
+      />
+       <Stack.Screen
+      name="Chat"
+      component={Chat}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerShown: false,
+      })}
+    />
+    <Stack.Screen
+      name="UserCanSearch"
+      component={UserCanSearch}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
+      })}
+    />
+    <Stack.Screen
+      name="Caller"
+      component={Caller}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
+      })}
+    />
+    <Stack.Screen
+      name="Callee"
+      component={Callee}
+      options={({route}) => ({
+        // title: route.params.userName,
+        headerBackTitleVisible: false,
+        headerShown: false,
+      })}
+    />
+      <Stack.Screen
+      name="Search"
+      component={Search}
+      options={{
+        headerShown: false,
+      }}
+    />
+>>>>>>> Stashed changes
     </Stack.Navigator>
   )
 );
 
 const Tabs = ({navigation}) => {
-  // React.useEffect(() => {
-  //   const unsubscribe = navigation.addListener('focus', () => {
-  //     Alert.alert('Refreshed');
-  //   });
-  //   return unsubscribe;
-  // }, [navigation]);
+  const isFocused = useIsFocused();
 
+  // React.useEffect(() => {
+  //   const unsubscribe = navigation.addListener('didFocus', () => {
+  //     // The screen is focused
+  //     console.log('focused')
+  //   });
+  //   // Return the function to unsubscribe from the event so it gets removed on unmount
+  //   return unsubscribe.remove();
+  // }, [navigation]);
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
   // const goTabBarVisibility = () => {
   //   const routeName = getFocusedRouteNameFromRoute(route);
   //   if (routeName === 'User') {
@@ -295,16 +553,43 @@ const Tabs = ({navigation}) => {
   //   }
   // };
 
+<<<<<<< Updated upstream
   const getTabBarVisibility = () => {
+=======
+  const getTabBarVisibility = route => {
+
+>>>>>>> Stashed changes
     if (global.age_verified == 0) {
       return true;
     } else if (global.age_verified == 2) {
       return true;
     } else if (global.age_verified == 1) {
+<<<<<<< Updated upstream
       return false;
     }
   };
 
+=======
+      return {display: 'flex'};
+    } 
+  };
+
+
+  const goTabBarHome = route => {
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'home';
+    let display = routeName;
+    if ((display = routeName === 'Chat')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'UserCanSearch')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'Caller')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'Callee')) {
+      return {display: 'none'};
+    } 
+  };
+
+>>>>>>> Stashed changes
   // const goTabBarVisibility = route => {
   //   const routeName = route.state
   //     ? route.state.routes[route.state.index].name
@@ -323,6 +608,10 @@ const Tabs = ({navigation}) => {
       return {display: 'none'};
     } else if ((display = routeName === 'UserCanSearch')) {
       return {display: 'none'};
+      } else if ((display = routeName === 'Caller')) {
+        return {display: 'none'};
+      } else if ((display = routeName === 'Callee')) {
+        return {display: 'none'};
     } else {
       display = routeName === 'Call';
       return {display: 'flex'};
@@ -335,6 +624,10 @@ const Tabs = ({navigation}) => {
     if ((display = routeName === 'Chat')) {
       return {display: 'none'};
     } else if ((display = routeName === 'UserCanSearch')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'Caller')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'Callee')) {
       return {display: 'none'};
     } else {
       display = routeName === 'Search';
@@ -351,6 +644,10 @@ const Tabs = ({navigation}) => {
       return {display: 'none'};
     } else if ((display = routeName === 'Comment')) {
       return {display: 'none'};
+    } else if ((display = routeName === 'Chat')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'Callee')) {
+      return {display: 'none'};
     } else {
       display = routeName === 'Post';
       return {display: 'flex'};
@@ -364,7 +661,16 @@ const Tabs = ({navigation}) => {
       return {display: 'none'};
     } else if ((display = routeName === 'UserCanSearch')) {
       return {display: 'none'};
+<<<<<<< Updated upstream
     } else if (( display = routeName === 'Messages')) {
+=======
+    } else if ((display = routeName === 'Caller')) {
+      return {display: 'none'};
+    } else if ((display = routeName === 'Callee')) {
+      return {display: 'none'};
+    } else {
+      display = routeName === 'Messages';
+>>>>>>> Stashed changes
       return {display: 'flex'};
     }  else {
       display = routeName === 'caller';
@@ -374,17 +680,46 @@ const Tabs = ({navigation}) => {
 
   return (
     <Tab.Navigator
+<<<<<<< Updated upstream
       tabBarOptions={{
         showLabel: false,
         // tabBarVisible: global.age_verified == 0 ? true : false,
         tabBarVisible: getTabBarVisibility(),
       }}
       screenOptions={{}}>
+=======
+      // tabBarOptions={{
+      //   showLabel: false,
+      //   tabBarVisible: getTabBarVisibility(),
+      //   tabStyle: {
+      //     backgroundColor: 'red',
+      //     // borderRadius: 10,
+      //     borderTopLeftRadius: 20,
+      //     borderTopRightRadius: 0,
+      //   },
+
+      // }}
+
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarVisible: getTabBarVisibility(),
+        tabBarStyle: {
+          backgroundColor: 'white',
+          // borderRadius: 10,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        },
+      }}>
+>>>>>>> Stashed changes
       <Tab.Screen
         name="home"
         component={Homestack}
         options={{
           headerShown: false,
+<<<<<<< Updated upstream
+=======
+          tabBarStyle: goTabBarHome(route),
+>>>>>>> Stashed changes
           tabBarIcon: ({focused}) => (
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 1}}>

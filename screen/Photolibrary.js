@@ -86,7 +86,11 @@ class PhotoLibrary extends Component {
   }
 
   componentWillUnmount() {
+<<<<<<< Updated upstream
   
+=======
+    this.getImage();
+>>>>>>> Stashed changes
     this._unsubscribe();
   }
 
@@ -136,7 +140,7 @@ class PhotoLibrary extends Component {
           // alert(JSON.stringify(ret));
 
           self.setState({
-            loadingOpacity: 1,
+            loadingOpacity: 0,
             // loginginOpacity: 3,
             // profile_image: ret.profile_image,
             // profile_image_dir: ret.profile_image_dir,
@@ -231,6 +235,7 @@ class PhotoLibrary extends Component {
               left: 15,
             }}
           />
+<<<<<<< Updated upstream
           </TouchableOpacity>
         ) : (
           <View>
@@ -243,6 +248,47 @@ class PhotoLibrary extends Component {
                 width: 300,
                 height: 400,
                 borderRadius: 1,
+=======
+          {this.state.loadingOpacity == 0 ? (
+            <View style={{ top:"15%", alignSelf: 'center'}}>
+              <TouchableOpacity
+              style={{
+                backgroundColor: '#FFF5F8',
+                height: windowHeight / 25,
+                flexDirection: 'row',
+                width: windowWidth / 5 - 5,
+                borderRadius: 10,
+                // bottom: 34,
+                alignSelf:'center',
+              }}
+              onPress={() => this.goSave()}>
+                <Svg
+                style={{alignSelf: 'center', left: 9, height: 20, width: 20}}
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fal"
+                data-icon="angle-left"
+                class="svg-inline--fa fa-angle-left fa-w-6"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512">
+                <Path
+                  d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 416c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"
+                  fill="#EA337E"
+                />
+              </Svg>
+              <Text style={{left: 15, top: 5, color: 'black'}}>保存</Text>
+            </TouchableOpacity>
+            </View>
+          ) : (
+            <ActivityIndicator
+              style={{
+                // marginLeft: windowWidth / 3 - 105,
+                width: 30,
+                height: 30,
+                marginTop: 160,
+                fontSize: 13,
+>>>>>>> Stashed changes
                 alignSelf: 'center',
               }}
             />

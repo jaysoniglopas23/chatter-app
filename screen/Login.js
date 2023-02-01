@@ -12,6 +12,10 @@ import {
   StyleSheet,
   AsyncStorage,
   ActivityIndicator,
+<<<<<<< Updated upstream
+=======
+  Alert,
+>>>>>>> Stashed changes
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
@@ -38,11 +42,17 @@ const navigationRef = React.createRef();
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+<<<<<<< Updated upstream
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
+=======
+class Login extends Component {
+  constructor(props) {
+    super(props);
+>>>>>>> Stashed changes
     this.state = {
       ui: [],
       refresh: 0,
@@ -55,8 +65,13 @@ class Login extends Component {
       registerButton: '',
       forgotPasswordButton: '',
       messageTwo: '',
+<<<<<<< Updated upstream
       email: 'oneone@gmail.com',
       password: 'asasin123',
+=======
+      email: 'sontest@gmail.com',
+      password: 'sutopp12',
+>>>>>>> Stashed changes
       loginginOpacity: 0,
       id: '',
       age: '',
@@ -65,6 +80,7 @@ class Login extends Component {
       nickname: '',
       points: '',
     };
+<<<<<<< Updated upstream
 
     this.goLogin = this.goLogin.bind(this);
 
@@ -76,11 +92,42 @@ class Login extends Component {
     if (global.locale == 'en') {
       this.setState(
         {
+=======
+    this.goLogin = this.goLogin.bind(this);
+    this.goRegister = this.goRegister.bind(this);
+  }
+  componentDidMount() {
+    this.logUI();
+    // alert(1);
+    this._unsubscribe = this.props.navigationRef.current?.addListener(
+      'focus',
+      () => {
+        Alert.alert('Refreshed');
+        this.logUI();
+      },
+    );
+  }
+
+  componentWillUnmount() {
+    this.logUI();
+    this._unsubscribe();
+  }
+
+  logUI() {
+    let self = this;
+    if (global.locale == 'en') {
+      this.setState(
+        {
+          loginginOpacity: 0,
+>>>>>>> Stashed changes
           invalidCredentials: 'Email / Password is invalid',
           loginButton: 'ログイン',
           registerButton: 'Sign Up',
           forgotPasswordButton: 'Forgot Password',
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
           emailPlaceHolder: '',
           passwordPlaceHolder: '',
           messageOne:
@@ -96,11 +143,17 @@ class Login extends Component {
 
   getUI() {
     let self = this;
+<<<<<<< Updated upstream
 
     global.socket.on('ui', function (ret) {
       ``;
       global.socket.off('ui');
 
+=======
+    global.socket.on('ui', function (ret) {
+      ``;
+      global.socket.off('ui');
+>>>>>>> Stashed changes
       self.setState({
         ui: ret,
         invalidCredentials: ret[3].ui,
@@ -109,25 +162,41 @@ class Login extends Component {
         forgotPasswordButton: ret[1].ui,
       });
     });
+<<<<<<< Updated upstream
 
     let params = {locale: global.locale, type: '30'};
 
+=======
+    let params = {locale: global.locale, type: '30'};
+>>>>>>> Stashed changes
     global.socket.emit('ui', params);
   }
 
   goLogin(id) {
     let self = this;
+<<<<<<< Updated upstream
     global.prevPage ="Login";
+=======
+    global.prevPage = 'Login';
+>>>>>>> Stashed changes
     this.setState(
       {
         invalidCredentialsOpacity: 0,
         loginginOpacity: 1,
+<<<<<<< Updated upstream
+=======
+        // email: '',
+        // password: '',
+>>>>>>> Stashed changes
       },
       () => {
         global.socket.on('emit-login', function (ret) {
           global.socket.off('emit-login');
           // console.log(ret);
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
           if (ret.id == 0) {
             self.setState({
               invalidCredentialsOpacity: 1,
@@ -141,14 +210,24 @@ class Login extends Component {
               data.password = self.state.password;
               console.log(self.state.email + ' ' + self.state.password);
               Storage.storeData(data).then(() => {
+<<<<<<< Updated upstream
+=======
+                // loginginOpacity = 0;
+>>>>>>> Stashed changes
                 global.email = ret.email;
                 global.password = ret.password;
                 global.ret = ret.id;
                 global.nickname = ret.nickname;
                 global.age = ret.age;
                 global.points = ret.points;
+<<<<<<< Updated upstream
                 global.profile_image = ret.profile_image;
                 global.prevPage ="Login"
+=======
+                global.age_verified = ret.age_verified;
+                global.profile_image = ret.profile_image;
+                global.prevPage = 'Login';
+>>>>>>> Stashed changes
                 self.props.navigationRef.current?.navigate('Tabs');
               });
             });
@@ -156,12 +235,16 @@ class Login extends Component {
         });
       },
     );
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     let params = {
       email: this.state.email,
       password: this.state.password,
     };
     // console.log(params);
+<<<<<<< Updated upstream
 
     global.socket.emit('on-login', params);
   }
@@ -174,6 +257,17 @@ class Login extends Component {
     // console.log(windowWidth);
     return (
       <View>
+=======
+    global.socket.emit('on-login', params);
+  }
+  goRegister() {
+    this.props.navigationRef.current?.navigate('Register');
+  }
+  render() {
+    // console.log(windowWidth);
+    return (
+      <View style={{width: windowWidth, height: '100%'}}>
+>>>>>>> Stashed changes
         <View style={{flexDirection: 'column'}}>
           <View style={{flexDirection: 'row'}}>
             <Image
@@ -189,7 +283,10 @@ class Login extends Component {
               source={require('../images/alp-duran-pVHRC3e9_XM-unsplash.jpg')}
             />
           </View>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
           <View style={{flexDirection: 'row'}}>
             <Image
               style={{width: windowWidth / 3, height: windowWidth / 3}}
@@ -218,7 +315,10 @@ class Login extends Component {
               source={require('../images/jackson-eaves-4mmMstrqt-k-unsplash.jpg')}
             />
           </View>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
           <View style={{flexDirection: 'row'}}>
             <Image
               style={{width: windowWidth / 3, height: windowWidth / 3}}
@@ -233,7 +333,10 @@ class Login extends Component {
               source={require('../images/marek-piwnicki-2XxFqN39hEo-unsplash.jpg')}
             />
           </View>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
           <View style={{flexDirection: 'row'}}>
             <Image
               style={{width: windowWidth / 3, height: windowWidth / 3}}
@@ -248,7 +351,10 @@ class Login extends Component {
               source={require('../images/nicola-pavan-9IZwARETOMQ-unsplash.jpg')}
             />
           </View>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
           <View style={{flexDirection: 'row'}}>
             <Image
               style={{width: windowWidth / 3, height: windowWidth / 3}}
@@ -271,7 +377,11 @@ class Login extends Component {
           blurAmount={3}
           blurRadius={5}
         />
+<<<<<<< Updated upstream
         <View style={{bottom: 700}}>
+=======
+        <View style={{bottom: '94%'}}>
+>>>>>>> Stashed changes
           <Image
             source={require('../icon/logo.png')}
             style={{
@@ -288,17 +398,26 @@ class Login extends Component {
             alignItems: 'center',
             marginHorizontal: 60,
             borderWidth: 0,
+<<<<<<< Updated upstream
             marginTop: windowHeight - 1400,
             width: '100%',
             paddingHorizontal: 10,
             // backgroundColor: '#fff',
             // opacity: 0.9,
 
+=======
+            bottom: '174%',
+            width: '100%',
+            //  paddingHorizontal: 10,
+            //  backgroundColor: '#fff',
+            // opacity: 0.9,
+>>>>>>> Stashed changes
             paddingVertical: 0,
           }}>
           <TextInput
             // placeholder="testing5@gmail.com"
             placeholderTextColor="#000000"
+<<<<<<< Updated upstream
             placeholder={this.state.emailPlaceHolder}
             style={{
               alignItems: 'center',
@@ -307,6 +426,16 @@ class Login extends Component {
               backgroundColor: '#fff',
               borderRadius: 5,
               right: 10,
+=======
+            placeholder={ global.email}
+            style={{
+              alignSelf: 'center',
+              //  marginHorizontal: 0,
+              width: '70%',
+              backgroundColor: '#FFF5F8',
+              borderRadius: 10,
+              //  right: 10,
+>>>>>>> Stashed changes
               color: 'black',
             }}
             onChangeText={email => this.setState({email: email})}
@@ -314,12 +443,22 @@ class Login extends Component {
           />
           <Text
             style={{
+<<<<<<< Updated upstream
               color: 'gray',
               backgroundColor: '#fff',
               fontSize: 10,
               fontFamily: 'SemiBold',
               right: windowWidth / 1.5,
               bottom: 22,
+=======
+              color: '#FFF',
+              // backgroundColor: '#fff',
+              fontSize: 14,
+              // fontFamily: 'SemiBold',
+              fontWeight: 'bold',
+              right: windowWidth / 1.5,
+              bottom: 37,
+>>>>>>> Stashed changes
             }}>
             メールアドレス
           </Text>
@@ -331,21 +470,39 @@ class Login extends Component {
             marginHorizontal: 60,
             borderWidth: 0,
             marginTop: 30,
+<<<<<<< Updated upstream
             width: '100%',
             paddingHorizontal: 10,
             // opacity: 0.9,
             borderRadius: 5,
+=======
+            bottom: '169%',
+            width: '100%',
+            //  paddingHorizontal: 10,
+            // opacity: 0.9,
+            borderRadius: 10,
+>>>>>>> Stashed changes
             paddingVertical: 0,
           }}>
           <TextInput
             secureTextEntry={true}
             placeholderTextColor="#000000"
+<<<<<<< Updated upstream
             style={{
               paddingHorizontal: 10,
               backgroundColor: '#fff',
               width: '70%',
               borderRadius: 5,
               right: windowWidth / 39,
+=======
+            placeholder={global.password}
+            style={{
+              paddingHorizontal: 10,
+              backgroundColor: '#FFF5F8',
+              width: '70%',
+              borderRadius: 10,
+              //  right: windowWidth / 39,
+>>>>>>> Stashed changes
               color: 'black',
             }}
             onChangeText={password => this.setState({password: password})}
@@ -353,44 +510,77 @@ class Login extends Component {
           />
           <Text
             style={{
+<<<<<<< Updated upstream
               color: 'gray',
               backgroundColor: 'white',
               fontSize: 9,
               fontFamily: 'SemiBold',
               right: windowWidth / 1.5,
               bottom: 22,
+=======
+              color: '#FFF',
+              // backgroundColor: 'white',
+              fontSize: 14,
+              // fontFamily: 'SemiBold',
+              fontWeight: 'bold',
+              right: windowWidth / 1.5,
+              bottom: 37,
+>>>>>>> Stashed changes
             }}>
             パスワード
           </Text>
         </View>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         <ActivityIndicator
           style={{
             marginLeft: windowWidth / 2 - 15,
             width: 30,
             height: 30,
+<<<<<<< Updated upstream
             marginTop: 15,
+=======
+            bottom: '83%',
+>>>>>>> Stashed changes
             fontSize: 13,
             opacity: this.state.loginginOpacity,
           }}
           size="small"
+<<<<<<< Updated upstream
           color="#69747f"
         />
         <Text
           style={{
             alignItems: 'flex-start',
             marginLeft: windowWidth / 2 - (windowWidth - 100) / 2,
+=======
+          color="#FFF"
+          // color="#69747f"
+        />
+        <Text
+          style={{
+            alignSelf: 'center',
+            // marginLeft: windowWidth / 2 - (windowWidth - 100) / 2,
+>>>>>>> Stashed changes
             width: windowWidth - 100,
             height: 30,
             lineHeight: 18,
             textAlign: 'center',
+<<<<<<< Updated upstream
             marginTop: -25,
+=======
+            bottom: '83%',
+            // marginTop: -25,
+>>>>>>> Stashed changes
             fontSize: 13,
             color: 'red',
             opacity: this.state.invalidCredentialsOpacity,
           }}>
           {this.state.invalidCredentials}
         </Text>
+<<<<<<< Updated upstream
 
         <TouchableOpacity
           onPress={() => this.goLogin(id)}
@@ -409,6 +599,29 @@ class Login extends Component {
               opacity: 0.4,
               fontSize: 20,
               fontFamily: 'SemiBold',
+=======
+        <TouchableOpacity
+          onPress={() => this.goLogin(id)}
+          style={{
+            marginHorizontal: 100,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            //  marginTop: 15,
+            backgroundColor: '#EA337E',
+            paddingVertical: 6,
+            borderRadius: 10,
+            bottom: '83%',
+            width: '50%',
+          }}>
+          <Text
+            style={{
+              color: '#FFF',
+              alignSelf: 'center',
+              // opacity: 0.4,
+              fontSize: 14,
+              // fontFamily: 'SemiBold',
+              fontWeight: 'bold',
+>>>>>>> Stashed changes
             }}>
             {this.state.loginButton}
           </Text>
@@ -416,6 +629,7 @@ class Login extends Component {
         <TouchableOpacity
           onPress={() => this.goRegister()}
           style={{
+<<<<<<< Updated upstream
             marginHorizontal: 60,
             alignItems: 'center',
             justifyContent: 'center',
@@ -425,17 +639,37 @@ class Login extends Component {
             paddingVertical: 0,
             borderRadius: 5,
             bottom: 50,
+=======
+            marginHorizontal: 100,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            marginTop: 20,
+            // paddingBottom: 0,
+            height: 35,
+            backgroundColor: '#fff',
+            // paddingVertical: 6,
+            borderRadius: 10,
+            bottom: '83%',
+            width: '50%',
+>>>>>>> Stashed changes
           }}>
           <Text
             style={{
               alignSelf: 'center',
               color: 'black',
+<<<<<<< Updated upstream
               fontFamily: 'SemiBold',
+=======
+              // fontFamily: 'SemiBold',
+              fontSize: 12,
+              fontWeight: 'bold',
+>>>>>>> Stashed changes
               paddingVertical: 10,
             }}>
             新しいユーザー
           </Text>
         </TouchableOpacity>
+<<<<<<< Updated upstream
 
         <View
           style={{
@@ -457,11 +691,36 @@ class Login extends Component {
             </Text>
           </Icon.Button>
         </View>
+=======
+        {/* <View
+       style={{
+         marginHorizontal: 60,
+         alignItems: 'center',
+         justifyContent: 'center',
+         marginTop: windowHeight - 450,
+         paddingVertical: 3,
+         borderRadius: 0,
+         opacity: 0.9,
+         bottom: 260,
+       }}>
+       <Icon.Button
+         backgroundColor="#3b5998"
+         style={{marginHorizontal: 10, borderRadius: 0}}>
+         <Image source={require('../images/facebook.png')} />
+         <Text style={{fontFamily: 'Arial', fontSize: 15}}>
+           Login with Facebook
+         </Text>
+       </Icon.Button>
+     </View> */}
+>>>>>>> Stashed changes
       </View>
     );
   }
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
@@ -488,5 +747,8 @@ const styles = StyleSheet.create({
     right: 0,
   },
 });
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 export default Login;

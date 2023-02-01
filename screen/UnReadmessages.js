@@ -38,7 +38,8 @@ class Addmessages extends Component {
     this.goChat = this.goChat.bind(this);
   }
 
-  goChat(id, name, lastmessage, profile_image, profile_image_dir) {
+  goChat(id, name, lastmessage, profile_image, profile_image_dir, token) {
+    global.prevPage = 'unReadMessage';
     this.props.navigation.push('Chat');
 
     let self = this;
@@ -70,7 +71,10 @@ class Addmessages extends Component {
             timezone: ret[0].timezone,
             unread_count: ret[0].unread_count,
             ret: ret,
+            token: ret[0].token,
           });
+
+          // global.otherid = ret.id;
         });
         let params = {};
         params['id'] = id;
@@ -84,13 +88,14 @@ class Addmessages extends Component {
         params['save'] = this.state.save;
         params['timezone'] = this.state.timezone;
         params['unread_count'] = this.state.unread_count;
+        params['token'] = token;
 
         global.otherid = id;
         global.name = name;
         global.lastmessage = lastmessage;
         global.profile_image_dir = profile_image_dir;
         global.profile_image = profile_image;
-
+        global.token = token;
         // alert(global.otherid);
 
         global.socket.emit('on-matched', params);
@@ -105,6 +110,16 @@ class Addmessages extends Component {
 
   componentDidMount() {
     this.getChats();
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      // Alert.alert('Refreshed');
+      this.getChats();
+    });
+    // this.interval = setInterval(() => this.state.lastmessage({ time: Date.now() }), 1000);
+  }
+  componentWillUnmount() {
+    // clearInterval(this.interval);
+    this.getChats();
+    this._unsubscribe();
   }
 
   getChats(id, name) {
@@ -139,6 +154,7 @@ class Addmessages extends Component {
             timezone: ret[0].timezone,
             unread_count: ret[0].unread_count,
             ret: ret,
+            token: ret[0].token,
           });
         });
         let params = {};
@@ -153,6 +169,8 @@ class Addmessages extends Component {
         params['save'] = this.state.save;
         params['timezone'] = this.state.timezone;
         params['unread_count'] = this.state.unread_count;
+        params['token'] = this.state.token;
+        // params['token'] = this.state.token;
 
         global.otherid = id;
         global.name = name;
@@ -219,20 +237,17 @@ class Addmessages extends Component {
           style={{width: windowWidth - 40, height: '100%', alignSelf: 'center'}}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <Card
-              style={{paddingTop: 10}}
-              onPress={() =>
-                this.goChat(
-                  item.id,
-                  item.name,
-                  item.lastmessage,
-                  item.profile_image,
-                  item.profile_image_dir,
-                )
-              }>
-              {item.id == global.myuserid ? (
+            <View
+              style={{
+                // width: '100%',
+                // height: "100%",
+                alignSelf: 'center',
+                // backgroundColor: '#FFF',
+              }}>
+              {item.unread_count == 1 ? (
                 <></>
               ) : (
+<<<<<<< Updated upstream
                 <UserInfo>
                   <UserImgWrapper>
                     <UserImg
@@ -254,14 +269,100 @@ class Addmessages extends Component {
                     <MessageText>{item.lastmessage}</MessageText>
                   </TextSection>
                 </UserInfo>
+=======
+                <Card
+                  style={{paddingTop:10,paddingBottom:1}}
+                  onPress={() =>
+                    this.goChat(
+                      item.id,
+                      item.name,
+                      item.lastmessage,
+                      item.profile_image,
+                      item.profile_image_dir,
+                      item.token,
+                    )
+                  }>
+                  {item.id == global.myuserid ? (
+                    <></>
+                  ) : (
+                    <UserInfo>
+                      <UserImgWrapper>
+                        {item.online == 1 ? (
+                          <Svg
+                            style={{
+                              alignSelf: 'center',
+                              top: 10,
+                              position: 'absolute',
+                            }}
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fal"
+                            data-icon="angle-left"
+                            class="svg-inline--fa fa-angle-left fa-w-6"
+                            role="img"
+                            width="60"
+                            height="60"
+                            viewBox="0 0 56 56"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <Circle
+                              cx="28"
+                              cy="28"
+                              r="27"
+                              fill="white"
+                              stroke="#EA337E"
+                              stroke-width="2"
+                            />
+                            <Defs>
+                              <LinearGradient
+                                id="paint0_linear_50_2004"
+                                x1="28"
+                                y1="0"
+                                x2="28"
+                                y2="56"
+                                gradientUnits="userSpaceOnUse">
+                                <Stop stop-color="#ED70B0" />
+                                <Stop offset="1" stop-color="#EA337E" />
+                              </LinearGradient>
+                            </Defs>
+                          </Svg>
+                        ) : (
+                          <></>
+                        )}
+                        <UserImg
+                          source={{
+                            uri:
+                              URL_TEMP +
+                              '/' +
+                              item.profile_image_dir +
+                              '/' +
+                              item.profile_image,
+                          }}
+                        />
+                      </UserImgWrapper>
+                      <TextSection>
+                        <UserInfoText>
+                          <UserName>{item.name}</UserName>
+                          <PostTime>{item.date_time}</PostTime>
+                        </UserInfoText>
+                        <MessageText>{item.lastmessage}</MessageText>
+                        {/* {item.unread_count <= 0  ? (
+                    <Message1Text>{item.lastmessage}</Message1Text>
+                    ):( <MessageText>{item.lastmessage}</MessageText>)} */}
+                      </TextSection>
+                    </UserInfo>
+                  )}
+                </Card>
+>>>>>>> Stashed changes
               )}
-            </Card>
+            </View>
           )}
         />
       </Container>
     );
   }
 }
+
 
 export default Addmessages;
 

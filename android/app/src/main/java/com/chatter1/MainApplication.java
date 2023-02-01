@@ -11,7 +11,12 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
+<<<<<<< Updated upstream
 import com.twiliorn.library.TwilioPackage;
+=======
+//import com.twiliorn.library.TwilioPackage;
+// import com.zmxv.RNSound.RNSoundPackage; // <-- New
+>>>>>>> Stashed changes
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -33,8 +38,13 @@ public class MainApplication extends Application implements ReactApplication {
       // );
 
 
+<<<<<<< Updated upstream
       packages.add(new TwilioPackage());
 
+=======
+//      packages.add(new TwilioPackage());
+      // new RNSoundPackage() // <-- New
+>>>>>>> Stashed changes
        return packages;
 
 
