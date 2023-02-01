@@ -591,9 +591,6 @@ import RNIap, {
   purchaseUpdatedListener,
 } from 'react-native-iap';
 
-<<<<<<< Updated upstream
-import Svg, {G, Path} from 'react-native-svg';
-=======
 import Svg, {
   G,
   Path,
@@ -604,7 +601,6 @@ import Svg, {
   Rect,
 } from 'react-native-svg';
 import moment from 'moment';
->>>>>>> Stashed changes
 
 import Storage from '../utils/storage';
 
@@ -714,14 +710,10 @@ class CoinScreen extends Component {
         });
         let params = {};
 
-<<<<<<< Updated upstream
-        params['amount'] = global.price;
-=======
         // params['call_count'] = 20;
         // params['mail_count'] = 20;
         // params['amount'] = 1;
         params['sku'] =  global.productId ;
->>>>>>> Stashed changes
 
         global.socket.emit('on-buy-points-bundle', params);
 
@@ -754,9 +746,6 @@ class CoinScreen extends Component {
     );
   }
 
-<<<<<<< Updated upstream
-  componentDidMount() {
-=======
  async componentDidMount() {
 
     try {
@@ -772,7 +761,6 @@ class CoinScreen extends Component {
       );
     }
 
->>>>>>> Stashed changes
     this.init();
   }
 
@@ -794,11 +782,8 @@ class CoinScreen extends Component {
         });
         global.price = self.state.price;
 
-<<<<<<< Updated upstream
-=======
         
 
->>>>>>> Stashed changes
         // alert(JSON.stringify(global.price));
         this.getCoins();
       });
@@ -892,9 +877,6 @@ class CoinScreen extends Component {
           // price: this.state.price,
           // description: this.state.description,
         };
-<<<<<<< Updated upstream
-
-=======
         this.state.amount = global.amount 
         params['bundleid'] = this.state.bundleid;
         params['amount'] = this.state.amount;
@@ -902,7 +884,6 @@ class CoinScreen extends Component {
         params['name'] = this.state.name;
         params['description'] = this.state.description;
         // alert(JSON.stringify(this.state.amount ));
->>>>>>> Stashed changes
         global.socket.emit('on-points-bundle', params);
       },
     );
@@ -910,17 +891,12 @@ class CoinScreen extends Component {
 
   buy(productId, description, price) {
     let self = this;
-<<<<<<< Updated upstream
-    console.log(productId);
-
-=======
     // alert(productId);
 
     global.productId = productId;
 
 
   this.getCoins();
->>>>>>> Stashed changes
     try {
       RNIap.getProducts(this.state.items)
         .then(success => {
@@ -1000,11 +976,7 @@ class CoinScreen extends Component {
               color: '#FFF',
             }}>
             {this.state.title}
-<<<<<<< Updated upstream
-          </Text>
-=======
           </Text> */}
->>>>>>> Stashed changes
 
           <TouchableOpacity
             style={{
@@ -1050,15 +1022,6 @@ class CoinScreen extends Component {
             <Image
               source={require('../icon/coin1.png')}
               style={{
-<<<<<<< Updated upstream
-                alignSelf: 'center',
-                top: windowWidth / 2 - 270,
-                width: 250,
-                height: 250,
-                resizeMode: 'contain',
-              }}
-            />
-=======
                 position: 'absolute',
                 width: '100%',
                 height: 70,
@@ -1072,7 +1035,6 @@ class CoinScreen extends Component {
               }}>
               登録者5000人まで全 {'\n'}国無料！今だけ！
             </Text>
->>>>>>> Stashed changes
           </View>
 
           <FlatList
@@ -1105,23 +1067,16 @@ const CoinCell = ({item, self}) => (
   <TouchableOpacity
     style={{
       width: windowWidth - 33,
-<<<<<<< Updated upstream
-=======
       borderWidth: 1,
->>>>>>> Stashed changes
       marginTop: 10,
       marginBottom: 10,
       padding: 5,
       marginLeft: 0,
       borderRadius: 3,
       backgroundColor: '#fff',
-<<<<<<< Updated upstream
-      flexDirection: 'row',
-=======
       borderColor: '#EA337E',
       flexDirection: 'row',
       alignSelf: 'center',
->>>>>>> Stashed changes
       // borderWidth: 1,
     }}
     onPress={() =>
@@ -1163,13 +1118,8 @@ const CoinCell = ({item, self}) => (
         fontSize: 16,
         // paddingLeft: 10,
         fontWeight: 'bold',
-<<<<<<< Updated upstream
-        color: 'black',
-        borderWidth: 1,
-=======
         color: '#EA337E',
         top: '30%',
->>>>>>> Stashed changes
       }}>
       {Math.round(item.item.price)}
       {self.state.currencyText}

@@ -1136,8 +1136,6 @@
     "@types/yargs" "^17.0.8"
     chalk "^4.0.0"
 
-<<<<<<< Updated upstream
-=======
 "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.2"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.2.tgz"
@@ -1170,7 +1168,6 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
->>>>>>> Stashed changes
 "@react-native-async-storage/async-storage@^1.17.3":
   version "1.17.3"
   resolved "https://registry.npmjs.org/@react-native-async-storage/async-storage/-/async-storage-1.17.3.tgz"
@@ -1520,19 +1517,6 @@
   resolved "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.4.tgz"
   integrity sha512-O0jICpjn3jskVo4yiWzZozmj7DZy1ZBbn3O7dbenuUjZSj/cscjwaapmZZFGcI/IMmjmx8UTKsybhCFEIbGf3g==
 
-<<<<<<< Updated upstream
-"@react-navigation/elements@^1.3.6":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.3.6.tgz#fa700318528db93f05144b1be4b691b9c1dd1abe"
-  integrity sha512-pNJ8R9JMga6SXOw6wGVN0tjmE6vegwPmJBL45SEMX2fqTfAk2ykDnlJHodRpHpAgsv0DaI8qX76z3A+aqKSU0w==
-
-"@react-navigation/native-stack@^6.9.1":
-  version "6.9.1"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native-stack/-/native-stack-6.9.1.tgz#6013300e4cd0b33e242aa18593e4dff7db2ab3d1"
-  integrity sha512-aOuJP97ge6NRz8wH6sDKfLTfdygGmraYh0apKrrVbGvMnflbPX4kpjQiAQcUPUpMeas0betH/Su8QubNL8HEkg==
-  dependencies:
-    "@react-navigation/elements" "^1.3.6"
-=======
 "@react-navigation/elements@^1.3.12":
   version "1.3.12"
   resolved "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.12.tgz"
@@ -1544,7 +1528,6 @@
   integrity sha512-YsBv4LldFErwQbqLCI/aWWDTpMf9SFS4IW3Qcefm+TZli9Ee7XpZMmFdotiZTz4KoYHbqhO1fuExjl2O7ZHrAQ==
   dependencies:
     "@react-navigation/elements" "^1.3.12"
->>>>>>> Stashed changes
     warn-once "^0.1.0"
 
 "@react-navigation/native@^3.8.4":
@@ -1864,17 +1847,6 @@
   resolved "https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.7.8.tgz"
   integrity sha512-PrJx38EfpitFhwmILRl37jAdBlsww6AZ6rRVK4QS7T7RHLhX7mSs647sTmgr9GIxe3qjXdesmomEgbgaokrVFg==
 
-<<<<<<< Updated upstream
-"@zegocloud/zego-uikit-prebuilt-call-rn@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@zegocloud/zego-uikit-prebuilt-call-rn/-/zego-uikit-prebuilt-call-rn-1.2.1.tgz#8c458a30c2d8d4a76335895ca220814bcffe440c"
-  integrity sha512-rC6xhxknBBgB6lJY3EG1jtBoYAW6Ngv/5NtWX3Twl8dhtjc6lVcHWD9vyJD1Drh6f+YgXPBdn5Y+twGu1Got2w==
-
-"@zegocloud/zego-uikit-rn@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@zegocloud/zego-uikit-rn/-/zego-uikit-rn-1.2.0.tgz#ea2088b933697006e8408822215e59222f69d34b"
-  integrity sha512-sMYCKIEFk7ZsM6L384yybESgQXVt33vCVbS9B2eXrTT056pH2luoS3ywGYdbrr6cXnkBHeuyr4SMDlUcMSMwIw==
-=======
 "@zegocloud/zego-uikit-prebuilt-call-rn@^1.3.1":
   version "1.3.1"
   resolved "https://registry.npmjs.org/@zegocloud/zego-uikit-prebuilt-call-rn/-/zego-uikit-prebuilt-call-rn-1.3.1.tgz"
@@ -1905,7 +1877,6 @@
     react "18.2.0"
     react-native "0.70.4"
     zego-zim-react-native "2.4.0"
->>>>>>> Stashed changes
 
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"
@@ -6664,11 +6635,7 @@ prompts@^2.0.1, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-<<<<<<< Updated upstream
-prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.9, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.7.x, prop-types@^15.8.1:
-=======
 prop-types@*, prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.9, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.7.x, prop-types@^15.8.1:
->>>>>>> Stashed changes
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6727,26 +6694,15 @@ range-parser@~1.2.1:
 
 react-delegate-component@^1.0.0:
   version "1.0.0"
-<<<<<<< Updated upstream
-  resolved "https://registry.yarnpkg.com/react-delegate-component/-/react-delegate-component-1.0.0.tgz#c17f9e15afbea4e1d83553bf960f17c8835aaf52"
-=======
   resolved "https://registry.npmjs.org/react-delegate-component/-/react-delegate-component-1.0.0.tgz"
->>>>>>> Stashed changes
   integrity sha512-xdpNHPoiBQF0Ob4z5EqQUEK2sBjy0ooXe9xqsLlaA19l5dUASu3mIkfXMdBmMLCSfByPa0NluEN6BUDaI5EnlQ==
   dependencies:
     prop-types "^15.6.0"
 
-<<<<<<< Updated upstream
-react-devtools-core@4.19.1:
-  version "4.19.1"
-  resolved "https://registry.npmjs.org/react-devtools-core/-/react-devtools-core-4.19.1.tgz"
-  integrity sha512-2wJiGffPWK0KggBjVwnTaAk+Z3MSxKInHmdzPTrBh1mAarexsa93Kw+WMX88+XjN+TtYgAiLe9xeTqcO5FfJTw==
-=======
 react-devtools-core@4.24.0:
   version "4.24.0"
   resolved "https://registry.npmjs.org/react-devtools-core/-/react-devtools-core-4.24.0.tgz"
   integrity sha512-Rw7FzYOOzcfyUPaAm9P3g0tFdGqGq2LLiAI+wjYcp6CsF3DeeMrRS3HZAho4s273C29G/DJhx0e8BpRE/QZNGg==
->>>>>>> Stashed changes
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
@@ -6970,11 +6926,7 @@ react-native-modal-datetime-picker@^13.1.2:
 
 react-native-modal-dropdown@^1.0.2:
   version "1.0.2"
-<<<<<<< Updated upstream
-  resolved "https://registry.yarnpkg.com/react-native-modal-dropdown/-/react-native-modal-dropdown-1.0.2.tgz#3e1efae5a5eacc42f44ac96468ea2f1b5bb0d759"
-=======
   resolved "https://registry.npmjs.org/react-native-modal-dropdown/-/react-native-modal-dropdown-1.0.2.tgz"
->>>>>>> Stashed changes
   integrity sha512-X13RbwoQdaOb9Ffi7fjRVwh9OXauXIJhum0uXGzYZLMyoCQ5yt5cxf27P/YZbdh80Fb7bdPx6vTA4PTpUK2WDQ==
   dependencies:
     prop-types "^15.6.0"
@@ -7053,11 +7005,7 @@ react-native-safe-area-context@^3.1.9:
 
 react-native-safe-area-context@^4.4.1:
   version "4.4.1"
-<<<<<<< Updated upstream
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.4.1.tgz#239c60b8a9a80eac70a38a822b04c0f1d15ffc01"
-=======
   resolved "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.4.1.tgz"
->>>>>>> Stashed changes
   integrity sha512-N9XTjiuD73ZpVlejHrUWIFZc+6Z14co1K/p1IFMkImU7+avD69F3y+lhkqA2hN/+vljdZrBSiOwXPkuo43nFQA==
 
 react-native-safe-area-view@^0.14.9:
@@ -7129,11 +7077,7 @@ react-native-timezone@^2.0.0:
 
 react-native-twilio-video-webrtc@^3.0.0:
   version "3.0.0"
-<<<<<<< Updated upstream
-  resolved "https://registry.yarnpkg.com/react-native-twilio-video-webrtc/-/react-native-twilio-video-webrtc-3.0.0.tgz#056829d8672b1d52e071674f2e7acef65338edaf"
-=======
   resolved "https://registry.npmjs.org/react-native-twilio-video-webrtc/-/react-native-twilio-video-webrtc-3.0.0.tgz"
->>>>>>> Stashed changes
   integrity sha512-/gbv4B9V2YJAX6GksvjFNcDUoRG8xsOSdTcWjB7PjPdy5tb6WdIaihHKluZsKrMA0nn5pL/hw6i1X9fWQ18huA==
   dependencies:
     prop-types "^15.5.10"
@@ -8962,12 +8906,6 @@ yocto-queue@^0.1.0:
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-<<<<<<< Updated upstream
-zego-express-engine-reactnative@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/zego-express-engine-reactnative/-/zego-express-engine-reactnative-3.0.1.tgz#4f6a6042f695fe34659e4910d7c69520e00fc728"
-  integrity sha512-zo/nDN+EdCDfJqgG9XrrWA616nhyBewX0eU05iPl4eGKZNuVtx/vwo8pQSNd5NaiC42LuyQ/YAt12Qd/ShKyFg==
-=======
 zego-express-engine-reactnative@^3.1.2:
   version "3.1.2"
   resolved "https://registry.npmjs.org/zego-express-engine-reactnative/-/zego-express-engine-reactnative-3.1.2.tgz"
@@ -8977,4 +8915,3 @@ zego-zim-react-native@2.4.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/zego-zim-react-native/-/zego-zim-react-native-2.4.0.tgz"
   integrity sha512-6EFvKxZBb9/ZGE+KudUK5olp8qc/2oFI5om9J+rT18uMDNUrP2BHY5iqmjUZmAjjQ5LnCBIeS2m03Q/Qlxvo4A==
->>>>>>> Stashed changes
